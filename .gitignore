@@ -1,0 +1,3 @@
+# Local dev artefacts
+.local
+*.pem
