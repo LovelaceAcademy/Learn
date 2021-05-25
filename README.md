@@ -1,2 +1,2 @@
-# Lovelace Academy Material
-Content for https://material.lovelace.academy
+# Lovelace Academy: Learn  
+Content for https://learn.lovelace.academy

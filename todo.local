@@ -1,6 +1,0 @@
-.menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane { padding-top: 30px }
-
-@media (min-width: 1500px)
-.full-width-doc .doc_documentation_area.body_fixed .doc_left_sidebarlist { -width }
-
-.doc_documentation_area.body_fixed .doc_left_sidebarlist { -width }
