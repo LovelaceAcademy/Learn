@@ -391,22 +391,25 @@
 
                             <h4 class="c_head load-order-2">Set up Your Linux Environment</h4>
                             <p>
-                                At the time of writing, running the Cardano node in Linux is the easiest and most well-documented approach. There are four ways to do so.
+                                At the time of writing, running the Cardano node in Linux is the easiest and most well-documented approach. There are a few ways to do so.
                             </p>
                             <ul>
-                                <li>Dual boot a Linux distribution on top of your default OS</li>
-                                <li>Run a Linux distribution using WSL2 (Windows)</li>
-                                <li>Run a Linux distribution as a local VM</li>                                
-                                <li>Run a Linux distribution as a cloud VM via SSH</li>
+                                <li>Run a Linux distro as a native OS on your device</li>
+                                <li>Dual boot a Linux distro on top of your default OS (Windows, macOS)</li>
+                                <li>Run a Linux distro as a local VM (Windows, macOS)</li>                                
+                                <li>Run a Linux distro as a transient cloud VM via SSH (Windows, macOS)</li>
+                                <li>Run a Linux distro using WSL2 (Windows)</li>
                             </ul>
                             <p>
-                                As with all things related to provisioning, the most important thing to keep in mind is to have a 
-                                <strong>repeatable</strong> and <strong>reliable</strong> way of setting up your environment. 
+                                There are pros and cons to each of these options but the most important outcome is having a 
+                                <strong>repeatable</strong> and <strong>reliable</strong> way of setting up your environment from scratch. 
+                                This will give you confidence in spinning up a node only when required across different networks and purposes.
                             </p>
                             <p>
-                                The Ubuntu 20.04 distribution has the best combination of usability and documentation while offering a rich ecosystem.
+                                From now we will focus on the Ubuntu 20.04 distro as it has the best combination of usability and greatest depth of documentation.
                             </p>
                             <h5 class="c_head">Install Core Dependencies</h5>
+                            There are several core dependencies to install via APT before you can build cardano-node.
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -418,6 +421,7 @@
                             </div>
 
                             <h5 class="c_head">Install Cabal, GHC and Libsodium</h5>
+                            Once the core dependencies are installed we will move on to installing Cabal (the Haskell build orchestrator), GHC (the Haskell compiler) and Libsodium (the cryptography library).
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -454,6 +458,8 @@
                             </div>
 
                             <h4 class="c_head load-order-2">Clone and build cardano-node</h4>
+                            Now we can clone the <a href='https://github.com/input-output-hk/cardano-node'>cardano-node</a> repository, retrieve the latest tagged version, build it and copy the built binaries to ~/.local/bin which will be part of the executable path.
+                            This process takes between 10-30 mins so feel free to grab some tea, coffee or snacks. 
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -471,6 +477,7 @@
                                 </pre>
                             </div>
                             <h5 class="c_head">Post-build Scripts</h5>
+                            For convenience it also makes sense to add amend the existing environment variables.
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -503,8 +510,40 @@
                             
 
                             <h4 class="c_head load-order-2">Running and Monitoring the Node</h4>
+                            <div class="highlight">
+                                <pre>
+                                    <code class="language-bash" data-lang="bash">
+                                        cardano-node run \
+                                            --topology ~/testnet-node/config/topology.json \
+                                            --database-path ~/testnet-node/db/ \
+                                            --socket-path ~/testnet-node/socket/node.socket \
+                                            --host-addr 0.0.0.0 \
+                                            --port 3001 \
+                                            --config ~/testnet-node/config/config.json
+                                    </code>
+                                </pre>
+                            </div>
+                            If you are running the node for the first time it will need to fully synchronise with the blockchain. Verify that the running node process is exposing its internal metrics by running:
+                            <div class="highlight">
+                                <pre>
+                                    <code class="language-bash" data-lang="bash">
+                                        curl localhost:12798/metrics
+                                    </code>
+                                </pre>
+                            </div>
 
                             <h4 class="c_head load-order-2">Interacting with the Node using cardano-cli</h4>
+                            <div class="highlight">
+                                <pre>
+                                    <code class="language-bash" data-lang="bash">
+                                        # Getting the current tip
+                                        cardano-cli query tip --mainnet
+
+                                        # Export the protocol parameters to file protocol.json
+                                        cardano-cli query protocol-parameters --mainnet --out-file protocol.json 
+                                    </code>
+                                </pre>
+                            </div>
 
                             <footer>
                                 <div class="border_bottom"></div>
