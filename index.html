@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/prism/prism.css">
     <link rel="stylesheet" href="css/style-main.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="assets/font-size/css/rvfs.css">
     <title>Lovelace Academy - Learn - Getting Started</title>
 </head>
 
@@ -42,10 +43,10 @@
                 <img class="first_logo sticky_logo main_logo" src="img/logo.png" srcset="img/logo-2x.png 2x" alt="logo">
                 <img class="white_logo" src="img/logo-w.png" srcset="img/logo-w2x.png 2x" alt="logo">
             </a>
-            <div class="search-input">
+            <!-- <div class="search-input">
                 <ion-icon class="search-icon" name="search-outline"></ion-icon>
                 <input type="text" placeholder="Search..." value="" class="">
-            </div>
+            </div> -->
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="menu_toggle">
                     <span class="hamburger">
@@ -490,25 +491,26 @@
 
                             <h4 class="c_head load-order-2">Set up Your Linux Environment</h4>
                             <p>
-                                At the time of writing, running the Cardano node in Linux is the easiest and most well-documented approach. There are a few ways to do so.
+                                At the time of writing, setting up your Cardano development environment in Ubuntu 20.04 is the easiest and most well-documented approach. There are a few ways to do so.
                             </p>
                             <ul>
-                                <li>Run a Linux distro as a native OS on your device</li>
-                                <li>Dual boot a Linux distro on top of your default OS (Windows, macOS)</li>
-                                <li>Run a Linux distro as a local VM (Windows, macOS)</li>                                
-                                <li>Run a Linux distro as a transient cloud VM via SSH (Windows, macOS)</li>
-                                <li>Run a Linux distro using WSL2 (Windows)</li>
+                                <li>Run Ubuntu as the default OS or dual boot it on your device</li>
+                                <li>Run Ubuntu as a local VM (<a href='https://www.youtube.com/watch?v=BatrK6G8j4M'>Windows</a>, <a href='https://www.youtube.com/watch?v=Hzji7w882OY'>macOS</a>)</li>                                
+                                <li>Run Ubuntu as a transient cloud VM via SSH (Windows, macOS)</li>
+                                <li>Run Ubuntu using WSL2 (Windows)</li>
                             </ul>
                             <p>
                                 There are pros and cons to each of these options but the most important outcome is having a 
                                 <strong>repeatable</strong> and <strong>reliable</strong> way of setting up your environment from scratch. 
-                                This will give you confidence in spinning up a node only when required across different networks and purposes.
+                                This will give you confidence in spinning up a node as required across different networks and purposes.
                             </p>
                             <p>
                                 From now we will focus on the Ubuntu 20.04 distro as it has the best combination of usability and greatest depth of documentation.
                             </p>
                             <h5 class="c_head">Install Core Dependencies</h5>
+                            <p>
                             There are several core dependencies to install via APT before you can build cardano-node.
+                            </p>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -520,7 +522,9 @@
                             </div>
 
                             <h5 class="c_head">Install Cabal, GHC and Libsodium</h5>
-                            Once the core dependencies are installed we will move on to installing Cabal (the Haskell build orchestrator), GHC (the Haskell compiler) and Libsodium (the cryptography library).
+                            <p>
+                                Once the core dependencies are installed we will move on to installing Cabal (the Haskell build orchestrator), GHC (the Haskell compiler) and Libsodium (the cryptography library).
+                            </p>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -557,8 +561,10 @@
                             </div>
 
                             <h4 class="c_head load-order-2">Clone and build cardano-node</h4>
+                            <p>
                             Now we can clone the <a href='https://github.com/input-output-hk/cardano-node'>cardano-node</a> repository, retrieve the latest tagged version, build it and copy the built binaries to ~/.local/bin which will be part of the executable path.
                             This process takes between 10-30 mins so feel free to grab some tea, coffee or snacks. 
+                            </p>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -576,7 +582,9 @@
                                 </pre>
                             </div>
                             <h5 class="c_head">Post-build Scripts</h5>
+                            <p>
                             For convenience it also makes sense to add amend the existing environment variables.
+                            </p>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -622,7 +630,9 @@
                                     </code>
                                 </pre>
                             </div>
+                            <p>
                             If you are running the node for the first time it will need to fully synchronise with the blockchain. Verify that the running node process is exposing its internal metrics by running:
+                            </p>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -656,35 +666,6 @@
                                 </div>
                             </footer>
                         </article>
-                    </div>
-
-                    <div class="row topic_item_tabs inner_tab_list">
-                        <div class="col-lg-6">
-                            <div class="topic_list_item">
-                                <h4>Related articles</h4>
-                                <ul class="navbar-nav">
-                                    <li><a href="#"><i class="icon_document_alt"></i>Accordions Widget</a></li>
-                                    <li><a href="#"><i class="icon_document_alt"></i>Notice / Message Widget</a>
-                                    </li>
-                                    <li><a href="#"><i class="icon_document_alt"></i>Cheatsheet</a></li>
-                                    <li><a href="#"><i class="icon_document_alt"></i>Image Hotspots Widget</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="topic_list_item">
-                                <h4>Recently viewed articles</h4>
-                                <ul class="navbar-nav">
-                                    <li><a href="#"><i class="icon_document_alt"></i>Tabs Widget</a></li>
-                                    <li><a href="#"><i class="icon_document_alt"></i>Notice / Message Widget</a>
-                                    </li>
-                                    <li><a href="#"><i class="icon_document_alt"></i>Cheatsheet</a></li>
-                                    <li><a href="#"><i class="icon_document_alt"></i>Image Hotspots Widget</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 doc_right_mobile_menu">
@@ -723,8 +704,8 @@
                 </div>
                 <div class="col-lg-6 text-right">
                     <ul class="list-unstyled f_social_icon">
-                        <li><a href="#"><i class="social_youtube"></i></a></li>
-                        <li><a href="#"><i class="social_twitter"></i></a></li>
+                        <li><a href="https://www.youtube.com/c/LovelaceAcademy/videos"><i class="social_youtube"></i></a></li>
+                        <li><a href="https://twitter.com/academylovelace"><i class="social_twitter"></i></a></li>
                         <!-- <li><a href="#"><i class="social_github"></i></a></li> -->
                         <!-- <li><a href="#"><i class="social_linkedin"></i></a></li> -->
                     </ul>
@@ -737,7 +718,7 @@
 <!-- How can we help? Form Modal -->
 <div class="modal fade img_modal" id="exampleModal3" tabindex="-3" role="dialog" aria-hidden="false">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <i class=" icon_close"></i>
+        <i class="icon_close"></i>
     </button>
     <div class="modal-dialog help_form" role="document">
         <div class="modal-content">
