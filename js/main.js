@@ -1067,8 +1067,8 @@
     titles.forEach(onThisPage)
 
     function onThisPage(item, index) {
-      if ( $('#navbar-example3').length ) {
-        document.getElementById("navbar-example3").innerHTML += "<a class='nav-link' href='#" + item + "'>" + convertToTitle(item) + "</a>";
+      if ( $('#ll-toc').length ) {
+        document.getElementById("ll-toc").innerHTML += "<a class='nav-link' href='#" + item + "'>" + convertToTitle(item) + "</a>";
       }
     }
   }

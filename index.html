@@ -22,7 +22,7 @@
     <title>Lovelace Academy - Learn - Getting Started</title>
 </head>
 
-<body class="doc wide-container" data-spy="scroll" data-target="#navbar-example3" data-scroll-animation="true" data-offset="70">
+<body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
 <div id="preloader">
     <div id="ctn-preloader" class="ctn-preloader">
         <div class="round_spinner">
@@ -62,7 +62,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav menu ml-auto">
-                    <li class="nav-item dropdown submenu">
+                    <li class="nav-item dropdown submenu active">
                         <a href="#" class="nav-link dropdown-toggle">Getting Started</a>
                             <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
                             <ul class="dropdown-menu">
@@ -86,38 +86,34 @@
                     <li class="nav-item dropdown submenu mega_menu tab-demo">
                         <a href="#" class="nav-link dropdown-toggle">Smart Contracts</a>
                             <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
-                            <!-- <ul class="dropdown-menu">
-                                <li class="nav-item"><a href="#" class="nav-link">Fundamentals: EUTxO</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">The Plutus Platform</a></li>
-                            </ul> -->
                             <ul class="dropdown-menu">
                                 <li>
                                     <div class="row">
                                         <div class="col-lg-5 tabHeader">
                                             <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                                 aria-orientation="vertical">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="v-pills-doc-tab" data-toggle="pill"
-                                                        href="#v-pills-doc" role="tab" aria-controls="v-pills-doc"
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" id="v-sc-fundamentals-tab" data-toggle="pill"
+                                                        href="#v-sc-fundamentals" role="tab" aria-controls="v-sc-fundamentals"
                                                         aria-selected="true">Fundamentals</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="v-pills-tour-tab" data-toggle="pill"
-                                                        href="#v-pills-tour" role="tab" aria-controls="v-pills-tour"
+                                                    <a class="nav-link" id="v-plutus-tab" data-toggle="pill"
+                                                        href="#v-plutus" role="tab" aria-controls="v-plutus"
                                                         aria-selected="false">The Plutus Platform</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="v-pills-content-tab" data-toggle="pill"
-                                                        href="#v-pills-content" role="tab"
-                                                        aria-controls="v-pills-content"
+                                                    <a class="nav-link" id="v-marlowe-tab" data-toggle="pill"
+                                                        href="#v-marlowe" role="tab"
+                                                        aria-controls="v-marlowe"
                                                         aria-selected="false">Marlowe</a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-lg-7">
                                             <div class="tab-content tabContent" id="v-pills-tabContent">
-                                                <div class="tab-pane fade" id="v-pills-doc" role="tabpanel"
-                                                    aria-labelledby="v-pills-doc-tab">
+                                                <div class="tab-pane fade active show" id="v-sc-fundamentals" role="tabpanel"
+                                                    aria-labelledby="v-sc-fundamentals-tab">
                                                     <div class="d-flex">
                                                         <ul class="list-unstyled tab_list">
                                                             <li>
@@ -135,8 +131,8 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="v-pills-tour" role="tabpanel"
-                                                    aria-labelledby="v-pills-tour-tab">
+                                                <div class="tab-pane fade" id="v-plutus" role="tabpanel"
+                                                    aria-labelledby="v-plutus-tab">
                                                     <div class="d-flex">
                                                         <ul class="list-unstyled tab_list w_100">
                                                             <li>
@@ -160,8 +156,8 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="v-pills-content" role="tabpanel"
-                                                    aria-labelledby="v-pills-content-tab">
+                                                <div class="tab-pane fade" id="v-marlowe" role="tabpanel"
+                                                    aria-labelledby="v-marlowe-tab">
                                                     <div class="d-flex">
                                                         <ul class="list-unstyled tab_list">
                                                             <li>
@@ -223,7 +219,7 @@
             </div>
         </div>
     </nav>
-    <div class="mobile_main_menu dark_menu sticky-nav ">
+    <div class="mobile_main_menu dark_menu sticky-nav">
         <div class="container">
             <div class="mobile_menu_left">
                 <button type="button" class="navbar-toggler mobile_menu_btn">
@@ -496,16 +492,13 @@
                             <ul>
                                 <li>Run Ubuntu as the default OS or dual boot it on your device</li>
                                 <li>Run Ubuntu as a local VM (<a href='https://www.youtube.com/watch?v=BatrK6G8j4M'>Windows</a>, <a href='https://www.youtube.com/watch?v=Hzji7w882OY'>macOS</a>)</li>                                
-                                <li>Run Ubuntu as a transient cloud VM via SSH (Windows, macOS)</li>
-                                <li>Run Ubuntu using WSL2 (Windows)</li>
+                                <li>Run Ubuntu on a cloud VM via SSH (Windows, macOS)</li>
+                                <li>Run Ubuntu using WSL2 (<a href='https://docs.microsoft.com/en-us/windows/wsl/install-win10'>Windows</a>)</li>
                             </ul>
                             <p>
                                 There are pros and cons to each of these options but the most important outcome is having a 
                                 <strong>repeatable</strong> and <strong>reliable</strong> way of setting up your environment from scratch. 
                                 This will give you confidence in spinning up a node as required across different networks and purposes.
-                            </p>
-                            <p>
-                                From now we will focus on the Ubuntu 20.04 distro as it has the best combination of usability and greatest depth of documentation.
                             </p>
                             <h5 class="c_head">Install Core Dependencies</h5>
                             <p>
@@ -563,7 +556,7 @@
                             <h4 class="c_head load-order-2">Clone and build cardano-node</h4>
                             <p>
                             Now we can clone the <a href='https://github.com/input-output-hk/cardano-node'>cardano-node</a> repository, retrieve the latest tagged version, build it and copy the built binaries to ~/.local/bin which will be part of the executable path.
-                            This process takes between 10-30 mins so feel free to grab some tea, coffee or snacks. 
+                            This process takes between 10-30 mins so feel free to grab some tea, coffee and/or snacks. 
                             </p>
                             <div class="highlight">
                                 <pre>
@@ -592,12 +585,15 @@
                                         echo 'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"' >> ~/.bashrc
                                         echo 'export PATH="~/.cabal/bin:$PATH"' >> ~/.bashrc
                                         echo 'export PATH="~/.local/bin:$PATH"' >> ~/.bashrc
-                                        echo 'export CARDANO_NODE_SOCKET_PATH=/home/ss/testnet-node/socket/node.socket' >> ~/.bashrc
+                                        echo 'export CARDANO_NODE_SOCKET_PATH="$HOME/testnet-node/socket/node.socket"' >> ~/.bashrc
+                                        source ~/.bashrc
                                     </code>
                                 </pre>
                             </div>
 
                             <h4 class="c_head load-order-2">Configure the Node</h4>
+                            <p>Your Cardano node needs to be configured correctly to connect to a Cardano network, and this is determined by four JSON configuration files. 
+                                We will focus on the testnet first.</p>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -615,8 +611,8 @@
                                 </pre>
                             </div>
                             
-
                             <h4 class="c_head load-order-2">Running and Monitoring the Node</h4>
+                            Now it just a matter of running your node pointing to the configuration files above. 
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -631,25 +627,28 @@
                                 </pre>
                             </div>
                             <p>
-                            If you are running the node for the first time it will need to fully synchronise with the blockchain. Verify that the running node process is exposing its internal metrics by running:
+                            If you are running the node for the first time it will need to fully synchronise with the blockchain. 
+                            Verify that the running node process is exposing its internal metrics by running:
                             </p>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
-                                        curl localhost:12798/metrics
+                                        curl localhost:12798/metrics | grep [Ee]poch
                                     </code>
                                 </pre>
                             </div>
+                            <p>You can see the expected Epoch and Slot by going to <a href="https://pooltool.io/">pooltool.io</a> and
+                                clicking on the MAINNET button at the bottom panel until it changes to a red TESTNET button.</p>
 
                             <h4 class="c_head load-order-2">Interacting with the Node using cardano-cli</h4>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
                                         # Getting the current tip
-                                        cardano-cli query tip --mainnet
+                                        cardano-cli query tip --testnet-magic 1097911063
 
                                         # Export the protocol parameters to file protocol.json
-                                        cardano-cli query protocol-parameters --mainnet --out-file protocol.json 
+                                        cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
                                     </code>
                                 </pre>
                             </div>
@@ -658,10 +657,10 @@
                                 <div class="border_bottom"></div>
                                 <div class="row feedback_link">
                                     <div class="col-lg-6">
-                                        <h6><i class="icon_mail_alt"></i>Still stuck? <a href="#" data-toggle="modal" data-target="#exampleModal3">How can we help?</a></h6>
+                                        <h6><i class="icon_mail_alt"></i>Still stuck? <a href="mailto:hello@lovelace.academy">How can we help?</a></h6>
                                     </div>
                                     <div class="col-lg-6">
-                                        <p>Was this page helpful? <a href="#" class="h_btn">Yes</a><a href="#" class="h_btn red">No</a></p>
+                                        <!-- <p>Was this page helpful? <a href="#" class="h_btn">Yes</a><a href="#" class="h_btn red">No</a></p> -->
                                     </div>
                                 </div>
                             </footer>
@@ -685,7 +684,7 @@
                             </div>
                             <div class="table-of-content">
                                 <h6><i class="icon_ul"></i> CONTENTS</h6>
-                                <nav class="list-unstyled doc_menu" id="navbar-example3">
+                                <nav class="list-unstyled doc_menu" id="ll-toc">
                                 </nav>
                             </div>
                         </div>
@@ -700,53 +699,19 @@
         <div class="container ">
             <div class="row">
                 <div class="col-lg-6">
-                    <p>© 2021 All Rights Reserved by <a href="#">Lovelace Academy</a></p>
+                    <p>© 2021 All Rights Reserved by <a href="https://lovelace.academy/">Lovelace Academy</a></p>
                 </div>
                 <div class="col-lg-6 text-right">
                     <ul class="list-unstyled f_social_icon">
-                        <li><a href="https://www.youtube.com/c/LovelaceAcademy/videos"><i class="social_youtube"></i></a></li>
-                        <li><a href="https://twitter.com/academylovelace"><i class="social_twitter"></i></a></li>
-                        <!-- <li><a href="#"><i class="social_github"></i></a></li> -->
+                        <li><a href="https://www.youtube.com/c/LovelaceAcademy/videos" target="_blank"><i class="social_youtube"></i></a></li>
+                        <li><a href="https://twitter.com/academylovelace" target="_blank"><i class="social_twitter"></i></a></li>
+                        <li><a href="https://github.com/lovelaceacademy" target="_blank"><ion-icon name="logo-github"></ion-icon></a></li>
                         <!-- <li><a href="#"><i class="social_linkedin"></i></a></li> -->
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-</div>
-
-<!-- How can we help? Form Modal -->
-<div class="modal fade img_modal" id="exampleModal3" tabindex="-3" role="dialog" aria-hidden="false">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <i class="icon_close"></i>
-    </button>
-    <div class="modal-dialog help_form" role="document">
-        <div class="modal-content">
-            <div class="shortcode_title">
-                <h2>How can we help?</h2>
-                <p>A premium WordPress theme with integrated Knowledge Base,<br>providing 24/7 community based support.</p>
-            </div>
-            <form action="#" class="contact_form">
-                <div class="row">
-                    <div class="form-group col-lg-6">
-                        <input type="text" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="form-group col-lg-6">
-                        <input type="email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="form-group col-lg-12">
-                        <input type="text" class="form-control" placeholder="Subject">
-                    </div>
-                    <div class="form-group col-lg-12">
-                        <textarea name="Message" id="massage" placeholder="Massage"></textarea>
-                    </div>
-                    <div class="form-group col-lg-12">
-                        <button type="submit" class="btn action_btn">Send</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
 
 <!-- Back to top button -->
