@@ -377,7 +377,7 @@
                     </nav>
                 </div>
                 <div class="col-sm-5">
-                    <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on May 30, 2021</a>
+                    <a href="#" class="date"><i class="icon_clock_alt"></i>Updated June 8, 2021</a>
                 </div>
             </div>
         </div>
@@ -404,7 +404,7 @@
                                     <a href="#" class="nav-link"><img src="../../img/side-nav/briefcase.png" alt="briefcase">Getting Started</a>
                                     <span class="icon"><i class="arrow_carrot-down"></i></span>
                                     <ul class="list-unstyled dropdown_nav">
-                                        <li><a href="#">Why Build On Cardano</a></li>
+                                        <li><a href="https://learn.lovelace.academy/getting-started/why-cardano">Why Build On Cardano</a></li>
                                         <li><a href="https://learn.lovelace.academy/getting-started/running-a-full-node">Running a Full Cardano Node</a></li>
                                         <li><a class="active">Wallets Basics: Keys and Addresses</a></li>
                                         <!-- <li><a href="#">Wallets HD: Mnemonic Phrases</a></li> -->
@@ -473,18 +473,18 @@
                             <img class="img-fluid" src='https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png' />
                             <span>Image courtesy of <a href='https://github.com/ilap' target="_blank">Pal</a></span>
                             
-                            <h4 class="c_head load-order-1">Keys</h4>
+                            <h2 class="c_head load-order-1">Keys</h2>
                             <p>
                                 Two main types of keys are used within Cardano:
                                 <ul>
                                     <li>Payment Keys: For signing transactions to spend ADA/assets in payment addresses</li>
                                     <li>Staking Keys: For delegating stake, claiming ADA rewards from rewards addresses and registering stake pools</li>
                                 </ul>
-                                Both types are <a href='https://en.wikipedia.org/wiki/EdDSA#Ed25519' target="_blank">Ed25519</a> key pairs consisting of a private signing key and a public verification key.
                             </p>
+                            <p>Both types are <a href='https://en.wikipedia.org/wiki/EdDSA#Ed25519' target="_blank">Ed25519</a> key pairs consisting of a private signing key and a public verification key.</p>
                             <blockquote class="media notice notice-danger">
                                 <i class="icon_ribbon_alt"></i>
-                                <div class="media-body">
+                                <div>
                                     <p>
                                         Outside of the testnets it is <strong>EXTREMELY</strong> important to safeguard your private signing keys. 
                                     </p>
@@ -499,7 +499,7 @@
                                 </div>
                             </blockquote>
                             
-                            <h5 class="c_head">Creating Payment Keys</h5>
+                            <h3 class="c_head">Creating Payment Keys</h3>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -508,7 +508,7 @@
                                 </pre>
                             </div>
                             <p>This will create two files, the private signing key payment.skey and the public verification key payment.vkey in the current directory.</p>
-                            <h5 class="c_head">Creating Staking Keys</h5>
+                            <h3 class="c_head">Creating Staking Keys</h3>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
@@ -517,7 +517,8 @@
                                 </pre>
                             </div>
                             <p>This will create the private signing key stake.skey and the public verification key stake.vkey in the current directory.</p>
-                            <h4 class="c_head load-order-1">Addresses</h4>
+
+                            <h2 class="c_head load-order-2">Addresses</h2>
                             <p>
                                 The keys above are then used to create two main types of addresses:
                                 <ul>
@@ -525,9 +526,9 @@
                                     <li>Staking addresses: To receive ADA staking rewards (automatically)</li>
                                 </ul>
                                 The generated addresses are encoded with the network in which they are valid for (e.g. --mainnet or --testnet-magic 1097911063)
-                                concatenated with other metadata (see different address types in the image above) and hashed using blake2b-256 to ensure a unique address of a consistent length. 
+                                concatenated with other metadata (see different address types in the image above) and hashed using <a href='https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2' target="_blank">blake2b-256</a> to ensure a unique address of a consistent length. 
                             </p>
-                            <h5 class="c_head">Creating a Payment Address</h5>
+                            <h3 class="c_head">Creating a Payment Address</h3>
                             <p>
                                 Payment addresses are generally created using both payment and staking verification keys. 
                                 Re-using the same staking key to generate multiple payment addresses allow all the ADA from these addresses to be automatically staked to a designated stake pool.
@@ -545,7 +546,7 @@
                                 </pre>
                             </div>
 
-                            <h5 class="c_head">Creating a Staking Address</h5>
+                            <h3 class="c_head">Creating a Staking Address</h3>
                             <p>
                                 A unique staking address is generated from a staking verification key. 
                             </p>

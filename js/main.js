@@ -510,11 +510,11 @@
   }
 
   /*=========== anchors js ===========*/
-  if ($(".shortcode_info h4").length) {
+  if ($(".shortcode_info h2").length) {
     var Anchor1 = new AnchorJS();
     document.addEventListener("DOMContentLoaded", function (event) {
       Anchor1 = new AnchorJS();
-      Anchor1.add(".shortcode_info h4");
+      Anchor1.add(".shortcode_info h2");
     });
   }
 
@@ -1064,17 +1064,18 @@
     jQuery(divs).each(function () {
       titles.push( jQuery(this).attr("id") );
     });
+    
     titles.forEach(onThisPage)
 
     function onThisPage(item, index) {
-      if ( $('#ll-toc').length ) {
+       if ( $('#ll-toc').length ) {
         document.getElementById("ll-toc").innerHTML += "<a class='nav-link' href='#" + item + "'>" + convertToTitle(item) + "</a>";
       }
     }
   }
 
   $(document).ready(function () {
-    onThisPageTitles($(".shortcode_info h4").toArray());
+    onThisPageTitles($(".shortcode_info h2").toArray());
   })
 
   $( ".shadow-sm" ).hover(

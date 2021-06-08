@@ -29,7 +29,7 @@
             <div class="spinner"></div>
             <div class="text">
                 <img src="../../img/spinner_logo.png" alt="">
-                <h4><span>Lovelace Academy</span></h4>
+                <h2><span>Lovelace Academy</span></h2>
             </div>
         </div>
         <!-- <h2 class="head">Did You Know?</h2>
@@ -377,7 +377,7 @@
                     </nav>
                 </div>
                 <div class="col-sm-5">
-                    <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on May 23, 2021</a>
+                    <a href="#" class="date"><i class="icon_clock_alt"></i>Updated June 8, 2021</a>
                 </div>
             </div>
         </div>
@@ -404,7 +404,7 @@
                                     <a href="#" class="nav-link"><img src="../../img/side-nav/briefcase.png" alt="briefcase">Getting Started</a>
                                     <span class="icon"><i class="arrow_carrot-down"></i></span>
                                     <ul class="list-unstyled dropdown_nav">
-                                        <li><a href="#">Why Build On Cardano</a></li>
+                                        <li><a href="https://learn.lovelace.academy/getting-started/why-cardano">Why Build On Cardano</a></li>
                                         <li><a class="active">Running a Full Cardano Node</a></li>
                                         <li><a href="https://learn.lovelace.academy/getting-started/keys-and-addresses">Wallets Basics: Keys and Addresses</a></li>
                                         <!-- <li><a href="#">Wallets HD: Mnemonic Phrases</a></li> -->
@@ -474,7 +474,7 @@
                                     <li>Interacting with the node using cardano-cli</li>
                                 </ol>
                             </p>
-                            <h4 class="c_head load-order-1">Background</h4>
+                            <h2 class="c_head load-order-1">Background</h2>
                             <p>The Cardano node is a full node which contains the entire blockchain since its genesis and acts as the main point of contact from you as a client to the rest of the nodes in the network. 
                                 Its main responsibilities are to:
                                 <ul>
@@ -485,7 +485,7 @@
                             </p>
                             <img class="img-fluid" src='../node_cardano_components_version_main.png' />
 
-                            <h4 class="c_head load-order-2">Set up Your Linux Environment</h4>
+                            <h2 class="c_head load-order-2">Set up Your Linux Environment</h2>
                             <p>
                                 At the time of writing, setting up your Cardano development environment in Ubuntu 20.04 is the easiest and most well-documented approach. There are a few ways to do so.
                             </p>
@@ -500,7 +500,7 @@
                                 <strong>repeatable</strong> and <strong>reliable</strong> way of setting up your environment from scratch. 
                                 This will give you confidence in spinning up a node as required across different networks and purposes.
                             </p>
-                            <h5 class="c_head">Install Core Dependencies</h5>
+                            <h3 class="c_head">Install Core Dependencies</h3>
                             <p>
                             There are several core dependencies to install via APT before you can build cardano-node.
                             </p>
@@ -514,7 +514,7 @@
                                 </pre>
                             </div>
 
-                            <h5 class="c_head">Install Cabal, GHC and Libsodium</h5>
+                            <h3 class="c_head">Install Cabal, GHC and Libsodium</h3>
                             <p>
                                 Once the core dependencies are installed we will move on to installing Cabal (the Haskell build orchestrator), GHC (the Haskell compiler) and Libsodium (the cryptography library).
                             </p>
@@ -553,7 +553,7 @@
                                 </pre>
                             </div>
 
-                            <h4 class="c_head load-order-2">Clone and build cardano-node</h4>
+                            <h2 class="c_head load-order-2">Clone and build cardano-node</h2>
                             <p>
                             Now we can clone the <a href='https://github.com/input-output-hk/cardano-node'>cardano-node</a> repository, retrieve the latest tagged version, build it and copy the built binaries to ~/.local/bin which will be part of the executable path.
                             This process takes between 10-30 mins so feel free to grab some tea, coffee and/or snacks. 
@@ -574,7 +574,7 @@
                                     </code>
                                 </pre>
                             </div>
-                            <h5 class="c_head">Post-build Scripts</h5>
+                            <h3 class="c_head">Post-build Scripts</h3>
                             <p>
                             For convenience it also makes sense to add amend the existing environment variables.
                             </p>
@@ -591,7 +591,7 @@
                                 </pre>
                             </div>
 
-                            <h4 class="c_head load-order-2">Configure the Node</h4>
+                            <h2 class="c_head load-order-2">Configure the Node</h2>
                             <p>Your Cardano node needs to be configured correctly to connect to a Cardano network, and this is determined by four JSON configuration files. 
                                 We will focus on the testnet first.</p>
                             <div class="highlight">
@@ -611,7 +611,7 @@
                                 </pre>
                             </div>
                             
-                            <h4 class="c_head load-order-2">Running and Monitoring the Node</h4>
+                            <h2 class="c_head load-order-2">Running and Monitoring the Node</h2>
                             Now it just a matter of running your node pointing to the configuration files above. 
                             <div class="highlight">
                                 <pre>
@@ -640,7 +640,7 @@
                             <p>You can see the expected Epoch and Slot by going to <a href="https://pooltool.io/">pooltool.io</a> and
                                 clicking on the MAINNET button at the bottom panel until it changes to a red TESTNET button.</p>
 
-                            <h4 class="c_head load-order-2">Interacting with the Node using cardano-cli</h4>
+                            <h2 class="c_head load-order-2">Interacting with the Node using cardano-cli</h2>
                             <div class="highlight">
                                 <pre>
                                     <code class="language-bash" data-lang="bash">
