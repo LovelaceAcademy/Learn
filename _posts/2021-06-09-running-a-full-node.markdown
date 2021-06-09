@@ -3,7 +3,7 @@ layout: post
 title: 'Running a Full Cardano Node'
 categories:
 - 'Getting Started'
-last_modified_at: '2021-06-09'
+last_modified_at: 2021-06-09
 ---
 
 As a developer the best starting point to Cardano is to get a good understanding of the Cardano node. This knowledge is essential whether you want to create Dapps, wallets, integration tools, mint custom tokens or operate your own stake pool.

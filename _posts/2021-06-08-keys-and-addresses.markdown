@@ -3,6 +3,7 @@ layout: post
 title: "Wallet Basics: Keys and Addresses"
 categories:
 - Getting started
+last_modified_at: 2021-06-09
 ---
 
 Keys and addresses are at the heart of all information flow in Cardano
