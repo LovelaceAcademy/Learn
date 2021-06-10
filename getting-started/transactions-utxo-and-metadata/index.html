@@ -43,10 +43,10 @@
                 <img class="first_logo sticky_logo main_logo" src="../../img/logo.png" srcset="../../img/logo-2x.png 2x" alt="logo">
                 <img class="white_logo" src="../../img/logo-w.png" srcset="../../img/logo-w2x.png 2x" alt="logo">
             </a>
-            <!-- <div class="search-input">
+            <div class="search-input">
                 <ion-icon class="search-icon" name="search-outline"></ion-icon>
                 <input type="text" placeholder="Search..." value="" class="">
-            </div> -->
+            </div>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="menu_toggle">
                     <span class="hamburger">
@@ -68,9 +68,9 @@
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a href="https://learn.lovelace.academy/getting-started/why-cardano" class="nav-link">Why Build On Cardano</a></li>
                                 <li class="nav-item"><a href="https://learn.lovelace.academy/getting-started/running-a-full-node" class="nav-link">Running a Full Cardano Node</a></li>
-                                <li class="nav-item active"><a href="https://learn.lovelace.academy/getting-started/keys-and-addresses" class="nav-link">Wallets Basics: Keys and Addresses</a></li>
+                                <li class="nav-item"><a href="https://learn.lovelace.academy/getting-started/keys-and-addresses" class="nav-link">Wallets Basics: Keys and Addresses</a></li>
                                 <!-- <li class="nav-item"><a href="#" class="nav-link">Wallets HD: Mnemonic Phrases</a></li> -->
-                                <li class="nav-item"><a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata" class="nav-link">Transactions: UTxO and Metadata</a></li>
+                                <li class="nav-item active"><a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata" class="nav-link">Transactions: UTxO and Metadata</a></li>
                             </ul>
                     </li>
                     <li class="nav-item dropdown submenu">
@@ -406,9 +406,9 @@
                                     <ul class="list-unstyled dropdown_nav">
                                         <li><a href="https://learn.lovelace.academy/getting-started/why-cardano">Why Build On Cardano</a></li>
                                         <li><a href="https://learn.lovelace.academy/getting-started/running-a-full-node">Running a Full Cardano Node</a></li>
-                                        <li><a class="active" href="https://learn.lovelace.academy/getting-started/keys-and-addresses">Wallets Basics: Keys and Addresses</a></li>
+                                        <li><a href="https://learn.lovelace.academy/getting-started/keys-and-addresses">Wallets Basics: Keys and Addresses</a></li>
                                         <!-- <li><a href="#">Wallets HD: Mnemonic Phrases</a></li> -->
-                                        <li><a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata">Transactions: UTxO and Metadata</a></li>
+                                        <li><a class="active" href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata">Transactions: UTxO and Metadata</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -458,123 +458,166 @@
                         <article class="shortcode_text">
                             <div class="shortcode_title">
                                 <!-- <a class="btn" href="#">Learn</a> -->
-                                <h1>Wallet Basics: Keys and Addresses</h1>
+                                <h1>Transactions: UTxO and Metadata</h1>
                             </div>
                             <p>
-                                Keys and addresses are at the heart of all information flow in Cardano and other blockchains. 
-                                Keys prove ownership, consent and authenticity while addresses derived from these keys are destinations to hold facts and values. 
+                                Transactions are basic units representing the creation or transfer of values in a blockchain and make up a significant payload of every block appended to it. 
+                                Transactions and their metadata last the entire lifetime of the blockchain, so once appended and accepted by the majority of the network, cannot be altered or deleted without a major coordinated event like a hard fork. 
+                            </p>
+                            <h2 class="c_head load-order-1">The UTxO Accounting Model</h2>
+                            <p>
+                                Cardano, like Bitcoin, uses the UTxO accounting model to signify the flow of values from transactions. 
+                                UTxO stands for <strong>U</strong>nspent <strong>T</strong>ransaction <strong>O</strong>utput. 
                             </p>
                             <p>
-                                A powerful feature arises from the fact that these cryptographic entities can be created without connecting to or interacting with the blockchain network.
-                                The de-coupling of these entities from the network allows any one, even those without an internet connection, to create unique addresses that can receive transaction outputs. 
-                                Subsequently all the facts and values in these addresses can only be unlocked by the keys associated with it, safeguarding them from theft or confiscation.
+                                As opposed to an accounts-based blockchain (e.g. Ethereum) which holds one single value representing the active balance of an address, addresses in Cardano can hold multiple transaction outputs and
+                                it is up to the wallet software to calculate the active balance from the current set of UTxOs. 
+                                Although it may seem like unnecessary complexity, this model provides a more elegant, performant and deterministic model to reason with the current state of the blockchain.
+                                We will focus on the simpler Shelley UTxO model and expand on EUTxO (Extended UTxO) and its main benefits in another article.
                             </p>
-                            <p>We will be focusing on the address keys on the right section of the image below.</p>
-                            <img class="img-fluid" src='https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png' />
+                            <p>
+                                The UTxO model can be best visualised as a graph where all inputs to new transactions must <strong>spend</strong> an unspent output from a previous transaction in its entirety to produce new outputs, usually resulting in "change" outputs being sent back to the payer. 
+                                Much like the law of conservation of energy, the sum of all inputs must be equal to the sum of all outputs minus the transaction fee.
+                                This means all values can be traced back to the transaction distributing the initial ADA supply in the genesis block, minted ADA from transactions claiming stake rewards or from transactions minting custom tokens.
+                            </p>
+                            <h2 class="c_head load-order-2">The Structure of a Transaction</h2>
+                            <img class="img-fluid" src='https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyTransactionChanges4Gougen.png' />
                             <span>Image courtesy of <a href='https://github.com/ilap' target="_blank">ilap</a></span>
-                            
-                            <h2 class="c_head load-order-1">Keys</h2>
+                            <h2 class="c_head">Guide: Creating an Example Transaction</h2>
                             <p>
-                                Two main types of keys are used within Cardano:
-                                <ul>
-                                    <li>Payment Keys: For creating payment addresses and signing transactions to spend ADA/assets in these payment addresses</li>
-                                    <li>Staking Keys: For creating payment/staking addresses, delegating stake, claiming ADA rewards from staking addresses and registering stake pools</li>
-                                </ul>
+                                Cardano Wallets hide away much of the subtleties behind transactions so in this guide we will create, sign and submit a transaction sending 100 ADA to another address using the cardano-cli.
                             </p>
-                            <p>Both types are asymmetric <a href='https://en.wikipedia.org/wiki/EdDSA#Ed25519' target="_blank">Ed25519</a> key pairs consisting of a private signing key and a public verification key.</p>
-                            <blockquote class="media notice notice-danger" style='font-size: inherit;'>
-                                <i class="icon_ribbon_alt"></i>
-                                <div>
-                                    <p>
-                                        Outside of the testnets it is <strong>EXTREMELY</strong> important to safeguard your private signing keys. 
-                                    </p>
-                                    <p>
-                                        Creation of keys should be always be done in a <strong>trusted air-gapped machine</strong> with a <strong>pristine operating system</strong> (e.g. a fresh Ubuntu <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox VM</a> with no non-base-OS software apart from a verified version of cardano-cli) and <strong>no network/internet connectivity</strong>. 
-                                        <!-- Signing transactions should also be done in the air-gapped machine containing the private keys where signed transactions can then be transferred out via a secure USB. At no point should the signing keys be transferred to another machine that is not air-gapped. -->
-                                    </p>
-                                    <p>
-                                        These key files can transferred to/from a secure USB (e.g. Apricorn Aegis) when necessary to ensure a fresh pristine environment every time. 
-                                        We also recommended writing down the contents of the private keys on a physical medium to be stored securely in case of software/hardware failure.
-                                    </p>
+                            <h3 class="c_head">Load ADA from Testnet Faucet</h3>
+                            <p>
+                                Use the <a href='https://developers.cardano.org/en/testnets/cardano/tools/faucet/' target="_blank">testnet faucet</a> to send ADA to the payment address generated in our article <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Wallet Basics: Keys and Addresses</a>.
+                                You can see the payment address with:
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            cat payment.addr
+                                        </code>
+                                    </pre>
                                 </div>
-                            </blockquote>
-                            
-                            <h3 class="c_head">Creating Payment Keys</h3>
-                            <div class="highlight">
-                                <pre>
-                                    <code class="language-bash" data-lang="bash">
-                                        cardano-cli address key-gen --verification-key-file payment.vkey --signing-key-file payment.skey
-                                    </code>
-                                </pre>
-                            </div>
-                            <p>This will create two files, the private signing key payment.skey and the public verification key payment.vkey in the current directory.</p>
-                            <h3 class="c_head">Creating Staking Keys</h3>
-                            <div class="highlight">
-                                <pre>
-                                    <code class="language-bash" data-lang="bash">
-                                        cardano-cli stake-address key-gen --verification-key-file stake.vkey --signing-key-file stake.skey
-                                    </code>
-                                </pre>
-                            </div>
-                            <p>This will create the private signing key stake.skey and the public verification key stake.vkey in the current directory.</p>
-
-                            <h2 class="c_head load-order-2">Addresses</h2>
+                            </p>
+                            <h3 class="c_head">Query Unspent Transaction Outputs for Address</h3>
                             <p>
-                                The keys above are then used to create two main types of addresses:
+                                After a short while (minute or less) you can verify the funds from the faucet have arrived in your payment.addr by running the following:
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            UTXO0=$(cardano-cli query utxo --address $(cat payment.addr) --testnet-magic 1097911063 | sed -n 3p) 
+                                            UTXO0H=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 1p)
+                                            UTXO0I=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 2p)
+                                            UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
+                                            echo $UTXO0
+                                        </code>
+                                    </pre>
+                                </div>
+                            </p>
+                            <h3 class="c_head">Create Destination Payment Address</h3>
+                            <p>
+                                Create a new set of keys and a destination payment address destination_payment.addr.
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            cardano-cli address key-gen --verification-key-file destination_payment.vkey --signing-key-file destination_payment.skey
+
+                                            cardano-cli address build --payment-verification-key-file payment.vkey --testnet-magic 1097911063 --out-file destination_payment.addr
+                                        </code>
+                                    </pre>
+                                </div>
+                            </p>
+                            <h3 class="c_head">Load Protocol Parameters File</h3>
+                            <p>
+                                Transactions must always refer to the latest version of the Cardano protocol parameters which can be retrieved by running:
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
+                                        </code>
+                                    </pre>
+                                </div>
+                            </p>
+                            <h3 class="c_head">Draft Transaction to Calculate Fees</h3>
+                            <p>
+                                Calculating fees for a transaction requires you to first create a draft transaction following a similar structure to the real transaction. 
+                                Note that --tx-in uses the UTxO details queried above (transaction ID UTXO0H and transaction output index UTXO0I). 
+                                Also note --tx-out parameters sending 100 ADA (100000000 lovelaces) to the destination address and 900 ADA (900000000 lovelaces) back to the payment address as change.
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            rm draft.txraw 2> /dev/null
+                                            cardano-cli transaction build-raw --tx-in $(echo $UTXO0H)#$(echo $UTXO0I) --tx-out $(cat destination_payment.addr)+100000000 --tx-out $(cat payment.addr)+900000000 --ttl 0 --fee 0 --out-file draft.txraw
+                                            FEE=$(cardano-cli transaction calculate-min-fee \
+                                                --tx-body-file draft.txraw \
+                                                --tx-in-count 1 \
+                                                --tx-out-count 2 \
+                                                --witness-count 1 \
+                                                --testnet-magic 1097911063 \
+                                                --protocol-params-file protocol.json | egrep -o '[0-9]+')
+                                        </code>
+                                    </pre>
+                                </div>
+                            </p>
+                            <h3 class="c_head">Raw Transaction with Metadata</h3>
+                            <p>
+                                With the fee we can now calculate the correct amount of change ADA to be sent back to the payment address. 
+                                We also define a --ttl parameter to define how long this transaction is valid for (denoted by the current slot tip of the chain + 600 seconds) before it is rejected by the network.
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            CTIP=$(cardano-cli query tip --testnet-magic 1097911063 | jq -r .slot)
+                                            TTL=$(expr $CTIP + 600)
+                                            TXOUT=$(expr $UTXO0V - $FEE - 100000000) 
+                                            
+                                            cardano-cli  transaction build-raw \
+                                                --tx-in $(echo $UTXO0H)#$(echo $UTXO0I) --tx-out $(cat destination_payment.addr)+100000000 --tx-out $(cat destination_payment.addr)+$(echo $TXOUT) --ttl $TTL --fee $FEE --out-file sendtx.txraw
+                                        </code>
+                                    </pre>
+                                </div>
+                            </p>
+                            <h3 class="c_head">Signing a Transaction</h3>
+                            <p>
+                                With the previously generated payment private signing key payment.skey we can sign the transaction to prove consent to spend the ADA as the holder of the keys to the payment address.
+                                Note that this has to be done offline in an air-gapped machine outside of the testnets.
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            cardano-cli transaction sign \
+                                                --tx-body-file sendtx.txraw \
+                                                --signing-key-file payment.skey \
+                                                --testnet-magic 1097911063 \
+                                                --out-file sendtx.txsigned
+                                        </code>
+                                    </pre>
+                                </div>
+                            </p>
+                            <h3 class="c_head">Submitting a Transaction</h3>
+                            <p>
+                                With the signed transaction we can now submit it to the rest of the blockchain network. 
+                                Once successfully submitted it will propagate across all the nodes in the network residing in their mem pools until bundled onto the next available block by a stake pool node.
+                                <div class="highlight">
+                                    <pre>
+                                        <code class="language-bash" data-lang="bash">
+                                            cardano-cli transaction submit \
+                                                --tx-file sendtx.txsigned \
+                                                --testnet-magic 1097911063 
+                                        </code>
+                                    </pre>
+                                </div>
+                            </p>
+                            <h2 class="c_head load-order-1">Exploring Transactions</h2>
+                            <p>
+                                Using an explorer is the easiest way to navigate across all the addresses, blocks and transactions in Cardano. 
                                 <ul>
-                                    <li>Payment addresses: To receive ADA/assets</li>
-                                    <li>Staking addresses: To receive ADA staking rewards (automatically)</li>
+                                    <li><a href='https://explorer.cardano.org/'>Cardano Blockchain Explorer</a></li>
+                                    <li><a href='https://cardanoscan.io/'>Cardano Scan</a></li>
+                                    <li><a href='https://adastat.net/'>ADA Stat</a></li>
+                                    <li><a href='https://adaex.org/'>ADAex.org</a></li>
+                                    <li><a href='https://blockchair.com/cardano'>Blockchair: Cardano</a></li>
+                                    <li><a href='https://pool.pm/'>Pool.pm (toggle TXs)</a></li>
                                 </ul>
-                                These are effectively a <a href='https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2' target="_blank">blake2b-256</a> hash of the public key(s) and
-                                concatenated with other metadata (see different address types in the image above) including the network in which they are valid for (e.g. <span class="h_black">--mainnet</span>, <span class="h_black">--testnet-magic 1097911063</span>, etc.)
                             </p>
-                            <h3 class="c_head">Creating a Payment Address</h3>
-                            <p>
-                                Payment addresses are generally created using both payment and staking verification keys to create an address known as base address. 
-                                The act of re-using the same staking key to generate multiple payment addresses allow all the ADA at these addresses to be automatically staked to the same designated stake pool.
-                                However it is also possible to create <a href='https://docs.cardano.org/en/latest/learn/types-addresses.html#enterprise-addresses' target="_blank">enterprise addresses</a>, the term for a non-staking payment address, by excluding the <span class="h_black">--stake-verification-key-file</span> parameter below.
-                            </p>
-                            <div class="highlight">
-                                <pre>
-                                    <code class="language-bash" data-lang="bash">
-                                        cardano-cli address build \
-                                            --payment-verification-key-file payment.vkey \
-                                            --stake-verification-key-file stake.vkey \
-                                            --testnet-magic 1097911063 \
-                                            --out-file payment.addr
-                                    </code>
-                                </pre>
-                            </div>
-
-                            <h3 class="c_head">Creating a Staking Address</h3>
-                            <p>
-                                A unique staking address is generated from a staking verification key. 
-                            </p>
-                            <div class="highlight">
-                                <pre>
-                                    <code class="language-bash" data-lang="bash">
-                                        cardano-cli stake-address build \
-                                            --stake-verification-key-file stake.vkey \
-                                            --testnet-magic 1097911063 \
-                                            --out-file stake.addr
-                                    </code>
-                                </pre>
-                            </div>
-                            <p>
-                                With your newly created keys and addresses you can create, sign and submit transactions to learn about UTxOs and Metadata.
-                            </p>
-<!--                             
-                            <p>
-                                To query the accumulated rewards from a staking address with the command
-                            </p>
-                            <div class="highlight">
-                                <pre>
-                                    <code class="language-bash" data-lang="bash">
-                                        cardano-cli query stake-address-info --address $(cat stake.addr) --testnet-magic 1097911063 
-                                    </code>
-                                </pre>
-                            </div> -->
-
                             <footer>
                                 <div class="border_bottom"></div>
                                 <div class="row feedback_link">
