@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../img/favicon-32.png" sizes="32x32">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap-select.min.css">
+    <!-- icon css-->
+    <link rel="stylesheet" href="../../assets/elagent-icon/style.css">
+    <link rel="stylesheet" href="../../assets/niceselectpicker/nice-select.css">
+    <link rel="stylesheet" href="../../assets/animation/animate.css">
+    <link rel="stylesheet" href="../../assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../../assets/prism/prism.css">
+    <link rel="stylesheet" href="../../css/style-main.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="../../assets/font-size/css/rvfs.css">
+    <title>Lovelace Academy - Why Build on Cardano</title>
+</head>
+
+<body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
+<div id="preloader">
+    <div id="ctn-preloader" class="ctn-preloader">
+        <div class="round_spinner">
+            <div class="spinner"></div>
+            <div class="text">
+                <img src="../../img/spinner_logo.png" alt="">
+                <h4><span>Lovelace Academy</span></h4>
+            </div>
+        </div>
+        <!-- <h2 class="head">Did You Know?</h2>
+        <p></p> -->
+    </div>
+</div>
+<div class="body_wrapper">
+    <nav class="navbar navbar-expand-lg menu_one dark_menu display_none sticky-nav">
+        <div class="container custom_container">
+            <a class="navbar-brand header_logo" href="#">
+                <img class="first_logo sticky_logo main_logo" src="../../img/logo.png" srcset="../../img/logo-2x.png 2x" alt="logo">
+                <img class="white_logo" src="../../img/logo-w.png" srcset="../../img/logo-w2x.png 2x" alt="logo">
+            </a>
+            <div class="search-input">
+                <ion-icon class="search-icon" name="search-outline"></ion-icon>
+                <input type="text" placeholder="Search..." value="" class="">
+            </div>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="menu_toggle">
+                    <span class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span class="hamburger-cross">
+                        <span></span>
+                        <span></span>
+                    </span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav menu ml-auto">
+                    <li class="nav-item dropdown submenu active">
+                        <a href="#" class="nav-link dropdown-toggle">Getting Started</a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item active"><a href="https://learn.lovelace.academy/getting-started/why-cardano" class="nav-link">Why Build On Cardano</a></li>
+                                <li class="nav-item"><a href="https://learn.lovelace.academy/getting-started/running-a-full-node" class="nav-link">Running a Full Cardano Node</a></li>
+                                <li class="nav-item"><a href="https://learn.lovelace.academy/getting-started/keys-and-addresses" class="nav-link">Wallets Basics: Keys and Addresses</a></li>
+                                <!-- <li class="nav-item"><a href="#" class="nav-link">Wallets HD: Mnemonic Phrases</a></li> -->
+                                <li class="nav-item"><a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata" class="nav-link">Transactions: UTxO and Metadata</a></li>
+                            </ul>
+                    </li>
+                    <li class="nav-item dropdown submenu">
+                        <a href="#" class="nav-link dropdown-toggle">Native Tokens</a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="#" class="nav-link">Making Sense of Policies</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Tokens and Tokenomics</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Minting your own (fungible) tokens</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Minting NFTs</a></li>
+                            </ul>
+                    </li>
+                    <li class="nav-item dropdown submenu mega_menu tab-demo">
+                        <a href="#" class="nav-link dropdown-toggle">Smart Contracts</a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-lg-5 tabHeader">
+                                            <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                                aria-orientation="vertical">
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" id="v-sc-fundamentals-tab" data-toggle="pill"
+                                                        href="#v-sc-fundamentals" role="tab" aria-controls="v-sc-fundamentals"
+                                                        aria-selected="true">Fundamentals</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="v-plutus-tab" data-toggle="pill"
+                                                        href="#v-plutus" role="tab" aria-controls="v-plutus"
+                                                        aria-selected="false">The Plutus Platform</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="v-marlowe-tab" data-toggle="pill"
+                                                        href="#v-marlowe" role="tab"
+                                                        aria-controls="v-marlowe"
+                                                        aria-selected="false">Marlowe</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="tab-content tabContent" id="v-pills-tabContent">
+                                                <div class="tab-pane fade active show" id="v-sc-fundamentals" role="tabpanel"
+                                                    aria-labelledby="v-sc-fundamentals-tab">
+                                                    <div class="d-flex">
+                                                        <ul class="list-unstyled tab_list">
+                                                            <li>
+                                                                <a href="#">EUTxO</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Local Development</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Testing</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Publishing</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="v-plutus" role="tabpanel"
+                                                    aria-labelledby="v-plutus-tab">
+                                                    <div class="d-flex">
+                                                        <ul class="list-unstyled tab_list w_100">
+                                                            <li>
+                                                                <a href="#">Using the Playground</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Validation scripts</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Parameterised contracts</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Oracles</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">State Machines</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Publishing a contract</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="v-marlowe" role="tabpanel"
+                                                    aria-labelledby="v-marlowe-tab">
+                                                    <div class="d-flex">
+                                                        <ul class="list-unstyled tab_list">
+                                                            <li>
+                                                                <a href="#">Using the Playground</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Testing</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Publishing</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- <div class="text">
+                                                        <a href="#">
+                                                            <p>More Categories</p>
+                                                        </a>
+                                                        <a href="#">
+                                                            <p>All docs</p>
+                                                        </a>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                    </li>
+                    <li class="nav-item dropdown submenu">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Videos
+                        </a>
+                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=ev75v-9LU5I" target="_blank">Making Sense of Blockchain</a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=sM0_V53_kGo" target="_blank">The Cardano Revolution</a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=mD1kAmP8K-M" target="_blank">Interview with Dr Mihaela Ulieru</a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=-k8E_xfLxnI" target="_blank">Submitting a Catalyst Proposal</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="right-nav">
+                    <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+                        <button type="submit" class="nav_btn tp_btn">Subscribe</button>
+                    </form>
+                    <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+                        <ion-icon name="mail"></ion-icon>
+                    </a>
+                    <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
+                        <label for="something" class="tab-btn tab-btns">
+                            <ion-icon class="light-mode" name="contrast"></ion-icon>
+                        </label>
+                        <input type="checkbox" name="something" id="something" class="dark_mode_switcher">
+                        <label for="something" class="tab-btn">
+                            <ion-icon class="dark-mode" name="contrast-outline"></ion-icon>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile_main_menu dark_menu sticky-nav ">
+        <div class="container">
+            <div class="mobile_menu_left">
+                <button type="button" class="navbar-toggler mobile_menu_btn">
+                    <span class="menu_toggle ">
+                        <span class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+                </button>
+                <a class="navbar-brand header_logo" href="#">
+                    <img class="sticky_logo main_logo" src="../../img/logo.png" srcset="../../img/logo-2x.png 2x" alt="logo">
+                    <img class="white_logo" src="../../img/logo-w.png" srcset="../../img/logo-w2x.png 2x" alt="logo">
+                </a>
+            </div>
+            <div class="mobile_menu_right">
+                <div class="right-nav">
+                    <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+                        <button type="submit" class="nav_btn tp_btn">Subscribe</button>
+                    </form>
+                    <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+                        <ion-icon name="mail"></ion-icon>
+                    </a>
+                    <!-- <a class="px-2" href="#" title="RSS feed">
+                        <ion-icon name="logo-rss"></ion-icon>
+                    </a> -->
+                    <div class="px-2 js-darkmode-btn btn" title="Toggle dark mode">
+                        <label for="something2" class="tab-btn tab-btns">
+                            <ion-icon class="light-mode" name="contrast"></ion-icon>
+                        </label>
+                        <input type="checkbox" name="something2" id="something2" class="dark_mode_switcher">
+                        <label for="something2" class="tab-btn">
+                            <ion-icon class="dark-mode" name="contrast-outline"></ion-icon>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="click_capture"></div>
+    <div class="side_menu">
+        <div class="mobile_menu_header">
+            <div class="close_nav">
+                <i class="arrow_left"></i>
+                <i class="icon_close"></i>
+            </div>
+            <div class="mobile_logo">
+                <a class="navbar-brand header_logo" href="#">
+                    <img class="sticky_logo main_logo" src="../../img/logo.png" srcset="../../img/logo-2x.png 2x" alt="logo">
+                    <img class="white_logo" src="../../img/logo-w.png" srcset="../../img/logo-w2x.png 2x" alt="logo">
+                </a>
+            </div>
+        </div>
+        <div class="mobile_nav_wrapper">
+            <nav class="mobile_nav_top">
+                <ul class="navbar-nav menu ml-auto">
+                    <li class="nav-item dropdown submenu">
+                        <a href="#" class="nav-link">Getting Started</a>
+                    </li>
+                    <li class="nav-item dropdown submenu">
+                        <a href="#" class="nav-link">Native Tokens</a>
+                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
+                        <ul class="dropdown-menu">
+                            <!-- <li class="nav-item"><a href="#" class="nav-link">Onepage Doc</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">404 Error</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown submenu">
+                        <a href="#" class="nav-link">Smart Contracts</a>
+                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
+                        <ul class="dropdown-menu">
+                            <!-- <li class="nav-item"><a href="#" class="nav-link">Forums Root</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">User Profile</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown submenu">
+                        <a class="nav-link" href="#">Videos</a>
+                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
+                        <ul class="dropdown-menu">
+                            <!-- <li class="nav-item"><a href="#" class="nav-link">Blog Grid</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Blog Grid Two</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile_nav_bottom">
+                <aside class="doc_left_sidebarlist">
+                    <h2>Learn</h2>
+                    <div class="scroll">
+                        <ul class="list-unstyled nav-sidebar">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/home.png" alt="">Home</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/briefcase.png" alt="briefcase">Getting Started</a>
+                                <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                <ul class="list-unstyled dropdown_nav">
+                                    <!-- <li><a href="#">Tabs</a></li>
+                                    <li><a class="active" href="#">Source Code</a></li> -->
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/layout.png" alt="">Native Tokens</a>
+                                <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                <ul class="list-unstyled dropdown_nav">
+                                    <li><a href="#">Full-width</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/chat1.png" alt="">Smart Contracts</a>
+                                <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                <ul class="list-unstyled dropdown_nav">
+                                    <li><a href="#">Cheatsheet</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/document.png" alt="">Videos</a>
+                                <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                <ul class="list-unstyled dropdown_nav">
+                                    <li><a href="#">Image</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/clock.png" alt="">Change Log</a>
+                            </li> -->
+                        </ul>
+                        <!-- <ul class="list-unstyled nav-sidebar bottom_nav">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/edit.png" alt="">Signup</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link"><img src="../../img/side-nav/users.png" alt="">Sign In <i class="arrow_right"></i></a>
+                            </li>
+                        </ul> -->
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!--================Forum Breadcrumb Area =================-->
+    <section class="doc_banner_area search-banner-light" style='padding:50px 0'>
+    </section>
+    <section class="page_breadcrumb">
+        <div class="container custom_container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="https://www.lovelace.academy">Home</a></li>
+                            <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Getting Started</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Why Build on Cardano</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-sm-5">
+                    <a href="#" class="date"><i class="icon_clock_alt"></i>Updated June 8, 2021</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Forum Breadcrumb Area =================-->
+
+    <!--================Topic Area =================-->
+    <section class="doc_documentation_area" id="sticky_doc">
+        <div class="overlay_bg"></div>
+        <div class="container custom_container">
+            <div class="row">
+                <div class="col-lg-3 doc_mobile_menu display_none">
+                    <aside class="doc_left_sidebarlist">
+                        <div class="open_icon" id="left">
+                            <i class="arrow_carrot-right"></i>
+                            <i class="arrow_carrot-left"></i>
+                        </div>
+                        <div class="scroll">
+                            <ul class="list-unstyled nav-sidebar">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><img src="../../img/side-nav/home.png" alt="">Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="#" class="nav-link"><img src="../../img/side-nav/briefcase.png" alt="briefcase">Getting Started</a>
+                                    <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                    <ul class="list-unstyled dropdown_nav">
+                                        <li><a class="active" href="https://learn.lovelace.academy/getting-started/why-cardano">Why Build On Cardano</a></li>
+                                        <li><a href="https://learn.lovelace.academy/getting-started/running-a-full-node">Running a Full Cardano Node</a></li>
+                                        <li><a href="https://learn.lovelace.academy/getting-started/keys-and-addresses">Wallets Basics: Keys and Addresses</a></li>
+                                        <!-- <li><a href="#">Wallets HD: Mnemonic Phrases</a></li> -->
+                                        <li><a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata">Transactions: UTxO and Metadata</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><img src="../../img/side-nav/chat1.png" alt="">Native Tokens</a>
+                                    <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                    <ul class="list-unstyled dropdown_nav">
+                                        <li><a href="#" target="_blank">Making Sense of Policies</a></li>
+                                        <li><a href="#" target="_blank">Tokens and Tokenomics</a></li>
+                                        <li><a href="#" target="_blank">Minting your own (fungible) tokens</a></li>
+                                        <li><a href="#" target="_blank">Minting NFTs</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><img src="../../img/side-nav/document.png" alt="">Smart Contracts</a>
+                                    <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                    <ul class="list-unstyled dropdown_nav">
+                                        <li><a href="#" target="_blank">Fundamentals: EUTxO</a></li>
+                                        <li><a href="#" target="_blank">The Plutus Platform</a></li>
+                                        <li><a href="#" target="_blank">Making Sense of Marlowe</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><img src="../../img/side-nav/content.png" alt="">Videos</a>
+                                    <span class="icon"><i class="arrow_carrot-down"></i></span>
+                                    <ul class="list-unstyled dropdown_nav">
+                                        <li><a href="https://www.youtube.com/watch?v=ev75v-9LU5I" target="_blank">Making Sense of Blockchain</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=sM0_V53_kGo" target="_blank">The Cardano Revolution</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=mD1kAmP8K-M" target="_blank">Interview with Dr Mihaela Ulieru</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=-k8E_xfLxnI" target="_blank">Submitting a Catalyst Proposal</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
+                            <!-- <ul class="list-unstyled nav-sidebar bottom_nav">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><img src="../../img/side-nav/edit.png" alt="">English </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><img src="../../img/side-nav/users.png" alt="">Sign In <i class="arrow_right"></i></a>
+                                </li>
+                            </ul> -->
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-lg-7 col-md-8 doc-middle-content">
+                    <div id="post" class="shortcode_info documentation_info">
+                        <article class="shortcode_text">
+                            <div class="shortcode_title">
+                                <!-- <a class="btn" href="#">Learn</a> -->
+                                <h1>Why Build on Cardano</h1>
+                            </div>
+                            <p>
+                                Cardano is the next evolution of blockchain technology providing an open, trusted and sustainable financial system that scales for global use.
+                                Designed and built from scratch using a methodical research-based approach, its brilliant team of researchers and engineers applied learnings 
+                                from the pitfalls of earlier blockchains to create an inclusive platform which aims to give economic identity to all of the world's unbanked population.
+                            </p>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/sM0_V53_kGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                
+                            <footer>
+                                <div class="border_bottom"></div>
+                                <div class="row feedback_link">
+                                    <div class="col-lg-6">
+                                        <h6><i class="icon_mail_alt"></i>Still stuck? <a href="mailto:hello@lovelace.academy">How can we help?</a></h6>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <!-- <p>Was this page helpful? <a href="#" class="h_btn">Yes</a><a href="#" class="h_btn red">No</a></p> -->
+                                    </div>
+                                </div>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 doc_right_mobile_menu">
+                    <div class="open_icon" id="right">
+                        <i class="arrow_carrot-left"></i>
+                        <i class="arrow_carrot-right"></i>
+                    </div>
+                    <div class="doc_rightsidebar scroll">
+                        <div class="pageSideSection">
+                            <select id="mySelect" name="os">
+                                <option value="engb" data-content="<i class='fab fa-engb'></i> English">English</option>
+                                <option value="other" disabled data-content="<i class='fab fa-oth'></i> Other Languages (in progress)">Other languages (in progress)</option>
+                            </select>
+                            <div id="font-switcher" class="d-flex justify-content-between align-items-center">
+                                <div id="rvfs-controllers" class="fontsize-controllers group"></div>
+                                <a href="javascript:window.print()" class="print"><i class="icon_printer"></i></a>
+                            </div>
+                            <div class="table-of-content">
+                                <h6><i class="icon_ul"></i> CONTENTS</h6>
+                                <nav class="list-unstyled doc_menu" id="ll-toc">
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Topic Area =================-->
+    <footer class="simple_footer">
+        <img class="leaf_right" src="../../img/home_one/leaf_footter.png" alt="">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>© 2021 All Rights Reserved by <a href="https://lovelace.academy/">Lovelace Academy</a></p>
+                </div>
+                <div class="col-lg-6 text-right">
+                    <ul class="list-unstyled f_social_icon">
+                        <li><a href="https://www.youtube.com/c/LovelaceAcademy/videos" target="_blank"><i class="social_youtube"></i></a></li>
+                        <li><a href="https://twitter.com/academylovelace" target="_blank"><i class="social_twitter"></i></a></li>
+                        <li><a href="https://github.com/lovelaceacademy" target="_blank"><ion-icon name="logo-github"></ion-icon></a></li>
+                        <!-- <li><a href="#"><i class="social_linkedin"></i></a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Back to top button -->
+<a id="back-to-top" title="Back to Top"></a>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="../../js/jquery-3.5.1.min.js"></script>
+<script src="../../assets/bootstrap/js/popper.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap-select.min.js"></script>
+<script src="../../js/pre-loader.js"></script>
+<script src="../../js/jquery.parallax-scroll.js"></script>
+<script src="../../assets/niceselectpicker/jquery.nice-select.min.js"></script>
+<script src="../../assets/wow/wow.min.js"></script>
+<script src="../../assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../../assets/font-size/js/rv-jquery-fontsize-2.0.3.min.js"></script>
+<script src="../../js/anchor.js"></script>
+<script src="../../assets/prism/prism.js"></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+<script src="../../js/main.js"></script>
+
+</body>
+
+</html>
