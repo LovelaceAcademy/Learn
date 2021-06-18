@@ -29,6 +29,32 @@ url: "https://learn.lovelace.academy/" # the base hostname & protocol for your s
 twitter_username: academylovelace
 github_username:  lovelaceacademy
 permalink: "/:title/"
+menu:
+- title: Getting Started
+  icon: briefcase.png
+  alt: briefcase
+- title: Native Tokens
+  icon: chat1.png
+  alt: chat
+- title: Smart Contracts
+  icon: document.png
+  alt: document
+- title: Videos
+  icon: content.png
+  alt: content
+  links:
+  - url: https://www.youtube.com/watch?v=ev75v-9LU5I
+    title: Making Sense of Blockchain
+    external: true
+  - url: https://www.youtube.com/watch?v=sM0_V53_kGo
+    title: The Cardano Revolution
+    external: true
+  - url: https://www.youtube.com/watch?v=mD1kAmP8K-M
+    title: Interview with Dr Mihaela Ulieru
+    external: true
+  - url: https://www.youtube.com/watch?v=-k8E_xfLxnI
+    title: Submitting a Catalyst Proposal
+    external: true
 
 # Build settings
 plugins:

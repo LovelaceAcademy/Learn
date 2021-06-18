@@ -41,56 +41,36 @@ layout: default
               <li class="nav-item">
                 <a href="" class="nav-link"><img src="/img/side-nav/home.png" alt="">Home</a>
               </li>
-              <li class="nav-item active">
-                <a href="#" class="nav-link"><img src="/img/side-nav/briefcase.png" alt="briefcase">Getting Started</a>
-                <span class="icon"><i class="arrow_carrot-down"></i></span>
-                <ul class="list-unstyled dropdown_nav">
-                  <li><a href="/why-cardano/">Why Build On Cardano</a></li>
-                  <li><a href="/running-a-full-node/">Running a Full Cardano Node</a></li>
-                  <li><a href="/keys-and-addresses/">Wallets Basics: Keys and Addresses</a></li>
-                  <!-- <li><a href="#">Wallets HD: Mnemonic Phrases</a></li> -->
-                  <li><a href="#">Transactions: UTxOs and Metadata</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"><img src="/img/side-nav/chat1.png" alt="">Native Tokens</a>
-                <span class="icon"><i class="arrow_carrot-down"></i></span>
-                <ul class="list-unstyled dropdown_nav">
-                  <li><a href="#" target="_blank">Making Sense of Policies</a></li>
-                  <li><a href="#" target="_blank">Tokens and Tokenomics</a></li>
-                  <li><a href="#" target="_blank">Minting your own (fungible) tokens</a></li>
-                  <li><a href="#" target="_blank">Minting NFTs</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"><img src="/img/side-nav/document.png" alt="">Smart Contracts</a>
-                <span class="icon"><i class="arrow_carrot-down"></i></span>
-                <ul class="list-unstyled dropdown_nav">
-                  <li><a href="#" target="_blank">Fundamentals: EUTxO</a></li>
-                  <li><a href="#" target="_blank">The Plutus Platform</a></li>
-                  <li><a href="#" target="_blank">Making Sense of Marlowe</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"><img src="/img/side-nav/content.png" alt="">Videos</a>
-                <span class="icon"><i class="arrow_carrot-down"></i></span>
-                <ul class="list-unstyled dropdown_nav">
-                  <li><a href="https://www.youtube.com/watch?v=ev75v-9LU5I" target="_blank">Making Sense of Blockchain</a></li>
-                  <li><a href="https://www.youtube.com/watch?v=sM0_V53_kGo" target="_blank">The Cardano Revolution</a></li>
-                  <li><a href="https://www.youtube.com/watch?v=mD1kAmP8K-M" target="_blank">Interview with Dr Mihaela Ulieru</a></li>
-                  <li><a href="https://www.youtube.com/watch?v=-k8E_xfLxnI" target="_blank">Submitting a Catalyst Proposal</a></li>
-                </ul>
-              </li>
+
+              {% for item in site.menu %}
+                {% assign posts = site.categories[item.title] | default: item.links %}
+
+                <li class="nav-item active">
+                  <a href="#" class="nav-link">
+                    <img src="/img/side-nav/{{ item.icon }}" alt="{{ item.alt }}">
+
+                    {{ item.title }}
+                  </a>
+
+                  <span class="icon"><i class="arrow_carrot-down"></i></span>
+
+                  <ul class="list-unstyled dropdown_nav">
+                    {% for post in posts %}
+                      <li>
+                        <a
+                          {% if post.external %}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          {% endif %}
+                          href="{{ post.url }}">
+                          {{ post.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endfor %}
             </ul>
-            
-            <!-- <ul class="list-unstyled nav-sidebar bottom_nav">
-              <li class="nav-item">
-                <a href="#" class="nav-link"><img src="../../img/side-nav/edit.png" alt="">English </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"><img src="../../img/side-nav/users.png" alt="">Sign In <i class="arrow_right"></i></a>
-              </li>
-            </ul> -->
           </div>
         </aside>
       </div>
