@@ -3,14 +3,22 @@
   <div class="container ">
     <div class="row">
       <div class="col-lg-6">
-        <p>© 2021 All Rights Reserved by <a href="#">Lovelace Academy</a></p>
+        <p>© {{ site.time | date: '%Y' }} All Rights Reserved by <a href="{{ site.url }}">{{ site.title }}</a></p>
       </div>
       <div class="col-lg-6 text-right">
         <ul class="list-unstyled f_social_icon">
-          <li><a href="#"><i class="social_youtube"></i></a></li>
-          <li><a href="#"><i class="social_twitter"></i></a></li>
-          <!-- <li><a href="#"><i class="social_github"></i></a></li> -->
-          <!-- <li><a href="#"><i class="social_linkedin"></i></a></li> -->
+          {% for social in site.social %}
+            <li>
+              <a href="{{ social.url }}" rel="noopener noreferrer me" target="_blank">
+                {% if social.ion %}
+                  <ion-icon name="{{ social.icon }}"></ion-icon>
+                {% else %}
+                <i class="{{ social.icon }}"></i>
+              {% endif %}
+                <span class="sr-only">{{ social.title }}</span>
+              </a>
+            </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
