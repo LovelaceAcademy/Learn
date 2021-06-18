@@ -60,6 +60,18 @@ menu:
 plugins:
   - jekyll-feed
 
+social:
+- url: https://www.youtube.com/c/LovelaceAcademy/videos
+  icon: social_youtube
+  title: YouTube
+- url: https://twitter.com/academylovelace
+  icon: social_twitter
+  title: Twitter
+- url: https://github.com/lovelaceacademy
+  icon: logo-github
+  ion: true
+  title: Github
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

@@ -18,13 +18,14 @@
     <link rel="stylesheet" href="/assets/prism/prism.css">
     <link rel="stylesheet" href="/css/style-main.css">
     <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/assets/font-size/css/rvfs.css">
     <title>{{ site.title }} - {{ page.title }}</title>
 </head>
 
-<body class="doc wide-container" data-spy="scroll" data-target="#navbar-example3" data-scroll-animation="true" data-offset="70">
+<body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
+  {% include preloader.html %}
   <div class="body_wrapper">
 
-    {% include preloader.html %}
     {% include menu.html %}
     {% include mobile_menu.html %}
 
