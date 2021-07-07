@@ -50,7 +50,10 @@ layout: default
                   {% assign posts = item.links %}
                 {% endif %}
 
-                <li class="nav-item active">
+                {% comment %}
+                Category is active (open) if the current page category is the item title.
+                {% endcomment %}
+                <li class="nav-item {% if page.category[0] == item.title %}active{% endif %}">
                   <a href="#" class="nav-link">
                     <img src="/img/side-nav/{{ item.icon }}" alt="{{ item.alt }}">
 
@@ -59,7 +62,7 @@ layout: default
 
                   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-                  <ul class="list-unstyled dropdown_nav">
+                  <ul class="list-unstyled dropdown_nav" {% if page.category[0] == item.title %}style="display: block"{% endif %}>
                     {% for post in posts %}
                       <li>
                         <a
@@ -67,6 +70,7 @@ layout: default
                             target="_blank"
                             rel="noopener noreferrer"
                           {% endif %}
+                          {% if page.url == post.url %}class="active"{% endif %}
                           href="{{ post.url }}">
                           {{ post.title }}
                         </a>
