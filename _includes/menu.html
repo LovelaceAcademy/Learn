@@ -19,200 +19,39 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav menu ml-auto">
-        <li class="nav-item dropdown submenu">
-          <a href="#" class="nav-link dropdown-toggle">Getting Started</a>
-            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
-            <ul class="dropdown-menu">
-              <li class="nav-item"><a href="/why-cardano/" class="nav-link">Why Build On Cardano</a></li>
-              <li class="nav-item"><a href="/running-a-full-node/" class="nav-link">Running a Full Cardano Node</a></li>
-              <li class="nav-item"><a href="/keys-and-addresses/" class="nav-link">Wallets Basics: Keys and Addresses</a></li>
-              <!-- <li class="nav-item"><a href="#" class="nav-link">Wallets HD: Mnemonic Phrases</a></li> -->
-              <li class="nav-item"><a href="#" class="nav-link">Transactions: UTxOs and Metadata</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown submenu">
-          <a href="#" class="nav-link dropdown-toggle">Native Tokens</a>
-            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
-            <ul class="dropdown-menu">
-              <li class="nav-item"><a href="#" class="nav-link">Making Sense of Policies</a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Tokens and Tokenomics</a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Minting your own (fungible) tokens</a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Minting NFTs</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown submenu mega_menu tab-demo">
-          <a href="#" class="nav-link dropdown-toggle">Smart Contracts</a>
-            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
-            <ul class="dropdown-menu">
-              <li>
-                <div class="row">
-                  <div class="col-lg-5 tabHeader">
-                    <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                      aria-orientation="vertical">
-                      <li class="nav-item active">
-                        <a class="nav-link" id="v-sc-fundamentals-tab" data-toggle="pill"
-                          href="#v-sc-fundamentals" role="tab" aria-controls="v-sc-fundamentals"
-                          aria-selected="true">Fundamentals</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="v-plutus-tab" data-toggle="pill"
-                          href="#v-plutus" role="tab" aria-controls="v-plutus"
-                          aria-selected="false">The Plutus Platform</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="v-marlowe-tab" data-toggle="pill"
-                          href="#v-marlowe" role="tab"
-                          aria-controls="v-marlowe"
-                          aria-selected="false">Marlowe</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-lg-7">
-                    <div class="tab-content tabContent" id="v-pills-tabContent">
-                      <div class="tab-pane fade active show" id="v-sc-fundamentals" role="tabpanel"
-                        aria-labelledby="v-sc-fundamentals-tab">
-                        <div class="d-flex">
-                          <ul class="list-unstyled tab_list">
-                            <li>
-                              <a href="#">EUTxO</a>
-                            </li>
-                            <li>
-                              <a href="#">Local Development</a>
-                            </li>
-                            <li>
-                              <a href="#">Testing</a>
-                            </li>
-                            <li>
-                              <a href="#">Publishing</a>
-                            </li>
-                          </ul>
-                          </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-plutus" role="tabpanel"
-                          aria-labelledby="v-plutus-tab">
-                          <div class="d-flex">
-                            <ul class="list-unstyled tab_list w_100">
-                              <li>
-                                <a href="#">Using the Playground</a>
-                              </li>
-                              <li>
-                                <a href="#">Validation scripts</a>
-                              </li>
-                              <li>
-                                <a href="#">Parameterised contracts</a>
-                              </li>
-                              <li>
-                                <a href="#">Oracles</a>
-                              </li>
-                              <li>
-                                <a href="#">State Machines</a>
-                              </li>
-                              <li>
-                                <a href="#">Publishing a contract</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-marlowe" role="tabpanel"
-                          aria-labelledby="v-marlowe-tab">
-                          <div class="d-flex">
-                            <ul class="list-unstyled tab_list">
-                              <li>
-                                <a href="#">Using the Playground</a>
-                              </li>
-                              <li>
-                                <a href="#">Testing</a>
-                              </li>
-                              <li>
-                                <a href="#">Publishing</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <!-- <div class="text">
-                            <a href="#">
-                              <p>More Categories</p>
-                            </a>
-                            <a href="#">
-                              <p>All docs</p>
-                            </a>
-                          </div> -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+        {% for item in site.menu %}
+          {% assign posts = site.categories[item.title] %}
+          {% if posts and posts != empty %}
+            {% assign posts = posts | sort: 'order', 'last' %}
+          {% else %}
+            {% assign posts = item.links %}
+          {% endif %}
+          <li class="nav-item dropdown submenu">
+            <a href="#" class="nav-link dropdown-toggle">{{ item.title }}</a>
+              <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+              <ul class="dropdown-menu">
+                {% for post in posts %}
+                  <li class="nav-item"><a href="{{ post.url }}" class="nav-link">{{ post.title }}</a></li>
+                {% endfor %}
               </ul>
           </li>
-          <li class="nav-item dropdown submenu">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Videos
-            </a>
-            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
-            <ul class="dropdown-menu">
-              <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=ev75v-9LU5I" target="_blank">Making Sense of Blockchain</a></li>
-              <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=sM0_V53_kGo" target="_blank">The Cardano Revolution</a></li>
-              <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=mD1kAmP8K-M" target="_blank">Interview with Dr Mihaela Ulieru</a></li>
-              <li class="nav-item"><a class="nav-link" href="https://www.youtube.com/watch?v=-k8E_xfLxnI" target="_blank">Submitting a Catalyst Proposal</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="right-nav">
-          <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-            <button type="submit" class="nav_btn tp_btn">Subscribe</button>
-          </form>
-          <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
-            <ion-icon name="mail"></ion-icon>
-          </a>
-          <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
-            <label for="something" class="tab-btn tab-btns">
-              <ion-icon class="light-mode" name="contrast"></ion-icon>
-            </label>
-            <input type="checkbox" name="something" id="something" class="dark_mode_switcher">
-            <label for="something" class="tab-btn">
-              <ion-icon class="dark-mode" name="contrast-outline"></ion-icon>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <div class="mobile_main_menu dark_menu sticky-nav">
-    <div class="container">
-      <div class="mobile_menu_left">
-        <button type="button" class="navbar-toggler mobile_menu_btn">
-          <span class="menu_toggle ">
-            <span class="hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </span>
-        </button>
-        <a class="navbar-brand header_logo" href="#">
-          <img class="sticky_logo main_logo" src="img/logo.png" srcset="img/logo-2x.png 2x" alt="logo">
-          <img class="white_logo" src="img/logo-w.png" srcset="img/logo-w2x.png 2x" alt="logo">
+        {% endfor %}
+      </ul>
+      <div class="right-nav">
+        <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+          <button type="submit" class="nav_btn tp_btn">Subscribe</button>
+        </form>
+        <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+          <ion-icon name="mail"></ion-icon>
         </a>
-      </div>
-      <div class="mobile_menu_right">
-        <div class="right-nav">
-          <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-            <button type="submit" class="nav_btn tp_btn">Subscribe</button>
-          </form>
-          <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
-            <ion-icon name="mail"></ion-icon>
-          </a>
-          <!-- <a class="px-2" href="#" title="RSS feed">
-            <ion-icon name="logo-rss"></ion-icon>
-          </a> -->
-          <div class="px-2 js-darkmode-btn btn" title="Toggle dark mode">
-            <label for="something2" class="tab-btn tab-btns">
-              <ion-icon class="light-mode" name="contrast"></ion-icon>
-            </label>
-            <input type="checkbox" name="something2" id="something2" class="dark_mode_switcher">
-            <label for="something2" class="tab-btn">
-              <ion-icon class="dark-mode" name="contrast-outline"></ion-icon>
-            </label>
-          </div>
+        <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
+          <label for="something" class="tab-btn tab-btns">
+            <ion-icon class="light-mode" name="contrast"></ion-icon>
+          </label>
+          <input type="checkbox" name="something" id="something" class="dark_mode_switcher">
+          <label for="something" class="tab-btn">
+            <ion-icon class="dark-mode" name="contrast-outline"></ion-icon>
+          </label>
         </div>
       </div>
     </div>
