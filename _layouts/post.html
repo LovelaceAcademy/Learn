@@ -102,7 +102,7 @@ layout: default
               <h1>{{ page.title }}</h1>
             </div>
 
-            {{ content | replace: '<img ', '<img class="img-fluid" ' }}
+            {{ content | replace: '<img ', '<img class="img-fluid" ' | replace: '<ol>', '<ol class="ordered-list">' }}
 
             <footer>
               <div class="border_bottom"></div>
