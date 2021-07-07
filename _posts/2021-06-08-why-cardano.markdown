@@ -4,6 +4,7 @@ title: Why Build on Cardano
 last_modified_at: 2021-06-09
 categories:
 - Getting Started
+order: 1
 ---
 
 Cardano is the next evolution of blockchain technology providing an

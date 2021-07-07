@@ -43,7 +43,12 @@ layout: default
               </li>
 
               {% for item in site.menu %}
-                {% assign posts = site.categories[item.title] | default: item.links %}
+                {% assign posts = site.categories[item.title] %}
+                {% if posts and posts != empty %}
+                  {% assign posts = posts | sort: 'order', 'last' %}
+                {% else %}
+                  {% assign posts = item.links %}
+                {% endif %}
 
                 <li class="nav-item active">
                   <a href="#" class="nav-link">

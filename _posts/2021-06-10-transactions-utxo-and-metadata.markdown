@@ -3,6 +3,7 @@ layout: post
 title: "Transactions: UTxO and Metadata"
 categories:
 - Getting Started
+order: 3
 ---
 
 Transactions are basic units representing the creation or transfer of
