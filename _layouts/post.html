@@ -18,7 +18,7 @@ layout: default
         </nav>
       </div>
       <div class="col-sm-5">
-        <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on {{ page.last_modified_at | default: page.date | date: '%b %d, %y' }}</a>
+        <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on {{ page.last_modified_at | default: page.date | date: '%b %d, %Y' }}</a>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@ layout: default
               <h1>{{ page.title }}</h1>
             </div>
 
-            {{ content | replace: '<img ', '<img class="img-fluid" ' }}
+            {{ content | replace: '<img ', '<img class="img-fluid" ' | replace: '<ol>', '<ol class="ordered-list">' }}
 
             <footer>
               <div class="border_bottom"></div>
