@@ -20,21 +20,76 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav menu ml-auto">
         {% for item in site.menu %}
-          {% assign posts = site.categories[item.title] %}
-          {% if posts and posts != empty %}
-            {% assign posts = posts | sort: 'order', 'last' %}
-          {% else %}
-            {% assign posts = item.links %}
-          {% endif %}
-          <li class="nav-item dropdown submenu">
-            <a href="#" class="nav-link dropdown-toggle">{{ item.title }}</a>
+          {% comment %}
+          If the menu item has categories, we need to build the submenu
+          containing the categories and their posts.  Otherwise just
+          creates a dropdown menu.
+          {% endcomment %}
+          {% if item.categories %}
+            <li class="nav-item dropdown submenu mega_menu tab-demo">
+              <a href="#" class="nav-link dropdown-toggle">{{ item.title }}</a>
               <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
               <ul class="dropdown-menu">
-                {% for post in posts %}
-                  <li class="nav-item"><a href="{{ post.url }}" class="nav-link">{{ post.title }}</a></li>
-                {% endfor %}
+                <li>
+                  <div class="row">
+                    <div class="col-lg-5 tabHeader">
+                      <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        {% for category in item.categories %}
+                          {% assign slug = category.title | slugify: 'latin' %}
+                          <li class="nav-item{% if forloop.first %} active{% endif %}">
+                            <a class="nav-link" id="v-{{ slug }}-tab" data-toggle="pill" href="#v-{{ slug }}" role="tab" aria-controls="v-{{ slug }}" aria-selected="{% if category.title == page.category[0] %}true{% else %}false{% endif %}">{{ category.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                    <div class="col-lg-7">
+                      <div class="tab-content tabContent" id="v-pills-tabContent">
+                        {% for category in item.categories %}
+                          {% assign slug = category.title | slugify: 'latin' %}
+                          {% assign posts = site.categories[category.title] | sort: 'order', 'last' %}
+                          <div class="tab-pane fade{% if forloop.first %} active show{% endif %}" id="v-{{ slug }}" role="tabpanel" aria-labelledby="v-{{ slug }}-tab">
+                            <div class="d-flex">
+                              <ul class="list-unstyled tab_list w-100">
+                                {% for post in posts %}
+                                  <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </li>
               </ul>
-          </li>
+            </li>
+          {% else %}
+            {% assign posts = site.categories[item.title] %}
+            {% if posts and posts != empty %}
+              {% assign posts = posts | sort: 'order', 'last' %}
+            {% else %}
+              {% assign posts = item.links %}
+            {% endif %}
+            <li class="nav-item dropdown submenu">
+              <a href="#" class="nav-link dropdown-toggle">{{ item.title }}</a>
+                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                <ul class="dropdown-menu">
+                  {% for post in posts %}
+                    <li class="nav-item">
+                      <a
+                        {% if post.external %}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        {% endif %}
+                        {% if page.url == post.url %}class="active"{% endif %}
+                          href="{{ post.url }}" class="nav-link">
+                        {{- post.title -}}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
       <div class="right-nav">

@@ -29,6 +29,12 @@ url: "https://learn.lovelace.academy/" # the base hostname & protocol for your s
 twitter_username: academylovelace
 github_username:  lovelaceacademy
 permalink: "/:title/"
+# This is the menu.  Every item points to a category.  The order of
+# items (starting with -) affects the order of menu items.  All posts
+# sharing **exactly** the same category (case sensitive) are listed on
+# each category.  For external links such as YouTube videos, add a
+# `links` key.  For submenus, add a `categories` key with a list of
+# categories.
 menu:
 - title: Getting Started
   icon: briefcase.png
@@ -39,6 +45,10 @@ menu:
 - title: Smart Contracts
   icon: document.png
   alt: document
+  categories:
+  - title: Fundamentals
+  - title: The Plutus Platform
+  - title: Marlowe
 - title: Videos
   icon: content.png
   alt: content
