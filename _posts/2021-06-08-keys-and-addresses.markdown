@@ -93,7 +93,9 @@ a [blake2b-256](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2)
 hash of the public key(s) and concatenated with other metadata (see
 different address types in the image above) including the network in
 which they are valid for (e.g. --mainnet, --testnet-magic 1097911063,
-etc.) ### Creating a Payment Address
+etc.)
+
+### Creating a Payment Address
 
 Payment addresses are generally created using both payment and staking
 verification keys to create an address known as base address. The act of
