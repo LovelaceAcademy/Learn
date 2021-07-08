@@ -60,35 +60,7 @@
               <a href="{{ site.url | absolute_url }}" class="nav-link"><img src="/img/side-nav/home.png" alt="">Home</a>
             </li>
             {% for item in site.menu %}
-              {% assign posts = site.categories[item.title] %}
-              {% if posts and posts != empty %}
-                {% assign posts = posts | sort: 'order', 'last' %}
-              {% else %}
-                {% assign posts = item.links %}
-              {% endif %}
-              <li class="nav-item{% if page.category[0] == item.title %} active{% endif %}">
-                <a href="#" class="nav-link">
-                  <img src="/img/side-nav/{{ item.icon }}" alt="{{ item.alt }}">
-
-                  {{ item.title }}
-                </a>
-                <span class="icon"><i class="arrow_carrot-down"></i></span>
-                <ul class="list-unstyled dropdown_nav">
-                  {% for post in posts %}
-                    <li>
-                      <a
-                        {% if post.external %}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        {% endif %}
-                        {% if page.url == post.url %}class="active"{% endif %}
-                        href="{{ post.url }}">
-                        {{ post.title }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              </li>
+              {% include menu_item_category.html page=page item=item %}
             {% endfor %}
           </ul>
         </div>
