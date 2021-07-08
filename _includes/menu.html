@@ -81,8 +81,8 @@
                           target="_blank"
                           rel="noopener noreferrer"
                         {% endif %}
-                        {% if page.url == post.url %}class="active"{% endif %}
-                          href="{{ post.url }}" class="nav-link">
+                          href="{{ post.url }}"
+                          class="nav-link{% if page.url == post.url %} active{% endif %}">
                         {{- post.title -}}
                       </a>
                     </li>
