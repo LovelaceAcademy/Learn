@@ -93,10 +93,10 @@
         {% endfor %}
       </ul>
       <div class="right-nav">
-        <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+        <form action="{{ site.subscribe | escape_uri }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
           <button type="submit" class="nav_btn tp_btn">Subscribe</button>
         </form>
-        <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+        <a class="px-2 ml-3" href="mailto:{{ site.email }}" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
         </a>
         <div class="px-2 js-darkmode-btn" title="Toggle dark mode">

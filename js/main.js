@@ -1,3 +1,6 @@
+---
+# Empty frontmatter tells Jekyll to process Liquid inside this file
+---
 (function ($) {
   "use strict";
 
@@ -624,15 +627,13 @@
   if ($(".mailchimp").length > 0) {
     $(".mailchimp").ajaxChimp({
       callback: mailchimpCallback,
-      url:
-        "http://droitlab.us15.list-manage.com/subscribe/post?u=0fa954b1e090d4269d21abef5&id=a80b5aedb0", //Replace this with your own mailchimp post URL. Don't remove the "". Just paste the url inside "".
+      url: "{{ site.subscribe }}",
     });
   }
   if ($(".mailchimp_two").length > 0) {
     $(".mailchimp_two").ajaxChimp({
       callback: mailchimpCallback,
-      url:
-        "https://droitthemes.us19.list-manage.com/subscribe/post?u=5d334217e146b083fe74171bf&amp;id=0e45662e8c", //Replace this with your own mailchimp post URL. Don't remove the "". Just paste the url inside "".
+      url: "{{ site.subscribe }}",
     });
   }
   $(".memail").on("focus", function () {
@@ -990,15 +991,13 @@
   if ($(".mailchimp").length > 0) {
     $(".mailchimp").ajaxChimp({
       callback: mailchimpCallback,
-      url:
-        "http://droitlab.us15.list-manage.com/subscribe/post?u=0fa954b1e090d4269d21abef5&id=a80b5aedb0", //Replace this with your own mailchimp post URL. Don't remove the "". Just paste the url inside "".
+      url: "{{ site.subscribe }}",
     });
   }
   if ($(".mailchimp_two").length > 0) {
     $(".mailchimp_two").ajaxChimp({
       callback: mailchimpCallback,
-      url:
-        "https://droitthemes.us19.list-manage.com/subscribe/post?u=5d334217e146b083fe74171bf&amp;id=0e45662e8c", //Replace this with your own mailchimp post URL. Don't remove the "". Just paste the url inside "".
+      url: "{{ site.subscribe }}",
     });
   }
   $(".memail").on("focus", function () {
