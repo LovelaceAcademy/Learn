@@ -1,0 +1,18 @@
+{% comment %}
+Creates a single post item
+
+* post = the post item
+* page = the current page
+{% endcomment %}
+
+<li>
+  <a
+    {% if include.post.external %}
+      target="_blank"
+      rel="noopener noreferrer"
+    {% endif %}
+    {% if include.page.url == include.post.url %}class="active"{% endif %}
+    href="{{ include.post.url }}">
+    {{ include.post.title }}
+  </a>
+</li>

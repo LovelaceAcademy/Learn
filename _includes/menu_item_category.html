@@ -1,0 +1,28 @@
+{% comment %}
+Creates a category item with its icon and post list
+
+* item = item from site.menu
+* page = the current page
+{% endcomment %}
+
+<li class="nav-item {% if include.page.category[0] == item.title %}active{% endif %}">
+  <a href="#" class="nav-link">
+    {% if include.item.icon %}
+      <img src="/img/side-nav/{{ include.item.icon }}" alt="{{ include.item.alt }}">
+    {% endif %}
+
+    {{ include.item.title }}
+  </a>
+
+  <span class="icon"><i class="arrow_carrot-down"></i></span>
+
+  <ul class="list-unstyled dropdown_nav" {% if include.page.category[0] == include.item.title %}style="display: block"{% endif %}>
+    {% if include.item.categories %}
+      {% for category in include.item.categories %}
+        {% include menu_item_category.html page=include.page item=category %}
+      {% endfor %}
+    {% else %}
+      {% include menu_item_post_list.html page=include.page item=include.item %}
+    {% endif %}
+  </ul>
+</li>
