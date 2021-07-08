@@ -41,24 +41,28 @@ Both types are asymmetric
 [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs
 consisting of a private signing key and a public verification key.
 
-> Outside of the testnets it is **EXTREMELY** important to safeguard
-> your private signing keys.
-> 
-> Creation of keys should be always be done in a **trusted air-gapped
-> machine** with a **pristine operating system** (e.g. a fresh Ubuntu
-> [VirtualBox VM](https://www.virtualbox.org/wiki/Downloads) with no
-> non-base-OS software apart from a verified version of cardano-cli) and
-> **no network/internet connectivity**. <!-- Signing transactions should
-> also be done in the air-gapped machine containing the private keys
-> where signed transactions can then be transferred out via a secure
-> USB. At no point should the signing keys be transferred to another
-> machine that is not air-gapped. -->
-> 
-> These key files can transferred to/from a secure USB (e.g. Apricorn
-> Aegis) when necessary to ensure a fresh pristine environment every
-> time. We also recommended writing down the contents of the private
-> keys on a physical medium to be stored securely in case of
-> software/hardware failure.
+<blockquote class="media notice notice-danger"><i class="icon_ribbon_alt"></i><div markdown="1">
+
+Outside of the testnets it is **EXTREMELY** important to safeguard
+your private signing keys.
+
+Creation of keys should be always be done in a **trusted air-gapped
+machine** with a **pristine operating system** (e.g. a fresh Ubuntu
+[VirtualBox VM](https://www.virtualbox.org/wiki/Downloads) with no
+non-base-OS software apart from a verified version of cardano-cli) and
+**no network/internet connectivity**. <!-- Signing transactions should
+also be done in the air-gapped machine containing the private keys
+where signed transactions can then be transferred out via a secure
+USB. At no point should the signing keys be transferred to another
+machine that is not air-gapped. -->
+
+These key files can transferred to/from a secure USB (e.g. Apricorn
+Aegis) when necessary to ensure a fresh pristine environment every
+time. We also recommended writing down the contents of the private
+keys on a physical medium to be stored securely in case of
+software/hardware failure.
+
+</div></blockquote>
 
 ### Creating Payment Keys
 
