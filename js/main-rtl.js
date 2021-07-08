@@ -500,12 +500,8 @@
     $("body").removeClass("menu-is-closed").addClass("menu-is-opened");
   });
   $(".close_nav").on("click", function (e) {
-    if ($(".side_menu").hasClass("menu-opened")) {
-      $(".side_menu").removeClass("menu-opened");
-      $("body").removeClass("menu-is-opened");
-    } else {
-      $(".side_menu").addClass("menu-opened");
-    }
+    $(".side_menu").removeClass("menu-opened");
+    $("body").removeClass("menu-is-opened");
   });
 
   $(".click_capture").on("click", function () {

@@ -17,15 +17,12 @@
     </div>
     <div class="mobile_menu_right">
       <div class="right-nav">
-        <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+        <form action="{{ site.subscribe | escape_uri }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
           <button type="submit" class="nav_btn tp_btn">Subscribe</button>
         </form>
-        <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+        <a class="px-2 ml-3" href="mailto:{{ site.email }}" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
         </a>
-        <!-- <a class="px-2" href="#" title="RSS feed">
-          <ion-icon name="logo-rss"></ion-icon>
-        </a> -->
         <div class="px-2 js-darkmode-btn btn" title="Toggle dark mode">
           <label for="something2" class="tab-btn tab-btns">
             <ion-icon class="light-mode" name="contrast"></ion-icon>
@@ -43,7 +40,6 @@
 <div class="side_menu">
   <div class="mobile_menu_header">
     <div class="close_nav">
-      <i class="arrow_left"></i>
       <i class="icon_close"></i>
     </div>
     <div class="mobile_logo">
@@ -54,86 +50,47 @@
     </div>
   </div>
   <div class="mobile_nav_wrapper">
-    <nav class="mobile_nav_top">
-      <ul class="navbar-nav menu ml-auto">
-        <li class="nav-item dropdown submenu">
-          <a href="#" class="nav-link">Getting Started</a>
-        </li>
-        <li class="nav-item dropdown submenu">
-          <a href="#" class="nav-link">Native Tokens</a>
-          <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
-          <ul class="dropdown-menu">
-            <!-- <li class="nav-item"><a href="#" class="nav-link">Onepage Doc</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">404 Error</a></li> -->
-          </ul>
-        </li>
-        <li class="nav-item dropdown submenu">
-          <a href="#" class="nav-link">Smart Contracts</a>
-          <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
-          <ul class="dropdown-menu">
-            <!-- <li class="nav-item"><a href="#" class="nav-link">Forums Root</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">User Profile</a></li> -->
-          </ul>
-        </li>
-        <li class="nav-item dropdown submenu">
-          <a class="nav-link" href="#">Videos</a>
-          <i class="arrow_carrot-down_alt2 mobile_dropdown_icon"></i>
-          <ul class="dropdown-menu">
-            <!-- <li class="nav-item"><a href="#" class="nav-link">Blog Grid</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Blog Grid Two</a></li> -->
-          </ul>
-        </li>
-      </ul>
-    </nav>
+    <div class="mobile_nav_top"></div>
     <div class="mobile_nav_bottom">
       <aside class="doc_left_sidebarlist">
-        <h2>Learn</h2>
+        <h2>{{ site.title }}</h2>
         <div class="scroll">
           <ul class="list-unstyled nav-sidebar">
             <li class="nav-item">
-              <a href="#" class="nav-link"><img src="/img/side-nav/home.png" alt="">Home</a>
+              <a href="{{ site.url | absolute_url }}" class="nav-link"><img src="/img/side-nav/home.png" alt="">Home</a>
             </li>
-            <li class="nav-item active">
-              <a href="#" class="nav-link"><img src="/img/side-nav/briefcase.png" alt="briefcase">Getting Started</a>
-              <span class="icon"><i class="arrow_carrot-down"></i></span>
-              <ul class="list-unstyled dropdown_nav">
-                <!-- <li><a href="#">Tabs</a></li>
-                <li><a class="active" href="#">Source Code</a></li> -->
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link"><img src="/img/side-nav/layout.png" alt="">Native Tokens</a>
-              <span class="icon"><i class="arrow_carrot-down"></i></span>
-              <ul class="list-unstyled dropdown_nav">
-                <li><a href="#">Full-width</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link"><img src="/img/side-nav/chat1.png" alt="">Smart Contracts</a>
-              <span class="icon"><i class="arrow_carrot-down"></i></span>
-              <ul class="list-unstyled dropdown_nav">
-                <li><a href="#">Cheatsheet</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link"><img src="/img/side-nav/document.png" alt="">Videos</a>
-              <span class="icon"><i class="arrow_carrot-down"></i></span>
-              <ul class="list-unstyled dropdown_nav">
-                <li><a href="#">Image</a></li>
-              </ul>
-            </li>
-            <!-- <li class="nav-item">
-              <a href="#" class="nav-link"><img src="/img/side-nav/clock.png" alt="">Change Log</a>
-            </li> -->
+            {% for item in site.menu %}
+              {% assign posts = site.categories[item.title] %}
+              {% if posts and posts != empty %}
+                {% assign posts = posts | sort: 'order', 'last' %}
+              {% else %}
+                {% assign posts = item.links %}
+              {% endif %}
+              <li class="nav-item{% if page.category[0] == item.title %} active{% endif %}">
+                <a href="#" class="nav-link">
+                  <img src="/img/side-nav/{{ item.icon }}" alt="{{ item.alt }}">
+
+                  {{ item.title }}
+                </a>
+                <span class="icon"><i class="arrow_carrot-down"></i></span>
+                <ul class="list-unstyled dropdown_nav">
+                  {% for post in posts %}
+                    <li>
+                      <a
+                        {% if post.external %}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        {% endif %}
+                        {% if page.url == post.url %}class="active"{% endif %}
+                        href="{{ post.url }}">
+                        {{ post.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
           </ul>
-          <!-- <ul class="list-unstyled nav-sidebar bottom_nav">
-            <li class="nav-item">
-              <a href="#" class="nav-link"><img src="/img/side-nav/edit.png" alt="">Signup</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link"><img src="/img/side-nav/users.png" alt="">Sign In <i class="arrow_right"></i></a>
-            </li>
-          </ul> -->
         </div>
       </aside>
     </div>

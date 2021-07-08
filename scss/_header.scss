@@ -1245,11 +1245,6 @@
       color: #1d2746;
       margin-right: 15px;
       margin-top: -5px;
-      i {
-        & + i {
-          display: none;
-        }
-      }
     }
   }
   .doc_left_sidebarlist {
@@ -1287,14 +1282,6 @@
   &.menu-opened {
     .mobile_nav_wrapper {
       transform: translate3d(0, 0, 0);
-    }
-    .close_nav {
-      i {
-        display: none;
-        & + i {
-          display: block;
-        }
-      }
     }
   }
 }
