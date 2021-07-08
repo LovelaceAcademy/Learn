@@ -28,7 +28,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://learn.lovelace.academy/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: academylovelace
 github_username:  lovelaceacademy
-permalink: "/:title/"
+permalink: "/:categories/:title/"
 # This is the menu.  Every item points to a category.  The order of
 # items (starting with -) affects the order of menu items.  All posts
 # sharing **exactly** the same category (case sensitive) are listed on
@@ -69,6 +69,7 @@ menu:
 # Build settings
 plugins:
   - jekyll-feed
+  - jekyll-slugify-categories
 
 social:
 - url: https://www.youtube.com/c/LovelaceAcademy/videos
