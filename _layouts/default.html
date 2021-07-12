@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/img/favicon-32.png" sizes="32x32">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-select.min.css">
+    <!-- icon css-->
+    <link rel="stylesheet" href="/assets/elagent-icon/style.css">
+    <link rel="stylesheet" href="/assets/niceselectpicker/nice-select.css">
+    <link rel="stylesheet" href="/assets/animation/animate.css">
+    <link rel="stylesheet" href="/assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+    <link rel="stylesheet" href="/css/style-main.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/assets/font-size/css/rvfs.css">
+    <title>{{ site.title }} - {{ page.title }}</title>
+</head>
+
+<body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
+  {% include preloader.html %}
+  <div class="body_wrapper">
+
+    {% include menu.html %}
+    {% include mobile_menu.html %}
+
+		{{ content }}
+
+    {% include footer.html %}
+    {% include modal.html %}
+  </div>
+
+  <!-- Back to top button -->
+  <a id="back-to-top" title="Back to Top"></a>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="/js/jquery-3.5.1.min.js"></script>
+  <script src="/assets/bootstrap/js/popper.min.js"></script>
+  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/bootstrap/js/bootstrap-select.min.js"></script>
+  <script src="/js/pre-loader.js"></script>
+  <script src="/js/jquery.parallax-scroll.js"></script>
+  <script src="/assets/niceselectpicker/jquery.nice-select.min.js"></script>
+  <script src="/assets/wow/wow.min.js"></script>
+  <script src="/assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="/assets/font-size/js/rv-jquery-fontsize-2.0.3.min.js"></script>
+  <script src="/js/anchor.js"></script>
+  <script src="/assets/prism/prism.js"></script>
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

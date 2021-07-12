@@ -1,0 +1,26 @@
+<footer class="simple_footer">
+  <img class="leaf_right" src="/img/home_one/leaf_footter.png" alt="">
+  <div class="container ">
+    <div class="row">
+      <div class="col-lg-6">
+        <p>© {{ site.time | date: '%Y' }} All Rights Reserved by <a href="{{ site.url }}">{{ site.title }}</a></p>
+      </div>
+      <div class="col-lg-6 text-right">
+        <ul class="list-unstyled f_social_icon">
+          {% for social in site.social %}
+            <li>
+              <a href="{{ social.url }}" rel="noopener noreferrer me" target="_blank">
+                {% if social.ion %}
+                  <ion-icon name="{{ social.icon }}"></ion-icon>
+                {% else %}
+                <i class="{{ social.icon }}"></i>
+              {% endif %}
+                <span class="sr-only">{{ social.title }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
