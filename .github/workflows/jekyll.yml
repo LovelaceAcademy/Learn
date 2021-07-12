@@ -14,7 +14,5 @@ jobs:
         with:
           ruby-version: ruby-2.7.3
           bundler-cache: true
-      - name: install
-        run: bundle
       - name: build
         run: bundle exec jekyll build --trace
