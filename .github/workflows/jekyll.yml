@@ -4,12 +4,17 @@ on:
 jobs:
   jekyll:
     runs-on: ubuntu-latest
+    env:
+      JEKYLL_ENV: development
     steps:
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v2
         with:
-          path: vendor/bundle
-          key: "${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}"
-          restore-keys: "${{ runner.os }}-gems-"
-      - uses: helaili/jekyll-action@master
+          fetch-depth: 1
+      - uses: ruby/setup-ruby@v1
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          ruby-version: ruby-2.7.3
+          bundler-cache: true
+      - name: install
+        run: bundle
+      - name: build
+        run: bundle exec jekyll build --trace
