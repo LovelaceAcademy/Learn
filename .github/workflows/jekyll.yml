@@ -1,15 +1,29 @@
 name: Jekyll
 on:
-- push
+  push:
+    branches:
+    - main
 jobs:
   jekyll:
     runs-on: ubuntu-latest
+    env:
+      JEKYLL_ENV: development
     steps:
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v2
         with:
-          path: vendor/bundle
-          key: "${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}"
-          restore-keys: "${{ runner.os }}-gems-"
-      - uses: helaili/jekyll-action@master
+          fetch-depth: 1
+      - uses: ruby/setup-ruby@v1
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          ruby-version: ruby-2.7.3
+          bundler-cache: true
+      - name: build
+        run: bundle exec jekyll build --trace
+      - name: gh-pages
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          email: keith@safestak.com
+          build_dir: _site
+          cname: learn.lovelace.academy
+          jekyll: no # because it's not gh's jekyll

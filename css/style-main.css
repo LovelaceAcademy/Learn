@@ -1882,9 +1882,6 @@ p kbd {
   margin-right: 15px;
   margin-top: -5px;
 }
-.side_menu .mobile_menu_header .close_nav i + i {
-  display: none;
-}
 .side_menu .doc_left_sidebarlist {
   border: 0;
 }
@@ -1917,12 +1914,6 @@ p kbd {
 }
 .side_menu.menu-opened .mobile_nav_wrapper {
   transform: translate3d(0, 0, 0);
-}
-.side_menu.menu-opened .close_nav i {
-  display: none;
-}
-.side_menu.menu-opened .close_nav i + i {
-  display: block;
 }
 
 .click_capture {

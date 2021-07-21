@@ -20,6 +20,7 @@
 
 title: Lovelace Academy
 email: hello@lovelace.academy
+subscribe: "https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&id=34fa4be848"
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -28,11 +29,48 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://learn.lovelace.academy/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: academylovelace
 github_username:  lovelaceacademy
-permalink: "/:title/"
+permalink: "/:categories/:title/"
+# This is the menu.  Every item points to a category.  The order of
+# items (starting with -) affects the order of menu items.  All posts
+# sharing **exactly** the same category (case sensitive) are listed on
+# each category.  For external links such as YouTube videos, add a
+# `links` key.  For submenus, add a `categories` key with a list of
+# categories.
+menu:
+- title: Getting Started
+  icon: briefcase.png
+  alt: briefcase
+- title: Native Tokens
+  icon: chat1.png
+  alt: chat
+- title: Smart Contracts
+  icon: document.png
+  alt: document
+  categories:
+  - title: Fundamentals
+  - title: The Plutus Platform
+  - title: Marlowe
+- title: Videos
+  icon: content.png
+  alt: content
+  links:
+  - url: https://www.youtube.com/watch?v=ev75v-9LU5I
+    title: Making Sense of Blockchain
+    external: true
+  - url: https://www.youtube.com/watch?v=sM0_V53_kGo
+    title: The Cardano Revolution
+    external: true
+  - url: https://www.youtube.com/watch?v=mD1kAmP8K-M
+    title: Interview with Dr Mihaela Ulieru
+    external: true
+  - url: https://www.youtube.com/watch?v=-k8E_xfLxnI
+    title: Submitting a Catalyst Proposal
+    external: true
 
 # Build settings
 plugins:
   - jekyll-feed
+  - jekyll-slugify-categories
 
 social:
 - url: https://www.youtube.com/c/LovelaceAcademy/videos

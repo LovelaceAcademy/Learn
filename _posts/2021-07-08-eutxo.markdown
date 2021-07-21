@@ -1,0 +1,7 @@
+---
+layout: post
+title: EUTxO
+categories:
+- Fundamentals
+order: 1
+---
