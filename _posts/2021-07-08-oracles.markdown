@@ -1,0 +1,8 @@
+---
+layout: post
+title: Oracles
+categories:
+- The Plutus Platform
+order: 4
+---
+

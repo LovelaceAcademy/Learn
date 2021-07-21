@@ -1,0 +1,16 @@
+{% comment %}
+Creates an ordered list of posts from a category
+
+* item = item from site.menu
+* page = the current page
+{% endcomment %}
+
+{% assign posts = site.categories[include.item.title] %}
+{% if posts and posts != empty %}
+  {% assign posts = posts | sort: 'order', 'last' %}
+{% else %}
+  {% assign posts = include.item.links %}
+{% endif %}
+{% for post in posts %}
+  {% include menu_item_post.html page=include.page post=post %}
+{% endfor %}
