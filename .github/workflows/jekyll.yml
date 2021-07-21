@@ -1,6 +1,8 @@
 name: Jekyll
 on:
-- push
+  push:
+    branches:
+    - main
 jobs:
   jekyll:
     runs-on: ubuntu-latest
@@ -16,3 +18,12 @@ jobs:
           bundler-cache: true
       - name: build
         run: bundle exec jekyll build --trace
+      - name: gh-pages
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          email: keith@safestak.com
+          build_dir: _site
+          cname: learn.lovelace.academy
+          jekyll: no # because it's not gh's jekyll
