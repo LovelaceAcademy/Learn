@@ -1,6 +1,11 @@
 # Lovelace Academy: Learn  
 Content for https://learn.lovelace.academy
 
+## Updated on
+
+To show the last modification date, add a `last_modified_at` field on
+the frontmatter with the current date.
+
 ## Notification blockquotes
 
 If you need to create notification-styled blockquotes, add them like
