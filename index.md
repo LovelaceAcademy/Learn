@@ -1,6 +1,13 @@
 ---
 layout: post
-title: 'Home'
+title: 'Welcome to Learn @ Lovelace Academy'
 ---
 
-This is where the home content goes.
+At Lovelace Academy we believe that education is the key to a more productive, collaborative and fairer world. Further, we firmly believe that everyone should granted the same access to education in order to learn technical skills and have equal opportunity to apply their skills in the real world.
+
+Our goals are three-fold:
+ 1) Provide **free educational content** for everyone who wishes to understand Cardano and Blockchain technology
+ 2) Allow anyone to demonstrate their knowledge and practical experience through **certifications** 
+ 3) Host a **community-powered learning platform** that rewards engagement and collaboration
+
+Not sure where to start? Go and [get started](https://learn.lovelace.academy/getting-started)
