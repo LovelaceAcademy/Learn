@@ -15,7 +15,7 @@ Based on [published peer-reviewed research](https://iohk.io/en/research/library/
 
 This well-established path from research to engineering and product development uniquely identifies Cardano amongst the world's top blockchain platforms and permitted innovation at scale without compromising on energy consumption, security or decentralisation.
 
-## Why Cardano
+## The Cardano Revolution
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sM0_V53_kGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -32,8 +32,10 @@ We explained in [our video](https://www.youtube.com/watch?v=sM0_V53_kGo) that Ca
    - 31,000+ participants
    - 930 project proposals and 150+ projects funded to date
 
+## Summary
+
 The unique strengths of Cardano can be summarised in four points:
  - Built on top of the strongest foundations with the future in mind
- - Cardano's vision for economic identity, inclusion and long-term sustainability
  - Incredible team behind the most actively developed blockchain
  - Passionate, intelligent and thoughtful community
+ - Cardano's vision for economic identity, inclusion and long-term sustainability
