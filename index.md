@@ -10,4 +10,4 @@ Our goals are three-fold:
  2) Allow anyone to demonstrate their knowledge and practical experience through **certifications** 
  3) Host a **community-powered learning platform** that rewards engagement and collaboration
 
-Not sure where to start? Go and [get started](https://learn.lovelace.academy/getting-started/why-cardano)
+Not sure where to start? [Get started with Lovelace Academy ➡️](https://learn.lovelace.academy/getting-started/why-cardano)
