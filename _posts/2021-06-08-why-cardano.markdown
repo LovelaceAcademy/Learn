@@ -24,14 +24,16 @@ We explained in [our video](https://www.youtube.com/watch?v=sM0_V53_kGo) that Ca
    - 2,800+ stake pools
    - 750,000+ staking addresses
    - 1,900,000+ wallet addresses (greater than 1 ADA)
-   - 71%+ of total supply staked
+   - 71%+ of total supply staked ($35B+ USD)
  - Second most active blockchain by transaction volume
-   - $10,000,000,000+ ($10B) per day
- - Holds the world's largest Decentralised Autonomous Organisation (DAO)
+   - $10,000,000,000+ ($10B) USD per day
+ - Has the world's largest Decentralised Autonomous Organisation (DAO)
    - $1,000,000,000+ ($1B) USD in the treasury
+   - 31,000+ participants
+   - 930 project proposals and 150+ projects funded to date
 
-In summary, the key strengths of Cardano can be summarised in four points:
+The unique strengths of Cardano can be summarised in four points:
  - Built on top of the strongest foundations with the future in mind
+ - Cardano's vision for economic identity, inclusion and long-term sustainability
  - Incredible team behind the most actively developed blockchain
  - Passionate, intelligent and thoughtful community
- - Vision for economic identity, inclusion and long-term sustainability
