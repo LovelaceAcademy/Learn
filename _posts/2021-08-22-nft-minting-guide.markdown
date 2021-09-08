@@ -7,7 +7,7 @@ categories:
 order: 4
 ---
 
-## Define Multisig Policy
+### Define Multisig Policy
 Coming soon
 
 ## Minting Transaction

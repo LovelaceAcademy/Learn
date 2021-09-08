@@ -7,8 +7,8 @@ categories:
 order: 3
 ---
 
-## Define Multisig Policy
+### Define Multisig Policy
 Coming soon
 
-## Minting Transaction
+### Minting Transaction
 Coming soon
