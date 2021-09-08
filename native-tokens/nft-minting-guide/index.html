@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/css/style-main.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/assets/font-size/css/rvfs.css">
-    <title>Lovelace Academy - Wallet Basics: Keys and Addresses</title>
+    <title>Lovelace Academy - NFT Minting Guide</title>
 </head>
 
 <body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
@@ -88,7 +88,7 @@
                       <a
                         
                           href="/getting-started/keys-and-addresses/"
-                          class="nav-link active">Wallet Basics: Keys and Addresses</a>
+                          class="nav-link">Wallet Basics: Keys and Addresses</a>
                     </li>
                   
                     <li class="nav-item">
@@ -136,7 +136,7 @@
                       <a
                         
                           href="/native-tokens/nft-minting-guide/"
-                          class="nav-link">NFT Minting Guide</a>
+                          class="nav-link active">NFT Minting Guide</a>
                     </li>
                   
                 </ul>
@@ -377,7 +377,7 @@
             
               
 
-<li class="nav-item active">
+<li class="nav-item">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/briefcase.png" alt="briefcase">
@@ -388,7 +388,7 @@
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" style="display: block">
+  <ul class="list-unstyled dropdown_nav" >
     
       
 
@@ -424,7 +424,7 @@
 <li>
   <a
     
-    class="active"
+    
     href="/getting-started/keys-and-addresses/">
     Wallet Basics: Keys and Addresses
   </a>
@@ -451,7 +451,7 @@
             
               
 
-<li class="nav-item">
+<li class="nav-item active">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/chat1.png" alt="chat">
@@ -462,7 +462,7 @@
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" >
+  <ul class="list-unstyled dropdown_nav" style="display: block">
     
       
 
@@ -510,7 +510,7 @@
 <li>
   <a
     
-    
+    class="active"
     href="/native-tokens/nft-minting-guide/">
     NFT Minting Guide
   </a>
@@ -877,14 +877,14 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="https://www.lovelace.academy">Home</a></li>
             
-              <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Getting Started</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Wallet Basics: Keys and Addresses</li>
+              <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Native Tokens</a></li>
+              <li class="breadcrumb-item active" aria-current="page">NFT Minting Guide</li>
             
           </ol>
         </nav>
       </div>
       <div class="col-sm-5">
-        <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on Jun 09, 2021</a>
+        <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on Sep 08, 2021</a>
       </div>
     </div>
   </div>
@@ -911,7 +911,7 @@
               
                 
 
-<li class="nav-item active">
+<li class="nav-item">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/briefcase.png" alt="briefcase">
@@ -922,7 +922,7 @@
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" style="display: block">
+  <ul class="list-unstyled dropdown_nav" >
     
       
 
@@ -958,7 +958,7 @@
 <li>
   <a
     
-    class="active"
+    
     href="/getting-started/keys-and-addresses/">
     Wallet Basics: Keys and Addresses
   </a>
@@ -985,7 +985,7 @@
               
                 
 
-<li class="nav-item">
+<li class="nav-item active">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/chat1.png" alt="chat">
@@ -996,7 +996,7 @@
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" >
+  <ul class="list-unstyled dropdown_nav" style="display: block">
     
       
 
@@ -1044,7 +1044,7 @@
 <li>
   <a
     
-    
+    class="active"
     href="/native-tokens/nft-minting-guide/">
     NFT Minting Guide
   </a>
@@ -1401,132 +1401,14 @@
           <article class="shortcode_text">
             <div class="shortcode_title">
               <!-- <a class="btn" href="#">Learn</a> -->
-              <h1>Wallet Basics: Keys and Addresses</h1>
+              <h1>NFT Minting Guide</h1>
             </div>
 
-            <p>Keys and addresses are at the heart of all information flow in Cardano
-and other blockchains. Keys prove ownership, consent and authenticity
-while addresses derived from these keys are destinations to hold facts
-and values.</p>
+            <h2 id="define-multisig-policy">Define Multisig Policy</h2>
+<p>Coming soon</p>
 
-<p>A powerful feature arises from the fact that these cryptographic
-entities can be created without connecting to or interacting with the
-blockchain network. The de-coupling of these entities from the network
-allows any one, even those without an internet connection, to create
-unique addresses that can receive transaction outputs. Subsequently all
-the facts and values in these addresses can only be unlocked by the keys
-associated with it, safeguarding them from theft or confiscation.</p>
-
-<p>We will be focusing on the address keys on the right section of the
-image below.</p>
-
-<p><img class="img-fluid" src="https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png" alt="" /></p>
-
-<p>Image courtesy of <a href="https://github.com/ilap">ilap</a></p>
-
-<h2 id="keys">Keys</h2>
-
-<p>Two main types of keys are used within Cardano:</p>
-
-<ul>
-  <li>Payment Keys: For creating payment addresses and signing transactions
-to spend ADA/assets in these payment addresses</li>
-  <li>Staking Keys: For creating payment/staking addresses, delegating
-stake, claiming ADA rewards from staking addresses and registering
-stake pools</li>
-</ul>
-
-<p>Both types are asymmetric
-<a href="https://en.wikipedia.org/wiki/EdDSA#Ed25519">Ed25519</a> key pairs
-consisting of a private signing key and a public verification key.</p>
-
-<blockquote class="media notice notice-danger"><i class="icon_ribbon_alt"></i><div>
-
-    <p>Outside of the testnets it is <strong>EXTREMELY</strong> important to safeguard
-your private signing keys.</p>
-
-    <p>Creation of keys should be always be done in a <strong>trusted air-gapped
-machine</strong> with a <strong>pristine operating system</strong> (e.g. a fresh Ubuntu
-<a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox VM</a> with no
-non-base-OS software apart from a verified version of cardano-cli) and
-<strong>no network/internet connectivity</strong>. <!-- Signing transactions should
-also be done in the air-gapped machine containing the private keys
-where signed transactions can then be transferred out via a secure
-USB. At no point should the signing keys be transferred to another
-machine that is not air-gapped. --></p>
-
-    <p>These key files can transferred to/from a secure USB (e.g. Apricorn
-Aegis) when necessary to ensure a fresh pristine environment every
-time. We also recommended writing down the contents of the private
-keys on a physical medium to be stored securely in case of
-software/hardware failure.</p>
-
-  </div></blockquote>
-
-<h3 id="creating-payment-keys">Creating Payment Keys</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="nt">--verification-key-file</span> payment.vkey <span class="nt">--signing-key-file</span> payment.skey
-</code></pre></div></div>
-
-<p>This will create two files, the private signing key payment.skey and the
-public verification key payment.vkey in the current directory.</p>
-
-<h3 id="creating-staking-keys">Creating Staking Keys</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address key-gen --verification-key-file stake.vkey --signing-key-file stake.skey
-</code></pre></div></div>
-
-<p>This will create the private signing key stake.skey and the public
-verification key stake.vkey in the current directory.</p>
-
-<h2 id="addresses">Addresses</h2>
-
-<p>The keys above are then used to create two main types of addresses:</p>
-
-<ul>
-  <li>Payment addresses: To receive ADA/assets</li>
-  <li>Staking addresses: To receive ADA staking rewards (automatically)</li>
-</ul>
-
-<p>These are effectively
-a <a href="https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2">blake2b-256</a>
-hash of the public key(s) and concatenated with other metadata (see
-different address types in the image above) including the network in
-which they are valid for (e.g. –mainnet, –testnet-magic 1097911063,
-etc.)</p>
-
-<h3 id="creating-a-payment-address">Creating a Payment Address</h3>
-
-<p>Payment addresses are generally created using both payment and staking
-verification keys to create an address known as base address. The act of
-re-using the same staking key to generate multiple payment addresses
-allow all the ADA at these addresses to be automatically staked to the
-same designated stake pool. However it is also possible to create
-<a href="https://docs.cardano.org/en/latest/learn/types-addresses.html#enterprise-addresses">enterprise
-addresses</a>,
-the term for a non-staking payment address, by excluding the
-–stake-verification-key-file parameter below.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address build <span class="se">\</span>
-    <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="se">\</span>
-    <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
-    <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
-    <span class="nt">--out-file</span> payment.addr
-</code></pre></div></div>
-
-<h3 id="creating-a-staking-address">Creating a Staking Address</h3>
-
-<p>A unique staking address is generated from a staking verification key.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address build <span class="se">\</span>
-    <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
-    <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
-    <span class="nt">--out-file</span> stake.addr
-</code></pre></div></div>
-
-<p>With your newly created keys and addresses you can create, sign and
-submit transactions to learn about UTxOs and Metadata.</p>
-
+<h2 id="minting-transaction">Minting Transaction</h2>
+<p>Coming soon</p>
 
 
             <footer>
