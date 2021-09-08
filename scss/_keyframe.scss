@@ -198,8 +198,8 @@
         animation: spinner 3s infinite linear;
         border-radius: 50%;
         border: 3px solid #f1f6f8;
-        border-left-color: $brand_color;
-        border-top-color: $brand_color;
+        border-left-color: #2244A4;
+        border-top-color: #832DC4;
         margin: 0 auto 0em auto;
         position: absolute;
         left: -40px;
@@ -244,7 +244,7 @@
             font-size: 30px;
             font-weight: 400;
             margin-bottom: 0;
-            color: $h_title;
+            color: #832DC4;
             span{
                 font-weight: 700;
             }

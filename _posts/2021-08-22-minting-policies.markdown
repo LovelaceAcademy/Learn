@@ -7,13 +7,13 @@ categories:
 order: 2
 ---
 
-Minting is the process in which units of a custom token can be created or destroyed by submitting a transaction to a blockchain. A blockchain with native asset/token support (e.g. Cardano) define these minting policies as a base-layer concept to permit anyone holding its principal token to mint custom tokens.
+Minting is the process in which units of a custom token can be created or destroyed based on rules defined in a policy. A blockchain with native asset/token support (e.g. Cardano) defines these minting policies as a base-layer concept to permit anyone holding its principal token (e.g. ADA) to mint custom tokens.
 
-### Native Script / Multisig Policies
+## Native Script / Multisig Policies
 Coming soon
 
-### Plutus Script Policies
+## Plutus Script Policies
 Coming soon
 
-### Fungible vs Non-Fungible 
+## Fungible vs Non-Fungible 
 Coming soon
