@@ -21,7 +21,7 @@ This well-established path from research to engineering and product development 
 
 We explained in [our video](https://www.youtube.com/watch?v=sM0_V53_kGo) that Cardano is already:
  - The most decentralised blockchain platform 
-   - 2,800+ stake pools
+   - 2,800+ <a class='tooltips tooltipstered' data-tooltip-content='Stake pools in Cardano are the equivalent of mining pools in traditional proof-of-work blockchains'>stake pools</a> distributed globally
    - 750,000+ staking addresses
    - 1,900,000+ wallet addresses (greater than 1 ADA)
    - 71%+ of total supply staked ($35B+ USD)
