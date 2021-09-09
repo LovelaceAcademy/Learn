@@ -1473,6 +1473,9 @@ faucet have arrived in your payment.addr by running the following:</p>
 <span class="nb">echo</span> <span class="nv">$UTXO0</span>
 </code></pre></div></div>
 
+<p>It will store the details for the UTxO of that transaction in the variables
+<code class="language-plaintext highlighter-rouge">UTXO0H</code>(transaction ID), <code class="language-plaintext highlighter-rouge">UTXO0I</code>(transaction output index) and <code class="language-plaintext highlighter-rouge">UTXO0V</code>(transaction output value).</p>
+
 <h3 id="create-destination-payment-address">Create Destination Payment Address</h3>
 
 <p>Create a new set of keys and a destination payment address
@@ -1490,17 +1493,58 @@ protocol parameters which can be retrieved by running:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> protocol.json 
 </code></pre></div></div>
 
+<h3 id="create-metadata-json-file">Create Metadata JSON File</h3>
+
+<p>We can attach up to 16kB of structured metadata to our transaction which will be
+stored and immutable for as long as the blockchain exists. The easiest 
+approach is to create a JSON file and specify it when building the transaction.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> <span class="o">&gt;</span> metadata.json <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh"> 
+{
+  "10141342": {
+      "ex": "Lovelace Academy | Getting Started | Tx + UTxO + Metadata",
+      "v" : "4",
+      "ts": "2021-09-09T10:26:34Z"
+  },
+  "10145256": {
+      "h": "D9FCBD0EF020D1E3E3032A481814A4B8491D06323933EA708C2C62F90FF83567"
+  }
+}
+</span><span class="no">EOF
+</span></code></pre></div></div>
+
+<p>The top level keys of the JSON object must be string representations of a
+64bit integer and it is recommended to check against existing values in the 
+<a href="https://github.com/cardano-foundation/CIPs/blob/master/CIP-0010/registry.json">official metadata registry</a> 
+to avoid conflicts.</p>
+
+<p>Although negligible for small JSON files as our example above, 
+storing metadata will incur an additional fee based on its size. 
+You can verify the difference in fees by excluding the <code class="language-plaintext highlighter-rouge">--metadata-json-file</code>
+parameter when building the raw transactions below.</p>
+
+<p>For more information please refer to the 
+<a href="https://github.com/input-output-hk/cardano-node/blob/master/doc/reference/tx-metadata.md#transaction-metadata">Transaction Metadata</a> 
+documentation.</p>
+
 <h3 id="draft-transaction-to-calculate-fees">Draft Transaction to Calculate Fees</h3>
 
 <p>Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that –tx-in uses the UTxO details queried above (transaction ID UTXO0H
-and transaction output index UTXO0I). Also note –tx-out parameters
+that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the UTxO details queried above (transaction ID UTXO0H
+and transaction output index UTXO0I). Also note <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters
 sending 100 ADA (100000000 lovelaces) to the destination address and 900
 ADA (900000000 lovelaces) back to the payment address as change.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>draft.txraw 2&gt; /dev/null
-cardano-cli transaction build-raw <span class="nt">--tx-in</span> <span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0H</span><span class="si">)</span><span class="c">#$(echo $UTXO0I) --tx-out $(cat destination_payment.addr)+100000000 --tx-out $(cat payment.addr)+900000000 --ttl 0 --fee 0 --out-file draft.txraw</span>
+cardano-cli transaction build-raw <span class="se">\</span>
+    <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \ # The unspent output containing the tADA</span>
+    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\ </span><span class="c"># 100 tADA to destination address</span>
+    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span>+900000000 <span class="se">\ </span><span class="c"># 900 tADA change back to payment address</span>
+    <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\ </span><span class="c"># Our custom metadata file generated above</span>
+    <span class="nt">--ttl</span> 0 <span class="se">\</span>
+    <span class="nt">--fee</span> 0 <span class="se">\</span>
+    <span class="nt">--out-file</span> draft.txraw
 <span class="nv">FEE</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction calculate-min-fee <span class="se">\</span>
     <span class="nt">--tx-body-file</span> draft.txraw <span class="se">\</span>
     <span class="nt">--tx-in-count</span> 1 <span class="se">\</span>
@@ -1513,16 +1557,22 @@ cardano-cli transaction build-raw <span class="nt">--tx-in</span> <span class="s
 <h3 id="raw-transaction-with-metadata">Raw Transaction with Metadata</h3>
 
 <p>With the fee we can now calculate the correct amount of change ADA to be
-sent back to the payment address. We also define a –ttl parameter to
+sent back to the payment address. We also define a <code class="language-plaintext highlighter-rouge">--ttl</code> parameter to
 define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CTIP</span><span class="o">=</span><span class="si">$(</span>cardano-cli query tip <span class="nt">--testnet-magic</span> 1097911063 | jq <span class="nt">-r</span> .slot<span class="si">)</span>
-<span class="nv">TTL</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$CTIP</span> + 600<span class="si">)</span>
-<span class="nv">TXOUT</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - <span class="nv">$FEE</span> - 100000000<span class="si">)</span> 
+<span class="nv">TTL</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$CTIP</span> + 600<span class="si">)</span> <span class="c"># 10 minutes </span>
+<span class="nv">CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - 100000000 - <span class="nv">$FEE</span><span class="si">)</span> 
 cardano-cli transaction build-raw <span class="se">\</span>
-  <span class="nt">--tx-in</span> <span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0H</span><span class="si">)</span><span class="c">#$(echo $UTXO0I) --tx-out $(cat destination_payment.addr)+100000000 --tx-out $(cat destination_payment.addr)+$(echo $TXOUT) --ttl $TTL --fee $FEE --out-file sendtx.txraw</span>
+  <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \ # The unspent output containing the tADA</span>
+  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\ </span><span class="c"># 100 tADA to destination address</span>
+  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+<span class="si">$(</span><span class="nb">echo</span> <span class="nv">$CHANGE</span><span class="si">)</span> <span class="se">\ </span><span class="c"># Change tADA back to destination address</span>
+  <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\ </span><span class="c"># Our custom metadata file generated above</span>
+  <span class="nt">--ttl</span> <span class="nv">$TTL</span> <span class="se">\</span>
+  <span class="nt">--fee</span> <span class="nv">$FEE</span> <span class="se">\</span>
+  <span class="nt">--out-file</span> sendtx.txraw
 </code></pre></div></div>
 
 <h3 id="signing-a-transaction">Signing a Transaction</h3>

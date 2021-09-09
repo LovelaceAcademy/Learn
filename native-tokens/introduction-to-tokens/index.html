@@ -1407,7 +1407,7 @@
             <p>Tokens are representations of assets and facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of blockchains the terms <em>token</em> and <em>asset</em> are interchangeable.</p>
 
 <h2 id="multi-asset-blockchains">Multi-asset Blockchains</h2>
-<p>Unlike single-asset blockchains like Bitcoin or Litecoin which only support a single principal token (i.e. BTC and LTC), a multi-asset blockchain supports minting, storing or transferring custom tokens on top of its principal token. Examples of multi-asset blockchains are Ethereum and Cardano which support an infinite amount of custom tokens in addition to their principal token (i.e. ADA and ETH).</p>
+<p>Unlike single-asset blockchains like Bitcoin or Litecoin which only support a single principal token (i.e. BTC and LTC), a multi-asset blockchain supports minting, storing or transferring custom tokens on top of its principal token. Examples of multi-asset blockchains are Ethereum and Cardano which support an infinite amount of custom tokens in addition to their principal token (i.e. ETH and ADA).</p>
 
 <h2 id="tokenisation-of-assets">Tokenisation of Assets</h2>
 <p>After Bitcoin introduced sound digital money and trusted decentralised recordkeeping, Ethereum built on top of these foundations to introduce tokenisation of custom assets on the blockchain. This allowed users to define custom tokens representing:</p>
@@ -1426,6 +1426,15 @@
 </ul>
 
 <p>Examples of blockchains with native token/asset support are Cardano, Ergo and Algorand.</p>
+
+<h2 id="cardanos-native-tokens">Cardano’s Native Tokens</h2>
+<p>There are a few key points to note around Cardano’s implementation of native tokens.</p>
+<ul>
+  <li>A transaction output containing custom tokens must include a minimum amount of the principal token ADA</li>
+  <li>The minimum amount of the principal token ADA is calculated using a <a href="https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation">formula based on protocol parameters and the payload of the transaction output</a></li>
+</ul>
+
+<p>This design decision prevents an attack vector involving malicious actors flooding the Cardano network with an endless stream of custom token transaction outputs containing larger payloads than principal token only transactions.</p>
 
 
 

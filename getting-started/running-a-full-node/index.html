@@ -1501,20 +1501,24 @@ export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><sp
 
 <p>Now we can clone the
 <a href="https://github.com/input-output-hk/cardano-node">cardano-node</a>
-repository, retrieve the latest tagged version, build it and copy the
-built binaries to ~/.local/bin which will be part of the executable
-path. This process takes between 10-30 mins so feel free to grab some
+repository, retrieve the latest tagged version and build it.
+This process takes between 10-30 mins so feel free to grab some
 tea, coffee and/or snacks.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 <span class="nb">cd </span>cardano-node
 git fetch <span class="nt">--all</span> <span class="nt">--recurse-submodules</span> <span class="nt">--tags</span>
-git checkout tags/1.27.0
+git checkout tags/1.29.0
 cabal configure <span class="nt">--with-compiler</span><span class="o">=</span>ghc-8.10.4
 <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"package cardano-crypto-praos</span><span class="se">\n</span><span class="s2"> flags: -external-libsodium-vrf"</span> <span class="o">&gt;&gt;</span> cabal.project.local
 ~/.local/bin/cabal build all
-<span class="nb">cp</span> <span class="nt">-p</span> <span class="s2">"</span><span class="si">$(</span>./scripts/bin-path.sh cardano-node<span class="si">)</span><span class="s2">"</span> ~/.local/bin/
+</code></pre></div></div>
+
+<p>Once that is completed, copy the built binaries to ~/.local/bin 
+which will be part of the executable path.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> <span class="nt">-p</span> <span class="s2">"</span><span class="si">$(</span>./scripts/bin-path.sh cardano-node<span class="si">)</span><span class="s2">"</span> ~/.local/bin/
 <span class="nb">cp</span> <span class="nt">-p</span> <span class="s2">"</span><span class="si">$(</span>./scripts/bin-path.sh cardano-cli<span class="si">)</span><span class="s2">"</span> ~/.local/bin/
 </code></pre></div></div>
 
@@ -1527,6 +1531,7 @@ environment variables.</p>
 <span class="nb">echo</span> <span class="s1">'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PATH="~/.cabal/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PATH="~/.local/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export NODE_HOME="$HOME/testnet-node"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export CARDANO_NODE_SOCKET_PATH="$HOME/testnet-node/socket/node.socket"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">source</span> ~/.bashrc
 </code></pre></div></div>
@@ -1543,10 +1548,12 @@ files. We will focus on the testnet first.</p>
 wget <span class="nt">-O</span> config.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-config.json
 wget <span class="nt">-O</span> bgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json
 wget <span class="nt">-O</span> sgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json
+wget <span class="nt">-O</span> agenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-alonzo-genesis.json
 wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-topology.json
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/"TraceBlockFetchDecisions": false/"TraceBlockFetchDecisions": true/g'</span> config.json
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-shelley-genesis/sgenesis/g'</span> config.json
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-byron-genesis/bgenesis/g'</span> config.json
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-alonzo-genesis/agenesis/g'</span> config.json
 </code></pre></div></div>
 
 <h2 id="running-and-monitoring-the-node">Running and Monitoring the Node</h2>
@@ -1570,11 +1577,16 @@ exposing its internal metrics by running:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl localhost:12798/metrics | <span class="nb">grep</span> <span class="o">[</span>Ee]poch
 </code></pre></div></div>
 
-<p>You can see the expected Epoch and Slot by going to
+<p>You can see the expected Epoch and Slot by going to 
+<a href="https://testnet.adatools.io/">testnet.adatools.io</a> or visiting
 <a href="https://pooltool.io/">pooltool.io</a> and clicking on the MAINNET button
 at the bottom panel until it changes to a red TESTNET button.</p>
 
 <h2 id="interacting-with-the-node-using-cardano-cli">Interacting with the Node using cardano-cli</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">cardano-cli</code> binary that is copied to the <code class="language-plaintext highlighter-rouge">~/.local/bin</code> 
+path is the main way to interact with your local Cardano node. 
+You can run the following commands to familiarise yourself.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Getting the current tip</span>
 cardano-cli query tip <span class="nt">--testnet-magic</span> 1097911063
