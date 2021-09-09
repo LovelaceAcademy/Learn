@@ -77,6 +77,8 @@ UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
 echo $UTXO0
 ```
 
+It will store the details for the UTxO of that transaction in the variables
+`UTXO0H`(transaction ID), `UTXO0I`(transaction output index) and `UTXO0V`(transaction output value).
 
 ### Create Destination Payment Address
 
@@ -97,19 +99,60 @@ protocol parameters which can be retrieved by running:
 cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
 ```
 
+### Create Metadata JSON File
+
+We can attach up to 16kB of structured metadata to our transaction which will be
+stored and immutable for as long as the blockchain exists. The easiest 
+approach is to create a JSON file and specify it when building the transaction. 
+
+```bash
+cat > metadata.json << EOF 
+{
+  "10141342": {
+      "ex": "Lovelace Academy | Getting Started | Tx + UTxO + Metadata",
+      "v" : "4",
+      "ts": "2021-09-09T10:26:34Z"
+  },
+  "10145256": {
+      "h": "D9FCBD0EF020D1E3E3032A481814A4B8491D06323933EA708C2C62F90FF83567"
+  }
+}
+EOF
+```
+
+The top level keys of the JSON object must be string representations of a
+64bit integer and it is recommended to check against existing values in the 
+[official metadata registry](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0010/registry.json) 
+to avoid conflicts. 
+
+Although negligible for small JSON files as our example above, 
+storing metadata will incur an additional fee based on its size. 
+You can verify the difference in fees by excluding the `--metadata-json-file`
+parameter when building the raw transactions below. 
+
+For more information please refer to the 
+[Transaction Metadata](https://github.com/input-output-hk/cardano-node/blob/master/doc/reference/tx-metadata.md#transaction-metadata) 
+documentation.
 
 ### Draft Transaction to Calculate Fees
 
 Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that --tx-in uses the UTxO details queried above (transaction ID UTXO0H
-and transaction output index UTXO0I). Also note --tx-out parameters
+that `--tx-in` uses the UTxO details queried above (transaction ID UTXO0H
+and transaction output index UTXO0I). Also note `--tx-out` parameters
 sending 100 ADA (100000000 lovelaces) to the destination address and 900
 ADA (900000000 lovelaces) back to the payment address as change.
 
 ```bash
 rm draft.txraw 2> /dev/null
-cardano-cli transaction build-raw --tx-in $(echo $UTXO0H)#$(echo $UTXO0I) --tx-out $(cat destination_payment.addr)+100000000 --tx-out $(cat payment.addr)+900000000 --ttl 0 --fee 0 --out-file draft.txraw
+cardano-cli transaction build-raw \
+    --tx-in $UTXO0H#$UTXO0I \ # The unspent output containing the tADA
+    --tx-out $(cat destination_payment.addr)+100000000 \ # 100 tADA to destination address
+    --tx-out $(cat payment.addr)+900000000 \ # 900 tADA change back to payment address
+    --metadata-json-file metadata.json \ # Our custom metadata file generated above
+    --ttl 0 \
+    --fee 0 \
+    --out-file draft.txraw
 FEE=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file draft.txraw \
     --tx-in-count 1 \
@@ -122,17 +165,23 @@ FEE=$(cardano-cli transaction calculate-min-fee \
 ### Raw Transaction with Metadata
 
 With the fee we can now calculate the correct amount of change ADA to be
-sent back to the payment address. We also define a --ttl parameter to
+sent back to the payment address. We also define a `--ttl` parameter to
 define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.
 
 ```bash
 CTIP=$(cardano-cli query tip --testnet-magic 1097911063 | jq -r .slot)
-TTL=$(expr $CTIP + 600)
-TXOUT=$(expr $UTXO0V - $FEE - 100000000) 
+TTL=$(expr $CTIP + 600) # 10 minutes 
+CHANGE=$(expr $UTXO0V - 100000000 - $FEE) 
 cardano-cli transaction build-raw \
-  --tx-in $(echo $UTXO0H)#$(echo $UTXO0I) --tx-out $(cat destination_payment.addr)+100000000 --tx-out $(cat destination_payment.addr)+$(echo $TXOUT) --ttl $TTL --fee $FEE --out-file sendtx.txraw
+  --tx-in $UTXO0H#$UTXO0I \ # The unspent output containing the tADA
+  --tx-out $(cat destination_payment.addr)+100000000 \ # 100 tADA to destination address
+  --tx-out $(cat destination_payment.addr)+$(echo $CHANGE) \ # Change tADA back to destination address
+  --metadata-json-file metadata.json \ # Our custom metadata file generated above
+  --ttl $TTL \
+  --fee $FEE \
+  --out-file sendtx.txraw
 ```
 
 ### Signing a Transaction
@@ -149,7 +198,6 @@ cardano-cli transaction sign \
     --testnet-magic 1097911063 \
     --out-file sendtx.txsigned
 ```
-
 
 ### Submitting a Transaction
 

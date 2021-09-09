@@ -7,8 +7,10 @@ categories:
 order: 3
 ---
 
-### Define Multisig Policy
+Coming soon (please refer to [Cardano Developers Minting Native Assets documentation](https://developers.cardano.org/docs/native-tokens/minting) for now)
+
+## Define Multisig Policy
 Coming soon
 
-### Minting Transaction
+## Minting Transaction
 Coming soon

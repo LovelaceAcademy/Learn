@@ -100,9 +100,8 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 Now we can clone the
 [cardano-node](https://github.com/input-output-hk/cardano-node)
-repository, retrieve the latest tagged version, build it and copy the
-built binaries to ~/.local/bin which will be part of the executable
-path. This process takes between 10-30 mins so feel free to grab some
+repository, retrieve the latest tagged version and build it.
+This process takes between 10-30 mins so feel free to grab some
 tea, coffee and/or snacks.
 
 ```bash
@@ -110,10 +109,16 @@ cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.27.0
+git checkout tags/1.29.0
 cabal configure --with-compiler=ghc-8.10.4
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal.project.local
 ~/.local/bin/cabal build all
+```
+
+Once that is completed, copy the built binaries to ~/.local/bin 
+which will be part of the executable path. 
+
+```bash
 cp -p "$(./scripts/bin-path.sh cardano-node)" ~/.local/bin/
 cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
 ```
@@ -128,10 +133,10 @@ echo 'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
 echo 'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"' >> ~/.bashrc
 echo 'export PATH="~/.cabal/bin:$PATH"' >> ~/.bashrc
 echo 'export PATH="~/.local/bin:$PATH"' >> ~/.bashrc
+echo 'export NODE_HOME="$HOME/testnet-node"' >> ~/.bashrc
 echo 'export CARDANO_NODE_SOCKET_PATH="$HOME/testnet-node/socket/node.socket"' >> ~/.bashrc
 source ~/.bashrc
 ```
-
 
 ## Configure the Node
 
@@ -146,10 +151,12 @@ cd ~/testnet-node/config
 wget -O config.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-config.json
 wget -O bgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json
 wget -O sgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json
+wget -O agenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-alonzo-genesis.json
 wget -O topology.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-topology.json
 sed -i 's/"TraceBlockFetchDecisions": false/"TraceBlockFetchDecisions": true/g' config.json
 sed -i 's/testnet-shelley-genesis/sgenesis/g' config.json
 sed -i 's/testnet-byron-genesis/bgenesis/g' config.json
+sed -i 's/testnet-alonzo-genesis/agenesis/g' config.json
 ```
 
 ## Running and Monitoring the Node
@@ -175,11 +182,16 @@ exposing its internal metrics by running:
 curl localhost:12798/metrics | grep [Ee]poch
 ```
 
-You can see the expected Epoch and Slot by going to
+You can see the expected Epoch and Slot by going to 
+[testnet.adatools.io](https://testnet.adatools.io/) or visiting
 [pooltool.io](https://pooltool.io/) and clicking on the MAINNET button
 at the bottom panel until it changes to a red TESTNET button.
 
 ## Interacting with the Node using cardano-cli
+
+The `cardano-cli` binary that is copied to the `~/.local/bin` 
+path is the main way to interact with your local Cardano node. 
+You can run the following commands to familiarise yourself.
 
 ```bash
 # Getting the current tip

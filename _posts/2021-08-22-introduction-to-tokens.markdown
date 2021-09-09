@@ -10,7 +10,7 @@ order: 1
 Tokens are representations of assets and facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of blockchains the terms *token* and *asset* are interchangeable.
 
 ## Multi-asset Blockchains
-Unlike single-asset blockchains like Bitcoin or Litecoin which only support a single principal token (i.e. BTC and LTC), a multi-asset blockchain supports minting, storing or transferring custom tokens on top of its principal token. Examples of multi-asset blockchains are Ethereum and Cardano which support an infinite amount of custom tokens in addition to their principal token (i.e. ADA and ETH).
+Unlike single-asset blockchains like Bitcoin or Litecoin which only support a single principal token (i.e. BTC and LTC), a multi-asset blockchain supports minting, storing or transferring custom tokens on top of its principal token. Examples of multi-asset blockchains are Ethereum and Cardano which support an infinite amount of custom tokens in addition to their principal token (i.e. ETH and ADA).
 
 ## Tokenisation of Assets
 After Bitcoin introduced sound digital money and trusted decentralised recordkeeping, Ethereum built on top of these foundations to introduce tokenisation of custom assets on the blockchain. This allowed users to define custom tokens representing:
@@ -25,4 +25,11 @@ A multi-asset blockchain has native token/asset support if all its custom tokens
  - Ability to bundle minting/transfer of multiple tokens in a single transaction (e.g. Token Bundles)
 
 Examples of blockchains with native token/asset support are Cardano, Ergo and Algorand.
+
+## Cardano's Native Tokens
+There are a few key points to note around Cardano's implementation of native tokens.
+ - A transaction output containing custom tokens must include a minimum amount of the principal token ADA
+ - The minimum amount of the principal token ADA is calculated using a [formula based on protocol parameters and the payload of the transaction output](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation)
+
+This design decision prevents an attack vector involving malicious actors flooding the Cardano network with an endless stream of custom token transaction outputs containing larger payloads than principal token only transactions.
 

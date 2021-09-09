@@ -7,8 +7,10 @@ categories:
 order: 4
 ---
 
-## Define Multisig Policy
-Coming soon
+Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.
 
-# Minting Transaction
-Coming soon
+## Define Multisig Policy
+The property of uniqueness can be defined in a Multisig policy by time locking constraint.
+
+## Minting Transaction
+Coming soon (please refer to [Cardano Developers Minting NFTs documentation](https://developers.cardano.org/docs/native-tokens/minting-nfts/) for now)
