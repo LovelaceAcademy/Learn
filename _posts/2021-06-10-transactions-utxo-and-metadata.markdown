@@ -3,7 +3,7 @@ layout: post
 title: "Transactions: UTxO and Metadata"
 categories:
 - Getting Started
-order: 4
+order: 5
 ---
 
 Transactions are basic units representing the creation or transfer of
@@ -22,22 +22,33 @@ ransaction **O** utput.
 As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
 addresses in Cardano can hold multiple transaction outputs and it is up
-to the wallet software to calculate the active balance from the current
-set of UTxOs. Although it may seem like unnecessary complexity, this
-model provides a more elegant, performant and deterministic model to
-reason with the current state of the blockchain. We will focus on the
-simpler Shelley UTxO model and expand on EUTxO (Extended UTxO) and its
-main benefits in another article.
+to the wallet to calculate the active balance from the current
+set of UTxOs. This parallels with cash-based accounting where the holder's 
+active balance is the sum of all the notes in their wallet.
 
-The UTxO model can be best visualised as a graph where all inputs to new
-transactions must **spend** an unspent output from a previous
-transaction in its entirety to produce new outputs, usually resulting in
-"change" outputs being sent back to the payer. Much like the law of
-conservation of energy, the sum of all inputs must be equal to the sum
-of all outputs minus the transaction fee. This means all values can be
-traced back to the transaction distributing the initial ADA supply in
+Although it may seem like unnecessary complexity, this
+model provides a more elegant, performant and deterministic model to
+reason with the current state of the blockchain and prevent double-spending. 
+We will focus on the simpler Shelley UTxO model and expand on EUTxO 
+(Extended UTxO) and its main benefits in another article.
+
+![](/img/UTxO.png)
+
+The UTxO model can be best visualised as a graph where all inputs to
+transactions (the blue squares) **spend** outputs from previous transactions 
+in their entirety to be sent to one or more addresses as new outputs. Once 
+the outputs are spent (the red circles), they can no longer 
+be used by future transactions as inputs, and new transactions can only 
+use active UTxOs (the green circles) as inputs. It is with the set of 
+active UTxOs that the current active state of the blockchain is also derived.
+
+Much like the law of conservation of energy, the sum of all inputs must be equal 
+to the sum of all outputs minus the transaction fee. For typical payment
+transactions this usually results in "change" outputs being sent back to the payer.
+This also means all active ADA and custom tokens on Cardano's ledger can be
+traced back to a transaction distributing the initial ADA supply in
 the genesis block, minted ADA from transactions claiming stake rewards
-or from transactions minting custom tokens.
+or from transactions minting custom tokens. 
 
 ## The Structure of a Transaction
 
@@ -45,7 +56,7 @@ or from transactions minting custom tokens.
 
 Image courtesy of [ilap](https://github.com/ilap)
 
-## Guide: Creating an Example Transaction
+## Guide: Submit a Transaction to send ADA
 
 Cardano Wallets hide away much of the subtleties behind transactions so
 in this guide we will create, sign and submit a transaction sending 100
@@ -54,11 +65,11 @@ ADA to another address using the cardano-cli.
 ### Load ADA from Testnet Faucet
 
 Use the [testnet
-faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet/)
+faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet/)
 to send ADA to the payment address generated in our article [Wallet
 Basics: Keys and
 Addresses](https://learn.lovelace.academy/getting-started/keys-and-addresses/). You
-can see the payment address with:
+can see your payment address by running:
 
 ```bash
 cat payment.addr
@@ -87,7 +98,7 @@ destination\_payment.addr.
 
 ```bash
 cardano-cli address key-gen --verification-key-file destination_payment.vkey --signing-key-file destination_payment.skey
-cardano-cli address build --payment-verification-key-file payment.vkey --testnet-magic 1097911063 --out-file destination_payment.addr
+cardano-cli address build --payment-verification-key-file destination_payment.vkey --testnet-magic 1097911063 --out-file destination_payment.addr
 ```
 
 ### Load Protocol Parameters File
@@ -138,34 +149,34 @@ documentation.
 
 Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that `--tx-in` uses the UTxO details queried above (transaction ID UTXO0H
-and transaction output index UTXO0I). Also note `--tx-out` parameters
-sending 100 ADA (100000000 lovelaces) to the destination address and 900
-ADA (900000000 lovelaces) back to the payment address as change.
+that `--tx-in` uses the UTxO details queried above containing our faucet ADA. 
+Also note `--tx-out` parameters sending 100 ADA (100000000 lovelaces) 
+to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change.
 
 ```bash
 rm draft.txraw 2> /dev/null
 cardano-cli transaction build-raw \
-    --tx-in $UTXO0H#$UTXO0I \ # The unspent output containing the tADA
-    --tx-out $(cat destination_payment.addr)+100000000 \ # 100 tADA to destination address
-    --tx-out $(cat payment.addr)+900000000 \ # 900 tADA change back to payment address
-    --metadata-json-file metadata.json \ # Our custom metadata file generated above
-    --ttl 0 \
+    --tx-in $UTXO0H#$UTXO0I \
+    --tx-out $(cat destination_payment.addr)+100000000 \
+    --tx-out $(cat payment.addr)+900000000 \
+    --metadata-json-file metadata.json \
+    --invalid-hereafter 0 \
     --fee 0 \
     --out-file draft.txraw
 FEE=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file draft.txraw \
-    --tx-in-count 1 \
-    --tx-out-count 2 \
+    --tx-in-count 2 \
+    --tx-out-count 1 \
     --witness-count 1 \
     --testnet-magic 1097911063 \
     --protocol-params-file protocol.json | egrep -o '[0-9]+')
+echo Fee: $FEE
 ```
 
 ### Raw Transaction with Metadata
 
 With the fee we can now calculate the correct amount of change ADA to be
-sent back to the payment address. We also define a `--ttl` parameter to
+sent back to the payment address. We also define a `--invalid-hereafter` parameter to
 define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.
@@ -175,18 +186,18 @@ CTIP=$(cardano-cli query tip --testnet-magic 1097911063 | jq -r .slot)
 TTL=$(expr $CTIP + 600) # 10 minutes 
 CHANGE=$(expr $UTXO0V - 100000000 - $FEE) 
 cardano-cli transaction build-raw \
-  --tx-in $UTXO0H#$UTXO0I \ # The unspent output containing the tADA
-  --tx-out $(cat destination_payment.addr)+100000000 \ # 100 tADA to destination address
-  --tx-out $(cat destination_payment.addr)+$(echo $CHANGE) \ # Change tADA back to destination address
-  --metadata-json-file metadata.json \ # Our custom metadata file generated above
-  --ttl $TTL \
+  --tx-in $UTXO0H#$UTXO0I \
+  --tx-out $(cat destination_payment.addr)+100000000 \
+  --tx-out $(cat payment.addr)+$(echo $CHANGE) \
+  --metadata-json-file metadata.json \
+  --invalid-hereafter $TTL \
   --fee $FEE \
   --out-file sendtx.txraw
 ```
 
 ### Signing a Transaction
 
-With the previously generated payment private signing key payment.skey
+With the previously generated payment private signing key `payment.skey`
 we can sign the transaction to prove consent to spend the ADA as the
 holder of the keys to the payment address. Note that this has to be done
 offline in an air-gapped machine outside of the testnets.
@@ -212,10 +223,25 @@ cardano-cli transaction submit \
     --testnet-magic 1097911063 
 ```
 
+### Verify the Transaction Result
+
+You can query the payment addresses to verify that the 100 ADA has indeed
+been sent successfully. This might take some time in the testnet for the submitted
+transaction to be bundled to a block by an active stake pool.
+
+```bash
+# The source payment address with 899 ADA
+cardano-cli query utxo --address $(cat payment.addr) --testnet-magic 1097911063
+
+# The destination payment address with 100 ADA
+cardano-cli query utxo --address $(cat destination_payment.addr) --testnet-magic 1097911063
+```
+
 ## Exploring Transactions
 
 Using an explorer is the easiest way to navigate across all the addresses, blocks and transactions in Cardano.
 
+- [ADATools - Testnet](https://testnet.adatools.io/transactions)
 - [Cardano Blockchain Explorer](https://explorer.cardano.org/)
 - [Cardano Scan](https://cardanoscan.io/)
 - [ADA Stat](https://adastat.net/)

@@ -4,7 +4,7 @@ title: 'Running a Full Cardano Node'
 categories:
 - 'Getting Started'
 last_modified_at: 2021-06-09
-order: 2
+order: 3
 ---
 
 As a developer the best starting point to Cardano is to get a good

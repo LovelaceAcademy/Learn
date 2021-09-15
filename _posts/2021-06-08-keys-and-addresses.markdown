@@ -4,42 +4,48 @@ title: "Wallet Basics: Keys and Addresses"
 categories:
 - Getting Started
 last_modified_at: 2021-06-09
-order: 3
+order: 4
 ---
 
-Keys and addresses are at the heart of all information flow in Cardano
-and other blockchains. Keys prove ownership, consent and authenticity
+Keys and addresses are cryptographic entities at the heart of all information flow in Cardano and other blockchains. 
+Keys prove ownership, consent and authenticity
 while addresses derived from these keys are destinations to hold facts
-and values.
+and values. Subsequently all the facts/values in these addresses 
+can only be unlocked for verification/spending using the keys associated with them, safeguarding them from theft or confiscation.
 
-A powerful feature arises from the fact that these cryptographic
-entities can be created without connecting to or interacting with the
-blockchain network. The de-coupling of these entities from the network
-allows any one, even those without an internet connection, to create
-unique addresses that can receive transaction outputs. Subsequently all
-the facts and values in these addresses can only be unlocked by the keys
-associated with it, safeguarding them from theft or confiscation.
-
-We will be focusing on the address keys on the right section of the
+There are [many different types of keys](https://cips.cardano.org/cips/cip5/) that exist in Cardano, but here we will be focusing on the address keys on the right section of the
 image below.
 
 ![](https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png)
 
 Image courtesy of [ilap](https://github.com/ilap)
 
+A powerful feature arises from the fact that these cryptographic
+entities can be created without connecting to or interacting with the network. The de-coupling of these entities from the network
+allows any one, even those without an internet connection, to create
+unique addresses that can receive ADA/custom tokens. 
+
 ## Keys
 
 Two main types of keys are used within Cardano:
 
-- Payment Keys: For creating payment addresses and signing transactions
-  to spend ADA/assets in these payment addresses
-- Staking Keys: For creating payment/staking addresses, delegating
-  stake, claiming ADA rewards from staking addresses and registering
+- Payment Keys: For creating payment addresses to receive ADA/custom tokens, and signing transactions
+  to spend ADA/custom tokens from these payment addresses
+- Stake Keys: For creating payment/staking addresses, delegating
+  stake, claiming ADA rewards from stake addresses and registering
   stake pools
 
-Both types are asymmetric
-[Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs
-consisting of a private signing key and a public verification key.
+Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), these are [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) pairs
+consisting of a private signing key and a public verification key. 
+
+### Creating Payment Keys
+
+```bash
+cardano-cli address key-gen --verification-key-file payment.vkey --signing-key-file payment.skey
+```
+
+This will create two files, the private signing key `payment.skey` and the
+public verification key `payment.vkey` in the current directory.
 
 <blockquote class="media notice notice-danger"><i class="icon_ribbon_alt"></i><div markdown="1">
 
@@ -64,33 +70,23 @@ software/hardware failure.
 
 </div></blockquote>
 
-### Creating Payment Keys
-
-```bash
-cardano-cli address key-gen --verification-key-file payment.vkey --signing-key-file payment.skey
-```
-
-This will create two files, the private signing key payment.skey and the
-public verification key payment.vkey in the current directory.
-
-### Creating Staking Keys
+### Creating Stake Keys
 
 ```
 cardano-cli stake-address key-gen --verification-key-file stake.vkey --signing-key-file stake.skey
 ```
 
-This will create the private signing key stake.skey and the public
-verification key stake.vkey in the current directory.
+This will create the private signing key `stake.skey` and the public
+verification key `stake.vkey` in the current directory.
 
 ## Addresses
 
 The keys above are then used to create two main types of addresses:
 
-- Payment addresses: To receive ADA/assets
-- Staking addresses: To receive ADA staking rewards (automatically)
+- Payment addresses: To receive ADA/custom tokens
+- Stake/Reward addresses: To receive ADA staking rewards (automatically)
 
-These are effectively
-a [blake2b-256](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2)
+These are a [blake2b-256](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2)
 hash of the public key(s) and concatenated with other metadata (see
 different address types in the image above) including the network in
 which they are valid for (e.g. --mainnet, --testnet-magic 1097911063,
@@ -116,9 +112,9 @@ cardano-cli address build \
     --out-file payment.addr
 ```
 
-### Creating a Staking Address
+### Creating a Stake/Reward Address
 
-A unique staking address is generated from a staking verification key.
+A unique stake address is generated from a staking verification key.
 
 ```bash
 cardano-cli stake-address build \
@@ -128,5 +124,12 @@ cardano-cli stake-address build \
 ```
 
 With your newly created keys and addresses you can create, sign and
-submit transactions to learn about UTxOs and Metadata.
+submit transactions to learn about [UTxOs and Metadata](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/).
+
+## Supplementary Material
+[Cardano Docs: Cardano addresses](https://docs.cardano.org/core-concepts/cardano-addresses)
+
+[Cardano Developers: Creating Keys and Addresses](https://developers.cardano.org/docs/stake-pool-course/handbook/keys-addresses/)
+
+[Learn me a bitcoin: Keys and Addresses](https://learnmeabitcoin.com/beginners/keys_addresses)
 

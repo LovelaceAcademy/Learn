@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Why Build on Cardano
+title: Why Cardano
 last_modified_at: 2021-06-09
 categories:
 - Getting Started
-order: 1
+order: 2
 ---
 
 Cardano is the next evolution of blockchain technology with the goal
@@ -17,22 +17,24 @@ This well-established path from research to engineering and product development 
 
 ## The Cardano Revolution
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sM0_V53_kGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 We explained in [our video](https://www.youtube.com/watch?v=sM0_V53_kGo) that Cardano is already:
  - The most decentralised blockchain platform 
-   - 2,800+ <a class='tooltips tooltipstered' data-tooltip-content='Stake pools in Cardano are the equivalent of mining pools in traditional proof-of-work blockchains'>stake pools</a> distributed globally
-   - 750,000+ staking addresses
-   - 1,900,000+ wallet addresses (greater than 1 ADA)
+   - 3,000+ <a class='tooltips tooltipstered' data-tooltip-content='Stake pools in Cardano are the equivalent of mining pools in traditional proof-of-work blockchains'>stake pools</a> distributed globally
+   - 820,000+ staking addresses
+   - 2,250,000+ wallet addresses (greater than 1 ADA)
    - 71%+ of total supply staked ($50B+ USD)
  - Second most active blockchain by transaction volume
    - $10,000,000,000+ ($10B) USD per day
  - Has the world's largest Decentralised Autonomous Organisation (DAO)
-   - $1,500,000,000+ ($1.5B) USD in the treasury
+   - $1,800,000,000+ ($1.8B) USD in the treasury
    - 31,000+ participants
+   - Governance built-in to the protocol
    - 930 project proposals and 150+ projects funded to date
+ - The most actively developed blockchain by GitHub commits
 
-** *Metrics Captured on 24/08/2021*
+** *Metrics updated on 12/09/2021*
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sM0_V53_kGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Summary
 
