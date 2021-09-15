@@ -73,8 +73,15 @@
                     <li class="nav-item">
                       <a
                         
+                          href="/getting-started/the-new-era-of-blockchain/"
+                          class="nav-link">The New Era of Blockchain</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                      <a
+                        
                           href="/getting-started/why-cardano/"
-                          class="nav-link">Why Build on Cardano</a>
+                          class="nav-link">Why Cardano</a>
                     </li>
                   
                     <li class="nav-item">
@@ -401,8 +408,20 @@
   <a
     
     
+    href="/getting-started/the-new-era-of-blockchain/">
+    The New Era of Blockchain
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
     href="/getting-started/why-cardano/">
-    Why Build on Cardano
+    Why Cardano
   </a>
 </li>
 
@@ -935,8 +954,20 @@
   <a
     
     
+    href="/getting-started/the-new-era-of-blockchain/">
+    The New Era of Blockchain
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
     href="/getting-started/why-cardano/">
-    Why Build on Cardano
+    Why Cardano
   </a>
 </li>
 
@@ -1420,20 +1451,31 @@ ransaction <strong>O</strong> utput.</p>
 <p>As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
 addresses in Cardano can hold multiple transaction outputs and it is up
-to the wallet software to calculate the active balance from the current
-set of UTxOs. Although it may seem like unnecessary complexity, this
-model provides a more elegant, performant and deterministic model to
-reason with the current state of the blockchain. We will focus on the
-simpler Shelley UTxO model and expand on EUTxO (Extended UTxO) and its
-main benefits in another article.</p>
+to the wallet to calculate the active balance from the current
+set of UTxOs. This parallels with cash-based accounting where the holder’s 
+active balance is the sum of all the notes in their wallet.</p>
 
-<p>The UTxO model can be best visualised as a graph where all inputs to new
-transactions must <strong>spend</strong> an unspent output from a previous
-transaction in its entirety to produce new outputs, usually resulting in
-“change” outputs being sent back to the payer. Much like the law of
-conservation of energy, the sum of all inputs must be equal to the sum
-of all outputs minus the transaction fee. This means all values can be
-traced back to the transaction distributing the initial ADA supply in
+<p>Although it may seem like unnecessary complexity, this
+model provides a more elegant, performant and deterministic model to
+reason with the current state of the blockchain and prevent double-spending. 
+We will focus on the simpler Shelley UTxO model and expand on EUTxO 
+(Extended UTxO) and its main benefits in another article.</p>
+
+<p><img class="img-fluid" src="/img/UTxO.png" alt="" /></p>
+
+<p>The UTxO model can be best visualised as a graph where all inputs to
+transactions (the blue squares) <strong>spend</strong> outputs from previous transactions 
+in their entirety to be sent to one or more addresses as new outputs. Once 
+the outputs are spent (the red circles), they can no longer 
+be used by future transactions as inputs, and new transactions can only 
+use active UTxOs (the green circles) as inputs. It is with the set of 
+active UTxOs that the current active state of the blockchain is also derived.</p>
+
+<p>Much like the law of conservation of energy, the sum of all inputs must be equal 
+to the sum of all outputs minus the transaction fee. For typical payment
+transactions this usually results in “change” outputs being sent back to the payer.
+This also means all active ADA and custom tokens on Cardano’s ledger can be
+traced back to a transaction distributing the initial ADA supply in
 the genesis block, minted ADA from transactions claiming stake rewards
 or from transactions minting custom tokens.</p>
 
@@ -1443,7 +1485,7 @@ or from transactions minting custom tokens.</p>
 
 <p>Image courtesy of <a href="https://github.com/ilap">ilap</a></p>
 
-<h2 id="guide-creating-an-example-transaction">Guide: Creating an Example Transaction</h2>
+<h2 id="guide-submit-a-transaction-to-send-ada">Guide: Submit a Transaction to send ADA</h2>
 
 <p>Cardano Wallets hide away much of the subtleties behind transactions so
 in this guide we will create, sign and submit a transaction sending 100
@@ -1451,12 +1493,12 @@ ADA to another address using the cardano-cli.</p>
 
 <h3 id="load-ada-from-testnet-faucet">Load ADA from Testnet Faucet</h3>
 
-<p>Use the <a href="https://developers.cardano.org/en/testnets/cardano/tools/faucet/">testnet
+<p>Use the <a href="https://testnets.cardano.org/en/testnets/cardano/tools/faucet/">testnet
 faucet</a>
 to send ADA to the payment address generated in our article <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Wallet
 Basics: Keys and
 Addresses</a>. You
-can see the payment address with:</p>
+can see your payment address by running:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>payment.addr
 </code></pre></div></div>
@@ -1482,7 +1524,7 @@ faucet have arrived in your payment.addr by running the following:</p>
 destination_payment.addr.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="nt">--verification-key-file</span> destination_payment.vkey <span class="nt">--signing-key-file</span> destination_payment.skey
-cardano-cli address build <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> destination_payment.addr
+cardano-cli address build <span class="nt">--payment-verification-key-file</span> destination_payment.vkey <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> destination_payment.addr
 </code></pre></div></div>
 
 <h3 id="load-protocol-parameters-file">Load Protocol Parameters File</h3>
@@ -1531,33 +1573,33 @@ documentation.</p>
 
 <p>Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the UTxO details queried above (transaction ID UTXO0H
-and transaction output index UTXO0I). Also note <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters
-sending 100 ADA (100000000 lovelaces) to the destination address and 900
-ADA (900000000 lovelaces) back to the payment address as change.</p>
+that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the UTxO details queried above containing our faucet ADA. 
+Also note <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters sending 100 ADA (100000000 lovelaces) 
+to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>draft.txraw 2&gt; /dev/null
 cardano-cli transaction build-raw <span class="se">\</span>
-    <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \ # The unspent output containing the tADA</span>
-    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\ </span><span class="c"># 100 tADA to destination address</span>
-    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span>+900000000 <span class="se">\ </span><span class="c"># 900 tADA change back to payment address</span>
-    <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\ </span><span class="c"># Our custom metadata file generated above</span>
-    <span class="nt">--ttl</span> 0 <span class="se">\</span>
+    <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
+    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span>+900000000 <span class="se">\</span>
+    <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\</span>
+    <span class="nt">--invalid-hereafter</span> 0 <span class="se">\</span>
     <span class="nt">--fee</span> 0 <span class="se">\</span>
     <span class="nt">--out-file</span> draft.txraw
 <span class="nv">FEE</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction calculate-min-fee <span class="se">\</span>
     <span class="nt">--tx-body-file</span> draft.txraw <span class="se">\</span>
-    <span class="nt">--tx-in-count</span> 1 <span class="se">\</span>
-    <span class="nt">--tx-out-count</span> 2 <span class="se">\</span>
+    <span class="nt">--tx-in-count</span> 2 <span class="se">\</span>
+    <span class="nt">--tx-out-count</span> 1 <span class="se">\</span>
     <span class="nt">--witness-count</span> 1 <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
     <span class="nt">--protocol-params-file</span> protocol.json | egrep <span class="nt">-o</span> <span class="s1">'[0-9]+'</span><span class="si">)</span>
+<span class="nb">echo </span>Fee: <span class="nv">$FEE</span>
 </code></pre></div></div>
 
 <h3 id="raw-transaction-with-metadata">Raw Transaction with Metadata</h3>
 
 <p>With the fee we can now calculate the correct amount of change ADA to be
-sent back to the payment address. We also define a <code class="language-plaintext highlighter-rouge">--ttl</code> parameter to
+sent back to the payment address. We also define a <code class="language-plaintext highlighter-rouge">--invalid-hereafter</code> parameter to
 define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.</p>
@@ -1566,18 +1608,18 @@ network.</p>
 <span class="nv">TTL</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$CTIP</span> + 600<span class="si">)</span> <span class="c"># 10 minutes </span>
 <span class="nv">CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - 100000000 - <span class="nv">$FEE</span><span class="si">)</span> 
 cardano-cli transaction build-raw <span class="se">\</span>
-  <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \ # The unspent output containing the tADA</span>
-  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\ </span><span class="c"># 100 tADA to destination address</span>
-  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+<span class="si">$(</span><span class="nb">echo</span> <span class="nv">$CHANGE</span><span class="si">)</span> <span class="se">\ </span><span class="c"># Change tADA back to destination address</span>
-  <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\ </span><span class="c"># Our custom metadata file generated above</span>
-  <span class="nt">--ttl</span> <span class="nv">$TTL</span> <span class="se">\</span>
+  <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
+  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\</span>
+  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span>+<span class="si">$(</span><span class="nb">echo</span> <span class="nv">$CHANGE</span><span class="si">)</span> <span class="se">\</span>
+  <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\</span>
+  <span class="nt">--invalid-hereafter</span> <span class="nv">$TTL</span> <span class="se">\</span>
   <span class="nt">--fee</span> <span class="nv">$FEE</span> <span class="se">\</span>
   <span class="nt">--out-file</span> sendtx.txraw
 </code></pre></div></div>
 
 <h3 id="signing-a-transaction">Signing a Transaction</h3>
 
-<p>With the previously generated payment private signing key payment.skey
+<p>With the previously generated payment private signing key <code class="language-plaintext highlighter-rouge">payment.skey</code>
 we can sign the transaction to prove consent to spend the ADA as the
 holder of the keys to the payment address. Note that this has to be done
 offline in an air-gapped machine outside of the testnets.</p>
@@ -1601,11 +1643,25 @@ onto the next available block by a stake pool node.</p>
     <span class="nt">--testnet-magic</span> 1097911063 
 </code></pre></div></div>
 
+<h3 id="verify-the-transaction-result">Verify the Transaction Result</h3>
+
+<p>You can query the payment addresses to verify that the 100 ADA has indeed
+been sent successfully. This might take some time in the testnet for the submitted
+transaction to be bundled to a block by an active stake pool.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The source payment address with 899 ADA</span>
+cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span> <span class="nt">--testnet-magic</span> 1097911063
+
+<span class="c"># The destination payment address with 100 ADA</span>
+cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span> <span class="nt">--testnet-magic</span> 1097911063
+</code></pre></div></div>
+
 <h2 id="exploring-transactions">Exploring Transactions</h2>
 
 <p>Using an explorer is the easiest way to navigate across all the addresses, blocks and transactions in Cardano.</p>
 
 <ul>
+  <li><a href="https://testnet.adatools.io/transactions">ADATools - Testnet</a></li>
   <li><a href="https://explorer.cardano.org/">Cardano Blockchain Explorer</a></li>
   <li><a href="https://cardanoscan.io/">Cardano Scan</a></li>
   <li><a href="https://adastat.net/">ADA Stat</a></li>
