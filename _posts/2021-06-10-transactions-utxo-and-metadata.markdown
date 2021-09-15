@@ -32,7 +32,7 @@ reason with the current state of the blockchain and prevent double-spending.
 We will focus on the simpler Shelley UTxO model and expand on EUTxO 
 (Extended UTxO) and its main benefits in another article.
 
-![](/img/UTxO.png)
+![](/img/utxo-visual.png)
 
 The UTxO model can be best visualised as a graph where all inputs to
 transactions (the blue squares) **spend** outputs from previous transactions 
