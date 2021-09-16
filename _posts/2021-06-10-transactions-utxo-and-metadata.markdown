@@ -40,7 +40,7 @@ in their entirety to be sent to one or more addresses as new outputs. Once
 the outputs are spent (the red circles), they can no longer 
 be used by future transactions as inputs, and new transactions can only 
 use active UTxOs (the green circles) as inputs. It is with the set of 
-active UTxOs that the current active state of the blockchain is also derived.
+active UTxOs that the current active state of the blockchain is derived.
 
 Much like the law of conservation of energy, the sum of all inputs must be equal 
 to the sum of all outputs minus the transaction fee. For typical payment

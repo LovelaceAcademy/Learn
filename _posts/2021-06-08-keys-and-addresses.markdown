@@ -96,13 +96,13 @@ etc.)
 
 Payment addresses are generally created using both payment and staking
 verification keys to create an address known as base address. The act of
-re-using the same staking key to generate multiple payment addresses
+re-using the same stake key to generate multiple payment addresses
 allow all the ADA at these addresses to be automatically staked to the
 same designated stake pool. However it is also possible to create
 [enterprise
 addresses](https://docs.cardano.org/en/latest/learn/types-addresses.html#enterprise-addresses),
 the term for a non-staking payment address, by excluding the
---stake-verification-key-file parameter below.
+`--stake-verification-key-file` parameter below.
 
 ```bash
 cardano-cli address build \

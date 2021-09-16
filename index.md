@@ -12,4 +12,4 @@ Our goals are three-fold:
  2. Host a **community-powered learning platform** that rewards engagement and collaboration
  3. Allow anyone to demonstrate their knowledge and practical experience through **certifications** 
 
-Not sure where to start? [Get started with Lovelace Academy ➡️](https://learn.lovelace.academy/getting-started/the-new-era-of-blockchain/)
+Not sure where to start? [Get started with Lovelace Academy ➡️](https://learn.lovelace.academy/getting-started/the-era-of-blockchain/)

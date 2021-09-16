@@ -13,11 +13,15 @@ financial system that scales for global use.
 
 Based on [published peer-reviewed research](https://iohk.io/en/research/library/) in collaboration with the world's top universities and academic minds, their latest advancements follow a methodical path from academic proofs to formal specifications and finally to robust software that can be proven to work as intended. 
 
-This well-established path from research to engineering and product development uniquely identifies Cardano amongst the world's top blockchain platforms and permitted innovation at scale without compromising on energy consumption, security or decentralisation.
+This well-established path from research to engineering and product development uniquely sets Cardano apart amongst the world's top blockchain platforms, while permitting innovation at scale without compromising on energy consumption, security or decentralisation.
 
-## The Cardano Revolution
+We summarised Cardano's key strengths in [our video](https://www.youtube.com/watch?v=sM0_V53_kGo): 
+ - Built on top of the strongest foundations with the future in mind
+ - Incredible team behind the most actively developed blockchain
+ - Passionate, intelligent and thoughtful community
+ - Cardano's unique vision for economic identity, inclusion and long-term sustainability
 
-We explained in [our video](https://www.youtube.com/watch?v=sM0_V53_kGo) that Cardano is already:
+## Cardano's World-beating Metrics 
  - The most decentralised blockchain platform 
    - 3,000+ <a class='tooltips tooltipstered' data-tooltip-content='Stake pools in Cardano are the equivalent of mining pools in traditional proof-of-work blockchains'>stake pools</a> distributed globally
    - 820,000+ staking addresses
@@ -34,12 +38,4 @@ We explained in [our video](https://www.youtube.com/watch?v=sM0_V53_kGo) that Ca
 
 ** *Metrics updated on 12/09/2021*
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sM0_V53_kGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Summary
-
-The unique strengths of Cardano can be summarised in four points:
- - Built on top of the strongest foundations with the future in mind
- - Incredible team behind the most actively developed blockchain
- - Passionate, intelligent and thoughtful community
- - Cardano's unique vision for economic identity, inclusion and long-term sustainability
