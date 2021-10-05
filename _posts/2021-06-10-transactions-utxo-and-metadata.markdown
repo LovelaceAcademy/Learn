@@ -56,7 +56,7 @@ or from transactions minting custom tokens.
 
 Image courtesy of [ilap](https://github.com/ilap)
 
-## Guide: Submit a Transaction to send ADA
+## Guide to Submitting a Tx sending ADA
 
 Cardano Wallets hide away much of the subtleties behind transactions so
 in this guide we will create, sign and submit a transaction sending 100

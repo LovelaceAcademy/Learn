@@ -3,7 +3,7 @@ layout: post
 title: "Wallet Basics: Keys and Addresses"
 categories:
 - Getting Started
-last_modified_at: 2021-06-09
+last_modified_at: 2021-06-10
 order: 4
 ---
 
