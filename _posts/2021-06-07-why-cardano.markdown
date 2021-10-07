@@ -18,7 +18,7 @@ To dig deeper on the technical foundations and benefits of Blockchain, please re
 There has not been this level of opportunity since the early days of the internet. Never before has the **entire** world had **equal** access to a common financial layer, a trusted and resilient network of value not controlled by a central intermediary that is prone to corruption, mismanagement or exploitative behaviour. A global network powered by the people themselves, where everyone can have an economic identity with unfettered access to:
  - Reliable and transparent financial services
  - Seamless global trade and commerce
- - Irrefutable recordkeeping of ownership and other key facts
+ - Irrefutable recordkeeping of ownership, transfers of value and other key facts
  - An interconnected metaverse of platforms for gaming and interactive experiences
 
 Even with the explosion of innovation in this space it is still **early** days to be a builder or visionary. A simple investment might have achieved great returns in the beginning of this industry but far greater potential lie ahead for those delivering the [Web3-powered products/services](https://blockchainhub.net/web3-decentralized-web/) for the global audience of billions. The upfront investment in your time and resources to build on top of this new tech stack will yield enormous returns in the coming years.
@@ -58,4 +58,7 @@ Cardano has some of the most impressive metrics in the Blockchain space and the 
    - 930 project proposals and 150+ projects funded to date
 
 ** *Metrics updated on 12/09/2021*
+
+## Ready to join the Cardano Revolution?
+Continue on to [Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/why-cardano/starting-your-journey)
 
