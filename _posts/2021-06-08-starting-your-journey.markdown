@@ -17,11 +17,11 @@ It is a common misconception that Cardano has a steep learning curve and further
 
 ### Investor
 - Basic Investor/Trader: Holds ADA on an [exchange](https://coinmarketcap.com/currencies/cardano/markets/), prays for price appreciation 
-- Network Participant: Holds ADA on a personal wallet and participates in decentralisation by staking and earning additional ADA every 5 days
+- Network Participant: Holds ADA on a personal wallet and participates in decentralisation by staking and earning additional ADA (5% APY) every 5 days
 
 ### Community Member
 - Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/services and holds [Native Assets](https://cnft.io/)
-- Governance - [Governance](https://cardano.org/governance/) Voter/Contributor and earns ADA voting for the future of Cardano
+- Governance Participant - [Governance](https://cardano.org/governance/) Voter/Contributor and earns ADA voting for the future of Cardano
 
 ### Digital Creative
 - Graphics or UX Designer for Cardano products/services
@@ -43,14 +43,15 @@ That said, Lovelace Academy as an education platform is mostly geared to the bui
 As Blockchain sits at the intersection of cryptography, computer science, distributed systems and economics it only makes sense for beginners to be familiar with the basics of each field. However, do not fear! You do not need to be such an advanced polymath to start building something on Cardano. You can already begin your journey if you have an understanding of basic software development.
 
 ### Key Differences vs Traditional Software Development
-As a developer you might be familiar with the client-server paradigm from Web 2.0 where thin clients/frontends make requests to servers managed by a trusted entity, usually sitting on top of a distributed database. Web3 changes the paradigm greatly with the following key differences
+As a developer you might be familiar with the client-server paradigm from Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, usually sitting on top of a distributed database. Web3 flips that paradigm with the following key differences:
 
-- Everyone has a copy of the database
-- Everyone validates the integrity of the data
-- Any update to the data is the result of a transaction batched into blocks
-- Every transaction has a transaction fee
-- Anyone can participate in the consensus to update the data (SPOs)
-- Finalisations are not immediate. A by-product of eventual consistency in distributed systems with additional protection against invalid forks
+- Everyone can run a full node, which is both client and server
+- Every full node is a copy of the entire database
+- Every full node validates the integrity of the data
+- Any update to the data is the result of a transaction (Tx)
+- Every Tx has a fee and is batched into Blocks committed at a regular interval
+- Everyone can participate in the _random_ consensus to mint Blocks (i.e. be a SPO)
+- Tx finalisations are not immediate. A by-product of eventual consistency in distributed systems with additional protection against invalid forks
 - On-chain computation comes at a cost
 - On-chain computation is limited to values that exist on-chain. i.e. No integration outside the Blockchain itself apart from Oracle data
 - On-chain storage of _additional_ data comes at a cost

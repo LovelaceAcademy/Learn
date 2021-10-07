@@ -60,5 +60,5 @@ Cardano has some of the most impressive metrics in the Blockchain space and the 
 ** *Metrics updated on 12/09/2021*
 
 ## Ready to join the Cardano Revolution?
-Continue on to [Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/why-cardano/starting-your-journey)
+Continue on to [Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/starting-your-journey)
 

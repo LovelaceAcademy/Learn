@@ -133,3 +133,7 @@ submit transactions to learn about [UTxOs and Metadata](https://learn.lovelace.a
 
 [Learn me a bitcoin: Keys and Addresses](https://learnmeabitcoin.com/beginners/keys_addresses)
 
+## Transactions in Cardano 
+Continue to [Transactions: UTxO and Metadata
+ ➡️](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/)
+

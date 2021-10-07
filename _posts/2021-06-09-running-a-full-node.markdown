@@ -200,3 +200,6 @@ cardano-cli query tip --testnet-magic 1097911063
 # Export the protocol parameters to file protocol.json
 cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
 ```
+
+## Cardano Primitives
+Continue to [Keys and Addresses ➡️](https://learn.lovelace.academy/getting-started/keys-and-addresses/)
