@@ -42,7 +42,7 @@ are a few ways to do so.
 
 - Run Ubuntu as the default OS or dual boot it on your device
 - Run Ubuntu as a local VM ([Windows](https://www.youtube.com/watch?v=BatrK6G8j4M), [macOS](https://www.youtube.com/watch?v=Hzji7w882OY))
-- Run Ubuntu on a cloud VM via SSH (Windows, macOS)
+- Run Ubuntu on a cloud VM and SSH [(Windows, macOS, Linux)](https://github.com/LovelaceAcademy/CardanoDevBox)
 - Run Ubuntu using WSL2 ([Windows](https://docs.microsoft.com/en-us/windows/wsl/install-win10))
 
 There are pros and cons to each of these options but the most important
@@ -68,6 +68,7 @@ Cabal (the Haskell build orchestrator), GHC (the Haskell compiler) and
 Libsodium (the cryptography library).
 
 ```bash
+# Cabal
 mkdir -p ~/setup/cabal
 cd ~/setup/cabal
 wget https://downloads.haskell.org/cabal/cabal-install-3.4.0.0/cabal-install-3.4.0.0-x86_64-ubuntu-16.04.tar.xz
@@ -77,6 +78,8 @@ cp cabal ~/.local/bin/
 ~/.local/bin/cabal update
 ~/.local/bin/cabal user-config update
 sed -i 's/overwrite-policy:/overwrite-policy: always/g' ~/.cabal/config
+
+# GHC
 mkdir -p ~/setup/ghc
 cd ~/setup/ghc
 wget https://downloads.haskell.org/~ghc/8.10.4/ghc-8.10.4-x86_64-deb10-linux.tar.xz
@@ -84,6 +87,8 @@ tar -xf ghc-8.10.4-x86_64-deb10-linux.tar.xz
 cd ghc-8.10.4
 ./configure
 sudo make install
+
+# Libsodium
 cd ~/git/
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
@@ -101,19 +106,21 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 Now we can clone the
 [cardano-node](https://github.com/input-output-hk/cardano-node)
 repository, retrieve the latest tagged version and build it.
-This process takes between 10-30 mins so feel free to grab some
-tea, coffee and/or snacks.
+This process takes between 10-30 mins depending on your machine 
+so feel free to grab some tea, coffee and/or snacks.
 
 ```bash
 cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.29.0
+git checkout tags/1.30.1
 cabal configure --with-compiler=ghc-8.10.4
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal.project.local
 ~/.local/bin/cabal build all
 ```
+ 📝 _To ensure you are using the correct version please check the [cardano-node Releases](https://github.com/input-output-hk/cardano-node/releases) and replace `tags/1.30.1` with the latest version_
+
 
 Once that is completed, copy the built binaries to ~/.local/bin 
 which will be part of the executable path. 
@@ -126,7 +133,7 @@ cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
 ### Post-build Scripts
 
 For convenience it also makes sense to add amend the existing
-environment variables.
+environment variables to be loaded automatically.
 
 ```bash
 echo 'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
@@ -159,6 +166,15 @@ sed -i 's/testnet-byron-genesis/bgenesis/g' config.json
 sed -i 's/testnet-alonzo-genesis/agenesis/g' config.json
 ```
 
+## Alternative Option: An Init Script
+ To save time from having to run these commands one-by-one, you can simply use our existing [init.sh](https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh) and run it all with:
+
+```bash
+wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
+bash init.sh
+```
+ 📝 _Note that mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node_
+
 ## Running and Monitoring the Node
 
 Now it just a matter of running your node pointing to the configuration
@@ -166,12 +182,12 @@ files above.
 
 ```bash
 cardano-node run \
---topology ~/testnet-node/config/topology.json \
---database-path ~/testnet-node/db/ \
---socket-path ~/testnet-node/socket/node.socket \
---host-addr 0.0.0.0 \
---port 3001 \
---config ~/testnet-node/config/config.json
+    --topology ~/testnet-node/config/topology.json \
+    --database-path ~/testnet-node/db/ \
+    --socket-path ~/testnet-node/socket/node.socket \
+    --host-addr 0.0.0.0 \
+    --port 3001 \
+    --config ~/testnet-node/config/config.json
 ```
 
 If you are running the node for the first time it will need to fully
@@ -179,13 +195,13 @@ synchronise with the blockchain. Verify that the running node process is
 exposing its internal metrics by running:
 
 ```bash
-curl localhost:12798/metrics | grep [Ee]poch
+curl localhost:12798/metrics | grep -i epoch
 ```
 
 You can see the expected Epoch and Slot by going to 
 [testnet.adatools.io](https://testnet.adatools.io/) or visiting
-[pooltool.io](https://pooltool.io/) and clicking on the MAINNET button
-at the bottom panel until it changes to a red TESTNET button.
+[pooltool.io](https://pooltool.io/) and clicking on the `MAINNET` button
+at the bottom panel until it changes to a red `TESTNET` button.
 
 ## Interacting with the Node using cardano-cli
 

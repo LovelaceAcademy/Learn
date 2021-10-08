@@ -8,7 +8,7 @@ order: 5
 
 Transactions are basic units representing the creation or transfer of
 values in a blockchain and make up a significant payload of every block
-appended to it. Transactions and their metadata last the entire lifetime
+appended to it. Transactions and their metadata are immutable last the lifetime
 of the blockchain, so once appended and accepted by the majority of the
 network, cannot be altered or deleted without a major coordinated event
 like a hard fork.
@@ -21,10 +21,10 @@ ransaction **O** utput.
 
 As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
-addresses in Cardano can hold multiple transaction outputs and it is up
-to the wallet to calculate the active balance from the current
-set of UTxOs. This parallels with cash-based accounting where the holder's 
-active balance is the sum of all the notes in their wallet.
+addresses in Cardano can be the destination of multiple transaction outputs, 
+and it is up to the wallet to calculate the active balance by summing the
+current set of UTxOs. This parallels with cash-based accounting where the 
+holder's active balance is the sum of all the notes in their wallet.
 
 Although it may seem like unnecessary complexity, this
 model provides a more elegant, performant and deterministic model to
@@ -35,15 +35,15 @@ We will focus on the simpler Shelley UTxO model and expand on EUTxO
 ![](/img/utxo-visual.png)
 
 The UTxO model can be best visualised as a graph where all inputs to
-transactions (the blue squares) **spend** outputs from previous transactions 
-in their entirety to be sent to one or more addresses as new outputs. Once 
-the outputs are spent (the red circles), they can no longer 
+transactions (the blue squares) consume outputs from previous transactions 
+in their entirety, with the values sent to one or more addresses as new outputs. 
+Once the outputs are spent (the red circles), they can no longer 
 be used by future transactions as inputs, and new transactions can only 
 use active UTxOs (the green circles) as inputs. It is with the set of 
 active UTxOs that the current active state of the blockchain is derived.
 
-Much like the law of conservation of energy, the sum of all inputs must be equal 
-to the sum of all outputs minus the transaction fee. For typical payment
+Much like the law of conservation of energy, the **sum of all inputs must be equal 
+to the sum of all outputs minus the transaction fees**. For typical payment
 transactions this usually results in "change" outputs being sent back to the payer.
 This also means all active ADA and custom tokens on Cardano's ledger can be
 traced back to a transaction distributing the initial ADA supply in
@@ -119,12 +119,12 @@ approach is to create a JSON file and specify it when building the transaction.
 ```bash
 cat > metadata.json << EOF 
 {
-  "10141342": {
-      "ex": "Lovelace Academy | Getting Started | Tx + UTxO + Metadata",
-      "v" : "4",
-      "ts": "2021-09-09T10:26:34Z"
+  "14141342": {
+      "ex": "Lovelace Academy|Getting Started|Transactions: UTxO and Metadata",
+      "v" : "6",
+      "ts": "2021-10-08T16:10:34Z"
   },
-  "10145256": {
+  "14145256": {
       "h": "D9FCBD0EF020D1E3E3032A481814A4B8491D06323933EA708C2C62F90FF83567"
   }
 }
