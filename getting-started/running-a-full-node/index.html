@@ -1475,7 +1475,7 @@ are a few ways to do so.</p>
 <ul>
   <li>Run Ubuntu as the default OS or dual boot it on your device</li>
   <li>Run Ubuntu as a local VM (<a href="https://www.youtube.com/watch?v=BatrK6G8j4M">Windows</a>, <a href="https://www.youtube.com/watch?v=Hzji7w882OY">macOS</a>)</li>
-  <li>Run Ubuntu on a cloud VM via SSH (Windows, macOS)</li>
+  <li>Run Ubuntu on a cloud VM and SSH <a href="https://github.com/LovelaceAcademy/CardanoDevBox">(Windows, macOS, Linux)</a></li>
   <li>Run Ubuntu using WSL2 (<a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows</a>)</li>
 </ul>
 
@@ -1500,7 +1500,8 @@ build cardano-node.</p>
 Cabal (the Haskell build orchestrator), GHC (the Haskell compiler) and
 Libsodium (the cryptography library).</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/setup/cabal
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cabal</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/setup/cabal
 <span class="nb">cd</span> ~/setup/cabal
 wget https://downloads.haskell.org/cabal/cabal-install-3.4.0.0/cabal-install-3.4.0.0-x86_64-ubuntu-16.04.tar.xz
 <span class="nb">tar</span> <span class="nt">-xf</span> cabal-install-3.4.0.0-x86_64-ubuntu-16.04.tar.xz
@@ -1509,14 +1510,18 @@ wget https://downloads.haskell.org/cabal/cabal-install-3.4.0.0/cabal-install-3.4
 ~/.local/bin/cabal update
 ~/.local/bin/cabal user-config update
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/overwrite-policy:/overwrite-policy: always/g'</span> ~/.cabal/config
+
+<span class="c"># GHC</span>
 <span class="nb">mkdir</span> <span class="nt">-p</span> ~/setup/ghc
 <span class="nb">cd</span> ~/setup/ghc
 wget https://downloads.haskell.org/~ghc/8.10.4/ghc-8.10.4-x86_64-deb10-linux.tar.xz
 <span class="nb">tar</span> <span class="nt">-xf</span> ghc-8.10.4-x86_64-deb10-linux.tar.xz
 <span class="nb">cd </span>ghc-8.10.4
 ./configure
-<span class="nb">sudo </span>make <span class="nb">install
-cd</span> ~/git/
+<span class="nb">sudo </span>make <span class="nb">install</span>
+
+<span class="c"># Libsodium</span>
+<span class="nb">cd</span> ~/git/
 git clone https://github.com/input-output-hk/libsodium
 <span class="nb">cd </span>libsodium
 git checkout 66f017f1
@@ -1533,18 +1538,19 @@ export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><sp
 <p>Now we can clone the
 <a href="https://github.com/input-output-hk/cardano-node">cardano-node</a>
 repository, retrieve the latest tagged version and build it.
-This process takes between 10-30 mins so feel free to grab some
-tea, coffee and/or snacks.</p>
+This process takes between 10-30 mins depending on your machine 
+so feel free to grab some tea, coffee and/or snacks.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 <span class="nb">cd </span>cardano-node
 git fetch <span class="nt">--all</span> <span class="nt">--recurse-submodules</span> <span class="nt">--tags</span>
-git checkout tags/1.29.0
+git checkout tags/1.30.1
 cabal configure <span class="nt">--with-compiler</span><span class="o">=</span>ghc-8.10.4
 <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"package cardano-crypto-praos</span><span class="se">\n</span><span class="s2"> flags: -external-libsodium-vrf"</span> <span class="o">&gt;&gt;</span> cabal.project.local
 ~/.local/bin/cabal build all
 </code></pre></div></div>
+<p>📝 <em>To ensure you are using the correct version please check the <a href="https://github.com/input-output-hk/cardano-node/releases">cardano-node Releases</a> and replace <code class="language-plaintext highlighter-rouge">tags/1.30.1</code> with the latest version</em></p>
 
 <p>Once that is completed, copy the built binaries to ~/.local/bin 
 which will be part of the executable path.</p>
@@ -1556,7 +1562,7 @@ which will be part of the executable path.</p>
 <h3 id="post-build-scripts">Post-build Scripts</h3>
 
 <p>For convenience it also makes sense to add amend the existing
-environment variables.</p>
+environment variables to be loaded automatically.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
@@ -1587,31 +1593,39 @@ wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-alonzo-genesis/agenesis/g'</span> config.json
 </code></pre></div></div>
 
+<h2 id="alternative-option-an-init-script">Alternative Option: An Init Script</h2>
+<p>To save time from having to run these commands one-by-one, you can simply use our existing <a href="https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh">init.sh</a> and run it all with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
+bash init.sh
+</code></pre></div></div>
+<p>📝 <em>Note that mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node</em></p>
+
 <h2 id="running-and-monitoring-the-node">Running and Monitoring the Node</h2>
 
 <p>Now it just a matter of running your node pointing to the configuration
 files above.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-node run <span class="se">\</span>
-<span class="nt">--topology</span> ~/testnet-node/config/topology.json <span class="se">\</span>
-<span class="nt">--database-path</span> ~/testnet-node/db/ <span class="se">\</span>
-<span class="nt">--socket-path</span> ~/testnet-node/socket/node.socket <span class="se">\</span>
-<span class="nt">--host-addr</span> 0.0.0.0 <span class="se">\</span>
-<span class="nt">--port</span> 3001 <span class="se">\</span>
-<span class="nt">--config</span> ~/testnet-node/config/config.json
+    <span class="nt">--topology</span> ~/testnet-node/config/topology.json <span class="se">\</span>
+    <span class="nt">--database-path</span> ~/testnet-node/db/ <span class="se">\</span>
+    <span class="nt">--socket-path</span> ~/testnet-node/socket/node.socket <span class="se">\</span>
+    <span class="nt">--host-addr</span> 0.0.0.0 <span class="se">\</span>
+    <span class="nt">--port</span> 3001 <span class="se">\</span>
+    <span class="nt">--config</span> ~/testnet-node/config/config.json
 </code></pre></div></div>
 
 <p>If you are running the node for the first time it will need to fully
 synchronise with the blockchain. Verify that the running node process is
 exposing its internal metrics by running:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl localhost:12798/metrics | <span class="nb">grep</span> <span class="o">[</span>Ee]poch
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl localhost:12798/metrics | <span class="nb">grep</span> <span class="nt">-i</span> epoch
 </code></pre></div></div>
 
 <p>You can see the expected Epoch and Slot by going to 
 <a href="https://testnet.adatools.io/">testnet.adatools.io</a> or visiting
-<a href="https://pooltool.io/">pooltool.io</a> and clicking on the MAINNET button
-at the bottom panel until it changes to a red TESTNET button.</p>
+<a href="https://pooltool.io/">pooltool.io</a> and clicking on the <code class="language-plaintext highlighter-rouge">MAINNET</code> button
+at the bottom panel until it changes to a red <code class="language-plaintext highlighter-rouge">TESTNET</code> button.</p>
 
 <h2 id="interacting-with-the-node-using-cardano-cli">Interacting with the Node using cardano-cli</h2>
 
