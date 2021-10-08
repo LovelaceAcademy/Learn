@@ -40,21 +40,33 @@ It is a common misconception that Cardano has a steep learning curve and further
 That said, Lovelace Academy as an education platform is mostly geared to the builders of Cardano so most of the subsequent content will be technical in nature. 
 
 ## What Builders Should Know
-As Blockchain sits at the intersection of cryptography, computer science, distributed systems and economics it only makes sense for beginners to be familiar with the basics of each field. However, do not fear! You do not need to be such an advanced polymath to start building something on Cardano. You can already begin your journey if you have an understanding of basic software development.
+As Blockchain sits at the intersection of cryptography, computer science, distributed systems and economics beginners might be overwhelmed with the amount of knowledge required to understand each field. However, do not fear! You do not need to be such an advanced polymath to start building something on Cardano. In fact, you can already begin your journey with a basic understanding of software development.
 
 ### Key Differences vs Traditional Software Development
-As a developer you might be familiar with the client-server paradigm from Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, usually sitting on top of a distributed database. Web3 flips that paradigm with the following key differences:
+As a developer you might be familiar with the client-server paradigm used throughout Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, and these servers sit on top of a distributed database or interact with other servers. Web3 flips that paradigm with the following key differences:
 
-- Everyone can run a full node, which is both client and server
-- Every full node is a copy of the entire database
-- Every full node validates the integrity of the data
-- Any update to the data is the result of a transaction (Tx)
-- Every Tx has a fee and is batched into Blocks committed at a regular interval
-- Everyone can participate in the _random_ consensus to mint Blocks (i.e. be a SPO)
+#### A Network of Full Nodes
+- Everyone can run a full node, which acts as both client and server
+- Every full node synchronises a full copy of the database with its peers
+- Every full node validates the integrity of the data using cryptographic checks
+
+#### Transactions and Updates
+- Updates to the data come from transactions (Tx)
+- Every Tx has a fee in ADA based on its content
+- Every Tx propagates through the network of full nodes after submission 
+- Pending Txs are batched into Blocks committed by Stake Pools at a regular interval
+- Everyone can participate in the Proof-of-Stake consensus to commit Blocks (i.e. be a SPO)
 - Tx finalisations are not immediate. A by-product of eventual consistency in distributed systems with additional protection against invalid forks
-- On-chain computation comes at a cost
-- On-chain computation is limited to values that exist on-chain. i.e. No integration outside the Blockchain itself apart from Oracle data
-- On-chain storage of _additional_ data comes at a cost
+
+#### Computation and Storage
+- On-chain computation (i.e. Executing Smart Contracts) has compute/time & storage/space costs 
+- On-chain computation can only work with data that exists on-chain (i.e. No integration outside the Blockchain itself apart from Oracle data)
+- On-chain storage of _additional_ data comes at a cost (e.g. metadata)
+
+#### Technical Limitations?
+- Benefits of decentralisation and having a trusted global network of value outweighs the raw technical limitations (e.g. limited throughput & storage)
+- Scaling solutions are already on the way
+- Blockchains or distributed ledgers are meant to complement, not replace traditional IT infrastructure
 
 In Web3 architecture the distinction between frontend and backend still exists, with the backend consisting of on-chain and off-chain components while the frontend defines the UI and integration via off-chain SDKs.
 
