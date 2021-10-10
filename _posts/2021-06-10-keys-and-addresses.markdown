@@ -127,11 +127,9 @@ With your newly created keys and addresses you can create, sign and
 submit transactions to learn about [UTxOs and Metadata](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/).
 
 ## Supplementary Material
-[Cardano Docs: Cardano addresses](https://docs.cardano.org/core-concepts/cardano-addresses)
-
-[Cardano Developers: Creating Keys and Addresses](https://developers.cardano.org/docs/stake-pool-course/handbook/keys-addresses/)
-
-[Learn me a bitcoin: Keys and Addresses](https://learnmeabitcoin.com/beginners/keys_addresses)
+- [Cardano Docs: Cardano addresses](https://docs.cardano.org/core-concepts/cardano-addresses)
+- [Cardano Developers: Creating Keys and Addresses](https://developers.cardano.org/docs/stake-pool-course/handbook/keys-addresses/)
+ - [Learn me a bitcoin: Keys and Addresses](https://learnmeabitcoin.com/beginners/keys_addresses)
 
 ## Transactions in Cardano 
 Continue to [Transactions: UTxO and Metadata

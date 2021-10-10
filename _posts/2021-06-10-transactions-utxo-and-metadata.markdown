@@ -8,10 +8,10 @@ order: 5
 
 Transactions are basic units representing the creation or transfer of
 values in a blockchain and make up a significant payload of every block
-appended to it. Transactions and their metadata are immutable last the lifetime
-of the blockchain, so once appended and accepted by the majority of the
-network, cannot be altered or deleted without a major coordinated event
-like a hard fork.
+appended to it. Transactions and their metadata are immutable and 
+last the lifetime of the blockchain, so once appended and accepted by 
+the majority of the network, cannot be altered or deleted without a 
+major coordinated event like a hard fork.
 
 ## The UTxO Accounting Model
 
@@ -100,7 +100,7 @@ destination\_payment.addr.
 cardano-cli address key-gen --verification-key-file destination_payment.vkey --signing-key-file destination_payment.skey
 cardano-cli address build --payment-verification-key-file destination_payment.vkey --testnet-magic 1097911063 --out-file destination_payment.addr
 ```
-
+ 
 ### Load Protocol Parameters File
 
 Transactions must always refer to the latest version of the Cardano
@@ -248,3 +248,8 @@ Using an explorer is the easiest way to navigate across all the addresses, block
 - [ADAex.org](https://adaex.org/)
 - [Blockchair: Cardano](https://blockchair.com/cardano)
 - [Pool.pm (toggle TXs)](https://pool.pm/)
+
+## Learn about Cardano's Native Tokens
+ Continue on to [Introduction to Tokens
+ ➡️](https://learn.lovelace.academy/native-tokens/introduction-to-tokens/)
+

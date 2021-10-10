@@ -9,8 +9,9 @@ order: 3
 
 As a developer the best starting point to Cardano is to get a good
 understanding of the Cardano node. This knowledge is essential whether
-you want to create Dapps, wallets, integration tools, mint custom tokens
-or operate your own stake pool.
+you want to build DApps, wallets, integration tools, mint custom tokens
+or operate your own stake pool. As mentioned in the previous article, 
+the full node is open for everyone to run and we strongly encourage it.
 
 We will break it down in five basic steps:
 
@@ -33,6 +34,9 @@ responsibilities are to:
 
 ![](/img/node_cardano_components_version_main.png)
 Image courtesy of [Cardano docs](https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/index.html#cardano-blockchain-high-level-architecture)
+
+When we build the cardano-node project it will produce two binary executables,
+`cardano-node` (server) and `cardano-cli` (CLI client). 
 
 ## Set up Your Linux Environment
 
@@ -114,12 +118,12 @@ cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.30.1
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 cabal configure --with-compiler=ghc-8.10.4
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal.project.local
 ~/.local/bin/cabal build all
 ```
- 📝 _To ensure you are using the correct version please check the [cardano-node Releases](https://github.com/input-output-hk/cardano-node/releases) and replace `tags/1.30.1` with the latest version_
+ 📝 _To update an existing node please verify prereqs in [cardano-node Releases](https://github.com/input-output-hk/cardano-node/releases)_
 
 
 Once that is completed, copy the built binaries to ~/.local/bin 
@@ -173,7 +177,7 @@ sed -i 's/testnet-alonzo-genesis/agenesis/g' config.json
 wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
 bash init.sh
 ```
- 📝 _Note that mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node_
+ 📝 _Note that the mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node_
 
 ## Running and Monitoring the Node
 
@@ -217,5 +221,10 @@ cardano-cli query tip --testnet-magic 1097911063
 cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
 ```
 
-## Cardano Primitives
+## Supplementary Material
+- [How to run cardano-node](https://developers.cardano.org/docs/get-started/running-cardano)
+- [Cardano Node Local VM Setup Guide](https://www.youtube.com/watch?v=d_3J8MgyZnc)
+
+
+## Cardano Primitives: Keys and Addresses
 Continue to [Keys and Addresses ➡️](https://learn.lovelace.academy/getting-started/keys-and-addresses/)

@@ -14,3 +14,12 @@ Coming soon
 
 ## Minting Transaction
 Coming soon
+
+## Token Builders
+- [Tokhun](https://tokhun.io/account/assets/mint-nft)
+- [Cardano Token and NFT Builder](https://cardano-native-token.com/)
+- [EasyCNFT](https://easycnft.art/en)
+- [NFT Machine](https://nft-machine.com/)
+
+## Supplementary Material
+- https://docs.cardano.org/native-tokens/learn

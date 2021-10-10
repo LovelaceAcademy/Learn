@@ -26,7 +26,7 @@ Even with the explosion of innovation in this space it is still **early** days t
 ## Why Build on Cardano
 
 On top of the amazing opportunity for growth is the unique opportunity to build on top of the strongest foundations in the Blockchain space. Cardano was designed and built carefully for long-term sustainability with a passionate community and hyper-productive team propelling it forward. It is the next evolution of Blockchain technology with the goal
-to provide a more **open**, **inclusive** and **sustainable** 
+to provide a more **scalable**, **inclusive** and **sustainable** 
 financial system that scales for global use. 
 
 Based on [published peer-reviewed research](https://iohk.io/en/research/library/) in collaboration with the world's top universities and academic minds, their latest advancements follow a methodical path from academic proofs to formal specifications and finally to robust software that can be proven to work as intended. 
@@ -37,11 +37,10 @@ We summarised Cardano's key strengths in our video [The Cardano Revolution](http
  - Built on top of the strongest foundations with the future in mind
  - Incredible team behind the most actively developed blockchain
  - Passionate, intelligent and thoughtful community
- - Cardano's unique vision for economic identity, inclusion and long-term sustainability
-
+ - Cardano's [unique vision](https://www.youtube.com/watch?v=l_Nv0-PVrnM) for economic identity, inclusion and long-term sustainability
 
 ## Cardano's World-beating Metrics 
-Cardano has some of the most impressive metrics in the Blockchain space and the data indicates that its network is growing stronger with time.
+Cardano has some of the most impressive metrics in the Blockchain space and the data indicates that its flourishing network is growing stronger with time.
 
  - The most decentralised blockchain platform 
    - 3,000+ stake pools distributed globally
@@ -59,6 +58,6 @@ Cardano has some of the most impressive metrics in the Blockchain space and the 
 
 ** *Metrics updated on 12/09/2021*
 
-## Ready to join the Cardano Revolution?
+## Join the Cardano Revolution
 Continue on to [Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/starting-your-journey)
 
