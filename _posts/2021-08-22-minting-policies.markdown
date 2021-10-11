@@ -7,15 +7,45 @@ categories:
 order: 2
 ---
 
-Minting is the process in which units of a custom token can be created or destroyed based on rules defined in a policy. 
-A blockchain with native asset/token support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (e.g. ADA) to mint custom tokens grouped under a policy identifier.
+Minting is the process in which units of a custom token can be **created** or **destroyed** based on validation rules defined in a monetary **policy**. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint custom tokens grouped under a policy identifier.
 
-These `policyID` policy identifiers paired with details from the official 
-[Token Registry](https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings) 
-provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. 
+These `policyID` policy identifiers paired with an `asset name` and details from the official [Token Registry](https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings) provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. This means that all custom tokens can be traced back to a policy, and further, the same `policyID` can also be used to create other assets by using different asset names when minting. 
 
-## Native Script / Multisig Policies
-Since the launch of the Shelley era, Cardano has the ability to define  validation rules to spend ADA from a UTxO at a Native Script / Multisig address. _More to come!_
+## Multisig aka Native Script Policies
+Cardano gives everyone the ability to define [Multisignature (multisig)](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md) validation scripts, which grants the ability to spend UTxOs at the corresponding multisig address only if the required signatures from one or more keys are provided, and optionally until (or before) a specified time has elapsed. These same validation scripts can also be used to define a minting policy for a native asset. Multisig scripts are simply JSON files such as the following example `policy.script`.
+
+```json
+{
+    "scripts": [
+        {
+            "keyHash": "e09d36c79dec9bd1b3d9e152247701cd0bb860b5ebfd1de8abb6735a",
+            "type": "sig"
+        },
+        {
+            "keyHash": "a687dcc24e00dd3caafbeb5e68f97ca8ef269cb6fe971345eb951756",
+            "type": "sig"
+        },
+        {
+            "keyHash": "0bd1d702b2e6188fe0857a6dc7ffb0675229bab58c86638ffa87ed6d",
+            "type": "sig"
+        },
+        {
+            "slot": 41217687,
+            "type": "before"
+        }
+    ],
+    "required": 2,
+    "type": "atLeast"
+}
+```
+
+From the script file you can generate the `policyId` using
+
+```bash
+cardano-cli transaction policyid --script-file policy.script
+```
+
+ _More to come!_
 
 ## Plutus Script Policies
 Coming soon

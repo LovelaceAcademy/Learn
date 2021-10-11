@@ -35,7 +35,7 @@ responsibilities are to:
 ![](/img/node_cardano_components_version_main.png)
 Image courtesy of [Cardano docs](https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/index.html#cardano-blockchain-high-level-architecture)
 
-When we build the cardano-node project it will produce two binary executables,
+When we build the [cardano-node](https://github.com/input-output-hk/cardano-node/) project it will produce two binary executables,
 `cardano-node` (server) and `cardano-cli` (CLI client). 
 
 ## Set up Your Linux Environment
@@ -170,14 +170,22 @@ sed -i 's/testnet-byron-genesis/bgenesis/g' config.json
 sed -i 's/testnet-alonzo-genesis/agenesis/g' config.json
 ```
 
-## Alternative Option: An Init Script
- To save time from having to run these commands one-by-one, you can simply use our existing [init.sh](https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh) and run it all with:
+## Shortcut #1: An Init Script
+ To save time from having to run these commands one-by-one, you can simply use our existing [init.sh](https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh) and run it all (i.e. install dependencies, clone+build, configure) with:
 
 ```bash
 wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
 bash init.sh
 ```
  📝 _Note that the mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node_
+
+## Shortcut #2: Download the Binaries
+You can alternatively download the latest versions `cardano-node` and `cardano-cli`
+- [Linux](https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz)
+- [Windows](https://hydra.iohk.io/build/7739339/download/1/cardano-node-1.30.1-win64.zip)
+- [MacOS](https://hydra.iohk.io/build/7739444/download/1/cardano-node-1.30.1-macos.tar.gz)
+
+📝 _Note you still need to [configure the node](https://learn.lovelace.academy/getting-started/running-a-full-node/#configure-the-node) for the mainnest or testnet environments_
 
 ## Running and Monitoring the Node
 
@@ -226,5 +234,5 @@ cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file prot
 - [Cardano Node Local VM Setup Guide](https://www.youtube.com/watch?v=d_3J8MgyZnc)
 
 
-## Cardano Primitives: Keys and Addresses
+## Understand Cardano Primitives: Keys and Addresses
 Continue to [Keys and Addresses ➡️](https://learn.lovelace.academy/getting-started/keys-and-addresses/)

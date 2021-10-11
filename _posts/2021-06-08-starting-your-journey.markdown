@@ -20,25 +20,25 @@ It is a common misconception that Cardano has a steep learning curve and further
 - Network Participant: Holds ADA on a personal wallet, participates in decentralisation through staking and earning additional ADA (approx. 5% APY) every five days
 
 ### Community Member
-- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/services and holds [Native Assets](https://learn.lovelace.academy/native-tokens/introduction-to-tokens/)
+- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/services and holds one or more of its [1,218,096 Native Assets](https://pool.pm/tokens)
 - Governance Participant: [Governance](https://cardano.org/governance/) Voter/Contributor and earns ADA voting for the future of Cardano
 
 ### Builder
 - Stake Pool Operator (SPO): Manages trusted and reliable infrastructure to host a block-producing [cardano-node](https://github.com/input-output-hk/cardano-node/)
 - DApp Developer: Builds On-chain Smart Contracts
-- Infrastructure and Integration Developer: Off-chain integration pieces e.g. APIs, SDKs, CLIs, etc.
-- Tooling Developer: Wallets and Utility Portals
-- Analytics Developer: Block/Token/Stake Pool/Tx Explorers 
-- NFT Content Creator 
+- Infrastructure and Blockchain Integration Developer: Builds Off-chain integration pieces e.g. APIs, SDKs, CLIs, etc.
+- Tooling Developer: Builds Wallets and Utility Portals
+- Analytics Developer: Builds Block/Token/Stake Pool/Tx Explorers 
+- NFT Content Creator: Creates Digital Media and Tokenises it as a Cardano Native Asset
 - Graphics or UX Designer for Cardano products/services
 
-That said, Lovelace Academy as an education platform is mostly geared to the builders of Cardano so most of the subsequent content will be technical in nature. 
+With that in mind, Lovelace Academy as an education platform is mostly geared to the builders of Cardano so most of the subsequent content will be technical in nature. 
 
-## What Builders Should Know
+## A Paradigm Shift for Builders
 As Blockchain sits at the intersection of cryptography, computer science, distributed systems and economics beginners might be overwhelmed with the amount of knowledge required to understand each field. However, do not fear! You do not need to be such an advanced polymath to start building something on Cardano. In fact, you can already begin your journey with a basic understanding of software development.
 
 ### Key Differences vs Traditional Software Development
-As a developer you might be familiar with the client-server paradigm used throughout Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, and these servers sit on top of a distributed database and/or interact with other servers. Web3 flips that paradigm with the following key differences:
+As a developer you might be familiar with the client-server paradigm used throughout Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, and these servers sit on top of distributed databases and/or interact with other servers. Web3 flips that paradigm with the following key differences:
 
 #### A Network of Full Nodes
 - Everyone can run a full node, which acts as a server
@@ -49,7 +49,7 @@ As a developer you might be familiar with the client-server paradigm used throug
 - Updates to the data come from transactions (Tx)
 - Every Tx has a fee in ADA based on its payload
 - Everyone can submit a Tx as long as the accounting/cryptographic/smart contract validation succeeds
-- Every Tx propagates through the network of full nodes after submission 
+- Every Tx propagates through the network of full nodes after submission in a _pending_ state
 - Pending Txs are batched into Blocks committed by Stake Pools at a regular interval
 - Everyone can participate in the Proof-of-Stake consensus to commit new Blocks (i.e. be a SPO)
 - Tx finalisations are not immediate. A by-product of eventual consistency in distributed systems with additional protection against invalid forks
@@ -63,8 +63,6 @@ As a developer you might be familiar with the client-server paradigm used throug
 - Benefits of decentralisation and having a trusted global network of value outweighs the raw technical limitations (e.g. limited throughput & storage) of the base layer
 - Scaling solutions are already on the way
 - Blockchains or distributed ledgers are meant to complement, not replace traditional IT infrastructure
-
-In Web3 architecture the distinction between frontend and backend still exists, with the backend consisting of on-chain and off-chain components while the frontend defines the UI and integration via off-chain SDKs/APIs.
 
 ## Run a Full Cardano Node
 

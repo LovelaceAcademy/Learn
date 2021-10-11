@@ -17,6 +17,7 @@ Coming soon (please refer to [Cardano Developers Minting NFTs documentation](htt
 
 ## Token Builders
 - [Tokhun](https://tokhun.io/account/assets/mint-nft)
+- [NFT Maker](https://www.nft-maker.io/)
 - [Cardano Token and NFT Builder](https://cardano-native-token.com/)
 - [EasyCNFT](https://easycnft.art/en)
 - [NFT Machine](https://nft-machine.com/)
