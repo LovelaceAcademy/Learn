@@ -1435,19 +1435,17 @@
               <h1>Introduction to Tokens</h1>
             </div>
 
-            <p>Tokens are representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of blockchains the terms <em>token</em> and <em>asset</em> are interchangeable.</p>
+            <p>Tokens are on-chain representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of Cardano the terms <em>token</em> and <em>asset</em> are <em>generally</em> interchangeable, although assets can also denote the class/category of a token before it is even minted.</p>
 
 <h2 id="multi-asset-blockchains">Multi-asset Blockchains</h2>
-<p>Unlike single-asset blockchains like Bitcoin or Litecoin which only support a single principal token (i.e. BTC and LTC), a multi-asset blockchain supports minting, storing or transferring custom tokens on top of its principal token. Examples of multi-asset blockchains are Ethereum and Cardano which support an infinite amount of custom tokens in addition to their principal token (i.e. ETH and ADA).</p>
-
-<p>This allowed users to define custom tokens representing:</p>
+<p>Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a single principal asset (i.e. BTC and LTC), a multi-asset blockchain supports the minting, storing and transferring of custom tokens on top of its principal asset. Examples of multi-asset blockchains are Ethereum and Cardano, which support an infinite amount of custom tokens in addition to their principal asset (i.e. ETH and ADA). This permits anyone to define custom tokens representing:</p>
 <ul>
-  <li><strong>Fungible Assets</strong>: Units of value grouped under a specific category (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same group</li>
+  <li><strong>Fungible Assets</strong>: Allows multiple units of value grouped under a specific class (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same group</li>
   <li><strong>Non-Fungible Assets (NFTs)</strong>: A single unit representing an asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)</li>
 </ul>
 
-<h2 id="native-tokens--assets">Native Tokens / Assets</h2>
-<p>A multi-asset blockchain has native token/asset support if all its custom tokens follow the same base-layer accounting rules as its principal token. The following advantages arise from native token/asset support:</p>
+<h2 id="native-assets">Native Assets</h2>
+<p>A multi-asset blockchain (e.g. Cardano, Ergo and Algorand) has native asset support if all of its custom tokens follow the same base-layer accounting rules as its principal asset. This allows users to mint or transact in custom tokens without paying additional fees incurred by executing token-specific smart contracts. The following advantages arise from native asset support:</p>
 <ul>
   <li>Cheap, fast and reliable transactions for all tokens</li>
   <li>Universal interoperability of all tokens</li>
@@ -1455,12 +1453,10 @@
   <li>Ability to bundle minting/transfer of multiple tokens in a single transaction (e.g. Token Bundles)</li>
 </ul>
 
-<p>Examples of blockchains with native token/asset support are Cardano, Ergo and Algorand.</p>
-
-<h2 id="cardanos-native-tokens">Cardano’s Native Tokens</h2>
-<p>There are a few key points to note around Cardano’s implementation of native tokens.</p>
+<h2 id="cardanos-native-assets">Cardano’s Native Assets</h2>
+<p>There are a few key points to note around Cardano’s implementation of native assets.</p>
 <ul>
-  <li>A transaction output containing custom tokens must include a minimum amount of the principal token ADA</li>
+  <li>A Tx output with custom tokens must also include a minimum amount of the principal token ADA</li>
   <li>The minimum amount of the principal token ADA is calculated using a <a href="https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation">formula based on protocol parameters and the payload of the transaction output</a></li>
 </ul>
 
@@ -1472,9 +1468,8 @@
   <li><a href="https://docs.cardano.org/native-tokens/learn">Cardano Developers Portal: Discover Native Tokens</a></li>
 </ul>
 
-<p>## Create Minting Policies
- Continue on to <a href="https://learn.lovelace.academy/native-tokens/minting-policies/">Minting Policies
- ➡️</a></p>
+<h2 id="create-minting-policies">Create Minting Policies</h2>
+<p>Continue on to <a href="https://learn.lovelace.academy/native-tokens/minting-policies/">Minting Policies ➡️</a></p>
 
 
             <footer>

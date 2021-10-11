@@ -1467,7 +1467,7 @@ responsibilities are to:</p>
 <p><img class="img-fluid" src="/img/node_cardano_components_version_main.png" alt="" />
 Image courtesy of <a href="https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/index.html#cardano-blockchain-high-level-architecture">Cardano docs</a></p>
 
-<p>When we build the cardano-node project it will produce two binary executables,
+<p>When we build the <a href="https://github.com/input-output-hk/cardano-node/">cardano-node</a> project it will produce two binary executables,
 <code class="language-plaintext highlighter-rouge">cardano-node</code> (server) and <code class="language-plaintext highlighter-rouge">cardano-cli</code> (CLI client).</p>
 
 <h2 id="set-up-your-linux-environment">Set up Your Linux Environment</h2>
@@ -1597,13 +1597,23 @@ wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-alonzo-genesis/agenesis/g'</span> config.json
 </code></pre></div></div>
 
-<h2 id="alternative-option-an-init-script">Alternative Option: An Init Script</h2>
-<p>To save time from having to run these commands one-by-one, you can simply use our existing <a href="https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh">init.sh</a> and run it all with:</p>
+<h2 id="shortcut-1-an-init-script">Shortcut #1: An Init Script</h2>
+<p>To save time from having to run these commands one-by-one, you can simply use our existing <a href="https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh">init.sh</a> and run it all (i.e. install dependencies, clone+build, configure) with:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
 bash init.sh
 </code></pre></div></div>
 <p>📝 <em>Note that the mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node</em></p>
+
+<h2 id="shortcut-2-download-the-binaries">Shortcut #2: Download the Binaries</h2>
+<p>You can alternatively download the latest versions <code class="language-plaintext highlighter-rouge">cardano-node</code> and <code class="language-plaintext highlighter-rouge">cardano-cli</code></p>
+<ul>
+  <li><a href="https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz">Linux</a></li>
+  <li><a href="https://hydra.iohk.io/build/7739339/download/1/cardano-node-1.30.1-win64.zip">Windows</a></li>
+  <li><a href="https://hydra.iohk.io/build/7739444/download/1/cardano-node-1.30.1-macos.tar.gz">MacOS</a></li>
+</ul>
+
+<p>📝 <em>Note you still need to <a href="https://learn.lovelace.academy/getting-started/running-a-full-node/#configure-the-node">configure the node</a> for the mainnest or testnet environments</em></p>
 
 <h2 id="running-and-monitoring-the-node">Running and Monitoring the Node</h2>
 
@@ -1650,7 +1660,7 @@ cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 10
   <li><a href="https://www.youtube.com/watch?v=d_3J8MgyZnc">Cardano Node Local VM Setup Guide</a></li>
 </ul>
 
-<h2 id="cardano-primitives-keys-and-addresses">Cardano Primitives: Keys and Addresses</h2>
+<h2 id="understand-cardano-primitives-keys-and-addresses">Understand Cardano Primitives: Keys and Addresses</h2>
 <p>Continue to <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Keys and Addresses ➡️</a></p>
 
 

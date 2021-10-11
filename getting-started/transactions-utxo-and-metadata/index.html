@@ -1463,9 +1463,8 @@ We will focus on the simpler Shelley UTxO model and expand on EUTxO
 
 <p><img class="img-fluid" src="/img/utxo-visual.png" alt="" /></p>
 
-<p>The UTxO model can be best visualised as a graph where all inputs to
-transactions (the blue squares) consume outputs from previous transactions 
-in their entirety, with the values sent to one or more addresses as new outputs. 
+<p>The UTxO model can be best visualised as a graph where inputs to
+transactions (the blue squares) <strong>fully consume outputs</strong> from previous transactions, with the values sent to one or more addresses as new outputs. 
 Once the outputs are spent (the red circles), they can no longer 
 be used by future transactions as inputs, and new transactions can only 
 use active UTxOs (the green circles) as inputs. It is with the set of 
