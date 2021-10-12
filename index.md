@@ -3,6 +3,8 @@ layout: post
 title: 'Welcome to Learn @ Lovelace Academy'
 ---
 
+Lovelace Academy is a blockchain educational platform aimed at making building on Cardano easier to understand.
+
 At Lovelace Academy we believe that education is the key to a more productive, collaborative and fairer world. 
 
 Further, we firmly believe that everyone should be granted the same access to education in order to learn technical skills and have equal opportunity to apply their skills in the real world.
