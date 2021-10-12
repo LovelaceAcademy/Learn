@@ -7,7 +7,7 @@ categories:
 order: 2
 ---
 
-Minting is the process in which units of a custom token can be **created** or **destroyed** based on validation rules defined in a monetary **policy**. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint custom tokens grouped under a policy identifier.
+Minting is the action in which units of a custom token can be **created** or **destroyed** based on validation rules defined in a monetary **policy**. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint custom tokens grouped under a policy identifier.
 
 These `policyID` policy identifiers paired with an `asset name` and details from the official [Token Registry](https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings) provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. This means that all custom tokens can be traced back to a policy, and further, the same `policyID` can also be used to create other assets by using different asset names when minting. 
 
