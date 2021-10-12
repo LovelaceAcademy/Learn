@@ -7,26 +7,26 @@ categories:
 order: 1
 ---
 
-The world is only just starting to understand the implications of Blockchain's 
-disruptive technology and its decentralised socioeconomic movement some twelve and a half years
+The world is starting to understand the implications of Blockchain's 
+disruptive technology and its decentralised socioeconomic movement twelve and a half years
 after [Bitcoin's first block](https://www.blockchain.com/btc/block/00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048).
-Since then, the Blockchain industry has surpassed a $2 Trillion dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
+Since then, the Blockchain industry has surpassed a **$2.4 Trillion** dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
 
 To dig deeper on the technical foundations and benefits of Blockchain, please refer to our video [Making Sense of Blockchain](https://www.youtube.com/watch?v=ev75v-9LU5I) (we strongly recommend watching it on a large screen).
 
-## Huge Opportunities Lie Ahead
+## Huge Opportunities Ahead
 There has not been this level of opportunity since the early days of the internet. Never before has the **entire** world had **equal** access to a common financial layer, a trusted and resilient network of value not controlled by a central intermediary that is prone to corruption, mismanagement or exploitative behaviour. A global network powered by the people themselves, where everyone can have an economic identity with unfettered access to:
  - Reliable and transparent financial services
  - Seamless global trade and commerce
  - Irrefutable recordkeeping of ownership, transfers of value and other key facts
  - An interconnected metaverse of platforms for gaming and interactive experiences
 
-Even with the explosion of innovation in this space it is still **early** days to be a builder or visionary. A simple investment might have achieved great returns in the beginning of this industry but far greater potential lie ahead for those delivering the [Web3-powered products/services](https://blockchainhub.net/web3-decentralized-web/) for the global audience of billions. The upfront investment in your time and resources to build on top of this new tech stack will yield enormous returns in the coming years.
+Even with the explosion of innovation in this space it is still **early** days to be a builder or visionary. A simple investment might have achieved great returns in the beginning of this industry, but far greater potential lie ahead for those delivering the [Web3-powered products/services](https://blockchainhub.net/web3-decentralized-web/) for the global audience of billions. The upfront investment in your time and resources to build on top of this new tech stack will yield enormous returns in the coming years.
 
 ## Why Build on Cardano
 
 On top of the amazing opportunity for growth is the unique opportunity to build on top of the strongest foundations in the Blockchain space. Cardano was designed and built carefully for long-term sustainability with a passionate community and hyper-productive team propelling it forward. It is the next evolution of Blockchain technology with the goal
-to provide a more **open**, **inclusive** and **sustainable** 
+to provide a more **scalable**, **inclusive** and **sustainable** 
 financial system that scales for global use. 
 
 Based on [published peer-reviewed research](https://iohk.io/en/research/library/) in collaboration with the world's top universities and academic minds, their latest advancements follow a methodical path from academic proofs to formal specifications and finally to robust software that can be proven to work as intended. 
@@ -37,11 +37,10 @@ We summarised Cardano's key strengths in our video [The Cardano Revolution](http
  - Built on top of the strongest foundations with the future in mind
  - Incredible team behind the most actively developed blockchain
  - Passionate, intelligent and thoughtful community
- - Cardano's unique vision for economic identity, inclusion and long-term sustainability
-
+ - Cardano's [unique vision](https://www.youtube.com/watch?v=l_Nv0-PVrnM) for economic identity, inclusion and long-term sustainability
 
 ## Cardano's World-beating Metrics 
-Cardano has some of the most impressive metrics in the Blockchain space and the data indicates that its network is growing stronger with time.
+Cardano has some of the most impressive metrics in the Blockchain space and the data indicates that its flourishing network is growing stronger with time.
 
  - The most decentralised blockchain platform 
    - 3,000+ stake pools distributed globally
@@ -59,6 +58,6 @@ Cardano has some of the most impressive metrics in the Blockchain space and the 
 
 ** *Metrics updated on 12/09/2021*
 
-## Ready to join the Cardano Revolution?
+## Join the Cardano Revolution
 Continue on to [Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/starting-your-journey)
 

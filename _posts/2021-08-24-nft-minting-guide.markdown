@@ -14,3 +14,10 @@ The property of uniqueness can be defined in a Multisig policy by time locking c
 
 ## Minting Transaction
 Coming soon (please refer to [Cardano Developers Minting NFTs documentation](https://developers.cardano.org/docs/native-tokens/minting-nfts/) for now)
+
+## Token Builders
+- [Tokhun](https://tokhun.io/account/assets/mint-nft)
+- [NFT Maker](https://www.nft-maker.io/)
+- [Cardano Token and NFT Builder](https://cardano-native-token.com/)
+- [EasyCNFT](https://easycnft.art/en)
+- [NFT Machine](https://nft-machine.com/)
