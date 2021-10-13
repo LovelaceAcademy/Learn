@@ -8,7 +8,7 @@ order: 2
 ---
 
 Navigating any Blockchain ecosystem to figure out how to participate can be a daunting task, so we prepared this guide for newcomers get started with Cardano. We suggest the following starting points which do a fantastic job aggregating a multitude of useful resources:
-- [**Getting Started With Cardano**](https://www.reddit.com/r/Cardano_ELI5/wiki/index#wiki_getting_started_with_cardano) from Reddit `r/Cardano_ELI5`
+- [**Getting Started With Cardano**](https://www.reddit.com/r/Cardano_ELI5/wiki/index#wiki_getting_started_with_cardano) from Reddit [`r/Cardano_ELI5`](https://www.reddit.com/r/Cardano_ELI5)
 - [**Essential Cardano**](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md) from the [IOHK GitHub](https://github.com/input-output-hk)
 - [**Cardano Developer Portal**](https://developers.cardano.org/) The Official Portal for Developers
 

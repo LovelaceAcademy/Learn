@@ -7,15 +7,15 @@ categories:
 order: 1
 ---
 
-Tokens are on-chain representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of Cardano the terms *token* and *asset* are _generally_ interchangeable, although assets can also denote the class/category of a token before it is even minted. 
+Tokens are on-chain representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of Cardano the terms *token* and *asset* are _generally_ interchangeable, although an asset can be used to denote the class/category of a token before any are minted. 
 
 ## Multi-asset Blockchains
 Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a single principal asset (i.e. BTC and LTC), a multi-asset blockchain supports the minting, storing and transferring of custom tokens on top of its principal asset. Examples of multi-asset blockchains are Ethereum and Cardano, which support an infinite amount of custom tokens in addition to their principal asset (i.e. ETH and ADA). This permits anyone to define custom tokens representing:
- - **Fungible Assets**: Allows multiple units of value grouped under a specific class (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same group
+ - **Fungible Assets**: Supports multiple units of value grouped under a specific class (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same class
  - **Non-Fungible Assets (NFTs)**: A single unit representing an asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)
 
 ## Native Assets
-A multi-asset blockchain (e.g. Cardano, Ergo and Algorand) has native asset support if all of its custom tokens follow the same base-layer accounting rules as its principal asset. This allows users to mint or transact in custom tokens without paying additional fees incurred by executing token-specific smart contracts. The following advantages arise from native asset support:
+A multi-asset blockchain has native asset support (e.g. Cardano, Ergo and Algorand) if all of its custom tokens follow the same base-layer accounting rules as its principal asset. This allows users to mint or transact in custom tokens without paying additional fees incurred by executing token-specific smart contracts. The following advantages arise from native asset support:
  - Cheap, fast and reliable transactions for all tokens
  - Universal interoperability of all tokens
  - Simple minting process for custom tokens

@@ -23,7 +23,7 @@ As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
 addresses in Cardano can be the destination of multiple transaction outputs, 
 and it is up to the wallet to calculate the active balance by summing the
-current set of UTxOs. This parallels with cash-based accounting where the 
+current set of UTxOs. This parallels with cash-based accounting where notes used in transactions (i.e. pay and get change) and the 
 holder's active balance is the sum of all the notes in their wallet.
 
 Although it may seem like unnecessary complexity, this
@@ -34,12 +34,12 @@ We will focus on the simpler Shelley UTxO model and expand on EUTxO
 
 ![](/img/utxo-visual.png)
 
-The UTxO model can be best visualised as a graph where inputs to
-transactions (the blue squares) **fully consume outputs** from previous transactions, with the values sent to one or more addresses as new outputs. 
+The UTxO model can be best visualised as an **input-output graph** where inputs to
+transactions (the blue squares) **fully consume** outputs from previous transactions, with the values sent to one or more addresses as new outputs. 
 Once the outputs are spent (the red circles), they can no longer 
 be used by future transactions as inputs, and new transactions can only 
 use active UTxOs (the green circles) as inputs. It is with the set of 
-active UTxOs that the current active state of the blockchain is derived.
+active UTxOs that the global active state of the blockchain is derived.
 
 Much like the law of conservation of energy, the **sum of all inputs must be equal 
 to the sum of all outputs minus the transaction fees**. For typical payment
@@ -207,6 +207,15 @@ cardano-cli transaction sign \
     --signing-key-file payment.skey \
     --testnet-magic 1097911063 \
     --out-file sendtx.txsigned
+```
+
+### Get Transaction ID
+You can also get the transaction ID (aka Tx Hash) of your transaction before it is submitted by running the following commands.
+```bash
+cardano-cli transaction txid --tx-file sendtx.txsigned
+
+# Alternatively for the unsigned txraw file
+cardano-cli transaction txid --tx-body-file sendtx.txraw
 ```
 
 ### Submitting a Transaction
