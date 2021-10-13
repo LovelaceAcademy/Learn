@@ -1436,12 +1436,10 @@
             </div>
 
             <p>Keys and addresses are cryptographic entities at the heart of all information flow in Cardano and other blockchains. 
-Keys prove ownership, consent and authenticity
-while addresses derived from these keys are destinations to hold facts
-and values. Subsequently all the facts/values in these addresses 
-can only be unlocked for verification/spending using the keys associated with them, safeguarding them from theft or confiscation.</p>
+Keys are used to verify ownership, consent and authenticity
+while addresses derived from these keys are destinations for values. Subsequently all the values against these addresses can only be <em>unlocked</em> for spending using the keys associated with them, safeguarding them from theft or confiscation.</p>
 
-<p>There are <a href="https://cips.cardano.org/cips/cip5/">many different types of keys</a> that exist in Cardano, but here we will be focusing on the address keys on the right section of the
+<p>There are <a href="https://cips.cardano.org/cips/cip5/">many different types of keys</a> that exist in Cardano, but here we will be focusing on the <strong>address keys</strong> on the right section of the
 image below.</p>
 
 <p><img class="img-fluid" src="https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png" alt="" /></p>
@@ -1450,23 +1448,20 @@ image below.</p>
 
 <p>A powerful feature arises from the fact that these cryptographic
 entities can be created without connecting to or interacting with the network. The de-coupling of these entities from the network
-allows any one, even those without an internet connection, to create
-unique addresses that can receive ADA/custom tokens.</p>
+allows any one, even those without an internet connection, to create keys and their corresponding addresses that can receive ADA/custom tokens.</p>
 
-<h2 id="keys">Keys</h2>
+<h2 id="address-keys">Address Keys</h2>
 
-<p>Two main types of keys are used within Cardano:</p>
+<p>Following the principles of <a href="https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/">public key/asymmetric cryptography</a>, Cardano uses <a href="https://en.wikipedia.org/wiki/EdDSA#Ed25519">Ed25519</a> key pairs
+consisting of a private signing key and a public verification key. Two main types of address keys are used within Cardano:</p>
 
 <ul>
-  <li>Payment Keys: For creating payment addresses to receive ADA/custom tokens, and signing transactions
+  <li><strong>Payment Keys</strong>: For creating payment addresses to receive ADA/custom tokens, and signing transactions
 to spend ADA/custom tokens from these payment addresses</li>
-  <li>Stake Keys: For creating payment/staking addresses, delegating
+  <li><strong>Stake Keys</strong>: For creating payment/staking addresses, delegating
 stake, claiming ADA rewards from stake addresses and registering
 stake pools</li>
 </ul>
-
-<p>Following the principles of <a href="https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/">public key/asymmetric cryptography</a>, these are <a href="https://en.wikipedia.org/wiki/EdDSA#Ed25519">Ed25519</a> pairs
-consisting of a private signing key and a public verification key.</p>
 
 <h3 id="creating-payment-keys">Creating Payment Keys</h3>
 
@@ -1509,15 +1504,14 @@ verification key <code class="language-plaintext highlighter-rouge">stake.vkey</
 
 <h2 id="addresses">Addresses</h2>
 
-<p>The keys above are then used to create two main types of addresses:</p>
+<p>The address keys above are then used to create two main types of addresses:</p>
 
 <ul>
-  <li>Payment addresses: To receive ADA/custom tokens</li>
-  <li>Stake/Reward addresses: To receive ADA staking rewards (automatically)</li>
+  <li><strong>Payment addresses</strong>: To receive ADA/custom tokens</li>
+  <li><strong>Stake/Reward addresses</strong>: To receive ADA staking rewards (automatically)</li>
 </ul>
 
-<p>These are a <a href="https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2">blake2b-256</a>
-hash of the public key(s) and concatenated with other metadata (see
+<p>These are encoded representations of public verification address key(s) concatenated with other metadata (see
 different address types in the image above) including the network in
 which they are valid for (e.g. –mainnet, –testnet-magic 1097911063,
 etc.)</p>

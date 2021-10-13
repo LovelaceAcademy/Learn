@@ -1437,10 +1437,12 @@
 
             <p>Minting is the action in which units of a custom token can be <strong>created</strong> or <strong>destroyed</strong> based on validation rules defined in a monetary <strong>policy</strong>. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint custom tokens grouped under a policy identifier.</p>
 
-<p>These <code class="language-plaintext highlighter-rouge">policyID</code> policy identifiers paired with an <code class="language-plaintext highlighter-rouge">asset name</code> and details from the official <a href="https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings">Token Registry</a> provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. This means that all custom tokens can be traced back to a policy, and further, the same <code class="language-plaintext highlighter-rouge">policyID</code> can also be used to create other assets by using different asset names when minting.</p>
+<p>These <code class="language-plaintext highlighter-rouge">policyID</code> policy identifiers paired with an <code class="language-plaintext highlighter-rouge">asset name</code> and details from the official <a href="https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings">Token Registry</a> provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. This means that all custom tokens can be traced back to a specific policy and further, the same <code class="language-plaintext highlighter-rouge">policyID</code> can also be used to create other assets by using different asset names when minting.</p>
 
 <h2 id="multisig-aka-native-script-policies">Multisig aka Native Script Policies</h2>
-<p>Cardano gives everyone the ability to define <a href="https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md">Multisignature (multisig)</a> validation scripts, which grants the ability to spend UTxOs at the corresponding multisig address only if the required signatures from one or more keys are provided, and optionally until (or before) a specified time has elapsed. These same validation scripts can also be used to define a minting policy for a native asset. Multisig scripts are simply JSON files such as the following example <code class="language-plaintext highlighter-rouge">policy.script</code>.</p>
+<p>Cardano gives everyone the ability to define <a href="https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md">Multisignature (multisig)</a> validation scripts, which grants the ability to spend UTxOs at the corresponding multisig address <strong>only</strong> if the required signatures from one or more keys are provided, and optionally before (or after) a specified time has elapsed.</p>
+
+<p>Multisig scripts are simply JSON files such as the following example <code class="language-plaintext highlighter-rouge">atleast-2-before-41217687.script</code>.</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1466,9 +1468,19 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>From the script file you can generate the <code class="language-plaintext highlighter-rouge">policyId</code> using</p>
+<p>The multisig script file above can be interpreted as requiring <strong>at least two</strong> signatures out of the three keys, with their hashes defined under the <code class="language-plaintext highlighter-rouge">scripts</code> array. You can then derive the corresponding multisig address using</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction policyid <span class="nt">--script-file</span> policy.script
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli shelley address build-script
+  <span class="nt">--script-file</span> atleast-2-before-41217687-multisig.script <span class="se">\</span>
+  <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
+  <span class="nt">--out-file</span> atleast-2-before-41217687-multisig.addr <span class="se">\</span>
+</code></pre></div></div>
+
+<h3 id="generating-a-minting-policy">Generating a Minting Policy</h3>
+<p>These same validation scripts can also be used to define a minting policy for a native asset. From the script file you can generate the <code class="language-plaintext highlighter-rouge">policyId</code> using</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction policyid <span class="se">\</span>
+  <span class="nt">--script-file</span> atleast-2-before-41217687-multisig.script
 </code></pre></div></div>
 
 <p><em>More to come!</em></p>

@@ -1452,7 +1452,7 @@ ransaction <strong>O</strong> utput.</p>
 one single value representing the active balance of an address,
 addresses in Cardano can be the destination of multiple transaction outputs, 
 and it is up to the wallet to calculate the active balance by summing the
-current set of UTxOs. This parallels with cash-based accounting where the 
+current set of UTxOs. This parallels with cash-based accounting where notes used in transactions (i.e. pay and get change) and the 
 holder’s active balance is the sum of all the notes in their wallet.</p>
 
 <p>Although it may seem like unnecessary complexity, this
@@ -1463,12 +1463,12 @@ We will focus on the simpler Shelley UTxO model and expand on EUTxO
 
 <p><img class="img-fluid" src="/img/utxo-visual.png" alt="" /></p>
 
-<p>The UTxO model can be best visualised as a graph where inputs to
-transactions (the blue squares) <strong>fully consume outputs</strong> from previous transactions, with the values sent to one or more addresses as new outputs. 
+<p>The UTxO model can be best visualised as an <strong>input-output graph</strong> where inputs to
+transactions (the blue squares) <strong>fully consume</strong> outputs from previous transactions, with the values sent to one or more addresses as new outputs. 
 Once the outputs are spent (the red circles), they can no longer 
 be used by future transactions as inputs, and new transactions can only 
 use active UTxOs (the green circles) as inputs. It is with the set of 
-active UTxOs that the current active state of the blockchain is derived.</p>
+active UTxOs that the global active state of the blockchain is derived.</p>
 
 <p>Much like the law of conservation of energy, the <strong>sum of all inputs must be equal 
 to the sum of all outputs minus the transaction fees</strong>. For typical payment
@@ -1628,6 +1628,14 @@ offline in an air-gapped machine outside of the testnets.</p>
     <span class="nt">--signing-key-file</span> payment.skey <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
     <span class="nt">--out-file</span> sendtx.txsigned
+</code></pre></div></div>
+
+<h3 id="get-transaction-id">Get Transaction ID</h3>
+<p>You can also get the transaction ID (aka Tx Hash) of your transaction before it is submitted by running the following commands.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction txid <span class="nt">--tx-file</span> sendtx.txsigned
+
+<span class="c"># Alternatively for the unsigned txraw file</span>
+cardano-cli transaction txid <span class="nt">--tx-body-file</span> sendtx.txraw
 </code></pre></div></div>
 
 <h3 id="submitting-a-transaction">Submitting a Transaction</h3>
