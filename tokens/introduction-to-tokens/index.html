@@ -114,9 +114,37 @@
             
             
             <li class="nav-item dropdown submenu">
-              <a href="#" class="nav-link dropdown-toggle">Native Tokens</a>
+              <a href="#" class="nav-link dropdown-toggle">Tokens</a>
                 <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
                 <ul class="dropdown-menu">
+                  
+                    <li class="nav-item">
+                      <a
+                        
+                          href="/tokens/introduction-to-tokens/"
+                          class="nav-link active">Introduction to Tokens</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                      <a
+                        
+                          href="/tokens/minting-policies/"
+                          class="nav-link">Minting Policies</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                      <a
+                        
+                          href="/tokens/fungible-token-minting-guide/"
+                          class="nav-link">Fungible Token Minting Guide</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                      <a
+                        
+                          href="/tokens/nft-minting-guide/"
+                          class="nav-link">NFT Minting Guide</a>
+                    </li>
                   
                 </ul>
             </li>
@@ -442,22 +470,70 @@
             
               
 
-<li class="nav-item">
+<li class="nav-item active">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/chat1.png" alt="chat">
     
 
-    Native Tokens
+    Tokens
   </a>
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" >
+  <ul class="list-unstyled dropdown_nav" style="display: block">
     
       
 
 
+
+
+  
+
+<li>
+  <a
+    
+    class="active"
+    href="/tokens/introduction-to-tokens/">
+    Introduction to Tokens
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
+    href="/tokens/minting-policies/">
+    Minting Policies
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
+    href="/tokens/fungible-token-minting-guide/">
+    Fungible Token Minting Guide
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
+    href="/tokens/nft-minting-guide/">
+    NFT Minting Guide
+  </a>
+</li>
 
 
 
@@ -940,22 +1016,70 @@
               
                 
 
-<li class="nav-item">
+<li class="nav-item active">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/chat1.png" alt="chat">
     
 
-    Native Tokens
+    Tokens
   </a>
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" >
+  <ul class="list-unstyled dropdown_nav" style="display: block">
     
       
 
 
+
+
+  
+
+<li>
+  <a
+    
+    class="active"
+    href="/tokens/introduction-to-tokens/">
+    Introduction to Tokens
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
+    href="/tokens/minting-policies/">
+    Minting Policies
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
+    href="/tokens/fungible-token-minting-guide/">
+    Fungible Token Minting Guide
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a
+    
+    
+    href="/tokens/nft-minting-guide/">
+    NFT Minting Guide
+  </a>
+</li>
 
 
 
@@ -1317,7 +1441,7 @@
 <p>Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a single principal asset (i.e. BTC and LTC), a multi-asset blockchain supports the minting, storing and transferring of custom tokens in addition to its principal asset. Examples of multi-asset blockchains are Ethereum and Cardano, which support an infinite amount of custom tokens in addition to their principal asset (i.e. ETH and ADA). This permits anyone to define custom tokens representing:</p>
 <ul>
   <li><strong>Fungible Assets</strong>: Supports multiple units of value grouped under a specific class (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same class</li>
-  <li><strong>Non-Fungible Assets (NFTs)</strong>: A single unit representing an asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)</li>
+  <li><strong>Non-Fungible Assets (NFTs)</strong>: A single unit representing a distinct asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)</li>
 </ul>
 
 <h2 id="native-assets">Native Assets</h2>
@@ -1330,13 +1454,13 @@
 </ul>
 
 <h2 id="cardanos-native-assets">Cardano’s Native Assets</h2>
-<p>There are a few key points to note around Cardano’s implementation of native assets.</p>
+<p>Although Cardano’s implementation of Native Assets resolves many of the current issues plaguing layer-2 token implementations, there are a few key points to note:</p>
 <ul>
   <li>A Tx output with custom tokens must also include a minimum amount of the principal token ADA</li>
   <li>The minimum amount of the principal token ADA is calculated using a <a href="https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation">formula based on protocol parameters and the payload of the transaction output</a></li>
 </ul>
 
-<p>This design decision prevents an attack vector where malicious actors can flood the Cardano network with an endless stream of custom token transaction outputs, resulting in large transaction payloads propagating across the network and an unmanageable set of UTxOs.</p>
+<p>This design decision prevents an attack vector where malicious actors can easily flood the Cardano network with an endless stream of custom token Tx outputs, resulting in large transaction payloads propagating across the network and an unmanageable set of UTxOs.</p>
 
 <h2 id="supplementary-material">Supplementary Material</h2>
 <ul>

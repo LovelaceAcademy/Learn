@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-15T08:39:08+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-15T10:47:40+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.&lt;/p&gt;
 
 &lt;h2 id=&quot;define-multisig-policy&quot;&gt;Define Multisig Policy&lt;/h2&gt;
 &lt;p&gt;The property of uniqueness can be defined in a Multisig policy by time locking constraint.&lt;/p&gt;
@@ -94,7 +94,7 @@ This property of uniqueness can be defined in a Multisig policy.&lt;/p&gt;</cont
 &lt;p&gt;Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a single principal asset (i.e. BTC and LTC), a multi-asset blockchain supports the minting, storing and transferring of custom tokens in addition to its principal asset. Examples of multi-asset blockchains are Ethereum and Cardano, which support an infinite amount of custom tokens in addition to their principal asset (i.e. ETH and ADA). This permits anyone to define custom tokens representing:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Fungible Assets&lt;/strong&gt;: Supports multiple units of value grouped under a specific class (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same class&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Non-Fungible Assets (NFTs)&lt;/strong&gt;: A single unit representing an asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Non-Fungible Assets (NFTs)&lt;/strong&gt;: A single unit representing a distinct asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;native-assets&quot;&gt;Native Assets&lt;/h2&gt;
@@ -107,13 +107,13 @@ This property of uniqueness can be defined in a Multisig policy.&lt;/p&gt;</cont
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;cardanos-native-assets&quot;&gt;Cardano’s Native Assets&lt;/h2&gt;
-&lt;p&gt;There are a few key points to note around Cardano’s implementation of native assets.&lt;/p&gt;
+&lt;p&gt;Although Cardano’s implementation of Native Assets resolves many of the current issues plaguing layer-2 token implementations, there are a few key points to note:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;A Tx output with custom tokens must also include a minimum amount of the principal token ADA&lt;/li&gt;
   &lt;li&gt;The minimum amount of the principal token ADA is calculated using a &lt;a href=&quot;https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation&quot;&gt;formula based on protocol parameters and the payload of the transaction output&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This design decision prevents an attack vector where malicious actors can flood the Cardano network with an endless stream of custom token transaction outputs, resulting in large transaction payloads propagating across the network and an unmanageable set of UTxOs.&lt;/p&gt;
+&lt;p&gt;This design decision prevents an attack vector where malicious actors can easily flood the Cardano network with an endless stream of custom token Tx outputs, resulting in large transaction payloads propagating across the network and an unmanageable set of UTxOs.&lt;/p&gt;
 
 &lt;h2 id=&quot;supplementary-material&quot;&gt;Supplementary Material&lt;/h2&gt;
 &lt;ul&gt;
