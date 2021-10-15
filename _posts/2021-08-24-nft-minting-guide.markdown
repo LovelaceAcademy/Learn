@@ -3,7 +3,7 @@ layout: post
 title: NFT Minting Guide
 last_modified_at: 2021-09-08
 categories:
-- Native Tokens
+- Tokens
 order: 4
 ---
 

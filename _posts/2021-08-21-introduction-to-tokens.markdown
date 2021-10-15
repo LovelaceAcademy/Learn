@@ -3,14 +3,14 @@ layout: post
 title: Introduction to Tokens
 last_modified_at: 2021-09-08
 categories:
-- Native Tokens
+- Tokens
 order: 1
 ---
 
 Tokens are on-chain representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of Cardano the terms *token* and *asset* are _generally_ interchangeable, although an asset can be used to denote the class/category of a token before any are minted. 
 
 ## Multi-asset Blockchains
-Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a single principal asset (i.e. BTC and LTC), a multi-asset blockchain supports the minting, storing and transferring of custom tokens on top of its principal asset. Examples of multi-asset blockchains are Ethereum and Cardano, which support an infinite amount of custom tokens in addition to their principal asset (i.e. ETH and ADA). This permits anyone to define custom tokens representing:
+Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a single principal asset (i.e. BTC and LTC), a multi-asset blockchain supports the minting, storing and transferring of custom tokens in addition to its principal asset. Examples of multi-asset blockchains are Ethereum and Cardano, which support an infinite amount of custom tokens in addition to their principal asset (i.e. ETH and ADA). This permits anyone to define custom tokens representing:
  - **Fungible Assets**: Supports multiple units of value grouped under a specific class (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same class
  - **Non-Fungible Assets (NFTs)**: A single unit representing an asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)
 

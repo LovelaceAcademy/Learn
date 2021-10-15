@@ -108,7 +108,7 @@ cardano-cli address build \
 
 ### Creating a Stake/Reward Address
 
-A unique stake address is generated from a staking verification key.
+A unique stake address is generated from a stake verification key.
 
 ```bash
 cardano-cli stake-address build \
