@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/css/style-main.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/assets/font-size/css/rvfs.css">
-    <title>Lovelace Academy - Minting Policies</title>
+    <title>Lovelace Academy - Introduction to Tokens</title>
 </head>
 
 <body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
@@ -117,34 +117,6 @@
               <a href="#" class="nav-link dropdown-toggle">Native Tokens</a>
                 <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
                 <ul class="dropdown-menu">
-                  
-                    <li class="nav-item">
-                      <a
-                        
-                          href="/native-tokens/introduction-to-tokens/"
-                          class="nav-link">Introduction to Tokens</a>
-                    </li>
-                  
-                    <li class="nav-item">
-                      <a
-                        
-                          href="/native-tokens/minting-policies/"
-                          class="nav-link active">Minting Policies</a>
-                    </li>
-                  
-                    <li class="nav-item">
-                      <a
-                        
-                          href="/native-tokens/fungible-token-minting-guide/"
-                          class="nav-link">Fungible Token Minting Guide</a>
-                    </li>
-                  
-                    <li class="nav-item">
-                      <a
-                        
-                          href="/native-tokens/nft-minting-guide/"
-                          class="nav-link">NFT Minting Guide</a>
-                    </li>
                   
                 </ul>
             </li>
@@ -470,7 +442,7 @@
             
               
 
-<li class="nav-item active">
+<li class="nav-item">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/chat1.png" alt="chat">
@@ -481,59 +453,11 @@
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" style="display: block">
+  <ul class="list-unstyled dropdown_nav" >
     
       
 
 
-
-
-  
-
-<li>
-  <a
-    
-    
-    href="/native-tokens/introduction-to-tokens/">
-    Introduction to Tokens
-  </a>
-</li>
-
-
-  
-
-<li>
-  <a
-    
-    class="active"
-    href="/native-tokens/minting-policies/">
-    Minting Policies
-  </a>
-</li>
-
-
-  
-
-<li>
-  <a
-    
-    
-    href="/native-tokens/fungible-token-minting-guide/">
-    Fungible Token Minting Guide
-  </a>
-</li>
-
-
-  
-
-<li>
-  <a
-    
-    
-    href="/native-tokens/nft-minting-guide/">
-    NFT Minting Guide
-  </a>
-</li>
 
 
 
@@ -896,8 +820,8 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="https://www.lovelace.academy">Home</a></li>
             
-              <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Native Tokens</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Minting Policies</li>
+              <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Tokens</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Introduction to Tokens</li>
             
           </ol>
         </nav>
@@ -1016,7 +940,7 @@
               
                 
 
-<li class="nav-item active">
+<li class="nav-item">
   <a href="#" class="nav-link">
     
       <img src="/img/side-nav/chat1.png" alt="chat">
@@ -1027,59 +951,11 @@
 
   <span class="icon"><i class="arrow_carrot-down"></i></span>
 
-  <ul class="list-unstyled dropdown_nav" style="display: block">
+  <ul class="list-unstyled dropdown_nav" >
     
       
 
 
-
-
-  
-
-<li>
-  <a
-    
-    
-    href="/native-tokens/introduction-to-tokens/">
-    Introduction to Tokens
-  </a>
-</li>
-
-
-  
-
-<li>
-  <a
-    
-    class="active"
-    href="/native-tokens/minting-policies/">
-    Minting Policies
-  </a>
-</li>
-
-
-  
-
-<li>
-  <a
-    
-    
-    href="/native-tokens/fungible-token-minting-guide/">
-    Fungible Token Minting Guide
-  </a>
-</li>
-
-
-  
-
-<li>
-  <a
-    
-    
-    href="/native-tokens/nft-minting-guide/">
-    NFT Minting Guide
-  </a>
-</li>
 
 
 
@@ -1432,66 +1308,44 @@
           <article class="shortcode_text">
             <div class="shortcode_title">
               <!-- <a class="btn" href="#">Learn</a> -->
-              <h1>Minting Policies</h1>
+              <h1>Introduction to Tokens</h1>
             </div>
 
-            <p>Minting is the action in which units of a custom token can be <strong>created</strong> or <strong>destroyed</strong> based on validation rules defined in a monetary <strong>policy</strong>. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint custom tokens grouped under a policy identifier.</p>
+            <p>Tokens are on-chain representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of Cardano the terms <em>token</em> and <em>asset</em> are <em>generally</em> interchangeable, although an asset can be used to denote the class/category of a token before any are minted.</p>
 
-<p>These <code class="language-plaintext highlighter-rouge">policyID</code> policy identifiers paired with an <code class="language-plaintext highlighter-rouge">asset name</code> and details from the official <a href="https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings">Token Registry</a> provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. This means that all custom tokens can be traced back to a specific policy and further, the same <code class="language-plaintext highlighter-rouge">policyID</code> can also be used to create other assets by using different asset names when minting.</p>
+<h2 id="multi-asset-blockchains">Multi-asset Blockchains</h2>
+<p>Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a single principal asset (i.e. BTC and LTC), a multi-asset blockchain supports the minting, storing and transferring of custom tokens in addition to its principal asset. Examples of multi-asset blockchains are Ethereum and Cardano, which support an infinite amount of custom tokens in addition to their principal asset (i.e. ETH and ADA). This permits anyone to define custom tokens representing:</p>
+<ul>
+  <li><strong>Fungible Assets</strong>: Supports multiple units of value grouped under a specific class (e.g. currency, loyalty points, game points), each unit indistinguishable from another under the same class</li>
+  <li><strong>Non-Fungible Assets (NFTs)</strong>: A single unit representing an asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)</li>
+</ul>
 
-<h2 id="multisig-aka-native-script-policies">Multisig aka Native Script Policies</h2>
-<p>Cardano gives everyone the ability to define <a href="https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md">Multisignature (multisig)</a> validation scripts, which grants the ability to spend UTxOs at the corresponding multisig address <strong>only</strong> if the required signatures from one or more keys are provided, and optionally before (or after) a specified time has elapsed.</p>
+<h2 id="native-assets">Native Assets</h2>
+<p>A multi-asset blockchain has native asset support (e.g. Cardano, Ergo and Algorand) if all of its custom tokens follow the same base-layer accounting rules as its principal asset. This allows users to mint or transact in custom tokens without paying additional fees incurred by executing token-specific smart contracts. The following advantages arise from native asset support:</p>
+<ul>
+  <li>Cheap, fast and reliable transactions for all tokens</li>
+  <li>Universal interoperability of all tokens</li>
+  <li>Simple minting process for custom tokens</li>
+  <li>Ability to bundle minting/transfer of multiple tokens in a single transaction (e.g. Token Bundles)</li>
+</ul>
 
-<p>Multisig scripts are simply JSON files such as the following example <code class="language-plaintext highlighter-rouge">atleast-2-before-41217687.script</code>.</p>
+<h2 id="cardanos-native-assets">Cardano’s Native Assets</h2>
+<p>There are a few key points to note around Cardano’s implementation of native assets.</p>
+<ul>
+  <li>A Tx output with custom tokens must also include a minimum amount of the principal token ADA</li>
+  <li>The minimum amount of the principal token ADA is calculated using a <a href="https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation">formula based on protocol parameters and the payload of the transaction output</a></li>
+</ul>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"keyHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e09d36c79dec9bd1b3d9e152247701cd0bb860b5ebfd1de8abb6735a"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sig"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"keyHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a687dcc24e00dd3caafbeb5e68f97ca8ef269cb6fe971345eb951756"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sig"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"keyHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0bd1d702b2e6188fe0857a6dc7ffb0675229bab58c86638ffa87ed6d"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sig"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"slot"</span><span class="p">:</span><span class="w"> </span><span class="mi">41217687</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"before"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"atLeast"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+<p>This design decision prevents an attack vector where malicious actors can flood the Cardano network with an endless stream of custom token transaction outputs, resulting in large transaction payloads propagating across the network and an unmanageable set of UTxOs.</p>
 
-<p>The multisig script file above can be interpreted as requiring <strong>at least two</strong> signatures out of the three keys, with their hashes defined under the <code class="language-plaintext highlighter-rouge">scripts</code> array. You can then derive the corresponding multisig address using</p>
+<h2 id="supplementary-material">Supplementary Material</h2>
+<ul>
+  <li><a href="https://docs.cardano.org/native-tokens/learn">Cardano Docs: Native Tokens</a></li>
+  <li><a href="https://docs.cardano.org/native-tokens/learn">Cardano Developers Portal: Discover Native Tokens</a></li>
+</ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli shelley address build-script
-  <span class="nt">--script-file</span> atleast-2-before-41217687-multisig.script <span class="se">\</span>
-  <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
-  <span class="nt">--out-file</span> atleast-2-before-41217687-multisig.addr <span class="se">\</span>
-</code></pre></div></div>
-
-<h3 id="generating-a-minting-policy">Generating a Minting Policy</h3>
-<p>These same validation scripts can also be used to define a minting policy for a native asset. From the script file you can generate the <code class="language-plaintext highlighter-rouge">policyId</code> using</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction policyid <span class="se">\</span>
-  <span class="nt">--script-file</span> atleast-2-before-41217687-multisig.script
-</code></pre></div></div>
-
-<p><em>More to come!</em></p>
-
-<h2 id="plutus-script-policies">Plutus Script Policies</h2>
-<p>Coming soon</p>
-
-<h2 id="fungible-vs-non-fungible">Fungible vs Non-Fungible</h2>
-<p>Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.
-This property of uniqueness can be defined in a Multisig policy.</p>
-
+<h2 id="create-minting-policies">Create Minting Policies</h2>
+<p>Continue on to <a href="https://learn.lovelace.academy/native-tokens/minting-policies/">Minting Policies ➡️</a></p>
 
 
             <footer>
