@@ -40,7 +40,7 @@ menu:
 - title: Getting Started
   icon: briefcase.png
   alt: briefcase
-- title: Native Tokens
+- title: Tokens
   icon: chat1.png
   alt: chat
 - title: Smart Contracts
