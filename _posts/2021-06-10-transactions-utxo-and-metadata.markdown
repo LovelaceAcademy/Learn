@@ -259,5 +259,5 @@ Using an explorer is the easiest way to navigate across all the addresses, block
 
 ## Learn about Cardano's Native Tokens
  Continue on to [Introduction to Tokens
- ➡️](https://learn.lovelace.academy/native-tokens/introduction-to-tokens/)
+ ➡️](https://learn.lovelace.academy/tokens/introduction-to-tokens/)
 

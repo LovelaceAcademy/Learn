@@ -45,11 +45,11 @@ We summarised Cardano's key strengths in our video [The Cardano Revolution](http
 Cardano has some of the most impressive metrics in the Blockchain space and the data indicates that its flourishing network is growing stronger with time.
 
  - The most decentralised blockchain platform 
-   - 3,000+ stake pools distributed globally
-   - 2,250,000+ wallet addresses (greater than 1 ADA)
+   - 3,000+ stake pools [distributed globally](https://adatools.io/hologram)
+   - 2,250,000+ [wallet addresses (greater than 1 ADA)](https://messari.io/asset/cardano/metrics/addresses)
    - 820,000+ staking addresses
    - 71%+ of total supply staked ($50B+ USD)
- - Second most active blockchain by transaction volume
+ - Second most active blockchain by [transaction volume](https://messari.io/asset/cardano/metrics/network-activity)
    - $10,000,000,000+ ($10B) USD per day
  - The most actively developed blockchain by GitHub commits
  - Has the world's largest Decentralised Autonomous Organisation (DAO)

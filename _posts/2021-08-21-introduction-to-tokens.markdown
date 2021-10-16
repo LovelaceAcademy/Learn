@@ -23,8 +23,8 @@ A multi-asset blockchain has native asset support (e.g. Cardano, Ergo and Algora
  
 ## Cardano's Native Assets
 Although Cardano's implementation of Native Assets resolves many of the current issues plaguing layer-2 token implementations, there are a few key points to note:
- - A Tx output with custom tokens must also include a minimum amount of the principal token ADA
- - The minimum amount of the principal token ADA is calculated using a [formula based on protocol parameters and the payload of the transaction output](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation)
+ - A Tx output with custom tokens must also include a minimum amount of the principal token ADA (currently approx. 1.5 ADA)
+ - The minimum amount is calculated using a [formula based on protocol parameters and the payload of the transaction output](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation)
 
 This design decision prevents an attack vector where malicious actors can easily flood the Cardano network with an endless stream of custom token Tx outputs, resulting in large transaction payloads propagating across the network and an unmanageable set of UTxOs. 
 
@@ -33,4 +33,4 @@ This design decision prevents an attack vector where malicious actors can easily
  - [Cardano Developers Portal: Discover Native Tokens](https://docs.cardano.org/native-tokens/learn)
 
 ## Create Minting Policies
-Continue on to [Minting Policies ➡️](https://learn.lovelace.academy/native-tokens/minting-policies/)
+Continue on to [Minting Policies ➡️](https://learn.lovelace.academy/tokens/minting-policies/)
