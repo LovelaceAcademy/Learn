@@ -1435,11 +1435,15 @@
               <h1>Minting Policies</h1>
             </div>
 
-            <p>Minting is the action in which units of a custom token can be <strong>created</strong> or <strong>destroyed</strong> based on validation rules defined in a monetary <strong>policy</strong>. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint custom tokens grouped under a policy identifier.</p>
+            <p>Minting is the action in which units of a custom token can be <strong>created</strong> or <strong>destroyed</strong> based on validation rules defined in a monetary <strong>policy</strong>. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint any number of custom tokens grouped under a <code class="language-plaintext highlighter-rouge">policyID</code> policy identifier and a specified <code class="language-plaintext highlighter-rouge">asset name</code>.</p>
 
-<p>These <code class="language-plaintext highlighter-rouge">policyID</code> policy identifiers paired with an <code class="language-plaintext highlighter-rouge">asset name</code> and details from the official <a href="https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings">Token Registry</a> provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. This means that all custom tokens can be traced back to a specific policy and further, the same <code class="language-plaintext highlighter-rouge">policyID</code> can also be used to create other assets by using different asset names when minting.</p>
+<h2 id="fungible-vs-non-fungible">Fungible vs Non-Fungible</h2>
 
-<h2 id="multisig-aka-native-script-policies">Multisig aka Native Script Policies</h2>
+<p>The combination of <code class="language-plaintext highlighter-rouge">policyID</code>, <code class="language-plaintext highlighter-rouge">asset name</code> and details from the official <a href="https://github.com/cardano-foundation/cardano-token-registry">Token Registry</a> provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible.</p>
+
+<p>Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain. This property of uniqueness can be defined using Multisig or Plutus Script policies.</p>
+
+<h2 id="multisig-policies">Multisig Policies</h2>
 <p>Cardano gives everyone the ability to define <a href="https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md">Multisignature (multisig)</a> validation scripts, which grants the ability to spend UTxOs at the corresponding multisig address <strong>only</strong> if the required signatures from one or more keys are provided, and optionally before (or after) a specified time has elapsed.</p>
 
 <p>Multisig scripts are simply JSON files such as the following example <code class="language-plaintext highlighter-rouge">atleast-2-before-41217687.script</code>.</p>
@@ -1483,14 +1487,15 @@
   <span class="nt">--script-file</span> atleast-2-before-41217687-multisig.script
 </code></pre></div></div>
 
-<p><em>More to come!</em></p>
+<p><em>More content coming soon…</em></p>
 
 <h2 id="plutus-script-policies">Plutus Script Policies</h2>
-<p>Coming soon</p>
+<p>Multisig policies allow us to define basic validation rules based on a set of keys and a given point in time, but with Plutus Script based policies you can define a much more comprehensive set of minting rules.</p>
 
-<h2 id="fungible-vs-non-fungible">Fungible vs Non-Fungible</h2>
-<p>Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.
-This property of uniqueness can be defined in a Multisig policy.</p>
+<p><em>More content coming soon…</em></p>
+
+<h2 id="mint-your-own-token">Mint your own Token</h2>
+<p>Learn how to mint your first fungible token at <a href="https://learn.lovelace.academy/tokens/fungible-token-minting-guide/">Fungible Token Minting Guide ➡️</a></p>
 
 
 
