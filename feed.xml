@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-16T15:58:37+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-16T16:17:15+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.&lt;/p&gt;
 
 &lt;h2 id=&quot;define-multisig-policy&quot;&gt;Define Multisig Policy&lt;/h2&gt;
 &lt;p&gt;The property of uniqueness can be defined in a Multisig policy by time locking constraint.&lt;/p&gt;
@@ -166,12 +166,12 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 
 &lt;h2 id=&quot;fungible-vs-non-fungible&quot;&gt;Fungible vs Non-Fungible&lt;/h2&gt;
 
-&lt;p&gt;The combination of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt; and details from the official &lt;a href=&quot;https://github.com/cardano-foundation/cardano-token-registry&quot;&gt;Token Registry&lt;/a&gt; provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible.&lt;/p&gt;
-
-&lt;p&gt;Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain. This property of uniqueness can be defined using Multisig or Plutus Script policies.&lt;/p&gt;
+&lt;p&gt;The combination of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt;, metadata from the minting Tx, and details from the official &lt;a href=&quot;https://github.com/cardano-foundation/cardano-token-registry&quot;&gt;Token Registry&lt;/a&gt; provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. The main difference is that Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain. This property of uniqueness can be defined using Multisig or Plutus Script policies to ensure that &lt;strong&gt;only one&lt;/strong&gt; token exists under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt; combination.&lt;/p&gt;
 
 &lt;h2 id=&quot;multisig-policies&quot;&gt;Multisig Policies&lt;/h2&gt;
-&lt;p&gt;Cardano gives everyone the ability to define &lt;a href=&quot;https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md&quot;&gt;Multisignature (multisig)&lt;/a&gt; validation scripts, which grants the ability to spend UTxOs at the corresponding multisig address &lt;strong&gt;only&lt;/strong&gt; if the required signatures from one or more keys are provided, and optionally before (or after) a specified time has elapsed.&lt;/p&gt;
+
+&lt;h3 id=&quot;introduction-to-multisig&quot;&gt;Introduction to Multisig&lt;/h3&gt;
+&lt;p&gt;Cardano gives everyone the ability to define &lt;a href=&quot;https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md&quot;&gt;Multisignature (multisig)&lt;/a&gt; validation scripts, which defines that an action can be permitted &lt;strong&gt;only&lt;/strong&gt; if the required signatures from one or more keys are provided, and optionally before (or after) a specified time has elapsed. These multisig scripts govern which keys and when values can be spent or claimed from payment addresses and stake/reward addresses respectively.&lt;/p&gt;
 
 &lt;p&gt;Multisig scripts are simply JSON files such as the following example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;atleast-2-before-41217687.script&lt;/code&gt;.&lt;/p&gt;
 
@@ -199,7 +199,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The multisig script file above can be interpreted as requiring &lt;strong&gt;at least two&lt;/strong&gt; signatures out of the three keys, with their hashes defined under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scripts&lt;/code&gt; array. You can then derive the corresponding multisig address using&lt;/p&gt;
+&lt;p&gt;The multisig script file above can be interpreted as requiring &lt;strong&gt;at least two&lt;/strong&gt; signatures out of the three keys, with their hashes defined under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scripts&lt;/code&gt; array. You can then derive the corresponding multisig payment address using:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli shelley address build-script
   &lt;span class=&quot;nt&quot;&gt;--script-file&lt;/span&gt; atleast-2-before-41217687-multisig.script &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -207,14 +207,12 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
   &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; atleast-2-before-41217687-multisig.addr &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;generating-a-minting-policy&quot;&gt;Generating a Minting Policy&lt;/h3&gt;
+&lt;h3 id=&quot;generating-a-multisig-minting-policy&quot;&gt;Generating a Multisig Minting Policy&lt;/h3&gt;
 &lt;p&gt;These same validation scripts can also be used to define a minting policy for a native asset. From the script file you can generate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyId&lt;/code&gt; using&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli transaction policyid &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;--script-file&lt;/span&gt; atleast-2-before-41217687-multisig.script
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;More content coming soon…&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;plutus-script-policies&quot;&gt;Plutus Script Policies&lt;/h2&gt;
 &lt;p&gt;Multisig policies allow us to define basic validation rules based on a set of keys and a given point in time, but with Plutus Script based policies you can define a much more comprehensive set of minting rules.&lt;/p&gt;
