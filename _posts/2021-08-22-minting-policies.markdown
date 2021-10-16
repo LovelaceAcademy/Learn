@@ -11,12 +11,12 @@ Minting is the action in which units of a custom token can be **created** or **d
 
 ## Fungible vs Non-Fungible 
 
-The combination of `policyID`, `asset name` and details from the official [Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. 
-
-Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain. This property of uniqueness can be defined using Multisig or Plutus Script policies.
+The combination of `policyID`, `asset name`, metadata from the minting Tx, and details from the official [Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides all the additional information for a custom token regardless of whether it is Fungible or Non-Fungible. The main difference is that Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain. This property of uniqueness can be defined using Multisig or Plutus Script policies to ensure that **only one** token exists under the `policyID` and `asset name` combination. 
 
 ## Multisig Policies
-Cardano gives everyone the ability to define [Multisignature (multisig)](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md) validation scripts, which grants the ability to spend UTxOs at the corresponding multisig address **only** if the required signatures from one or more keys are provided, and optionally before (or after) a specified time has elapsed. 
+
+### Introduction to Multisig
+Cardano gives everyone the ability to define [Multisignature (multisig)](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md) validation scripts, which defines that an action can be permitted **only** if the required signatures from one or more keys are provided, and optionally before (or after) a specified time has elapsed. These multisig scripts govern which keys and when values can be spent or claimed from payment addresses and stake/reward addresses respectively. 
 
 Multisig scripts are simply JSON files such as the following example `atleast-2-before-41217687.script`.
 
@@ -45,7 +45,7 @@ Multisig scripts are simply JSON files such as the following example `atleast-2-
 }
 ```
 
-The multisig script file above can be interpreted as requiring **at least two** signatures out of the three keys, with their hashes defined under the `scripts` array. You can then derive the corresponding multisig address using
+The multisig script file above can be interpreted as requiring **at least two** signatures out of the three keys, with their hashes defined under the `scripts` array. You can then derive the corresponding multisig payment address using:
 
 ```bash
 cardano-cli shelley address build-script
@@ -54,15 +54,13 @@ cardano-cli shelley address build-script
   --out-file atleast-2-before-41217687-multisig.addr \
 ```
 
-### Generating a Minting Policy
+### Generating a Multisig Minting Policy
 These same validation scripts can also be used to define a minting policy for a native asset. From the script file you can generate the `policyId` using
 
 ```bash
 cardano-cli transaction policyid \
   --script-file atleast-2-before-41217687-multisig.script
 ```
-
-_More content coming soon..._
 
 ## Plutus Script Policies
 Multisig policies allow us to define basic validation rules based on a set of keys and a given point in time, but with Plutus Script based policies you can define a much more comprehensive set of minting rules. 
