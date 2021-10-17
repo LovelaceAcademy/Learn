@@ -1435,7 +1435,7 @@
               <h1>Fungible Token Minting Guide</h1>
             </div>
 
-            <p>We will break it down in four basic steps:</p>
+            <p>We will break it down how to mint fungible tokens in four basic steps:</p>
 
 <ol class="ordered-list">
   <li>Create Policy Key</li>
@@ -1476,7 +1476,7 @@
 <p>This policy is a simple policy that requires a single signature from the <code class="language-plaintext highlighter-rouge">ft-policy.skey</code> private signing key.</p>
 
 <h2 id="create-source-and-destination-wallet-keys-and-addresses">Create Source and Destination Wallet Keys and Addresses</h2>
-<p>We will then create another set of keys for two wallets. One source wallet to mint the fungible tokens, and one destination wallet to receive the minted tokens. Although you can use the same policy key to generate an address to receive ADA and mint the custom tokens, it is recommended to use a different set of keys based on their purpose.</p>
+<p>We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to mint the fungible tokens, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, it is recommended to use a different set of keys based on their purpose.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="se">\</span>
     <span class="nt">--verification-key-file</span> source.vkey <span class="se">\</span>
@@ -1496,8 +1496,8 @@ cardano-cli address build <span class="se">\</span>
     <span class="nt">--out-file</span> dest.addr <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063
 
-<span class="nv">sourceaddr</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat </span>source.addr<span class="si">)</span>
-<span class="nv">destaddr</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat </span>dest.addr<span class="si">)</span>
+<span class="nv">sourceaddr</span><span class="o">=</span><span class="si">$(</span>&lt; source.addr<span class="si">)</span>
+<span class="nv">destaddr</span><span class="o">=</span><span class="si">$(</span>&lt; dest.addr<span class="si">)</span>
 </code></pre></div></div>
 
 <h3 id="load-ada-from-testnet-faucet">Load ADA from Testnet Faucet</h3>
@@ -1505,7 +1505,7 @@ cardano-cli address build <span class="se">\</span>
 
 <p>You can then wait a short while and query that the tADA has reached your address by running:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query utxo <span class="se">\</span>
-    <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>source.addr<span class="si">)</span> <span class="se">\</span>
+    <span class="nt">--address</span> <span class="si">$(</span>&lt; source.addr<span class="si">)</span> <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063   
 </code></pre></div></div>
 
