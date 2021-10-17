@@ -6,7 +6,7 @@ categories:
 - Tokens
 order: 3
 ---
-We will break it down in four basic steps:
+We will break it down how to mint fungible tokens in four basic steps:
 
 1. Create Policy Key
 2. Define Multisig Policy
@@ -48,7 +48,7 @@ policyid=$(cardano-cli transaction policyid --script-file ft-policy.script)
 This policy is a simple policy that requires a single signature from the `ft-policy.skey` private signing key.
 
 ## Create Source and Destination Wallet Keys and Addresses
-We will then create another set of keys for two wallets. One source wallet to mint the fungible tokens, and one destination wallet to receive the minted tokens. Although you can use the same policy key to generate an address to receive ADA and mint the custom tokens, it is recommended to use a different set of keys based on their purpose.
+We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to mint the fungible tokens, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, it is recommended to use a different set of keys based on their purpose.
 
 ```bash
 cardano-cli address key-gen \
@@ -69,8 +69,8 @@ cardano-cli address build \
     --out-file dest.addr \
     --testnet-magic 1097911063
 
-sourceaddr=$(cat source.addr)
-destaddr=$(cat dest.addr)
+sourceaddr=$(< source.addr)
+destaddr=$(< dest.addr)
 ```
 
 ### Load ADA from Testnet Faucet
@@ -79,7 +79,7 @@ Use the [testnet faucet](https://testnets.cardano.org/en/testnets/cardano/tools/
 You can then wait a short while and query that the tADA has reached your address by running:
 ```bash
 cardano-cli query utxo \
-    --address $(cat source.addr) \
+    --address $(< source.addr) \
     --testnet-magic 1097911063   
 ```
 
