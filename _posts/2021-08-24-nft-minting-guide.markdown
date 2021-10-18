@@ -7,8 +7,8 @@ categories:
 order: 4
 ---
 
-Using almost the same approach as our [Fungible Token Minting Guide
-](https://learn.lovelace.academy/tokens/fungible-token-minting-guide/), we can mint an NFT in four basic steps:
+Using a similar approach as our [Fungible Token Minting Guide
+](https://learn.lovelace.academy/tokens/fungible-token-minting-guide/), we can mint Cardano NFTs (aka CNFTs) with four basic steps:
 
 1. Create Token Minting Policy
 2. Create Wallet Keys and Addresses
@@ -17,7 +17,9 @@ Using almost the same approach as our [Fungible Token Minting Guide
 
 📝 _The main differences involve creating a stricter minting policy, uploading our image to IPFS, and attaching NFT-specific metadata_
 
-## Create Policy Key 
+## Create Token Minting Policy
+
+### Create Policy Key 
 A policy key can be generated using the same approach as generating a payment address key as described in our page [Getting Started - Wallet Basics: Keys and Addresses](https://learn.lovelace.academy/getting-started/keys-and-addresses/).
 ```bash
 cardano-cli address key-gen \
@@ -29,7 +31,7 @@ Capture the hash of the key in the shell variable `POLICYHASH` by running
 POLICYHASH=$(cardano-cli address key-hash --payment-verification-key-file nft-policy.vkey)
 ```
 
-## Define Multisig Policy
+### Define Multisig Policy
 As mentioned [earlier](https://learn.lovelace.academy/tokens/minting-policies/#fungible-vs-non-fungible), NFTs must guarantee that only one token exists for a `policyID` and `asset name` combination. This can be defined in a Multisig policy with a [time locking script](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md#simple-script) to ensure tokens can only be minted **before** a certain time. This applies across the entire policy so in other words, that `policyID` cannot be used to mint any tokens after that time regardless of the `asset name`. 
 
 📝 _Time is denoted in slots since the genesis and a slot is a second as configured for the current protocol version._
@@ -80,7 +82,8 @@ You can then capture the policyId of the NFT's multisig policy in the shell vari
 ```bash
 POLICYID=$(cardano-cli transaction policyid --script-file nft-policy.script)
 ```
-## Create Source and Destination Wallet Keys and Addresses
+
+## Create Wallet Keys and Addresses
 We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose. 
 
 📝 _In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned [earlier](https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys), mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity_
@@ -124,8 +127,7 @@ Blockchains are not designed nor optimised to store large file blobs so a separa
 
 📝 _NFTs can also be created using various ingenious methods that can fit within the 16KB Tx metadata payload. Examples of this are [Stellar Hood](https://stellarhood.com/), [CardanoTrees](https://cardanotrees.com/) and upcoming NFTs from [Veritree](https://ito.veritree.com)_
 
-
-[IPFS](https://ipfs.io/) is the currently accepted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like [Pinata](https://app.pinata.cloud/) and note the `CID` of your uploaded content. This `CID` will be used in the `image` field of your Tx metadata to point your NFT to an IPFS URL. In this example we will use the [Lovelace Academy logo](https://learn.lovelace.academy/img/LALOGO.png) as the image for our NFT.
+[IPFS](https://ipfs.io/) is the currently accepted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like [Pinata](https://app.pinata.cloud/) and note the `CID` of your uploaded content. This `CID` will be used in the `image` field of your Tx metadata to point your CNFT to an IPFS URL. In this example we will use the [Lovelace Academy logo](https://learn.lovelace.academy/img/LALOGO.png) as the image for our CNFT.
 
 ![](/img/nft-pinata.png)
 
@@ -138,16 +140,9 @@ UTXO0H=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 1p)
 UTXO0I=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 2p)
 UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)    
 ```
-### Get the Latest Protocol Parameters
-The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file `protocol.json` with the following command.
-
-```bash
-cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
-```
 
 ### Build NFT Metadata
-
-Cardano has an [NFT Metadata standard](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0025/CIP-0025.md) which we will use to define the correct metadata for our NFT so that wallets, explorers and other tools can interpret and display it correctly. We will create an `nft-metadata.json` file with the following content and replace `$POLICYID` with the correct policyID from the first step and `$IPFS_CID` with IPFS CID from the third step. Also note to specify the correct `mediaType` if you are using an image format other than image/png.
+Cardano has an [NFT Metadata standard](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0025/CIP-0025.md) which we will use to define the correct metadata for our CNFT so that wallets, explorers and other tools can interpret and display it correctly. We will create an `nft-metadata.json` file with the following content and replace `$POLICYID` with the correct policyID from the first step and `$IPFS_CID` with IPFS CID from the third step. Also note to specify the correct `mediaType` if you are using an image format other than image/png.
 
 ```
 {
@@ -163,6 +158,13 @@ Cardano has an [NFT Metadata standard](https://github.com/cardano-foundation/CIP
             }
         }
 }
+```
+
+### Get the Latest Protocol Parameters
+The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file `protocol.json` with the following command.
+
+```bash
+cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
 ```
 
 ### Build draft Tx to Calculate Fee
@@ -185,9 +187,9 @@ cardano-cli transaction build-raw \
 FEE=$(cardano-cli transaction calculate-min-fee --tx-body-file fee_draft.txraw --tx-in-count 1 --tx-out-count 2 --witness-count 2 --testnet-magic 1097911063 --protocol-params-file protocol.json | egrep -o '[0-9]+')
 ```
 Following a similar approach in [Transactions: UTxO and Metadata
-](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/), we build a draft Tx with the same arguments to calculate the Tx fee captured in the `FEE` shell variable. This time we are specifying additional arguments in the form of `--mint` and `--minting-script-file`. Also note the `--witness-count` of `2` when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.
+](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/), we build a draft Tx with the same arguments to calculate the Tx fee captured in the `FEE` shell variable. This time we are specifying additional arguments in the form of `--mint` and `--minting-script-file`. Also note the `--witness-count` of `2` when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the NFT minting policy key.
 
-The most difficult part is building the raw Tx with the correct `--tx-out` and `--mint` parameters. The format for `--tx-out` is `{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}`. The format for `--mint` is the same as `--tx-out` without the `{address}+{ada_amount}` in the beginning.
+As with minting fungible tokens, the most difficult part is building the raw Tx with the correct `--tx-out` and `--mint` parameters. The format for `--tx-out` is `{address}+{lovelace_quantity}+1 {policyid}.{asset_name}` for NFTs to ensure a quantity of 1. The format for `--mint` is the same as `--tx-out` without the `{address}+{lovelace_quantity}` in the beginning.
 
 ### Build Raw Minting Tx 
 Now we can build out the actual Tx with the correct fee and using that to calculate the `TXOUT_CHANGE` to go back to the source address. As described in the previous article [Cardano’s Native Assets
@@ -232,9 +234,13 @@ cardano-cli transaction txid --tx-file mint.txsigned
 ```
 This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search.
 
-## Token Builders
+## Explore Token Builders
+Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.
 - [Tokhun](https://tokhun.io/account/assets/mint-nft)
 - [NFT Maker](https://www.nft-maker.io/)
 - [Cardano Token and NFT Builder](https://cardano-native-token.com/)
 - [EasyCNFT](https://easycnft.art/en)
 - [NFT Machine](https://nft-machine.com/)
+
+## Supplementary Material
+- [Cardano Developers Minting NFTs](https://developers.cardano.org/docs/native-tokens/minting-nfts/)
