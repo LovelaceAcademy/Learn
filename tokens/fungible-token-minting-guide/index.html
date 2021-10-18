@@ -1435,13 +1435,13 @@
               <h1>Fungible Token Minting Guide</h1>
             </div>
 
-            <p>We will break it down how to mint fungible tokens in four basic steps:</p>
+            <p>We will break down how to mint fungible tokens in four basic steps:</p>
 
 <ol class="ordered-list">
   <li>Create Policy Key</li>
   <li>Define Multisig Policy</li>
   <li>Create Wallet Keys and Addresses</li>
-  <li>Submit Minting Transaction</li>
+  <li>Build and Submit Minting Tx</li>
 </ol>
 
 <h2 id="create-policy-key">Create Policy Key</h2>
@@ -1450,18 +1450,17 @@
     <span class="nt">--verification-key-file</span> ft-policy.vkey <span class="se">\</span>
     <span class="nt">--signing-key-file</span> ft-policy.skey
 </code></pre></div></div>
-<p>Note the hash of the key by running</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">policyhash</span><span class="o">=</span><span class="si">$(</span>cardano-cli address key-hash <span class="nt">--payment-verification-key-file</span> ft-policy.vkey<span class="si">)</span>
+<p>Capture the hash of the key in the shell variable <code class="language-plaintext highlighter-rouge">POLICYHASH</code> by running</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POLICYHASH</span><span class="o">=</span><span class="si">$(</span>cardano-cli address key-hash <span class="nt">--payment-verification-key-file</span> ft-policy.vkey<span class="si">)</span>
 </code></pre></div></div>
 
 <h2 id="define-multisig-policy">Define Multisig Policy</h2>
 <p>Create a ft-policy.script file with the right script using</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>ft-policy.script 
 <span class="nb">echo</span> <span class="s2">"{"</span> <span class="o">&gt;&gt;</span> ft-policy.script 
-<span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="s2">keyHash</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$policyhash</span><span class="se">\"</span><span class="s2">,"</span> <span class="o">&gt;&gt;</span> ft-policy.script
+<span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="s2">keyHash</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$POLICYHASH</span><span class="se">\"</span><span class="s2">,"</span> <span class="o">&gt;&gt;</span> ft-policy.script
 <span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">sig</span><span class="se">\"</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ft-policy.script
 <span class="nb">echo</span> <span class="s2">"}"</span> <span class="o">&gt;&gt;</span> ft-policy.script
-<span class="nv">policyid</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction policyid <span class="nt">--script-file</span> ft-policy.script<span class="si">)</span>
 </code></pre></div></div>
 <details>
     <summary>ft-policy.script</summary>
@@ -1473,10 +1472,13 @@
 </pre>
 </details>
 
-<p>This policy is a simple policy that requires a single signature from the <code class="language-plaintext highlighter-rouge">ft-policy.skey</code> private signing key.</p>
+<p>This policy is a simple policy that requires a single signature from the <code class="language-plaintext highlighter-rouge">ft-policy.skey</code> private signing key. You can then capture the policyId of the multisig policy in the shell variable <code class="language-plaintext highlighter-rouge">POLICYID</code> by running:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POLICYID</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction policyid <span class="nt">--script-file</span> ft-policy.script<span class="si">)</span>
+</code></pre></div></div>
 
 <h2 id="create-source-and-destination-wallet-keys-and-addresses">Create Source and Destination Wallet Keys and Addresses</h2>
-<p>We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to mint the fungible tokens, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, it is recommended to use a different set of keys based on their purpose.</p>
+<p>We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="se">\</span>
     <span class="nt">--verification-key-file</span> source.vkey <span class="se">\</span>
@@ -1496,66 +1498,76 @@ cardano-cli address build <span class="se">\</span>
     <span class="nt">--out-file</span> dest.addr <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063
 
-<span class="nv">sourceaddr</span><span class="o">=</span><span class="si">$(</span>&lt; source.addr<span class="si">)</span>
-<span class="nv">destaddr</span><span class="o">=</span><span class="si">$(</span>&lt; dest.addr<span class="si">)</span>
+<span class="nv">SOURCEADDR</span><span class="o">=</span><span class="si">$(</span>&lt; source.addr<span class="si">)</span>
+<span class="nv">DESTADDR</span><span class="o">=</span><span class="si">$(</span>&lt; dest.addr<span class="si">)</span>
 </code></pre></div></div>
+<p>📝 <em>Note the final two lines where the addresses are captured in shell variables <code class="language-plaintext highlighter-rouge">SOURCEADDR</code> and <code class="language-plaintext highlighter-rouge">DESTADDR</code></em></p>
 
 <h3 id="load-ada-from-testnet-faucet">Load ADA from Testnet Faucet</h3>
-<p>Use the <a href="https://testnets.cardano.org/en/testnets/cardano/tools/faucet/">testnet faucet</a> to send ADA to the generated source wallet address.</p>
+<p>Use the <a href="https://testnets.cardano.org/en/testnets/cardano/tools/faucet/">testnet faucet</a> to send ADA to the generated source wallet address <code class="language-plaintext highlighter-rouge">$SOURCEADDR</code>.</p>
 
 <p>You can then wait a short while and query that the tADA has reached your address by running:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query utxo <span class="se">\</span>
-    <span class="nt">--address</span> <span class="si">$(</span>&lt; source.addr<span class="si">)</span> <span class="se">\</span>
+    <span class="nt">--address</span> <span class="nv">$SOURCEADDR</span> <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063   
 </code></pre></div></div>
 
 <h2 id="minting-transaction">Minting Transaction</h2>
 <p>By querying the source address that received the 1000 tADA from the faucet, load the relevant UTxO details (hash, index and value) into shell variables.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">UTXO0</span><span class="o">=</span><span class="si">$(</span>cardano-cli query utxo <span class="nt">--address</span> <span class="nv">$sourceaddr</span> <span class="nt">--testnet-magic</span> 1097911063 | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">UTXO0</span><span class="o">=</span><span class="si">$(</span>cardano-cli query utxo <span class="nt">--address</span> <span class="nv">$SOURCEADDR</span> <span class="nt">--testnet-magic</span> 1097911063 | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span>
 <span class="nv">UTXO0H</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 1p<span class="si">)</span>
 <span class="nv">UTXO0I</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 2p<span class="si">)</span>
 <span class="nv">UTXO0V</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span>    
 </code></pre></div></div>
 <h3 id="get-the-latest-protocol-parameters">Get the Latest Protocol Parameters</h3>
+<p>The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file <code class="language-plaintext highlighter-rouge">protocol.json</code> with the following command.</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> protocol.json 
 </code></pre></div></div>
 
 <h3 id="build-draft-tx-to-calculate-fee">Build draft Tx to Calculate Fee</h3>
-<p>In this example we are minting two custom tokens using the same <code class="language-plaintext highlighter-rouge">policyid</code>, 1000 <code class="language-plaintext highlighter-rouge">learn</code> tokens and 1 <code class="language-plaintext highlighter-rouge">la25</code> token.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">learnassetname</span><span class="o">=</span>learn
-<span class="nv">learnqty</span><span class="o">=</span>1000
-<span class="nv">discount25assetname</span><span class="o">=</span>la25
-<span class="nv">discount25qty</span><span class="o">=</span>1
-<span class="nv">txoutchange</span><span class="o">=</span>0
+<p>In this example we are minting two custom tokens under the same <code class="language-plaintext highlighter-rouge">PolicyID</code> but with a different <code class="language-plaintext highlighter-rouge">asset name</code>. We initialise the shell variables at the top to specify 1000 <code class="language-plaintext highlighter-rouge">LEARN</code> tokens and 1 <code class="language-plaintext highlighter-rouge">LA25</code> token.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LEARN_ASSETNAME</span><span class="o">=</span>LEARN
+<span class="nv">LEARN_QTY</span><span class="o">=</span>1000
+<span class="nv">DISCOUNT25_ASSETNAME</span><span class="o">=</span>LA25
+<span class="nv">DISCOUNT25_QTY</span><span class="o">=</span>1
+<span class="nv">TXOUT_CHANGE</span><span class="o">=</span>0
 
 cardano-cli transaction build-raw <span class="se">\</span>
     <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
-    <span class="nt">--tx-out</span> <span class="nv">$destaddr</span>+<span class="nv">$UTXO0V</span>+<span class="s2">"</span><span class="nv">$learnqty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$learnassetname</span><span class="s2"> +</span><span class="nv">$discount25qty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$discount25assetname</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="nt">--tx-out</span> <span class="nv">$sourceaddr</span>+<span class="nv">$txoutchange</span> <span class="se">\</span>
-    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$learnqty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$learnassetname</span><span class="s2"> + </span><span class="nv">$discount25qty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$discount25assetname</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="nv">$DESTADDR</span>+<span class="nv">$UTXO0V</span>+<span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> +</span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="nv">$SOURCEADDR</span>+<span class="nv">$TXOUT_CHANGE</span> <span class="se">\</span>
+    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> + </span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--minting-script-file</span> ft-policy.script <span class="se">\</span>
     <span class="nt">--fee</span> 0 <span class="se">\</span>
     <span class="nt">--out-file</span> fee_draft.txraw
 
-<span class="nv">fee</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction calculate-min-fee <span class="nt">--tx-body-file</span> fee_draft.txraw <span class="nt">--tx-in-count</span> 1 <span class="nt">--tx-out-count</span> 2 <span class="nt">--witness-count</span> 2 <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--protocol-params-file</span> protocol.json | egrep <span class="nt">-o</span> <span class="s1">'[0-9]+'</span><span class="si">)</span>
+<span class="nv">FEE</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction calculate-min-fee <span class="nt">--tx-body-file</span> fee_draft.txraw <span class="nt">--tx-in-count</span> 1 <span class="nt">--tx-out-count</span> 2 <span class="nt">--witness-count</span> 2 <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--protocol-params-file</span> protocol.json | egrep <span class="nt">-o</span> <span class="s1">'[0-9]+'</span><span class="si">)</span>
 </code></pre></div></div>
-<p>The trickiest part is building the Tx with the correct <code class="language-plaintext highlighter-rouge">--tx-out</code> and <code class="language-plaintext highlighter-rouge">--mint</code> parameters. The format for <code class="language-plaintext highlighter-rouge">--tx-out</code> is <code class="language-plaintext highlighter-rouge">{address}+{ada_amount}+{custom_token_quantity} {policyid}.{asset_name}</code> with additional custom tokens concatenated afterwards. The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">--tx-out</code> without the <code class="language-plaintext highlighter-rouge">{address}+{ada_amount}</code>.</p>
+<p>Following a similar approach in <a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/">Transactions: UTxO and Metadata
+</a>, we build a draft Tx with the same arguments to calculate the Tx fee captured in the <code class="language-plaintext highlighter-rouge">FEE</code> shell variable. This time we are specifying additional arguments in the form of <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--minting-script-file</code>. Also note the <code class="language-plaintext highlighter-rouge">--witness-count</code> of <code class="language-plaintext highlighter-rouge">2</code> when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.</p>
+
+<p>The most difficult part is building the raw Tx with the correct <code class="language-plaintext highlighter-rouge">--tx-out</code> and <code class="language-plaintext highlighter-rouge">--mint</code> parameters. The format for <code class="language-plaintext highlighter-rouge">--tx-out</code> is <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}</code> with additional custom tokens concatenated afterwards. The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">--tx-out</code> without the <code class="language-plaintext highlighter-rouge">{address}+{ada_amount}</code> in the beginning.</p>
 
 <h3 id="build-raw-minting-tx">Build Raw Minting Tx</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">mindestinationlovelace</span><span class="o">=</span>1800000
-<span class="nv">txoutchange</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - <span class="nv">$fee</span> - <span class="nv">$mindestinationlovelace</span><span class="si">)</span>
+<p>Now we can build out the actual Tx with the correct fee and using that to calculate the <code class="language-plaintext highlighter-rouge">TXOUT_CHANGE</code> to go back to the source address. As described in the previous article <a href="https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets">Cardano’s Native Assets
+</a> we also need to specify a minimum amount of lovelace to send with the custom tokens to the destination address.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">MIN_LOVELACE</span><span class="o">=</span>1800000
+<span class="nv">TXOUT_CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - <span class="nv">$fee</span> - <span class="nv">$MIN_LOVELACE</span><span class="si">)</span>
 
 cardano-cli transaction build-raw <span class="se">\</span>
     <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
-    <span class="nt">--tx-out</span> <span class="nv">$destaddr</span>+<span class="nv">$mindestinationlovelace</span>+<span class="s2">"</span><span class="nv">$learnqty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$learnassetname</span><span class="s2"> +</span><span class="nv">$discount25qty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$discount25assetname</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="nt">--tx-out</span> <span class="nv">$sourceaddr</span>+<span class="nv">$txoutchange</span> <span class="se">\</span>
-    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$learnqty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$learnassetname</span><span class="s2"> + </span><span class="nv">$discount25qty</span><span class="s2"> </span><span class="nv">$policyid</span><span class="s2">.</span><span class="nv">$discount25assetname</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="nv">$DESTADDR</span>+<span class="nv">$MIN_LOVELACE</span>+<span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> +</span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="nv">$SOURCEADDR</span>+<span class="nv">$TXOUT_CHANGE</span> <span class="se">\</span>
+    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> + </span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--minting-script-file</span> ft-policy.script <span class="se">\</span>
-    <span class="nt">--fee</span> <span class="nv">$fee</span> <span class="se">\</span>
+    <span class="nt">--fee</span> <span class="nv">$FEE</span> <span class="se">\</span>
     <span class="nt">--out-file</span> mint.txraw
 </code></pre></div></div>
 
 <h3 id="sign-raw-minting-tx">Sign Raw Minting Tx</h3>
+<p>Note that we are signing the Tx with both <code class="language-plaintext highlighter-rouge">ft-policy.skey</code> and <code class="language-plaintext highlighter-rouge">source.skey</code> to provide two witnesses to the Tx.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction sign  <span class="se">\</span>
     <span class="nt">--signing-key-file</span> ft-policy.skey  <span class="se">\</span>
     <span class="nt">--signing-key-file</span> source.skey  <span class="se">\</span>
@@ -1568,7 +1580,14 @@ cardano-cli transaction build-raw <span class="se">\</span>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction submit --tx-file mint.txsigned --testnet-magic 1097911063
 </code></pre></div></div>
 
+<h3 id="get-transaction-id">Get Transaction ID</h3>
+<p>You can also get the transaction ID (aka Tx Hash) of your Tx with the command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction txid <span class="nt">--tx-file</span> mint.txsigned
+</code></pre></div></div>
+<p>This can be used to verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions">ADATools</a> through a direct search.</p>
+
 <h2 id="token-builders">Token Builders</h2>
+<p>Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.</p>
 <ul>
   <li><a href="https://tokhun.io/account/assets/mint-nft">Tokhun</a></li>
   <li><a href="https://www.nft-maker.io/">NFT Maker</a></li>
