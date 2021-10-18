@@ -125,9 +125,9 @@ cardano-cli query utxo \
 ## Upload Image to IPFS
 Blockchains are not designed nor optimised to store large file blobs so a separate decentralised file storage and content delivery solution is usually required for NFT content that exceed Cardano's 16KB Tx metadata limit. 
 
-📝 _NFTs can also be created using various ingenious methods that can fit within the 16KB Tx metadata payload. Examples of this are [Stellar Hood](https://stellarhood.com/), [CardanoTrees](https://cardanotrees.com/) and upcoming NFTs from [Veritree](https://ito.veritree.com)_
+📝 _NFTs can also be fully on-chain using various ingenious methods that can fit within the 16KB Tx metadata payload. Examples of this are [Stellar Hood](https://stellarhood.com/), [CardanoTrees](https://cardanotrees.com/) and upcoming NFTs from [Veritree](https://ito.veritree.com)_
 
-[IPFS](https://ipfs.io/) is the currently accepted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like [Pinata](https://app.pinata.cloud/) and note the `CID` of your uploaded content. This `CID` will be used in the `image` field of your Tx metadata to point your CNFT to an IPFS URL. In this example we will use the [Lovelace Academy logo](https://learn.lovelace.academy/img/LALOGO.png) as the image for our CNFT.
+For content over 16KB, [IPFS](https://ipfs.io/) is the currently adopted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like [Pinata](https://app.pinata.cloud/) and note the `CID` of your uploaded content. This `CID` will be used in the `image` field of your Tx metadata to point your CNFT to an IPFS URL. In this example we will use the [Lovelace Academy logo](https://learn.lovelace.academy/img/LALOGO.png) as the image for our CNFT.
 
 ![](/img/nft-pinata.png)
 
