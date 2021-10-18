@@ -1,10 +1,213 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-18T08:45:48+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-18T18:27:37+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Using almost the same approach as our &lt;a href=&quot;https://learn.lovelace.academy/tokens/fungible-token-minting-guide/&quot;&gt;Fungible Token Minting Guide
+&lt;/a&gt;, we can mint an NFT in four basic steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create Token Minting Policy&lt;/li&gt;
+  &lt;li&gt;Create Wallet Keys and Addresses&lt;/li&gt;
+  &lt;li&gt;Upload Image to IPFS&lt;/li&gt;
+  &lt;li&gt;Build and Submit Minting Tx with Metadata&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;📝 &lt;em&gt;The main differences involve creating a stricter minting policy, uploading our image to IPFS, and attaching NFT-specific metadata&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;create-policy-key&quot;&gt;Create Policy Key&lt;/h2&gt;
+&lt;p&gt;A policy key can be generated using the same approach as generating a payment address key as described in our page &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/&quot;&gt;Getting Started - Wallet Basics: Keys and Addresses&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli address key-gen &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--verification-key-file&lt;/span&gt; nft-policy.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--signing-key-file&lt;/span&gt; nft-policy.skey
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Capture the hash of the key in the shell variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POLICYHASH&lt;/code&gt; by running&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;POLICYHASH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli address key-hash &lt;span class=&quot;nt&quot;&gt;--payment-verification-key-file&lt;/span&gt; nft-policy.vkey&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;define-multisig-policy&quot;&gt;Define Multisig Policy&lt;/h2&gt;
-&lt;p&gt;The property of uniqueness can be defined in a Multisig policy by time locking constraint.&lt;/p&gt;
+&lt;p&gt;As mentioned &lt;a href=&quot;https://learn.lovelace.academy/tokens/minting-policies/#fungible-vs-non-fungible&quot;&gt;earlier&lt;/a&gt;, NFTs must guarantee that only one token exists for a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt; combination. This can be defined in a Multisig policy with a &lt;a href=&quot;https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md#simple-script&quot;&gt;time locking script&lt;/a&gt; to ensure tokens can only be minted &lt;strong&gt;before&lt;/strong&gt; a certain time. This applies across the entire policy so in other words, that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt; cannot be used to mint any tokens after that time regardless of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;📝 &lt;em&gt;Time is denoted in slots since the genesis and a slot is a second as configured for the current protocol version.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a nft-policy.script file with the right script using&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;SLOTS_BEFORE_EXPIRY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;600
+&lt;span class=&quot;nv&quot;&gt;EXPIRES_AT_SLOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli query tip &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 | jq .slot&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; + &lt;span class=&quot;nv&quot;&gt;$SLOTS_BEFORE_EXPIRY&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;  &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;  &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;scripts&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;  [&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;   {&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;     &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;     &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;slot&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$EXPIRES_AT_SLOT&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;   },&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script  
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;   {&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;     &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sig&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script  
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;     &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;keyHash&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYHASH&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script  
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;   }&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;  ]&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script  
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;}&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;details&gt;
+    &lt;summary&gt;nft-policy.script&lt;/summary&gt;
+&lt;pre&gt;
+{
+  &quot;type&quot;: &quot;all&quot;,
+  &quot;scripts&quot;:
+  [
+   {
+     &quot;type&quot;: &quot;before&quot;,
+     &quot;slot&quot;: 40194014
+   },
+   {
+     &quot;type&quot;: &quot;sig&quot;,
+     &quot;keyHash&quot;: &quot;0f2a601505ecb9f008861c85293a34e2178ecd59c472619c5f895d9b&quot;
+   }
+  ]
+}
+&lt;/pre&gt;
+&lt;/details&gt;
+
+&lt;p&gt;You can then capture the policyId of the NFT’s multisig policy in the shell variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POLICYID&lt;/code&gt; by running:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;POLICYID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli transaction policyid &lt;span class=&quot;nt&quot;&gt;--script-file&lt;/span&gt; nft-policy.script&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;create-source-and-destination-wallet-keys-and-addresses&quot;&gt;Create Source and Destination Wallet Keys and Addresses&lt;/h2&gt;
+&lt;p&gt;We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.&lt;/p&gt;
+
+&lt;p&gt;📝 &lt;em&gt;In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys&quot;&gt;earlier&lt;/a&gt;, mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli address key-gen &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--verification-key-file&lt;/span&gt; source.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--signing-key-file&lt;/span&gt; source.skey
+
+cardano-cli address build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--payment-verification-key-file&lt;/span&gt; source.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; source.addr &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063
+
+cardano-cli address key-gen &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--verification-key-file&lt;/span&gt; dest.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--signing-key-file&lt;/span&gt; dest.skey
+
+cardano-cli address build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--payment-verification-key-file&lt;/span&gt; dest.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; dest.addr &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063
+
+&lt;span class=&quot;nv&quot;&gt;SOURCEADDR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&amp;lt; source.addr&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;DESTADDR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&amp;lt; dest.addr&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;📝 &lt;em&gt;Note the final two lines where the addresses are captured in shell variables &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SOURCEADDR&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DESTADDR&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;load-ada-from-testnet-faucet&quot;&gt;Load ADA from Testnet Faucet&lt;/h3&gt;
+&lt;p&gt;Use the &lt;a href=&quot;https://testnets.cardano.org/en/testnets/cardano/tools/faucet/&quot;&gt;testnet faucet&lt;/a&gt; to send ADA to the generated source wallet address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$SOURCEADDR&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can then wait a short while and query that the tADA has reached your address by running:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli query utxo &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--address&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SOURCEADDR&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;upload-image-to-ipfs&quot;&gt;Upload Image to IPFS&lt;/h2&gt;
+&lt;p&gt;Blockchains are not designed nor optimised to store large file blobs so a separate decentralised file storage and content delivery solution is usually required for NFT content that exceed Cardano’s 16KB Tx metadata limit.&lt;/p&gt;
+
+&lt;p&gt;📝 &lt;em&gt;NFTs can also be created using various ingenious methods that can fit within the 16KB Tx metadata payload. Examples of this are &lt;a href=&quot;https://stellarhood.com/&quot;&gt;Stellar Hood&lt;/a&gt;, &lt;a href=&quot;https://cardanotrees.com/&quot;&gt;CardanoTrees&lt;/a&gt; and upcoming NFTs from &lt;a href=&quot;https://ito.veritree.com&quot;&gt;Veritree&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ipfs.io/&quot;&gt;IPFS&lt;/a&gt; is the currently accepted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like &lt;a href=&quot;https://app.pinata.cloud/&quot;&gt;Pinata&lt;/a&gt; and note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CID&lt;/code&gt; of your uploaded content. This &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CID&lt;/code&gt; will be used in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image&lt;/code&gt; field of your Tx metadata to point your NFT to an IPFS URL. In this example we will use the &lt;a href=&quot;https://learn.lovelace.academy/img/LALOGO.png&quot;&gt;Lovelace Academy logo&lt;/a&gt; as the image for our NFT.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/nft-pinata.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;minting-transaction&quot;&gt;Minting Transaction&lt;/h2&gt;
-&lt;p&gt;Coming soon (please refer to &lt;a href=&quot;https://developers.cardano.org/docs/native-tokens/minting-nfts/&quot;&gt;Cardano Developers Minting NFTs documentation&lt;/a&gt; for now)&lt;/p&gt;
+&lt;p&gt;By querying the source address that received the 1000 tADA from the faucet, load the relevant UTxO details (hash, index and value) into shell variables.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;UTXO0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli query utxo &lt;span class=&quot;nt&quot;&gt;--address&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SOURCEADDR&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 3p&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;UTXO0H&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0&lt;/span&gt; | egrep &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[a-z0-9]+'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1p&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;UTXO0I&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0&lt;/span&gt; | egrep &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[a-z0-9]+'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 2p&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;UTXO0V&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0&lt;/span&gt; | egrep &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[a-z0-9]+'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 3p&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;get-the-latest-protocol-parameters&quot;&gt;Get the Latest Protocol Parameters&lt;/h3&gt;
+&lt;p&gt;The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protocol.json&lt;/code&gt; with the following command.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli query protocol-parameters &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; protocol.json 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;build-nft-metadata&quot;&gt;Build NFT Metadata&lt;/h3&gt;
+
+&lt;p&gt;Cardano has an &lt;a href=&quot;https://github.com/cardano-foundation/CIPs/blob/master/CIP-0025/CIP-0025.md&quot;&gt;NFT Metadata standard&lt;/a&gt; which we will use to define the correct metadata for our NFT so that wallets, explorers and other tools can interpret and display it correctly. We will create an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nft-metadata.json&lt;/code&gt; file with the following content and replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$POLICYID&lt;/code&gt; with the correct policyID from the first step and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$IPFS_CID&lt;/code&gt; with IPFS CID from the third step. Also note to specify the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mediaType&lt;/code&gt; if you are using an image format other than image/png.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+        &quot;721&quot;: {
+            &quot;$POLICYID&quot;: {
+              &quot;LALOGO&quot;: {
+                &quot;name&quot;: &quot;The Lovelace Academy Logo&quot;,
+                &quot;description&quot;: &quot;Our Logo for the Lovelace Academy NFT Minting Guide&quot;,
+                &quot;mediaType&quot;: &quot;image/png&quot;,
+                &quot;https&quot;: &quot;https://learn.lovelace.academy/tokens/nft-minting-guide/&quot;,
+                &quot;image&quot;: &quot;ipfs://$IPFS_CID&quot;
+              }
+            }
+        }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;build-draft-tx-to-calculate-fee&quot;&gt;Build draft Tx to Calculate Fee&lt;/h3&gt;
+&lt;p&gt;In this example we are minting one token under our NFT-specific policy with the asset name &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LALOGO&lt;/code&gt; and attaching the NFT standard metadata file.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;NFT_ASSETNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;LALOGO
+&lt;span class=&quot;nv&quot;&gt;MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1880000
+&lt;span class=&quot;nv&quot;&gt;TXOUT_CHANGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0V&lt;/span&gt; - &lt;span class=&quot;nv&quot;&gt;$MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+
+cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0H&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#$UTXO0I \&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-out&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$DESTADDR&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$MIN_LOVELACE&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;1 &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NFT_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-out&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SOURCEADDR&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$TXOUT_CHANGE&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--metadata-json-file&lt;/span&gt; nft-metadata.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--mint&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1 &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NFT_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--minting-script-file&lt;/span&gt; nft-policy.script &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--fee&lt;/span&gt; 0 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; fee_draft.txraw
+
+&lt;span class=&quot;nv&quot;&gt;FEE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli transaction calculate-min-fee &lt;span class=&quot;nt&quot;&gt;--tx-body-file&lt;/span&gt; fee_draft.txraw &lt;span class=&quot;nt&quot;&gt;--tx-in-count&lt;/span&gt; 1 &lt;span class=&quot;nt&quot;&gt;--tx-out-count&lt;/span&gt; 2 &lt;span class=&quot;nt&quot;&gt;--witness-count&lt;/span&gt; 2 &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 &lt;span class=&quot;nt&quot;&gt;--protocol-params-file&lt;/span&gt; protocol.json | egrep &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[0-9]+'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Following a similar approach in &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;Transactions: UTxO and Metadata
+&lt;/a&gt;, we build a draft Tx with the same arguments to calculate the Tx fee captured in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FEE&lt;/code&gt; shell variable. This time we are specifying additional arguments in the form of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--minting-script-file&lt;/code&gt;. Also note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--witness-count&lt;/code&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt; when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.&lt;/p&gt;
+
+&lt;p&gt;The most difficult part is building the raw Tx with the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; parameters. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}&lt;/code&gt;. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; is the same as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; without the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{ada_amount}&lt;/code&gt; in the beginning.&lt;/p&gt;
+
+&lt;h3 id=&quot;build-raw-minting-tx&quot;&gt;Build Raw Minting Tx&lt;/h3&gt;
+&lt;p&gt;Now we can build out the actual Tx with the correct fee and using that to calculate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TXOUT_CHANGE&lt;/code&gt; to go back to the source address. As described in the previous article &lt;a href=&quot;https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets&quot;&gt;Cardano’s Native Assets
+&lt;/a&gt; we also need to specify a minimum amount of lovelace to send with the custom tokens to the destination address.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;NFT_ASSETNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;LALOGO
+&lt;span class=&quot;nv&quot;&gt;MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1880000
+&lt;span class=&quot;nv&quot;&gt;TXOUT_CHANGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0V&lt;/span&gt; - &lt;span class=&quot;nv&quot;&gt;$fee&lt;/span&gt; - &lt;span class=&quot;nv&quot;&gt;$MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+
+cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0H&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#$UTXO0I \&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-out&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$DESTADDR&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$MIN_LOVELACE&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;1 &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NFT_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-out&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SOURCEADDR&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$TXOUT_CHANGE&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--metadata-json-file&lt;/span&gt; nft-metadata.json &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--mint&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1 &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NFT_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--minting-script-file&lt;/span&gt; nft-policy.script &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--fee&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$FEE&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; mint.txraw
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;sign-raw-minting-tx&quot;&gt;Sign Raw Minting Tx&lt;/h3&gt;
+&lt;p&gt;Note that we are signing the Tx with both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ft-policy.skey&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source.skey&lt;/code&gt; to provide two witnesses to the Tx.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli transaction sign  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--signing-key-file&lt;/span&gt; nft-policy.skey  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--signing-key-file&lt;/span&gt; source.skey  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-body-file&lt;/span&gt; mint.txraw  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; mint.txsigned
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;submit-signed-tx&quot;&gt;Submit Signed Tx&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli transaction submit --tx-file mint.txsigned --testnet-magic 1097911063
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;get-transaction-id&quot;&gt;Get Transaction ID&lt;/h3&gt;
+&lt;p&gt;You can also get the transaction ID (aka Tx Hash) of your Tx with the command:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli transaction txid &lt;span class=&quot;nt&quot;&gt;--tx-file&lt;/span&gt; mint.txsigned
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This can be used to verify the result in a testnet block explorer like &lt;a href=&quot;https://testnet.cardanoscan.io/&quot;&gt;Cardanoscan&lt;/a&gt; or &lt;a href=&quot;https://testnet.adatools.io/transactions&quot;&gt;ADATools&lt;/a&gt; through a direct search.&lt;/p&gt;
 
 &lt;h2 id=&quot;token-builders&quot;&gt;Token Builders&lt;/h2&gt;
 &lt;ul&gt;
@@ -13,16 +216,17 @@
   &lt;li&gt;&lt;a href=&quot;https://cardano-native-token.com/&quot;&gt;Cardano Token and NFT Builder&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://easycnft.art/en&quot;&gt;EasyCNFT&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://nft-machine.com/&quot;&gt;NFT Machine&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Non Fungible Tokens (NFTs) provide uniqueness guarantees across the entire blockchain.</summary></entry><entry><title type="html">Fungible Token Minting Guide</title><link href="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/" rel="alternate" type="text/html" title="Fungible Token Minting Guide" /><published>2021-08-23T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/fungible-token-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/">&lt;p&gt;We will break down how to mint fungible tokens in four basic steps:&lt;/p&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Using almost the same approach as our Fungible Token Minting Guide , we can mint an NFT in four basic steps:</summary></entry><entry><title type="html">Fungible Token Minting Guide</title><link href="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/" rel="alternate" type="text/html" title="Fungible Token Minting Guide" /><published>2021-08-23T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/fungible-token-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/">&lt;p&gt;We will break down how to mint fungible tokens in three basic steps:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Create Policy Key&lt;/li&gt;
-  &lt;li&gt;Define Multisig Policy&lt;/li&gt;
+  &lt;li&gt;Create Token Minting Policy&lt;/li&gt;
   &lt;li&gt;Create Wallet Keys and Addresses&lt;/li&gt;
   &lt;li&gt;Build and Submit Minting Tx&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;create-policy-key&quot;&gt;Create Policy Key&lt;/h2&gt;
+&lt;h2 id=&quot;create-token-policy&quot;&gt;Create Token Policy&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-policy-key&quot;&gt;Create Policy Key&lt;/h3&gt;
 &lt;p&gt;A policy key can be generated using the same approach as generating a payment address key as described in our page &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/&quot;&gt;Getting Started - Wallet Basics: Keys and Addresses&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli address key-gen &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--verification-key-file&lt;/span&gt; ft-policy.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -32,7 +236,7 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;POLICYHASH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli address key-hash &lt;span class=&quot;nt&quot;&gt;--payment-verification-key-file&lt;/span&gt; ft-policy.vkey&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;define-multisig-policy&quot;&gt;Define Multisig Policy&lt;/h2&gt;
+&lt;h3 id=&quot;define-multisig-policy&quot;&gt;Define Multisig Policy&lt;/h3&gt;
 &lt;p&gt;Create a ft-policy.script file with the right script using&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;ft-policy.script 
 &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ft-policy.script 
@@ -55,8 +259,11 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;POLICYID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli transaction policyid &lt;span class=&quot;nt&quot;&gt;--script-file&lt;/span&gt; ft-policy.script&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;create-source-and-destination-wallet-keys-and-addresses&quot;&gt;Create Source and Destination Wallet Keys and Addresses&lt;/h2&gt;
+&lt;h2 id=&quot;create-wallet-keys-and-addresses&quot;&gt;Create Wallet Keys and Addresses&lt;/h2&gt;
+
 &lt;p&gt;We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.&lt;/p&gt;
+
+&lt;p&gt;📝 &lt;em&gt;In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys&quot;&gt;earlier&lt;/a&gt;, mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity&lt;/em&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli address key-gen &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--verification-key-file&lt;/span&gt; source.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -109,11 +316,12 @@ cardano-cli address build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;LEARN_QTY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000
 &lt;span class=&quot;nv&quot;&gt;DISCOUNT25_ASSETNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;LA25
 &lt;span class=&quot;nv&quot;&gt;DISCOUNT25_QTY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
-&lt;span class=&quot;nv&quot;&gt;TXOUT_CHANGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+&lt;span class=&quot;nv&quot;&gt;MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1880000
+&lt;span class=&quot;nv&quot;&gt;TXOUT_CHANGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0V&lt;/span&gt; - &lt;span class=&quot;nv&quot;&gt;$MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 
 cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--tx-in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0H&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#$UTXO0I \&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;--tx-out&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$DESTADDR&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$UTXO0V&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LEARN_QTY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LEARN_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; +&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISCOUNT25_QTY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISCOUNT25_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--tx-out&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$DESTADDR&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$MIN_LOVELACE&lt;/span&gt;+&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LEARN_QTY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LEARN_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; +&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISCOUNT25_QTY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISCOUNT25_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--tx-out&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SOURCEADDR&lt;/span&gt;+&lt;span class=&quot;nv&quot;&gt;$TXOUT_CHANGE&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--mint&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LEARN_QTY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LEARN_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; + &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISCOUNT25_QTY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$POLICYID&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DISCOUNT25_ASSETNAME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--minting-script-file&lt;/span&gt; ft-policy.script &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -131,7 +339,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;p&gt;Now we can build out the actual Tx with the correct fee and using that to calculate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TXOUT_CHANGE&lt;/code&gt; to go back to the source address. As described in the previous article &lt;a href=&quot;https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets&quot;&gt;Cardano’s Native Assets
 &lt;/a&gt; we also need to specify a minimum amount of lovelace to send with the custom tokens to the destination address.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1800000
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1880000
 &lt;span class=&quot;nv&quot;&gt;TXOUT_CHANGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0V&lt;/span&gt; - &lt;span class=&quot;nv&quot;&gt;$fee&lt;/span&gt; - &lt;span class=&quot;nv&quot;&gt;$MIN_LOVELACE&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 
 cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -181,7 +389,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;mint-your-first-nft&quot;&gt;Mint your first NFT&lt;/h2&gt;
-&lt;p&gt;Learn how to mint your first NFT at &lt;a href=&quot;https://learn.lovelace.academy/tokens/minting-policies/&quot;&gt;NFT Minting Guide ➡️&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">We will break down how to mint fungible tokens in four basic steps:</summary></entry><entry><title type="html">Minting Policies</title><link href="https://learn.lovelace.academy//tokens/minting-policies/" rel="alternate" type="text/html" title="Minting Policies" /><published>2021-08-22T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/minting-policies</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/minting-policies/">&lt;p&gt;Minting is the action in which units of a custom token can be &lt;strong&gt;created&lt;/strong&gt; or &lt;strong&gt;destroyed&lt;/strong&gt; based on validation rules defined in a monetary &lt;strong&gt;policy&lt;/strong&gt;. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint any number of custom tokens grouped under a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt; policy identifier and a specified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt;. This greatly reduces the learning curve for users wanting to issue custom tokens on Cardano as no smart contract experience is required.&lt;/p&gt;
+&lt;p&gt;Learn how to mint your first NFT at &lt;a href=&quot;https://learn.lovelace.academy/tokens/nft-minting-guide/&quot;&gt;NFT Minting Guide ➡️&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">We will break down how to mint fungible tokens in three basic steps:</summary></entry><entry><title type="html">Minting Policies</title><link href="https://learn.lovelace.academy//tokens/minting-policies/" rel="alternate" type="text/html" title="Minting Policies" /><published>2021-08-22T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/minting-policies</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/minting-policies/">&lt;p&gt;Minting is the action in which units of a custom token can be &lt;strong&gt;created&lt;/strong&gt; or &lt;strong&gt;destroyed&lt;/strong&gt; based on validation rules defined in a monetary &lt;strong&gt;policy&lt;/strong&gt;. A blockchain with native asset support such as Cardano defines minting policies as a base-layer primitive, permitting anyone holding its principal token (i.e. ADA) to mint any number of custom tokens grouped under a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt; policy identifier and a specified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt;. This greatly reduces the learning curve for users wanting to issue custom tokens on Cardano as no smart contract experience is required.&lt;/p&gt;
 
 &lt;h2 id=&quot;fungible-vs-non-fungible&quot;&gt;Fungible vs Non-Fungible&lt;/h2&gt;
 
@@ -268,4 +476,27 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;create-minting-policies&quot;&gt;Create Minting Policies&lt;/h2&gt;
-&lt;p&gt;Continue on to &lt;a href=&quot;https://learn.lovelace.academy/tokens/minting-policies/&quot;&gt;Minting Policies ➡️&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Tokens are on-chain representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of Cardano the terms token and asset are generally interchangeable, although an asset can be used to denote the class/category of a token before any are minted.</summary></entry><entry><title type="html">EUTxO</title><link href="https://learn.lovelace.academy//fundamentals/eutxo/" rel="alternate" type="text/html" title="EUTxO" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//fundamentals/eutxo</id><content type="html" xml:base="https://learn.lovelace.academy//fundamentals/eutxo/"></content><author><name></name></author><category term="Fundamentals" /><summary type="html"></summary></entry><entry><title type="html">Local Development</title><link href="https://learn.lovelace.academy//fundamentals/local-development/" rel="alternate" type="text/html" title="Local Development" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//fundamentals/local-development</id><content type="html" xml:base="https://learn.lovelace.academy//fundamentals/local-development/"></content><author><name></name></author><category term="Fundamentals" /><summary type="html"></summary></entry><entry><title type="html">Oracles</title><link href="https://learn.lovelace.academy//the-plutus-platform/oracles/" rel="alternate" type="text/html" title="Oracles" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//the-plutus-platform/oracles</id><content type="html" xml:base="https://learn.lovelace.academy//the-plutus-platform/oracles/"></content><author><name></name></author><category term="The Plutus Platform" /><summary type="html"></summary></entry><entry><title type="html">Parameterised contracts</title><link href="https://learn.lovelace.academy//the-plutus-platform/parameterised-contracts/" rel="alternate" type="text/html" title="Parameterised contracts" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//the-plutus-platform/parameterised-contracts</id><content type="html" xml:base="https://learn.lovelace.academy//the-plutus-platform/parameterised-contracts/"></content><author><name></name></author><category term="The Plutus Platform" /><summary type="html"></summary></entry><entry><title type="html">Publishing a contract</title><link href="https://learn.lovelace.academy//the-plutus-platform/publishing-a-contract/" rel="alternate" type="text/html" title="Publishing a contract" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//the-plutus-platform/publishing-a-contract</id><content type="html" xml:base="https://learn.lovelace.academy//the-plutus-platform/publishing-a-contract/"></content><author><name></name></author><category term="The Plutus Platform" /><summary type="html"></summary></entry><entry><title type="html">Publishing</title><link href="https://learn.lovelace.academy//fundamentals/publishing/" rel="alternate" type="text/html" title="Publishing" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//fundamentals/publishing</id><content type="html" xml:base="https://learn.lovelace.academy//fundamentals/publishing/"></content><author><name></name></author><category term="Fundamentals" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;Continue on to &lt;a href=&quot;https://learn.lovelace.academy/tokens/minting-policies/&quot;&gt;Minting Policies ➡️&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Tokens are on-chain representations of assets or facts that can be minted (created/destroyed), stored and transferred within a blockchain. In the context of Cardano the terms token and asset are generally interchangeable, although an asset can be used to denote the class/category of a token before any are minted.</summary></entry><entry><title type="html">A Gentle Introduction</title><link href="https://learn.lovelace.academy//the-plutus-platform/a-gentle-introduction/" rel="alternate" type="text/html" title="A Gentle Introduction" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//the-plutus-platform/a-gentle-introduction</id><content type="html" xml:base="https://learn.lovelace.academy//the-plutus-platform/a-gentle-introduction/">&lt;p&gt;Plutus is both a full application framework (Plutus Application Framework) and a native language (Plutus Core) for smart contracts on Cardano written in, and also based on &lt;a href=&quot;https://www.haskell.org/&quot;&gt;Haskell&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;haskell-foundations&quot;&gt;Haskell Foundations&lt;/h2&gt;
+&lt;p&gt;Cardano itself is written in Haskell because its pure functional paradigm promotes clearer abstractions, an natural path from academic proofs to formal specifications, and more comprehensive testability. These factors allowed Haskell to solidify itself as the language of choice for high assurance software.&lt;/p&gt;
+
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;supplementary-content&quot;&gt;Supplementary Content&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.cardano.org/plutus/learn-about-plutus&quot;&gt;Learn about Plutus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/input-output-hk/plutus-pioneer-program&quot;&gt;The Plutus Pioneer Program&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://plutus-pioneer-program.readthedocs.io/en/latest/index.html&quot;&gt;Plutus Pioneers Lecture Notes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mlabs-haskell/awesome-plutus&quot;&gt;Awesome Plutus GitHub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://iohk.io/en/blog/posts/2021/04/13/plutus-what-you-need-to-know/&quot;&gt;Plutus: what you need to know&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://forum.cardano.org/c/developers/cardano-plutus/148&quot;&gt;Plutus on the Cardano Forum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="The Plutus Platform" /><summary type="html">Plutus is both a full application framework (Plutus Application Framework) and a native language (Plutus Core) for smart contracts on Cardano written in, and also based on Haskell.</summary></entry><entry><title type="html">EUTxO</title><link href="https://learn.lovelace.academy//fundamentals/eutxo/" rel="alternate" type="text/html" title="EUTxO" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//fundamentals/eutxo</id><content type="html" xml:base="https://learn.lovelace.academy//fundamentals/eutxo/">&lt;p&gt;Extended UTxO (EUTxO) as the name suggests, extends the &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;UTxO model&lt;/a&gt; to enable Smart Contracts on Cardano by:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Incorporating a new type of address derived from turing-complete scripts executed before a UTxO can be spent by a Tx&lt;/li&gt;
+  &lt;li&gt;Propagating encapsulated state in addition to values&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This approach fits perfectly with the pure functional paradigm that Cardano is based on, however it also requires a shift in thinking compared to traditional RPC-like smart contract implementations of other Blockchains.&lt;/p&gt;
+
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="Fundamentals" /><summary type="html">Extended UTxO (EUTxO) as the name suggests, extends the UTxO model to enable Smart Contracts on Cardano by: Incorporating a new type of address derived from turing-complete scripts executed before a UTxO can be spent by a Tx Propagating encapsulated state in addition to values</summary></entry><entry><title type="html">Local Development</title><link href="https://learn.lovelace.academy//fundamentals/local-development/" rel="alternate" type="text/html" title="Local Development" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//fundamentals/local-development</id><content type="html" xml:base="https://learn.lovelace.academy//fundamentals/local-development/">&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="Fundamentals" /><summary type="html">🚧 More content coming soon</summary></entry><entry><title type="html">Oracles</title><link href="https://learn.lovelace.academy//the-plutus-platform/oracles/" rel="alternate" type="text/html" title="Oracles" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//the-plutus-platform/oracles</id><content type="html" xml:base="https://learn.lovelace.academy//the-plutus-platform/oracles/">&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="The Plutus Platform" /><summary type="html">🚧 More content coming soon</summary></entry><entry><title type="html">Parameterised contracts</title><link href="https://learn.lovelace.academy//the-plutus-platform/parameterised-contracts/" rel="alternate" type="text/html" title="Parameterised contracts" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//the-plutus-platform/parameterised-contracts</id><content type="html" xml:base="https://learn.lovelace.academy//the-plutus-platform/parameterised-contracts/">&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="The Plutus Platform" /><summary type="html">🚧 More content coming soon</summary></entry><entry><title type="html">State Machines</title><link href="https://learn.lovelace.academy//the-plutus-platform/state-machines/" rel="alternate" type="text/html" title="State Machines" /><published>2021-07-08T00:00:00+00:00</published><updated>2021-07-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//the-plutus-platform/state-machines</id><content type="html" xml:base="https://learn.lovelace.academy//the-plutus-platform/state-machines/">&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="The Plutus Platform" /><summary type="html">🚧 More content coming soon</summary></entry></feed>
