@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-18T18:27:37+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Using almost the same approach as our &lt;a href=&quot;https://learn.lovelace.academy/tokens/fungible-token-minting-guide/&quot;&gt;Fungible Token Minting Guide
-&lt;/a&gt;, we can mint an NFT in four basic steps:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-10-18T19:05:36+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">NFT Minting Guide</title><link href="https://learn.lovelace.academy//tokens/nft-minting-guide/" rel="alternate" type="text/html" title="NFT Minting Guide" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/nft-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/nft-minting-guide/">&lt;p&gt;Using a similar approach as our &lt;a href=&quot;https://learn.lovelace.academy/tokens/fungible-token-minting-guide/&quot;&gt;Fungible Token Minting Guide
+&lt;/a&gt;, we can mint Cardano NFTs (aka CNFTs) with four basic steps:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Create Token Minting Policy&lt;/li&gt;
@@ -10,7 +10,9 @@
 
 &lt;p&gt;📝 &lt;em&gt;The main differences involve creating a stricter minting policy, uploading our image to IPFS, and attaching NFT-specific metadata&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;create-policy-key&quot;&gt;Create Policy Key&lt;/h2&gt;
+&lt;h2 id=&quot;create-token-minting-policy&quot;&gt;Create Token Minting Policy&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-policy-key&quot;&gt;Create Policy Key&lt;/h3&gt;
 &lt;p&gt;A policy key can be generated using the same approach as generating a payment address key as described in our page &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/&quot;&gt;Getting Started - Wallet Basics: Keys and Addresses&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli address key-gen &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--verification-key-file&lt;/span&gt; nft-policy.vkey &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -20,7 +22,7 @@
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;POLICYHASH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli address key-hash &lt;span class=&quot;nt&quot;&gt;--payment-verification-key-file&lt;/span&gt; nft-policy.vkey&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;define-multisig-policy&quot;&gt;Define Multisig Policy&lt;/h2&gt;
+&lt;h3 id=&quot;define-multisig-policy&quot;&gt;Define Multisig Policy&lt;/h3&gt;
 &lt;p&gt;As mentioned &lt;a href=&quot;https://learn.lovelace.academy/tokens/minting-policies/#fungible-vs-non-fungible&quot;&gt;earlier&lt;/a&gt;, NFTs must guarantee that only one token exists for a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt; combination. This can be defined in a Multisig policy with a &lt;a href=&quot;https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md#simple-script&quot;&gt;time locking script&lt;/a&gt; to ensure tokens can only be minted &lt;strong&gt;before&lt;/strong&gt; a certain time. This applies across the entire policy so in other words, that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;policyID&lt;/code&gt; cannot be used to mint any tokens after that time regardless of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset name&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;📝 &lt;em&gt;Time is denoted in slots since the genesis and a slot is a second as configured for the current protocol version.&lt;/em&gt;&lt;/p&gt;
@@ -69,7 +71,8 @@
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;POLICYID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli transaction policyid &lt;span class=&quot;nt&quot;&gt;--script-file&lt;/span&gt; nft-policy.script&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;create-source-and-destination-wallet-keys-and-addresses&quot;&gt;Create Source and Destination Wallet Keys and Addresses&lt;/h2&gt;
+
+&lt;h2 id=&quot;create-wallet-keys-and-addresses&quot;&gt;Create Wallet Keys and Addresses&lt;/h2&gt;
 &lt;p&gt;We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.&lt;/p&gt;
 
 &lt;p&gt;📝 &lt;em&gt;In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys&quot;&gt;earlier&lt;/a&gt;, mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity&lt;/em&gt;&lt;/p&gt;
@@ -111,7 +114,7 @@ cardano-cli address build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 
 &lt;p&gt;📝 &lt;em&gt;NFTs can also be created using various ingenious methods that can fit within the 16KB Tx metadata payload. Examples of this are &lt;a href=&quot;https://stellarhood.com/&quot;&gt;Stellar Hood&lt;/a&gt;, &lt;a href=&quot;https://cardanotrees.com/&quot;&gt;CardanoTrees&lt;/a&gt; and upcoming NFTs from &lt;a href=&quot;https://ito.veritree.com&quot;&gt;Veritree&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://ipfs.io/&quot;&gt;IPFS&lt;/a&gt; is the currently accepted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like &lt;a href=&quot;https://app.pinata.cloud/&quot;&gt;Pinata&lt;/a&gt; and note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CID&lt;/code&gt; of your uploaded content. This &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CID&lt;/code&gt; will be used in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image&lt;/code&gt; field of your Tx metadata to point your NFT to an IPFS URL. In this example we will use the &lt;a href=&quot;https://learn.lovelace.academy/img/LALOGO.png&quot;&gt;Lovelace Academy logo&lt;/a&gt; as the image for our NFT.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ipfs.io/&quot;&gt;IPFS&lt;/a&gt; is the currently accepted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like &lt;a href=&quot;https://app.pinata.cloud/&quot;&gt;Pinata&lt;/a&gt; and note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CID&lt;/code&gt; of your uploaded content. This &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CID&lt;/code&gt; will be used in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image&lt;/code&gt; field of your Tx metadata to point your CNFT to an IPFS URL. In this example we will use the &lt;a href=&quot;https://learn.lovelace.academy/img/LALOGO.png&quot;&gt;Lovelace Academy logo&lt;/a&gt; as the image for our CNFT.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/nft-pinata.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -122,15 +125,9 @@ cardano-cli address build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;UTXO0I&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0&lt;/span&gt; | egrep &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[a-z0-9]+'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 2p&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;UTXO0V&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UTXO0&lt;/span&gt; | egrep &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[a-z0-9]+'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 3p&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;    
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;get-the-latest-protocol-parameters&quot;&gt;Get the Latest Protocol Parameters&lt;/h3&gt;
-&lt;p&gt;The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protocol.json&lt;/code&gt; with the following command.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli query protocol-parameters &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; protocol.json 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;build-nft-metadata&quot;&gt;Build NFT Metadata&lt;/h3&gt;
-
-&lt;p&gt;Cardano has an &lt;a href=&quot;https://github.com/cardano-foundation/CIPs/blob/master/CIP-0025/CIP-0025.md&quot;&gt;NFT Metadata standard&lt;/a&gt; which we will use to define the correct metadata for our NFT so that wallets, explorers and other tools can interpret and display it correctly. We will create an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nft-metadata.json&lt;/code&gt; file with the following content and replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$POLICYID&lt;/code&gt; with the correct policyID from the first step and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$IPFS_CID&lt;/code&gt; with IPFS CID from the third step. Also note to specify the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mediaType&lt;/code&gt; if you are using an image format other than image/png.&lt;/p&gt;
+&lt;p&gt;Cardano has an &lt;a href=&quot;https://github.com/cardano-foundation/CIPs/blob/master/CIP-0025/CIP-0025.md&quot;&gt;NFT Metadata standard&lt;/a&gt; which we will use to define the correct metadata for our CNFT so that wallets, explorers and other tools can interpret and display it correctly. We will create an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nft-metadata.json&lt;/code&gt; file with the following content and replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$POLICYID&lt;/code&gt; with the correct policyID from the first step and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$IPFS_CID&lt;/code&gt; with IPFS CID from the third step. Also note to specify the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mediaType&lt;/code&gt; if you are using an image format other than image/png.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
         &quot;721&quot;: {
@@ -145,6 +142,12 @@ cardano-cli address build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
             }
         }
 }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;get-the-latest-protocol-parameters&quot;&gt;Get the Latest Protocol Parameters&lt;/h3&gt;
+&lt;p&gt;The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protocol.json&lt;/code&gt; with the following command.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli query protocol-parameters &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; protocol.json 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;build-draft-tx-to-calculate-fee&quot;&gt;Build draft Tx to Calculate Fee&lt;/h3&gt;
@@ -166,9 +169,9 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;span class=&quot;nv&quot;&gt;FEE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;cardano-cli transaction calculate-min-fee &lt;span class=&quot;nt&quot;&gt;--tx-body-file&lt;/span&gt; fee_draft.txraw &lt;span class=&quot;nt&quot;&gt;--tx-in-count&lt;/span&gt; 1 &lt;span class=&quot;nt&quot;&gt;--tx-out-count&lt;/span&gt; 2 &lt;span class=&quot;nt&quot;&gt;--witness-count&lt;/span&gt; 2 &lt;span class=&quot;nt&quot;&gt;--testnet-magic&lt;/span&gt; 1097911063 &lt;span class=&quot;nt&quot;&gt;--protocol-params-file&lt;/span&gt; protocol.json | egrep &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[0-9]+'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Following a similar approach in &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;Transactions: UTxO and Metadata
-&lt;/a&gt;, we build a draft Tx with the same arguments to calculate the Tx fee captured in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FEE&lt;/code&gt; shell variable. This time we are specifying additional arguments in the form of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--minting-script-file&lt;/code&gt;. Also note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--witness-count&lt;/code&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt; when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.&lt;/p&gt;
+&lt;/a&gt;, we build a draft Tx with the same arguments to calculate the Tx fee captured in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FEE&lt;/code&gt; shell variable. This time we are specifying additional arguments in the form of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--minting-script-file&lt;/code&gt;. Also note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--witness-count&lt;/code&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt; when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the NFT minting policy key.&lt;/p&gt;
 
-&lt;p&gt;The most difficult part is building the raw Tx with the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; parameters. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}&lt;/code&gt;. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; is the same as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; without the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{ada_amount}&lt;/code&gt; in the beginning.&lt;/p&gt;
+&lt;p&gt;As with minting fungible tokens, the most difficult part is building the raw Tx with the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; parameters. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}+1 {policyid}.{asset_name}&lt;/code&gt; for NFTs to ensure a quantity of 1. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; is the same as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; without the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}&lt;/code&gt; in the beginning.&lt;/p&gt;
 
 &lt;h3 id=&quot;build-raw-minting-tx&quot;&gt;Build Raw Minting Tx&lt;/h3&gt;
 &lt;p&gt;Now we can build out the actual Tx with the correct fee and using that to calculate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TXOUT_CHANGE&lt;/code&gt; to go back to the source address. As described in the previous article &lt;a href=&quot;https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets&quot;&gt;Cardano’s Native Assets
@@ -209,14 +212,20 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;This can be used to verify the result in a testnet block explorer like &lt;a href=&quot;https://testnet.cardanoscan.io/&quot;&gt;Cardanoscan&lt;/a&gt; or &lt;a href=&quot;https://testnet.adatools.io/transactions&quot;&gt;ADATools&lt;/a&gt; through a direct search.&lt;/p&gt;
 
-&lt;h2 id=&quot;token-builders&quot;&gt;Token Builders&lt;/h2&gt;
+&lt;h2 id=&quot;explore-token-builders&quot;&gt;Explore Token Builders&lt;/h2&gt;
+&lt;p&gt;Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://tokhun.io/account/assets/mint-nft&quot;&gt;Tokhun&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.nft-maker.io/&quot;&gt;NFT Maker&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://cardano-native-token.com/&quot;&gt;Cardano Token and NFT Builder&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://easycnft.art/en&quot;&gt;EasyCNFT&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://nft-machine.com/&quot;&gt;NFT Machine&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Using almost the same approach as our Fungible Token Minting Guide , we can mint an NFT in four basic steps:</summary></entry><entry><title type="html">Fungible Token Minting Guide</title><link href="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/" rel="alternate" type="text/html" title="Fungible Token Minting Guide" /><published>2021-08-23T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/fungible-token-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/">&lt;p&gt;We will break down how to mint fungible tokens in three basic steps:&lt;/p&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;supplementary-material&quot;&gt;Supplementary Material&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developers.cardano.org/docs/native-tokens/minting-nfts/&quot;&gt;Cardano Developers Minting NFTs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Using a similar approach as our Fungible Token Minting Guide , we can mint Cardano NFTs (aka CNFTs) with four basic steps:</summary></entry><entry><title type="html">Fungible Token Minting Guide</title><link href="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/" rel="alternate" type="text/html" title="Fungible Token Minting Guide" /><published>2021-08-23T00:00:00+00:00</published><updated>2021-09-08T00:00:00+00:00</updated><id>https://learn.lovelace.academy//tokens/fungible-token-minting-guide</id><content type="html" xml:base="https://learn.lovelace.academy//tokens/fungible-token-minting-guide/">&lt;p&gt;We will break down how to mint fungible tokens in three basic steps:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Create Token Minting Policy&lt;/li&gt;
@@ -224,7 +233,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
   &lt;li&gt;Build and Submit Minting Tx&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;create-token-policy&quot;&gt;Create Token Policy&lt;/h2&gt;
+&lt;h2 id=&quot;create-token-minting-policy&quot;&gt;Create Token Minting Policy&lt;/h2&gt;
 
 &lt;h3 id=&quot;create-policy-key&quot;&gt;Create Policy Key&lt;/h3&gt;
 &lt;p&gt;A policy key can be generated using the same approach as generating a payment address key as described in our page &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/&quot;&gt;Getting Started - Wallet Basics: Keys and Addresses&lt;/a&gt;.&lt;/p&gt;
@@ -260,7 +269,6 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;create-wallet-keys-and-addresses&quot;&gt;Create Wallet Keys and Addresses&lt;/h2&gt;
-
 &lt;p&gt;We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.&lt;/p&gt;
 
 &lt;p&gt;📝 &lt;em&gt;In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned &lt;a href=&quot;https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys&quot;&gt;earlier&lt;/a&gt;, mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity&lt;/em&gt;&lt;/p&gt;
@@ -333,7 +341,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;p&gt;Following a similar approach in &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;Transactions: UTxO and Metadata
 &lt;/a&gt;, we build a draft Tx with the same arguments to calculate the Tx fee captured in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FEE&lt;/code&gt; shell variable. This time we are specifying additional arguments in the form of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--minting-script-file&lt;/code&gt;. Also note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--witness-count&lt;/code&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt; when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.&lt;/p&gt;
 
-&lt;p&gt;The most difficult part is building the raw Tx with the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; parameters. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}&lt;/code&gt; with additional custom tokens concatenated afterwards. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; without the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{ada_amount}&lt;/code&gt; in the beginning.&lt;/p&gt;
+&lt;p&gt;The most difficult part is building the raw Tx with the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; parameters. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}&lt;/code&gt; with additional custom tokens concatenated afterwards. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; without the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}&lt;/code&gt; in the beginning.&lt;/p&gt;
 
 &lt;h3 id=&quot;build-raw-minting-tx&quot;&gt;Build Raw Minting Tx&lt;/h3&gt;
 &lt;p&gt;Now we can build out the actual Tx with the correct fee and using that to calculate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TXOUT_CHANGE&lt;/code&gt; to go back to the source address. As described in the previous article &lt;a href=&quot;https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets&quot;&gt;Cardano’s Native Assets
@@ -372,7 +380,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;This can be used to verify the result in a testnet block explorer like &lt;a href=&quot;https://testnet.cardanoscan.io/&quot;&gt;Cardanoscan&lt;/a&gt; or &lt;a href=&quot;https://testnet.adatools.io/transactions&quot;&gt;ADATools&lt;/a&gt; through a direct search.&lt;/p&gt;
 
-&lt;h2 id=&quot;token-builders&quot;&gt;Token Builders&lt;/h2&gt;
+&lt;h2 id=&quot;explore-token-builders&quot;&gt;Explore Token Builders&lt;/h2&gt;
 &lt;p&gt;Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://tokhun.io/account/assets/mint-nft&quot;&gt;Tokhun&lt;/a&gt;&lt;/li&gt;

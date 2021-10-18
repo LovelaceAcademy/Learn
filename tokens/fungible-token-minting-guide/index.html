@@ -1313,7 +1313,7 @@
   <li>Build and Submit Minting Tx</li>
 </ol>
 
-<h2 id="create-token-policy">Create Token Policy</h2>
+<h2 id="create-token-minting-policy">Create Token Minting Policy</h2>
 
 <h3 id="create-policy-key">Create Policy Key</h3>
 <p>A policy key can be generated using the same approach as generating a payment address key as described in our page <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Getting Started - Wallet Basics: Keys and Addresses</a>.</p>
@@ -1349,7 +1349,6 @@
 </code></pre></div></div>
 
 <h2 id="create-wallet-keys-and-addresses">Create Wallet Keys and Addresses</h2>
-
 <p>We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.</p>
 
 <p>📝 <em>In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys">earlier</a>, mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity</em></p>
@@ -1422,7 +1421,7 @@ cardano-cli transaction build-raw <span class="se">\</span>
 <p>Following a similar approach in <a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/">Transactions: UTxO and Metadata
 </a>, we build a draft Tx with the same arguments to calculate the Tx fee captured in the <code class="language-plaintext highlighter-rouge">FEE</code> shell variable. This time we are specifying additional arguments in the form of <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--minting-script-file</code>. Also note the <code class="language-plaintext highlighter-rouge">--witness-count</code> of <code class="language-plaintext highlighter-rouge">2</code> when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.</p>
 
-<p>The most difficult part is building the raw Tx with the correct <code class="language-plaintext highlighter-rouge">--tx-out</code> and <code class="language-plaintext highlighter-rouge">--mint</code> parameters. The format for <code class="language-plaintext highlighter-rouge">--tx-out</code> is <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}</code> with additional custom tokens concatenated afterwards. The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">--tx-out</code> without the <code class="language-plaintext highlighter-rouge">{address}+{ada_amount}</code> in the beginning.</p>
+<p>The most difficult part is building the raw Tx with the correct <code class="language-plaintext highlighter-rouge">--tx-out</code> and <code class="language-plaintext highlighter-rouge">--mint</code> parameters. The format for <code class="language-plaintext highlighter-rouge">--tx-out</code> is <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}</code> with additional custom tokens concatenated afterwards. The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">--tx-out</code> without the <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}</code> in the beginning.</p>
 
 <h3 id="build-raw-minting-tx">Build Raw Minting Tx</h3>
 <p>Now we can build out the actual Tx with the correct fee and using that to calculate the <code class="language-plaintext highlighter-rouge">TXOUT_CHANGE</code> to go back to the source address. As described in the previous article <a href="https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets">Cardano’s Native Assets
@@ -1461,7 +1460,7 @@ cardano-cli transaction build-raw <span class="se">\</span>
 </code></pre></div></div>
 <p>This can be used to verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions">ADATools</a> through a direct search.</p>
 
-<h2 id="token-builders">Token Builders</h2>
+<h2 id="explore-token-builders">Explore Token Builders</h2>
 <p>Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.</p>
 <ul>
   <li><a href="https://tokhun.io/account/assets/mint-nft">Tokhun</a></li>
