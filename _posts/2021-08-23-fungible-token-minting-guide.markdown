@@ -6,14 +6,15 @@ categories:
 - Tokens
 order: 3
 ---
-We will break down how to mint fungible tokens in four basic steps:
+We will break down how to mint fungible tokens in three basic steps:
 
-1. Create Policy Key
-2. Define Multisig Policy
-3. Create Wallet Keys and Addresses
-4. Build and Submit Minting Tx
+1. Create Token Minting Policy
+2. Create Wallet Keys and Addresses
+3. Build and Submit Minting Tx
 
-## Create Policy Key 
+## Create Token Policy
+
+### Create Policy Key
 A policy key can be generated using the same approach as generating a payment address key as described in our page [Getting Started - Wallet Basics: Keys and Addresses](https://learn.lovelace.academy/getting-started/keys-and-addresses/).
 ```bash
 cardano-cli address key-gen \
@@ -25,7 +26,7 @@ Capture the hash of the key in the shell variable `POLICYHASH` by running
 POLICYHASH=$(cardano-cli address key-hash --payment-verification-key-file ft-policy.vkey)
 ```
 
-## Define Multisig Policy
+### Define Multisig Policy
 Create a ft-policy.script file with the right script using
 ```bash
 touch ft-policy.script 
@@ -50,8 +51,11 @@ This policy is a simple policy that requires a single signature from the `ft-pol
 POLICYID=$(cardano-cli transaction policyid --script-file ft-policy.script)
 ```
 
-## Create Source and Destination Wallet Keys and Addresses
-We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.
+## Create Wallet Keys and Addresses
+
+We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose. 
+
+📝 _In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned [earlier](https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys), mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity_
 
 ```bash
 cardano-cli address key-gen \
@@ -75,7 +79,7 @@ cardano-cli address build \
 SOURCEADDR=$(< source.addr)
 DESTADDR=$(< dest.addr)
 ```
- 📝 _Note the final two lines where the addresses are captured in shell variables `SOURCEADDR` and `DESTADDR`_
+📝 _Note the final two lines where the addresses are captured in shell variables `SOURCEADDR` and `DESTADDR`_
 
 ### Load ADA from Testnet Faucet
 Use the [testnet faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet/) to send ADA to the generated source wallet address `$SOURCEADDR`. 
@@ -109,11 +113,12 @@ LEARN_ASSETNAME=LEARN
 LEARN_QTY=1000
 DISCOUNT25_ASSETNAME=LA25
 DISCOUNT25_QTY=1
-TXOUT_CHANGE=0
+MIN_LOVELACE=1880000
+TXOUT_CHANGE=$(expr $UTXO0V - $MIN_LOVELACE)
 
 cardano-cli transaction build-raw \
     --tx-in $UTXO0H#$UTXO0I \
-    --tx-out $DESTADDR+$UTXO0V+"$LEARN_QTY $POLICYID.$LEARN_ASSETNAME +$DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETNAME" \
+    --tx-out $DESTADDR+$MIN_LOVELACE+"$LEARN_QTY $POLICYID.$LEARN_ASSETNAME +$DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETNAME" \
     --tx-out $SOURCEADDR+$TXOUT_CHANGE \
     --mint "$LEARN_QTY $POLICYID.$LEARN_ASSETNAME + $DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETNAME" \
     --minting-script-file ft-policy.script \
@@ -132,7 +137,7 @@ Now we can build out the actual Tx with the correct fee and using that to calcul
 ](https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets) we also need to specify a minimum amount of lovelace to send with the custom tokens to the destination address.
 
 ```bash
-MIN_LOVELACE=1800000
+MIN_LOVELACE=1880000
 TXOUT_CHANGE=$(expr $UTXO0V - $fee - $MIN_LOVELACE)
 
 cardano-cli transaction build-raw \
@@ -181,4 +186,4 @@ Alternatively you can use the following tools (for a fee) to mint your own token
 - [Cardano Developers Minting Native Assets](https://developers.cardano.org/docs/native-tokens/minting)
 
 ## Mint your first NFT
-Learn how to mint your first NFT at [NFT Minting Guide ➡️](https://learn.lovelace.academy/tokens/minting-policies/)
+Learn how to mint your first NFT at [NFT Minting Guide ➡️](https://learn.lovelace.academy/tokens/nft-minting-guide/)
