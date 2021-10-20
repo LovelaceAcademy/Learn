@@ -21,9 +21,9 @@ cardano-cli address key-gen \
     --verification-key-file ft-policy.vkey \
     --signing-key-file ft-policy.skey
 ```
-Capture the hash of the key in the shell variable `POLICYHASH` by running
+Capture the hash of the key in the shell variable `POLICYKEYHASH` by running
 ```bash
-POLICYHASH=$(cardano-cli address key-hash --payment-verification-key-file ft-policy.vkey)
+POLICYKEYHASH=$(cardano-cli address key-hash --payment-verification-key-file ft-policy.vkey)
 ```
 
 ### Define Multisig Policy
@@ -31,7 +31,7 @@ Create a ft-policy.script file with the right script using
 ```bash
 touch ft-policy.script 
 echo "{" >> ft-policy.script 
-echo "  \"keyHash\": \"$POLICYHASH\"," >> ft-policy.script
+echo "  \"keyHash\": \"$POLICYKEYHASH\"," >> ft-policy.script
 echo "  \"type\": \"sig\"" >> ft-policy.script
 echo "}" >> ft-policy.script
 ```
@@ -54,7 +54,7 @@ POLICYID=$(cardano-cli transaction policyid --script-file ft-policy.script)
 ## Create Wallet Keys and Addresses
 We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose. 
 
-📝 _In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned [earlier](https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys), mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity_
+📝❗ _In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned [earlier](https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys), mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity_
 
 ```bash
 cardano-cli address key-gen \
@@ -127,9 +127,13 @@ cardano-cli transaction build-raw \
 FEE=$(cardano-cli transaction calculate-min-fee --tx-body-file fee_draft.txraw --tx-in-count 1 --tx-out-count 2 --witness-count 2 --testnet-magic 1097911063 --protocol-params-file protocol.json | egrep -o '[0-9]+')
 ```
 Following a similar approach in [Transactions: UTxO and Metadata
-](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/), we build a draft Tx with the same arguments to calculate the Tx fee captured in the `FEE` shell variable. This time we are specifying additional arguments in the form of `--mint` and `--minting-script-file`. Also note the `--witness-count` of `2` when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.
+](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/), we build a draft Tx with the same arguments to calculate the Tx fee captured in the `FEE` shell variable. This time we are specifying additional arguments in the form of `--mint` and `--minting-script-file`. Also note the `--witness-count` of `2` when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key. The most difficult part, however, is building the raw Tx with the correct `--mint` and `--tx-out` parameters. 
 
-The most difficult part is building the raw Tx with the correct `--tx-out` and `--mint` parameters. The format for `--tx-out` is `{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}` with additional custom tokens concatenated afterwards. The format for `--mint` is `--tx-out` without the `{address}+{lovelace_quantity}` in the beginning.
+The format for `--mint` is `{new_custom_token_x_quantity} {policyid}.{asset_name_x}` with additional custom tokens concatenated with a `+`. In this case it is `--mint 1000 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN + 1 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LA25` since they use the same multisig policy.
+
+📝🔥 _**Burn** fungible tokens by using a negative quantity, e.g. `--mint -500 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN`_
+
+The format for `--tx-out` is `{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}` with any additional custom tokens concatenated afterwards. In our simple case the `--tx-in` UTxO does not include any custom tokens so it would contain exactly what is minted after the lovelace quantity. In some other cases (e.g. burning or accumulating custom tokens from other UTxOs) you will need to calculate the custom token quantities if they have been included with the `--tx-in` UTxOs.
 
 ### Build Raw Minting Tx 
 Now we can build out the actual Tx with the correct fee and using that to calculate the `TXOUT_CHANGE` to go back to the source address. As described in the previous article [Cardano’s Native Assets
@@ -170,7 +174,10 @@ You can also get the transaction ID (aka Tx Hash) of your Tx with the command:
 ```bash
 cardano-cli transaction txid --tx-file mint.txsigned
 ```
-This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search.
+This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the transaction ID above.
+
+## Burning Tokens
+
 
 ## Explore Token Builders
 Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.

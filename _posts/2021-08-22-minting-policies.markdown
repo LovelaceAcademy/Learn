@@ -47,7 +47,7 @@ cardano-cli shelley address build-script
   --out-file two-owner-time-locked.addr \
 ```
 
-That address can now be used as a payment address to receive ADA or custom tokens, but to **spend** these values in the UTxOs **must pass the validation rules defined in the multisig script**, i.e. require signatures from both keys and only before  slot 41217687.
+That address can now be used as a payment address to receive ADA and custom tokens. However in order to **spend** these values in the UTxOs, the Tx **must pass the validation rules defined in the multisig script**, i.e. require signatures from both keys and only before  slot 41217687.
 
 ### Generating a Multisig Minting Policy
 These same validation scripts can also be used to define a minting policy for a native asset. From the script file you can generate the `policyId` using
@@ -58,9 +58,9 @@ cardano-cli transaction policyid \
 ```
 
 ## Plutus Script Policies
-Multisig policies allow us to define basic validation rules based on a set of keys and a time-locked boundary, but with Plutus Script based policies you can define a much more comprehensive set of minting rules. 
+Multisig policies define simple validation rules based on a set of keys and a time-locked boundary, but with Plutus Script based policies you can define a much more comprehensive set of minting rules such as enforcing a fixed supply or specifying monetary expansion.
 
-_More content coming soon..._
+🚧 _More content coming soon_
 
 ## Mint your own Token
 Learn how to mint your first fungible token at [Fungible Token Minting Guide ➡️](https://learn.lovelace.academy/tokens/fungible-token-minting-guide/)

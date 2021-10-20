@@ -15,7 +15,7 @@ Unlike single-asset blockchains (e.g. Bitcoin and Litecoin) which only support a
  - **Non-Fungible Assets (NFTs)**: A single unit representing a distinct asset or fact that is unique across the entire blockchain (e.g. art collectables, identity, real estate)
 
 ## Native Assets
-A multi-asset blockchain has native asset support (e.g. Cardano, Ergo and Algorand) if all of its custom tokens follow the same base-layer accounting rules as its principal asset. This allows users to mint or transact in custom tokens without paying additional fees incurred by executing token-specific smart contracts. The following advantages arise from native asset support:
+A multi-asset blockchain has native asset support (e.g. Cardano, Ergo and Algorand) if all of its custom tokens follow the same base-layer accounting rules as its principal asset. This allows users to mint or transact in custom tokens without writing any token-specific smart contracts or paying additional fees incurred by executing them. The following advantages arise from native asset support:
  - Cheap, fast and reliable transactions for all tokens
  - Universal interoperability of all tokens
  - Simple minting process for custom tokens
