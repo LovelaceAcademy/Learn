@@ -42,7 +42,7 @@ As a developer you might be familiar with the client-server paradigm used throug
 
 |   | Traditional Software Development  | Blockchain  Development   |
 |---|---|---|
-|Ownership of Data   | Owned by the centralised corporations  | Owned by everyone participating in blockchain |
+| Ownership of Data   | Owned by the centralised corporations  | Owned by everyone participating in blockchain |
 |Data Synchronization   |   |Everyone can run a full node, which acts as a server  |
 |   |   | Every full node synchronises a full copy of the database with its peers  |
 |   |   | Every full node validates the integrity of the data using cryptography  |
