@@ -40,31 +40,16 @@ As Blockchain sits at the intersection of cryptography, computer science, distri
 ### Key Differences vs Traditional Software Development
 As a developer you might be familiar with the client-server paradigm used throughout Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, and these servers sit on top of distributed databases and/or interact with other servers. Web3 flips that paradigm with the following key differences:
 
-|   |   | Blockchain  Development   |
-|---|---|---|
-| Ownership of Data   |   | Owned by everyone participating in blockchain |
-|Data Synchronization   |   |Everyone can run a full node, which acts as a server  |
-|   |   | Every full node synchronises a full copy of the database with its peers  |
-|   |   | Every full node validates the integrity of the data using cryptography  |
-| Data Update  |   | To update data we must submit a transaction (Tx) |
-|   |   | Every Tx has a fee in ADA based on its payload  |
-|   |   | Everyone can submit a Tx as long as the accounting/cryptographic/smart contract validation succeeds  |
-|   |   | Every Tx propagates through the network of full nodes after submission in a _pending_ state |
-|   |   | Pending Txs are batched into Blocks committed by Stake Pools at a regular interval  |
-|   |   | Everyone can participate in the Proof-of-Stake consensus to commit new Blocks (i.e. be a SPO)  |
-|   |   | Tx finalisations are not immediate. A by-product of eventual consistency in distributed systems with additional protection against invalid forks  |
-| Computation and Storage  |   | On-chain computation (i.e. Executing Smart Contracts) has compute/time & storage/space costs  |
-|   |   | On-chain computation can only work with data that exists on-chain (i.e. No integration outside the Blockchain itself apart from Oracle-inserted data)  |
-|   |   | On-chain storage of _additional_ data comes at a cost (e.g. metadata)  |
+#### Ownership of Data
+- Owned by everyone participating in the blockchain
 
-
-#### A Network of Full Nodes
+#### Data Synchronization
 - Everyone can run a full node, which acts as a server
 - Every full node synchronises a full copy of the database with its peers
 - Every full node validates the integrity of the data using cryptography
 
-#### Transactions and Updates
-- Updates to the data come from transactions (Tx)
+#### Data Update
+- To update data we must submit a transaction (Tx)
 - Every Tx has a fee in ADA based on its payload
 - Everyone can submit a Tx as long as the accounting/cryptographic/smart contract validation succeeds
 - Every Tx propagates through the network of full nodes after submission in a _pending_ state
