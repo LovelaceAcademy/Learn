@@ -40,9 +40,9 @@ As Blockchain sits at the intersection of cryptography, computer science, distri
 ### Key Differences vs Traditional Software Development
 As a developer you might be familiar with the client-server paradigm used throughout Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, and these servers sit on top of distributed databases and/or interact with other servers. Web3 flips that paradigm with the following key differences:
 
-|   | Traditional Software Development  | Blockchain  Development   |
+|   |   | Blockchain  Development   |
 |---|---|---|
-| Ownership of Data   | Owned by the centralised corporations  | Owned by everyone participating in blockchain |
+| Ownership of Data   |   | Owned by everyone participating in blockchain |
 |Data Synchronization   |   |Everyone can run a full node, which acts as a server  |
 |   |   | Every full node synchronises a full copy of the database with its peers  |
 |   |   | Every full node validates the integrity of the data using cryptography  |
