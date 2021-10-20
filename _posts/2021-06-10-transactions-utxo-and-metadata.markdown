@@ -245,19 +245,21 @@ cardano-cli query utxo --address $(cat payment.addr) --testnet-magic 1097911063
 cardano-cli query utxo --address $(cat destination_payment.addr) --testnet-magic 1097911063
 ```
 
-## Exploring Transactions
+Alternatively you can verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the `transaction ID` from the `Get Transaction ID` step above. 
 
-Using an explorer is the easiest way to navigate across all the addresses, blocks and transactions in Cardano.
+## Using Block Explorers
 
+As shown above, using a block explorer is the easiest way to navigate across all the addresses, blocks and transactions in Cardano.
+
+- [Cardano Scan](https://testnet.cardanoscan.io/)
 - [ADATools - Testnet](https://testnet.adatools.io/transactions)
-- [Cardano Blockchain Explorer](https://explorer.cardano.org/)
-- [Cardano Scan](https://cardanoscan.io/)
 - [ADA Stat](https://adastat.net/)
 - [ADAex.org](https://adaex.org/)
 - [Blockchair: Cardano](https://blockchair.com/cardano)
 - [Pool.pm (toggle TXs)](https://pool.pm/)
+- [Cardano Blockchain Explorer](https://explorer.cardano.org/)
 
 ## Learn about Cardano's Native Tokens
- Continue on to [Introduction to Tokens
+Continue on to [Introduction to Tokens
  ➡️](https://learn.lovelace.academy/tokens/introduction-to-tokens/)
 

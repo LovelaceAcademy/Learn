@@ -7,25 +7,21 @@ last_modified_at: 2021-06-10
 order: 4
 ---
 
-Keys and addresses are cryptographic entities at the heart of all information flow in Cardano and other blockchains. 
-Keys are used to verify ownership, consent and authenticity
-while addresses derived from these keys are destinations for values. Subsequently all the values against these addresses can only be _unlocked_ for spending using the keys associated with them, safeguarding them from theft or confiscation.
-
-There are [many different types of keys](https://cips.cardano.org/cips/cip5/) that exist in Cardano, but here we will be focusing on the **address keys** on the right section of the
-image below.
+Keys and addresses are cryptographic entities at the heart of all information flow in Cardano and other blockchains. There are [many different types of keys](https://cips.cardano.org/cips/cip5/) in Cardano, but to get started we will focus on the **address keys** and their derived addresses on the right section of the image below.
 
 ![](https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png)
 
-Image courtesy of [ilap](https://github.com/ilap)
+📝 _Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), the terms **keys** and **key pairs** can be used interchangeably for the rest of this guide. In particular Cardano uses [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs consisting of a private signing key and a public verification key._
 
-A powerful feature arises from the fact that these cryptographic
+Address keys are used to derive addresses, which are destinations of values from transaction outputs. This strict association means the only way to _unlock_ the ability to spend/withdraw values at these addresses is through a signature provided by the private signing key. This simple premise safeguards all the values from theft or confiscation.
+
+Another powerful feature arises from the fact that these cryptographic
 entities can be created without connecting to or interacting with the network. The de-coupling of these entities from the network
 allows any one, even those without an internet connection, to create keys and their corresponding addresses that can receive ADA/custom tokens.
 
 ## Address Keys
 
-Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), Cardano uses [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs
-consisting of a private signing key and a public verification key. Two main types of address keys are used within Cardano:
+Two main types of address keys are used within Cardano:
 
 - **Payment Keys**: For creating payment addresses to receive ADA/custom tokens, and signing transactions
   to spend ADA/custom tokens from these payment addresses
@@ -34,6 +30,8 @@ consisting of a private signing key and a public verification key. Two main type
   stake pools
 
 ### Creating Payment Keys
+
+
 
 ```bash
 cardano-cli address key-gen --verification-key-file payment.vkey --signing-key-file payment.skey

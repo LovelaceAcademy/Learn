@@ -10,9 +10,9 @@ order: 1
 The world is starting to understand the implications of Blockchain's 
 disruptive technology and its decentralised socioeconomic movement twelve and a half years
 after [Bitcoin's first block](https://www.blockchain.com/btc/block/00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048).
-Since then, the Blockchain industry has surpassed a **$2.5 Trillion** dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
+Since then, the Blockchain industry has surpassed a **$2.75 Trillion** dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
 
-To dig deeper on the technical foundations and benefits of Blockchain, please refer to our video [Making Sense of Blockchain](https://www.youtube.com/watch?v=ev75v-9LU5I) (we strongly recommend watching it on a large screen).
+To dig deeper into the technical foundations and benefits of Blockchain, please refer to our video [Making Sense of Blockchain](https://www.youtube.com/watch?v=ev75v-9LU5I) (we strongly recommend watching it on a large screen).
 
 ## Huge Opportunities Ahead
 There has not been this level of opportunity since the the mainstream adoption of the internet. Never before has the **entire world** had **equal access** to a common financial layer, a trusted and resilient network of value not controlled by a central intermediary that is prone to corruption, mismanagement or exploitative behaviour. A global network powered by the people themselves, where everyone can have an economic identity with unfettered access to:
