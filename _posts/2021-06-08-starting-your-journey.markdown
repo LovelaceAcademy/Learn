@@ -38,18 +38,18 @@ With that in mind, Lovelace Academy as an education platform is mostly geared to
 As Blockchain sits at the intersection of cryptography, computer science, distributed systems and economics beginners might be overwhelmed with the amount of knowledge required to understand each field. However, do not fear! You do not need to be such an advanced polymath to start building something on Cardano. In fact, you can already begin your journey with a basic understanding of software development.
 
 ### Key Differences vs Traditional Software Development
-As a developer you might be familiar with the client-server paradigm used throughout Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, and these servers sit on top of distributed databases and/or interact with other servers. Web3 flips that paradigm with the following key differences:
+As a developer you might be familiar with the client-server paradigm where thin clients/frontends interact with remote servers managed by a trusted intermediary, and these servers sit on top of distributed databases and interact with other servers within their closed network. Web3 flips that paradigm with the following key differences:
 
 #### Ownership of Data
-- Owned by everyone participating in the blockchain
+- Owned by participants of the open blockchain network
 
-#### Data Synchronization
-- Everyone can run a full node, which acts as a server
+#### Infrastructure and Data Synchronisation
+- Everyone can run a full node
 - Every full node synchronises a full copy of the database with its peers
 - Every full node validates the integrity of the data using cryptography
 
-#### Data Update
-- To update data we must submit a transaction (Tx)
+#### Updating Data
+- To update any data we must submit a transaction (Tx)
 - Every Tx has a fee in ADA based on its payload
 - Everyone can submit a Tx as long as the accounting/cryptographic/smart contract validation succeeds
 - Every Tx propagates through the network of full nodes after submission in a _pending_ state
@@ -63,7 +63,7 @@ As a developer you might be familiar with the client-server paradigm used throug
 - On-chain storage of _additional_ data comes at a cost (e.g. metadata)
 
 #### Technical Limitations?
-- Benefits of decentralisation and having a trusted global network of value outweighs the raw technical limitations (e.g. limited throughput & storage) of the base layer
+- The benefits of decentralisation and having an open and trusted global network of value **outweighs** the raw technical limitations (e.g. limited throughput & storage) of the base layer
 - Scaling solutions are already on the way
 - Blockchains or distributed ledgers are meant to complement, not replace traditional IT infrastructure
 
