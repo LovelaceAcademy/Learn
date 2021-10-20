@@ -1321,15 +1321,15 @@
     <span class="nt">--verification-key-file</span> ft-policy.vkey <span class="se">\</span>
     <span class="nt">--signing-key-file</span> ft-policy.skey
 </code></pre></div></div>
-<p>Capture the hash of the key in the shell variable <code class="language-plaintext highlighter-rouge">POLICYHASH</code> by running</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POLICYHASH</span><span class="o">=</span><span class="si">$(</span>cardano-cli address key-hash <span class="nt">--payment-verification-key-file</span> ft-policy.vkey<span class="si">)</span>
+<p>Capture the hash of the key in the shell variable <code class="language-plaintext highlighter-rouge">POLICYKEYHASH</code> by running</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POLICYKEYHASH</span><span class="o">=</span><span class="si">$(</span>cardano-cli address key-hash <span class="nt">--payment-verification-key-file</span> ft-policy.vkey<span class="si">)</span>
 </code></pre></div></div>
 
 <h3 id="define-multisig-policy">Define Multisig Policy</h3>
 <p>Create a ft-policy.script file with the right script using</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>ft-policy.script 
 <span class="nb">echo</span> <span class="s2">"{"</span> <span class="o">&gt;&gt;</span> ft-policy.script 
-<span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="s2">keyHash</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$POLICYHASH</span><span class="se">\"</span><span class="s2">,"</span> <span class="o">&gt;&gt;</span> ft-policy.script
+<span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="s2">keyHash</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$POLICYKEYHASH</span><span class="se">\"</span><span class="s2">,"</span> <span class="o">&gt;&gt;</span> ft-policy.script
 <span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">sig</span><span class="se">\"</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ft-policy.script
 <span class="nb">echo</span> <span class="s2">"}"</span> <span class="o">&gt;&gt;</span> ft-policy.script
 </code></pre></div></div>
@@ -1351,7 +1351,7 @@
 <h2 id="create-wallet-keys-and-addresses">Create Wallet Keys and Addresses</h2>
 <p>We will then create another set of keys for two wallets. One source wallet to get testnet tADA from the faucet to cover the Tx fee, and one destination wallet to receive the minted tokens. Although in theory you can use the same policy key to generate an address to receive tADA and mint the custom tokens, we recommend using different sets of keys based on their purpose.</p>
 
-<p>📝 <em>In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys">earlier</a>, mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity</em></p>
+<p>📝❗ <em>In case of mainnet we will know the destination address upfront, so only one set of keys are needed. However as mentioned <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/#address-keys">earlier</a>, mainnet payment keys should be generated in a trusted air-gapped machine without any network connectivity</em></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="se">\</span>
     <span class="nt">--verification-key-file</span> source.vkey <span class="se">\</span>
@@ -1419,9 +1419,13 @@ cardano-cli transaction build-raw <span class="se">\</span>
 <span class="nv">FEE</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction calculate-min-fee <span class="nt">--tx-body-file</span> fee_draft.txraw <span class="nt">--tx-in-count</span> 1 <span class="nt">--tx-out-count</span> 2 <span class="nt">--witness-count</span> 2 <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--protocol-params-file</span> protocol.json | egrep <span class="nt">-o</span> <span class="s1">'[0-9]+'</span><span class="si">)</span>
 </code></pre></div></div>
 <p>Following a similar approach in <a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/">Transactions: UTxO and Metadata
-</a>, we build a draft Tx with the same arguments to calculate the Tx fee captured in the <code class="language-plaintext highlighter-rouge">FEE</code> shell variable. This time we are specifying additional arguments in the form of <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--minting-script-file</code>. Also note the <code class="language-plaintext highlighter-rouge">--witness-count</code> of <code class="language-plaintext highlighter-rouge">2</code> when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key.</p>
+</a>, we build a draft Tx with the same arguments to calculate the Tx fee captured in the <code class="language-plaintext highlighter-rouge">FEE</code> shell variable. This time we are specifying additional arguments in the form of <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--minting-script-file</code>. Also note the <code class="language-plaintext highlighter-rouge">--witness-count</code> of <code class="language-plaintext highlighter-rouge">2</code> when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key. The most difficult part, however, is building the raw Tx with the correct <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters.</p>
 
-<p>The most difficult part is building the raw Tx with the correct <code class="language-plaintext highlighter-rouge">--tx-out</code> and <code class="language-plaintext highlighter-rouge">--mint</code> parameters. The format for <code class="language-plaintext highlighter-rouge">--tx-out</code> is <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}</code> with additional custom tokens concatenated afterwards. The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">--tx-out</code> without the <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}</code> in the beginning.</p>
+<p>The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">{new_custom_token_x_quantity} {policyid}.{asset_name_x}</code> with additional custom tokens concatenated with a <code class="language-plaintext highlighter-rouge">+</code>. In this case it is <code class="language-plaintext highlighter-rouge">--mint 1000 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN + 1 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LA25</code> since they use the same multisig policy.</p>
+
+<p>📝🔥 <em><strong>Burn</strong> fungible tokens by using a negative quantity, e.g. <code class="language-plaintext highlighter-rouge">--mint -500 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN</code></em></p>
+
+<p>The format for <code class="language-plaintext highlighter-rouge">--tx-out</code> is <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}</code> with any additional custom tokens concatenated afterwards. In our simple case the <code class="language-plaintext highlighter-rouge">--tx-in</code> UTxO does not include any custom tokens so it would contain exactly what is minted after the lovelace quantity. In some other cases (e.g. burning or accumulating custom tokens from other UTxOs) you will need to calculate the custom token quantities if they have been included with the <code class="language-plaintext highlighter-rouge">--tx-in</code> UTxOs.</p>
 
 <h3 id="build-raw-minting-tx">Build Raw Minting Tx</h3>
 <p>Now we can build out the actual Tx with the correct fee and using that to calculate the <code class="language-plaintext highlighter-rouge">TXOUT_CHANGE</code> to go back to the source address. As described in the previous article <a href="https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets">Cardano’s Native Assets
@@ -1458,7 +1462,9 @@ cardano-cli transaction build-raw <span class="se">\</span>
 <p>You can also get the transaction ID (aka Tx Hash) of your Tx with the command:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction txid <span class="nt">--tx-file</span> mint.txsigned
 </code></pre></div></div>
-<p>This can be used to verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions">ADATools</a> through a direct search.</p>
+<p>This can be used to verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions">ADATools</a> through a direct search of the transaction ID above.</p>
+
+<h2 id="burning-tokens">Burning Tokens</h2>
 
 <h2 id="explore-token-builders">Explore Token Builders</h2>
 <p>Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.</p>

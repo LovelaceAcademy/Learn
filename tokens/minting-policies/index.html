@@ -1343,7 +1343,7 @@
   <span class="nt">--out-file</span> two-owner-time-locked.addr <span class="se">\</span>
 </code></pre></div></div>
 
-<p>That address can now be used as a payment address to receive ADA or custom tokens, but to <strong>spend</strong> these values in the UTxOs <strong>must pass the validation rules defined in the multisig script</strong>, i.e. require signatures from both keys and only before  slot 41217687.</p>
+<p>That address can now be used as a payment address to receive ADA and custom tokens. However in order to <strong>spend</strong> these values in the UTxOs, the Tx <strong>must pass the validation rules defined in the multisig script</strong>, i.e. require signatures from both keys and only before  slot 41217687.</p>
 
 <h3 id="generating-a-multisig-minting-policy">Generating a Multisig Minting Policy</h3>
 <p>These same validation scripts can also be used to define a minting policy for a native asset. From the script file you can generate the <code class="language-plaintext highlighter-rouge">policyId</code> using</p>
@@ -1353,9 +1353,9 @@
 </code></pre></div></div>
 
 <h2 id="plutus-script-policies">Plutus Script Policies</h2>
-<p>Multisig policies allow us to define basic validation rules based on a set of keys and a time-locked boundary, but with Plutus Script based policies you can define a much more comprehensive set of minting rules.</p>
+<p>Multisig policies define simple validation rules based on a set of keys and a time-locked boundary, but with Plutus Script based policies you can define a much more comprehensive set of minting rules such as enforcing a fixed supply or specifying monetary expansion.</p>
 
-<p><em>More content coming soon…</em></p>
+<p>🚧 <em>More content coming soon</em></p>
 
 <h2 id="mint-your-own-token">Mint your own Token</h2>
 <p>Learn how to mint your first fungible token at <a href="https://learn.lovelace.academy/tokens/fungible-token-minting-guide/">Fungible Token Minting Guide ➡️</a></p>

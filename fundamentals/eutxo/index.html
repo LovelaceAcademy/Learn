@@ -1305,13 +1305,13 @@
               <h1>EUTxO</h1>
             </div>
 
-            <p>Extended UTxO (EUTxO) as the name suggests, extends the <a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/">UTxO model</a> to enable Smart Contracts on Cardano by:</p>
+            <p>Extended UTxO (EUTxO) as the name suggests, extends the <a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/">UTxO model</a> to enable Smart Contracts on Cardano through:</p>
 <ul>
-  <li>Incorporating a new type of address derived from turing-complete scripts executed before a UTxO can be spent by a Tx</li>
-  <li>Propagating encapsulated state in addition to values</li>
+  <li>Transactions propagating and encapsulating <strong>state</strong> (arbitrary data) in addition to tokens</li>
+  <li>A new address type derived from <a href="https://stackoverflow.com/questions/7284/what-is-turing-complete">turing-complete</a> scripts. These scripts are executed to validate that a UTxO can be spent by Transactions</li>
 </ul>
 
-<p>This approach fits perfectly with the pure functional paradigm that Cardano is based on, however it also requires a shift in thinking compared to traditional RPC-like smart contract implementations of other Blockchains.</p>
+<p>This approach fits perfectly with the pure functional paradigm that Cardano is based on, however it also requires a shift in thinking compared to the RPC-like request/response smart contract implementations of other Blockchains.</p>
 
 <p>🚧 <em>More content coming soon</em></p>
 
