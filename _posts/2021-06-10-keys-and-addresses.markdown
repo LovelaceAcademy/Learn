@@ -8,12 +8,10 @@ order: 4
 ---
 
 Keys and addresses are cryptographic entities at the heart of all information flow in Cardano and other blockchains. 
-Keys prove ownership, consent and authenticity
-while addresses derived from these keys are destinations to hold facts
-and values. Subsequently all the facts/values in these addresses 
-can only be unlocked for verification/spending using the keys associated with them, safeguarding them from theft or confiscation.
+Keys are used to verify ownership, consent and authenticity
+while addresses derived from these keys are destinations for values. Subsequently all the values against these addresses can only be _unlocked_ for spending using the keys associated with them, safeguarding them from theft or confiscation.
 
-There are [many different types of keys](https://cips.cardano.org/cips/cip5/) that exist in Cardano, but here we will be focusing on the address keys on the right section of the
+There are [many different types of keys](https://cips.cardano.org/cips/cip5/) that exist in Cardano, but here we will be focusing on the **address keys** on the right section of the
 image below.
 
 ![](https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png)
@@ -22,21 +20,18 @@ Image courtesy of [ilap](https://github.com/ilap)
 
 A powerful feature arises from the fact that these cryptographic
 entities can be created without connecting to or interacting with the network. The de-coupling of these entities from the network
-allows any one, even those without an internet connection, to create
-unique addresses that can receive ADA/custom tokens. 
+allows any one, even those without an internet connection, to create keys and their corresponding addresses that can receive ADA/custom tokens.
 
-## Keys
+## Address Keys
 
-Two main types of keys are used within Cardano:
+Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), Cardano uses [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs
+consisting of a private signing key and a public verification key. Two main types of address keys are used within Cardano:
 
-- Payment Keys: For creating payment addresses to receive ADA/custom tokens, and signing transactions
+- **Payment Keys**: For creating payment addresses to receive ADA/custom tokens, and signing transactions
   to spend ADA/custom tokens from these payment addresses
-- Stake Keys: For creating payment/staking addresses, delegating
+- **Stake Keys**: For creating payment/staking addresses, delegating
   stake, claiming ADA rewards from stake addresses and registering
   stake pools
-
-Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), these are [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) pairs
-consisting of a private signing key and a public verification key. 
 
 ### Creating Payment Keys
 
@@ -81,13 +76,12 @@ verification key `stake.vkey` in the current directory.
 
 ## Addresses
 
-The keys above are then used to create two main types of addresses:
+The address keys above are then used to create two main types of addresses:
 
-- Payment addresses: To receive ADA/custom tokens
-- Stake/Reward addresses: To receive ADA staking rewards (automatically)
+- **Payment addresses**: To receive ADA/custom tokens
+- **Stake/Reward addresses**: To receive ADA staking rewards (automatically)
 
-These are a [blake2b-256](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2)
-hash of the public key(s) and concatenated with other metadata (see
+These are encoded representations of public verification address key(s) concatenated with other metadata (see
 different address types in the image above) including the network in
 which they are valid for (e.g. --mainnet, --testnet-magic 1097911063,
 etc.)
@@ -114,7 +108,7 @@ cardano-cli address build \
 
 ### Creating a Stake/Reward Address
 
-A unique stake address is generated from a staking verification key.
+A unique stake address is generated from a stake verification key.
 
 ```bash
 cardano-cli stake-address build \

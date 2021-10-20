@@ -11,7 +11,7 @@ As a developer the best starting point to Cardano is to get a good
 understanding of the Cardano node. This knowledge is essential whether
 you want to build DApps, wallets, integration tools, mint custom tokens
 or operate your own stake pool. As mentioned in the previous article, 
-the full node is open for everyone to run and we strongly encourage it.
+the full node is open for everyone to run and we strongly encourage learning how to do it.
 
 We will break it down in five basic steps:
 
