@@ -1346,6 +1346,88 @@
 <h3 id="key-differences-vs-traditional-software-development">Key Differences vs Traditional Software Development</h3>
 <p>As a developer you might be familiar with the client-server paradigm used throughout Web 2.0 where thin clients/frontends make requests to servers managed by a trusted intermediary, and these servers sit on top of distributed databases and/or interact with other servers. Web3 flips that paradigm with the following key differences:</p>
 
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Traditional Software Development</th>
+      <th>Blockchain  Development</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ownership of Data</td>
+      <td>Owned by the centralised corporations</td>
+      <td>Owned by everyone participating in blockchain</td>
+    </tr>
+    <tr>
+      <td>Data Synchronization</td>
+      <td> </td>
+      <td>Everyone can run a full node, which acts as a server</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Every full node synchronises a full copy of the database with its peers</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Every full node validates the integrity of the data using cryptography</td>
+    </tr>
+    <tr>
+      <td>Data Update</td>
+      <td> </td>
+      <td>To update data we must submit a transaction (Tx)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Every Tx has a fee in ADA based on its payload</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Everyone can submit a Tx as long as the accounting/cryptographic/smart contract validation succeeds</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Every Tx propagates through the network of full nodes after submission in a <em>pending</em> state</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Pending Txs are batched into Blocks committed by Stake Pools at a regular interval</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Everyone can participate in the Proof-of-Stake consensus to commit new Blocks (i.e. be a SPO)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Tx finalisations are not immediate. A by-product of eventual consistency in distributed systems with additional protection against invalid forks</td>
+    </tr>
+    <tr>
+      <td>Computation and Storage</td>
+      <td> </td>
+      <td>On-chain computation (i.e. Executing Smart Contracts) has compute/time &amp; storage/space costs</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>On-chain computation can only work with data that exists on-chain (i.e. No integration outside the Blockchain itself apart from Oracle-inserted data)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>On-chain storage of <em>additional</em> data comes at a cost (e.g. metadata)</td>
+    </tr>
+  </tbody>
+</table>
+
 <h4 id="a-network-of-full-nodes">A Network of Full Nodes</h4>
 <ul>
   <li>Everyone can run a full node, which acts as a server</li>
