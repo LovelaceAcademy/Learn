@@ -251,4 +251,8 @@ Alternatively you can use the following tools (for a fee) to mint your own token
 - [NFT Machine](https://nft-machine.com/)
 
 ## Supplementary Material
-- [Cardano Developers Minting NFTs](https://developers.cardano.org/docs/native-tokens/minting-nfts/)
+- [Cardano Developers: Minting NFTs](https://developers.cardano.org/docs/native-tokens/minting-nfts/)
+
+## Learn about Smart Contracts
+Continue on to [Smart Contracts Fundamentals: EUTxO
+ ➡️](https://learn.lovelace.academy/fundamentals/eutxo/)

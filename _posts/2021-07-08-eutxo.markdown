@@ -6,10 +6,18 @@ categories:
 order: 1
 ---
 
-Extended UTxO (EUTxO) as the name suggests, extends the [UTxO model](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/) to enable Smart Contracts on Cardano through:
+Extended UTxO (EUTxO) as the name suggests, extends the [**U** nspent **Tx** ransaction **O** utput model](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/) to enable Smart Contracts on Cardano through:
 - Transactions propagating and encapsulating **state** (arbitrary data) in addition to tokens 
-- A new address type derived from [turing-complete](https://stackoverflow.com/questions/7284/what-is-turing-complete) scripts. These scripts are executed to validate that a UTxO can be spent by Transactions
+- A **new address type** derived from [turing-complete](https://stackoverflow.com/questions/7284/what-is-turing-complete) scripts. These scripts are executed to validate that a UTxO can be spent by a transaction
 
-This approach fits perfectly with the pure functional paradigm that Cardano is based on, however it also requires a shift in thinking compared to the RPC-like request/response smart contract implementations of other Blockchains. 
+This approach fits perfectly with the **pure functional** paradigm that Cardano is based on, however it also requires a shift in thinking compared to the RPC-like request/response smart contract implementations of other Blockchains with complex global state. 
+
+We will start with pure functions which are conceptually similar to mathematical functions. Given a **known input**, a pure function **will always** produce the **same output** with no side-effects when the function is executed. A basic example is the function `add(x, y)` when given x=1 and y=1, the output will always be 2. 
+
+As mentioned in our guide on [UTxO](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/), transactions simply take inputs to produce new outputs in a deterministic model based on simple arithmetic (i.e. sum of all inputs must be equal to the sum of all outputs minus the fee, plus stake reward withdrawals, plus/minus minted tokens). However if we extend this to add a pure function in the form of a turing-complete script and allow the propagation of state and we can now represent much more complex forms of computation within the blockchain.
 
 🚧 _More content coming soon_
+
+## Set up a Local Development Environment
+Continue on to [Smart Contracts Fundamentals: Local Development
+ ➡️](https://learn.lovelace.academy/fundamentals/local-development/)

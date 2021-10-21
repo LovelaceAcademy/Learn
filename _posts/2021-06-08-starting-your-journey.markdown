@@ -38,12 +38,15 @@ With that in mind, Lovelace Academy as an education platform is mostly geared to
 As Blockchain sits at the intersection of cryptography, computer science, distributed systems and economics beginners might be overwhelmed with the amount of knowledge required to understand each field. However, do not fear! You do not need to be such an advanced polymath to start building something on Cardano. In fact, you can already begin your journey with a basic understanding of software development.
 
 ### Key Differences vs Traditional Software Development
-As a developer you might be familiar with the client-server paradigm where thin clients/frontends interact with remote servers managed by a trusted intermediary, and these servers sit on top of distributed databases and interact with other servers within their closed network. Web3 flips that paradigm with the following key differences:
+As a developer you will be familiar with the client-server paradigm where clients/frontends interact with remote servers managed by a central organisation. These remote servers almost always sit on top of distributed databases and interact with other servers within their closed network. As a result the data, connectivity and interactions become centralised and isolated in large silos across the internet.
+
+Blockchain and Web3 democratises and opens up that paradigm so that all the data is replicated within an open network, where everyone can run the servers themselves in the form of full nodes. Here is a summary of the key differences:
 
 #### Ownership of Data
 - Owned by participants of the open blockchain network
 
-#### Infrastructure and Data Synchronisation
+#### Infrastructure and Data Integrity
+- Everyone connects to a resilient network of full nodes 
 - Everyone can run a full node
 - Every full node synchronises a full copy of the database with its peers
 - Every full node validates the integrity of the data using cryptography
@@ -54,7 +57,7 @@ As a developer you might be familiar with the client-server paradigm where thin 
 - Everyone can submit a Tx as long as the accounting/cryptographic/smart contract validation succeeds
 - Every Tx propagates through the network of full nodes after submission in a _pending_ state
 - Pending Txs are batched into Blocks committed by Stake Pools at a regular interval
-- Everyone can participate in the Proof-of-Stake consensus to commit new Blocks (i.e. be a SPO)
+- Everyone can participate in the Proof-of-Stake consensus to commit new Blocks (i.e. be a SPO) and be rewarded for doing so
 - Tx finalisations are not immediate. A by-product of eventual consistency in distributed systems with additional protection against invalid forks
 
 #### Computation and Storage
@@ -63,7 +66,7 @@ As a developer you might be familiar with the client-server paradigm where thin 
 - On-chain storage of _additional_ data comes at a cost (e.g. metadata)
 
 #### Technical Limitations?
-- The benefits of decentralisation and having an open and trusted global network of value **outweighs** the raw technical limitations (e.g. limited throughput & storage) of the base layer
+- The benefits of decentralisation and having an open and trusted global network of value **far outweighs** the raw technical limitations (e.g. limited throughput & storage) of the base layer
 - Scaling solutions are already on the way
 - Blockchains or distributed ledgers are meant to complement, not replace traditional IT infrastructure
 

@@ -6,6 +6,10 @@ categories:
 order: 2
 ---
 
-We recommend [configuring a Linux environment](https://learn.lovelace.academy/getting-started/running-a-full-node/#set-up-your-linux-environment) to begin development with Smart Contracts on Cardano because the current developer tooling is Linux-based.
+As current developer tooling is predominantly Linux-based, we recommend [configuring a Linux environment](https://learn.lovelace.academy/getting-started/running-a-full-node/#set-up-your-linux-environment) with `cardano-cli` and `cardano-node` to begin development with Smart Contracts on Cardano.
 
 🚧 _More content coming soon_
+
+## Get a Gentle Introduction to Plutus
+Continue on to [Plutus: A Gentle Introduction
+ ➡️](https://learn.lovelace.academy/the-plutus-platform/a-gentle-introduction/)

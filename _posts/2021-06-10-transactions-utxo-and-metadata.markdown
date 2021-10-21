@@ -15,22 +15,19 @@ major coordinated event like a hard fork.
 
 ## The UTxO Accounting Model
 
-Cardano, like Bitcoin, uses the UTxO accounting model to signify the
-flow of values from transactions. UTxO stands for **U** nspent **T**
-ransaction **O** utput.
+Cardano, like Bitcoin and Ergo, uses the UTxO accounting model to signify the flow of values from transactions. UTxO stands for **U** nspent **Tx** ransaction **O** utput. A transaction at its core is a set of inputs and outputs, where inputs are consumed/spent to produce new outputs.
 
 As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
-addresses in Cardano can be the destination of multiple transaction outputs, 
-and it is up to the wallet to calculate the active balance by summing the
-current set of UTxOs. This parallels with cash-based accounting where notes used in transactions (i.e. pay and get change) and the 
+addresses in Cardano can hold multiple transaction outputs, and it is up to the wallet to calculate the active balance by summing the
+current set of UTxOs. This parallels with cash-based accounting where notes are used in transactions (i.e. pay and get change) and the 
 holder's active balance is the sum of all the notes in their wallet.
 
 Although it may seem like unnecessary complexity, this
 model provides a more elegant, performant and deterministic model to
 reason with the current state of the blockchain and prevent double-spending. 
-We will focus on the simpler Shelley UTxO model and expand on EUTxO 
-(Extended UTxO) and its main benefits in another article.
+We will focus on the simpler Shelley UTxO model and _expand_ on EUTxO 
+(Extended UTxO) and its main benefits in [another article](https://learn.lovelace.academy/fundamentals/eutxo/).
 
 ![](/img/utxo-visual.png)
 
@@ -44,7 +41,7 @@ active UTxOs that the global active state of the blockchain is derived.
 Much like the law of conservation of energy, the **sum of all inputs must be equal 
 to the sum of all outputs minus the transaction fees**. For typical payment
 transactions this usually results in "change" outputs being sent back to the payer.
-This also means all active ADA and custom tokens on Cardano's ledger can be
+This elegant model also means all active ADA and custom tokens on Cardano's ledger can be
 traced back to a transaction distributing the initial ADA supply in
 the genesis block, minted ADA from transactions claiming stake rewards
 or from transactions minting custom tokens. 
@@ -87,29 +84,21 @@ UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
 echo $UTXO0
 ```
 
-It will store the details for the UTxO of that transaction in the variables
+It will store the details for the UTxO of that transaction in the shell variables
 `UTXO0H`(transaction ID), `UTXO0I`(transaction output index) and `UTXO0V`(transaction output value).
 
 ### Create Destination Payment Address
 
-Create a new set of keys and a destination payment address
-destination\_payment.addr.
+Create a new set of address keys and a payment address for the destination of this transaction `destination_payment.addr`.
 
 ```bash
 cardano-cli address key-gen --verification-key-file destination_payment.vkey --signing-key-file destination_payment.skey
+
 cardano-cli address build --payment-verification-key-file destination_payment.vkey --testnet-magic 1097911063 --out-file destination_payment.addr
 ```
+📝 _Without any stake keys, `destination_payment.addr` is a basic enterprise addresses with no staking rights_
  
-### Load Protocol Parameters File
-
-Transactions must always refer to the latest version of the Cardano
-protocol parameters which can be retrieved by running:
-
-```bash
-cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
-```
-
-### Create Metadata JSON File
+### Create Metadata JSON File (Optional)
 
 We can attach up to 16kB of structured metadata to our transaction which will be
 stored and immutable for as long as the blockchain exists. The easiest 
@@ -146,6 +135,12 @@ documentation.
 
 ### Draft Transaction to Calculate Fees
 
+Transaction fees must always refer to the latest version of the Cardano protocol parameters which can be retrieved by running:
+
+```bash
+cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
+```
+
 Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
 that `--tx-in` uses the UTxO details queried above containing our faucet ADA. 
@@ -175,7 +170,7 @@ echo Fee: $FEE
 ### Raw Transaction with Metadata
 
 With the fee we can now calculate the correct amount of change ADA to be
-sent back to the payment address. We also define a `--invalid-hereafter` parameter to
+sent back to the payment address. We can also define a `--invalid-hereafter` parameter to
 define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.

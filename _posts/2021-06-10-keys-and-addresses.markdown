@@ -13,7 +13,7 @@ Keys and addresses are cryptographic entities at the heart of all information fl
 
 📝 _Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), the terms **keys** and **key pairs** can be used interchangeably for the rest of this guide. In particular Cardano uses [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs consisting of a private signing key and a public verification key._
 
-Address keys are used to derive addresses, which are destinations of values from transaction outputs. This strict association means the only way to _unlock_ the ability to spend/withdraw values at these addresses is through a signature provided by the private signing key. This simple premise safeguards all the values from theft or confiscation.
+Address keys are used to derive addresses, which are destinations for values from transaction outputs. This strict association means the only way to _unlock_ the ability to spend/withdraw values at these addresses is through a signature provided by the private signing key. This simple premise safeguards all the values from theft or confiscation.
 
 Another powerful feature arises from the fact that these cryptographic
 entities can be created without connecting to or interacting with the network. The de-coupling of these entities from the network
@@ -25,13 +25,11 @@ Two main types of address keys are used within Cardano:
 
 - **Payment Keys**: For creating payment addresses to receive ADA/custom tokens, and signing transactions
   to spend ADA/custom tokens from these payment addresses
-- **Stake Keys**: For creating payment/staking addresses, delegating
-  stake, claiming ADA rewards from stake addresses and registering
-  stake pools
+- **Stake Keys**: For creating stake/reward addresses, delegating
+  stake, withdrawing ADA rewards from stake addresses and registering
+  stake pools. Also used with payment keys to create base payment addresses with staking rights.
 
 ### Creating Payment Keys
-
-
 
 ```bash
 cardano-cli address key-gen --verification-key-file payment.vkey --signing-key-file payment.skey

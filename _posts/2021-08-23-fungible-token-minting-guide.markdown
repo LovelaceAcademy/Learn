@@ -189,7 +189,7 @@ Alternatively you can use the following tools (for a fee) to mint your own token
 
 ## Supplementary Material
 - [Cardano Docs: Learn about native tokens](https://docs.cardano.org/native-tokens/learn)
-- [Cardano Developers Minting Native Assets](https://developers.cardano.org/docs/native-tokens/minting)
+- [Cardano Developers: Minting Native Assets](https://developers.cardano.org/docs/native-tokens/minting)
 
 ## Mint your first NFT
 Learn how to mint your first NFT at [NFT Minting Guide ➡️](https://learn.lovelace.academy/tokens/nft-minting-guide/)
