@@ -1314,22 +1314,19 @@ major coordinated event like a hard fork.</p>
 
 <h2 id="the-utxo-accounting-model">The UTxO Accounting Model</h2>
 
-<p>Cardano, like Bitcoin, uses the UTxO accounting model to signify the
-flow of values from transactions. UTxO stands for <strong>U</strong> nspent <strong>T</strong>
-ransaction <strong>O</strong> utput.</p>
+<p>Cardano, like Bitcoin and Ergo, uses the UTxO accounting model to signify the flow of values from transactions. UTxO stands for <strong>U</strong> nspent <strong>Tx</strong> ransaction <strong>O</strong> utput. A transaction at its core is a set of inputs and outputs, where inputs are consumed/spent to produce new outputs.</p>
 
 <p>As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
-addresses in Cardano can be the destination of multiple transaction outputs, 
-and it is up to the wallet to calculate the active balance by summing the
-current set of UTxOs. This parallels with cash-based accounting where notes used in transactions (i.e. pay and get change) and the 
+addresses in Cardano can hold multiple transaction outputs, and it is up to the wallet to calculate the active balance by summing the
+current set of UTxOs. This parallels with cash-based accounting where notes are used in transactions (i.e. pay and get change) and the 
 holder’s active balance is the sum of all the notes in their wallet.</p>
 
 <p>Although it may seem like unnecessary complexity, this
 model provides a more elegant, performant and deterministic model to
 reason with the current state of the blockchain and prevent double-spending. 
-We will focus on the simpler Shelley UTxO model and expand on EUTxO 
-(Extended UTxO) and its main benefits in another article.</p>
+We will focus on the simpler Shelley UTxO model and <em>expand</em> on EUTxO 
+(Extended UTxO) and its main benefits in <a href="https://learn.lovelace.academy/fundamentals/eutxo/">another article</a>.</p>
 
 <p><img class="img-fluid" src="/img/utxo-visual.png" alt="" /></p>
 
@@ -1343,7 +1340,7 @@ active UTxOs that the global active state of the blockchain is derived.</p>
 <p>Much like the law of conservation of energy, the <strong>sum of all inputs must be equal 
 to the sum of all outputs minus the transaction fees</strong>. For typical payment
 transactions this usually results in “change” outputs being sent back to the payer.
-This also means all active ADA and custom tokens on Cardano’s ledger can be
+This elegant model also means all active ADA and custom tokens on Cardano’s ledger can be
 traced back to a transaction distributing the initial ADA supply in
 the genesis block, minted ADA from transactions claiming stake rewards
 or from transactions minting custom tokens.</p>
@@ -1384,27 +1381,20 @@ faucet have arrived in your payment.addr by running the following:</p>
 <span class="nb">echo</span> <span class="nv">$UTXO0</span>
 </code></pre></div></div>
 
-<p>It will store the details for the UTxO of that transaction in the variables
+<p>It will store the details for the UTxO of that transaction in the shell variables
 <code class="language-plaintext highlighter-rouge">UTXO0H</code>(transaction ID), <code class="language-plaintext highlighter-rouge">UTXO0I</code>(transaction output index) and <code class="language-plaintext highlighter-rouge">UTXO0V</code>(transaction output value).</p>
 
 <h3 id="create-destination-payment-address">Create Destination Payment Address</h3>
 
-<p>Create a new set of keys and a destination payment address
-destination_payment.addr.</p>
+<p>Create a new set of address keys and a payment address for the destination of this transaction <code class="language-plaintext highlighter-rouge">destination_payment.addr</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="nt">--verification-key-file</span> destination_payment.vkey <span class="nt">--signing-key-file</span> destination_payment.skey
+
 cardano-cli address build <span class="nt">--payment-verification-key-file</span> destination_payment.vkey <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> destination_payment.addr
 </code></pre></div></div>
+<p>📝 <em>Without any stake keys, <code class="language-plaintext highlighter-rouge">destination_payment.addr</code> is a basic enterprise addresses with no staking rights</em></p>
 
-<h3 id="load-protocol-parameters-file">Load Protocol Parameters File</h3>
-
-<p>Transactions must always refer to the latest version of the Cardano
-protocol parameters which can be retrieved by running:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> protocol.json 
-</code></pre></div></div>
-
-<h3 id="create-metadata-json-file">Create Metadata JSON File</h3>
+<h3 id="create-metadata-json-file-optional">Create Metadata JSON File (Optional)</h3>
 
 <p>We can attach up to 16kB of structured metadata to our transaction which will be
 stored and immutable for as long as the blockchain exists. The easiest 
@@ -1440,6 +1430,11 @@ documentation.</p>
 
 <h3 id="draft-transaction-to-calculate-fees">Draft Transaction to Calculate Fees</h3>
 
+<p>Transaction fees must always refer to the latest version of the Cardano protocol parameters which can be retrieved by running:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> protocol.json 
+</code></pre></div></div>
+
 <p>Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
 that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the UTxO details queried above containing our faucet ADA. 
@@ -1468,7 +1463,7 @@ cardano-cli transaction build-raw <span class="se">\</span>
 <h3 id="raw-transaction-with-metadata">Raw Transaction with Metadata</h3>
 
 <p>With the fee we can now calculate the correct amount of change ADA to be
-sent back to the payment address. We also define a <code class="language-plaintext highlighter-rouge">--invalid-hereafter</code> parameter to
+sent back to the payment address. We can also define a <code class="language-plaintext highlighter-rouge">--invalid-hereafter</code> parameter to
 define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.</p>

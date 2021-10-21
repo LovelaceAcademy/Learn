@@ -1311,7 +1311,7 @@
 
 <p>📝 <em>Following the principles of <a href="https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/">public key/asymmetric cryptography</a>, the terms <strong>keys</strong> and <strong>key pairs</strong> can be used interchangeably for the rest of this guide. In particular Cardano uses <a href="https://en.wikipedia.org/wiki/EdDSA#Ed25519">Ed25519</a> key pairs consisting of a private signing key and a public verification key.</em></p>
 
-<p>Address keys are used to derive addresses, which are destinations of values from transaction outputs. This strict association means the only way to <em>unlock</em> the ability to spend/withdraw values at these addresses is through a signature provided by the private signing key. This simple premise safeguards all the values from theft or confiscation.</p>
+<p>Address keys are used to derive addresses, which are destinations for values from transaction outputs. This strict association means the only way to <em>unlock</em> the ability to spend/withdraw values at these addresses is through a signature provided by the private signing key. This simple premise safeguards all the values from theft or confiscation.</p>
 
 <p>Another powerful feature arises from the fact that these cryptographic
 entities can be created without connecting to or interacting with the network. The de-coupling of these entities from the network
@@ -1324,9 +1324,9 @@ allows any one, even those without an internet connection, to create keys and th
 <ul>
   <li><strong>Payment Keys</strong>: For creating payment addresses to receive ADA/custom tokens, and signing transactions
 to spend ADA/custom tokens from these payment addresses</li>
-  <li><strong>Stake Keys</strong>: For creating payment/staking addresses, delegating
-stake, claiming ADA rewards from stake addresses and registering
-stake pools</li>
+  <li><strong>Stake Keys</strong>: For creating stake/reward addresses, delegating
+stake, withdrawing ADA rewards from stake addresses and registering
+stake pools. Also used with payment keys to create base payment addresses with staking rights.</li>
 </ul>
 
 <h3 id="creating-payment-keys">Creating Payment Keys</h3>
