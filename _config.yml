@@ -72,6 +72,9 @@ plugins:
   - jekyll-feed
   - jekyll-slugify-categories
 
+sass:
+    sass_dir: scss
+
 social:
 - url: https://www.youtube.com/c/LovelaceAcademy/videos
   icon: social_youtube
