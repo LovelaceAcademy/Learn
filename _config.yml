@@ -30,6 +30,7 @@ url: "https://learn.lovelace.academy/" # the base hostname & protocol for your s
 twitter_username: academylovelace
 github_username:  lovelaceacademy
 permalink: "/:categories/:title/"
+googleAnalyticsID: "G-9DH0WG199T"
 # This is the menu.  Every item points to a category.  The order of
 # items (starting with -) affects the order of menu items.  All posts
 # sharing **exactly** the same category (case sensitive) are listed on
