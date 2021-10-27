@@ -20,6 +20,10 @@ bundle exec jekyll serve
 
 ## Usage
 
+### Tabbed content
+
+This project uses the `jekyll-simple-tab` gem. Check the [Jekyll Simple Tabs documentation](https://github.com/Applifort/jekyll-simple-tab/blob/master/README.md#usage) for a usage example.
+
 ### Updated on
 
 To show the last modification date, add a `last_modified_at` field on
