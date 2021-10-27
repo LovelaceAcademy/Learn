@@ -307,7 +307,7 @@
   }
 
   function active_dropdown() {
-    $(".nav-sidebar > li .icon").on("click", function (e) {
+    $(".nav-sidebar > li .nav-link").on("click", function (e) {
       $(this).parent().find("ul").first().toggle(300);
       $(this).parent().siblings().find("ul").hide(300);
     });
@@ -315,7 +315,7 @@
 
   active_dropdown();
 
-  $(".nav-sidebar > li .icon").each(function () {
+  $(".nav-sidebar > li .nav-link").each(function () {
     var $this = $(this);
     $this.on("click", function (e) {
       var has = $this.parent().hasClass("active");
