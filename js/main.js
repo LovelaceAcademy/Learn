@@ -302,8 +302,8 @@
   }
 
   /*--------------- nav-sidebar js--------*/
-  if ($(".nav-sidebar > li").hasClass("active")) {
-    $(".nav-sidebar > li.active").find("ul").slideDown(700);
+  if ($(".nav-sidebar .nav-item").hasClass("active")) {
+    $(".nav-sidebar .nav-item.active").find("ul").slideDown(700);
   }
 
   function active_dropdown() {
