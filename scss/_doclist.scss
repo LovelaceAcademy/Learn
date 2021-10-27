@@ -126,11 +126,11 @@
     }
     &:hover,
     &.active {
-      .nav-link {
+      > .nav-link {
         color: $brand_color;
-      }
-      .icon {
-        color: $brand_color;
+        .icon {
+          color: $brand_color;
+        }
       }
       svg {
         path {
@@ -139,8 +139,10 @@
       }
     }
     &.active {
-      .icon {
-        transform: rotate(-180deg);
+      > .nav-link {
+        .icon {
+          transform: rotate(-180deg);
+        }
       }
     }
     .dropdown_nav {

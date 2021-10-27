@@ -319,12 +319,13 @@
     var $this = $(this);
     $this.on("click", function (e) {
       var has = $this.parent().hasClass("active");
-      $(".nav-sidebar li").removeClass("active");
+      $this.parent().siblings().removeClass("active");
       if (has) {
         $this.parent().removeClass("active");
       } else {
         $this.parent().addClass("active");
       }
+      
     });
   });
 
