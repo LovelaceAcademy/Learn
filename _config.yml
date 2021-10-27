@@ -71,6 +71,7 @@ menu:
 plugins:
   - jekyll-feed
   - jekyll-slugify-categories
+  - jekyll-simple-tab
 
 social:
 - url: https://www.youtube.com/c/LovelaceAcademy/videos
