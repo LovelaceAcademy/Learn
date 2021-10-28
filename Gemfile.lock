@@ -40,6 +40,9 @@ GEM
       slim (>= 3.0)
     jekyll-slugify-categories (0.1.1)
       jekyll (~> 4)
+    jekyll-target-blank (2.0.0)
+      jekyll (>= 3.0, < 5.0)
+      nokogiri (~> 1.10)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (2.3.1)
@@ -51,13 +54,18 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
+    mini_portile2 (2.6.1)
     minima (2.5.1)
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
+    racc (1.6.0)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -83,6 +91,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.12)
   jekyll-simple-tab
   jekyll-slugify-categories
+  jekyll-target-blank
   minima (~> 2.5)
   tzinfo (~> 1.2)
   tzinfo-data

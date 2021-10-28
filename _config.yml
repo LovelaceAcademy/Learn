@@ -73,6 +73,7 @@ plugins:
   - jekyll-feed
   - jekyll-slugify-categories
   - jekyll-simple-tab
+  - jekyll-target-blank
 
 sass:
     sass_dir: scss
