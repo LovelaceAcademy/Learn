@@ -272,25 +272,6 @@
     $(tooltip.tip).addClass($(e.target).data("tooltip-custom-class"));
   });
 
-  /*--------------- wavify js--------*/
-  if ($(".animated-waves").length) {
-    $("#animated-wave-three").wavify({
-      height: 40,
-      bones: 4,
-      amplitude: 70,
-      color: "rgba(188, 214, 234, 0.14)",
-      speed: 0.3,
-    });
-
-    $("#animated-wave-four").wavify({
-      height: 60,
-      bones: 5,
-      amplitude: 90,
-      color: "rgba(188, 214, 234, 0.14)",
-      speed: 0.2,
-    });
-  }
-
   /*--------------- nav-sidebar js--------*/
   if ($(".nav-sidebar > li").hasClass("active")) {
     $(".nav-sidebar > li.active").find("ul").slideDown(700);
