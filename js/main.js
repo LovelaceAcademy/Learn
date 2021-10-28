@@ -165,16 +165,6 @@
       );
     event.preventDefault();
   });
-
-  $(window).on("load", function () {
-    if ($(".scroll").length) {
-      $(".scroll").mCustomScrollbar({
-        mouseWheelPixels: 50,
-        scrollInertia: 0,
-      });
-    }
-  });
-
   /*--------------- doc_documentation_area Switcher js--------*/
   if ($(".doc_documentation_area").length > 0) {
     //switcher
