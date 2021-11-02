@@ -3997,8 +3997,6 @@ button.mfp-close { font-size: 30px; color: #6b707f; right: 10px; top: 5px; }
 
 .tip_content img { max-width: 100%; border-top-left-radius: 6px; border-top-right-radius: 6px; }
 
-#tooltipTwo.tip_content { min-height: 450px; }
-
 /*=========== tooltip Shortcode css ========*/
 /*=========== image_pointer Shortcode css ========*/
 .image_pointer .pointing_img { padding-bottom: 20px; }
@@ -4397,9 +4395,9 @@ ul.ordered-list li::before { content: "\68"; font-family: "ElegantIcons"; font-s
 
 .highlight_text .h_blue { background: #2cabed; color: #fff; }
 
-.highlight_text p .tooltips_one { color: #4b5ffa; }
+.tooltips_one { color: #4b5ffa; }
 
-.highlight_text p .tooltips_two { color: #ef971a; }
+.tooltips_two { color: #ef971a; }
 
 .tooltip_blue .arrow:before { border-top-color: #4b5ffa; }
 
