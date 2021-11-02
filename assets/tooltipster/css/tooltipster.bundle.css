@@ -240,8 +240,7 @@
 /* .tooltipster-box */
 
 .tooltipster-sidetip .tooltipster-box {
-	background: #565656;
-	border: 2px solid black;
+	background: none;
 	border-radius: 4px;
 }
 
