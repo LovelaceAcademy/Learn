@@ -165,16 +165,6 @@
       );
     event.preventDefault();
   });
-
-  $(window).on("load", function () {
-    if ($(".scroll").length) {
-      $(".scroll").mCustomScrollbar({
-        mouseWheelPixels: 50,
-        scrollInertia: 0,
-      });
-    }
-  });
-
   /*--------------- doc_documentation_area Switcher js--------*/
   if ($(".doc_documentation_area").length > 0) {
     //switcher
@@ -282,48 +272,44 @@
     $(tooltip.tip).addClass($(e.target).data("tooltip-custom-class"));
   });
 
-  /*--------------- wavify js--------*/
-  if ($(".animated-waves").length) {
-    $("#animated-wave-three").wavify({
-      height: 40,
-      bones: 4,
-      amplitude: 70,
-      color: "rgba(188, 214, 234, 0.14)",
-      speed: 0.3,
-    });
-
-    $("#animated-wave-four").wavify({
-      height: 60,
-      bones: 5,
-      amplitude: 90,
-      color: "rgba(188, 214, 234, 0.14)",
-      speed: 0.2,
-    });
-  }
-
   /*--------------- nav-sidebar js--------*/
-  if ($(".nav-sidebar > li").hasClass("active")) {
-    $(".nav-sidebar > li.active").find("ul").slideDown(700);
+  function open_active_nav_items() {
+    if ($(".nav-sidebar .nav-item").hasClass("active")) {
+      var containingBlock  = $(".nav-sidebar .nav-item.active").parent().parent();
+      if (containingBlock.hasClass("nav-item") && ! containingBlock.hasClass("active")) {
+        containingBlock.addClass("active");
+        open_active_nav_items();
+      }
+      else {
+        $(".nav-sidebar .nav-item.active > ul").slideDown(700);
+      }
+    }
   }
+
+  open_active_nav_items();
 
   function active_dropdown() {
-    $(".nav-sidebar > li .icon").on("click", function (e) {
+    $(".nav-sidebar > li .nav-link").on("click", function (e) {
       $(this).parent().find("ul").first().toggle(300);
+      $(this).parent().find("ul").slice(1).hide();
       $(this).parent().siblings().find("ul").hide(300);
     });
   }
 
   active_dropdown();
 
-  $(".nav-sidebar > li .icon").each(function () {
+  $(".nav-sidebar > li .nav-link").each(function () {
     var $this = $(this);
     $this.on("click", function (e) {
-      var has = $this.parent().hasClass("active");
-      $(".nav-sidebar li").removeClass("active");
-      if (has) {
+      var isActiveItem = $this.parent().hasClass("active");
+      $(".nav-sidebar .nav-item").removeClass("active");
+      if (isActiveItem) {
         $this.parent().removeClass("active");
       } else {
         $this.parent().addClass("active");
+      }
+      if($this.parent().parent().parent().hasClass("nav-item")) {
+        $this.parent().parent().parent().addClass("active")
       }
     });
   });

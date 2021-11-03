@@ -12,11 +12,12 @@ Creates a category item with its icon and post list
     {% endif %}
 
     {{ include.item.title }}
+    <span class="icon"><i class="arrow_carrot-down"></i></span>
   </a>
 
-  <span class="icon"><i class="arrow_carrot-down"></i></span>
+ 
 
-  <ul class="list-unstyled dropdown_nav" {% if include.page.categories[0] == include.item.title %}style="display: block"{% endif %}>
+  <ul class="list-unstyled dropdown_nav">
     {% if include.item.categories %}
       {% for category in include.item.categories %}
         {% include menu_item_category.html page=include.page item=category %}
