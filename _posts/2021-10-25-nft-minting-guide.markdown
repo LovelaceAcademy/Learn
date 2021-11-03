@@ -243,7 +243,7 @@ cardano-cli transaction txid --tx-file mint.txsigned
 This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the transaction ID above. For example the output of this example can be [seen here](https://testnet.adatools.io/assets/asset1jm835pesygslwkxqzm345sl86dxalh64t9nxwd).
 
 ## Explore Token Builders
-Alternatively you can use the following tools {% include tooltips/basic.html tooltip="for a fee" content="tools" %}
+Alternatively you can use the following tools {% include tooltips/basic.html tooltip="Note that these tools charge a small fee" content="tools" %}
  to mint your own tokens without having to use the CLI commands against a full node.
 - [Tokhun](https://tokhun.io/account/assets/mint-nft)
 - [NFT Maker](https://www.nft-maker.io/)

@@ -254,7 +254,7 @@ As shown above, using a block explorer is the easiest way to navigate across all
 - [Pool.pm (toggle TXs)](https://pool.pm/)
 - [Cardano Blockchain Explorer](https://explorer.cardano.org/)
 
-## Learn about Cardano's Native Tokens
-Continue on to [Introduction to Tokens
- ➡️](https://learn.lovelace.academy/tokens/introduction-to-tokens/)
+## The Cardano Developer Vocaulary
+Before diving deeper into development, it is important to understand some key terms and concepts of the [Cardano Developer Vocabulary
+ ➡️](https://learn.lovelace.academy/getting-started/cardano-developer-vocabulary/)
 

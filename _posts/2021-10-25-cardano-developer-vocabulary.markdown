@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cardano Developer Vocab
+title: Cardano Developer Vocabulary
 last_modified_at: 2021-06-07
 categories:
 - Getting Started
@@ -10,7 +10,7 @@ order: 6
 Even seasoned developers can find the plethora of new terms associated with Blockchain development intimidating and at times plain confusing or cryptic. To address these pain points we have created the **Cardano Developer Vocabulary**, a concise glossary to explain the most important yet commonly mistaken terms grouped by major concepts.
 
 ## Time
-Moments in time across Cardano are generally specified using incrementing integers. For example to-the-second precise units called `Slots` and five-day windows known as `Epochs`. Last but not least these moments reside within `Eras`, which are simply text labels for significant Cardano network milestones. For example, 2021-11-03T09:00:00Z in the ISO 8601 format (i.e. 9:00AM UTC on November 3rd) is Slot 44363709, Epoch 300 of the Alonzo Era. 
+Moments in time across Cardano are generally specified using incrementing integers. For example to-the-second precise units called `Slots` and five-day windows known as `Epochs`. Last but not least these moments reside within `Eras`, which are simply text labels for significant Cardano network milestones. For example, {% include tooltips/basic.html tooltip="9:00AM UTC on November 3rd" content="2021-11-03T09:00:00Z in ISO 8601 format" %} is Slot 44363709, Epoch 300 of the Alonzo Era. 
 ### Slot
 At the current configuration a slot is a unit of time increasing at a rate of one every second. Slots are used to define precise moments in time such as those used in time-locked multisig policies, an expiration for transactions, the current tip of the chain or points in time when a stake pool should produce blocks. 
 ### Epoch
@@ -25,10 +25,10 @@ Cardano uses data serialisation and encoding formats that aren't typically used 
 ### BECH32
 BECH32 (not to be confused with BIP32 in the standards section below) is a human-readable encoding format with [standardised prefixes](https://cips.cardano.org/cips/cip5/) such as addr1 or asset1. It is used across Cardano for end-user facing objects such as keys, addresses and native assets. 
 
-## Standards (BIP/EIP/CIP)
-The entire Blockchain industry is built on top of innovative standards that arose out of documented improvement proposals from different ecosystems. 
+## Improvement Proposals 
+The Blockchain industry is built on top of innovative standards (BIP/EIP/CIP/etc.) that arose out of documented improvement proposals from different ecosystems. 
 ### BIP and EIP
-Standards that came from [**B**itcoin **I**mprovement **P**roposals](https://github.com/bitcoin/bips) or [**E**thereum **I**mprovement **P**roposals](https://github.com/ethereum/EIPs/tree/master/EIPS). Notable ones include BIP32, BIP39 and BIP44 from Bitcoin that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as EIP20 and EIP721 which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.
+Standards that came from [**B**itcoin **I**mprovement **P**roposals](https://github.com/bitcoin/bips) or [**E**thereum **I**mprovement **P**roposals](https://github.com/ethereum/EIPs/tree/master/EIPS). Notable ones include BIP32, BIP39 and BIP44 that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as EIP20 and EIP721 which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.
 ### CIP
 Standards that came from Cardano. See the [full list](https://github.com/cardano-foundation/CIPs). 
 
@@ -40,3 +40,8 @@ Cardano uses the [Blake2b](https://datatracker.ietf.org/doc/html/rfc7693) as a f
 [Ed25519](https://datatracker.ietf.org/doc/html/rfc8032) is used throughout Cardano for speedy digital signatures based on private signing and public verification key pairs.
 
 🚧 _More content coming soon_
+
+## Learn about Cardano's Native Tokens
+Now you can learn how to mint tokens on Cardano. Continue to [Introduction to Tokens
+ ➡️](https://learn.lovelace.academy/tokens/introduction-to-tokens/)
+

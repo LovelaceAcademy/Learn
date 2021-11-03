@@ -184,8 +184,6 @@ Alternatively you can use the following tools (for a fee) to mint your own token
 - [Tokhun](https://tokhun.io/account/assets/mint-nft)
 - [NFT Maker](https://www.nft-maker.io/)
 - [Cardano Token and NFT Builder](https://cardano-native-token.com/)
-- [EasyCNFT](https://easycnft.art/en)
-- [NFT Machine](https://nft-machine.com/)
 
 ## Supplementary Material
 - [Cardano Docs: Learn about native tokens](https://docs.cardano.org/native-tokens/learn)
