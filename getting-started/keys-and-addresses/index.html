@@ -92,7 +92,7 @@
                     </li>
                   
                     <li class="nav-item">
-                      <a href="/getting-started/cardano-developer-vocabulary/" class="nav-link">Cardano Developer Vocab</a>
+                      <a href="/getting-started/cardano-developer-vocabulary/" class="nav-link">Cardano Developer Vocabulary</a>
                     </li>
                   
                 </ul>
@@ -396,7 +396,7 @@
 
 <li>
   <a href="/getting-started/cardano-developer-vocabulary/">
-    Cardano Developer Vocab
+    Cardano Developer Vocabulary
   </a>
 </li>
 
@@ -823,7 +823,7 @@
 
 <li>
   <a href="/getting-started/cardano-developer-vocabulary/">
-    Cardano Developer Vocab
+    Cardano Developer Vocabulary
   </a>
 </li>
 
@@ -1237,11 +1237,11 @@ the term for a non-staking payment address, by excluding the
 <code class="language-plaintext highlighter-rouge">--stake-verification-key-file</code> parameter below.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="paymentaddresses" role="tablist">
-<li class="nav-item"><a aria-controls="testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#testnet" id="testnet-tab" role="tab">testnet</a></li>
-<li class="nav-item"><a aria-controls="mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#mainnet" id="mainnet-tab" role="tab">mainnet</a></li>
+<li class="nav-item"><a aria-controls="patestnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#patestnet" id="patestnet-tab" role="tab">patestnet</a></li>
+<li class="nav-item"><a aria-controls="pamainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#pamainnet" id="pamainnet-tab" role="tab">pamainnet</a></li>
 </ul>
 <div class="tab-content" id="paymentaddressesContent">
-<div aria-labelledby="testnet-tab" class="tab-pane fade show active" id="testnet" role="tabpanel">
+<div aria-labelledby="patestnet-tab" class="tab-pane fade show active" id="patestnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address build <span class="se">\</span>
     <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
@@ -1249,7 +1249,7 @@ the term for a non-staking payment address, by excluding the
     <span class="nt">--out-file</span> payment.addr
 </code></pre></div></div>
 </div>
-<div aria-labelledby="mainnet-tab" class="tab-pane fade" id="mainnet" role="tabpanel">
+<div aria-labelledby="pamainnet-tab" class="tab-pane fade" id="pamainnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address build <span class="se">\</span>
     <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
@@ -1264,18 +1264,18 @@ the term for a non-staking payment address, by excluding the
 <p>A unique stake address is generated from a stake verification key.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="stakeaddresses" role="tablist">
-<li class="nav-item"><a aria-controls="testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#testnet" id="testnet-tab" role="tab">testnet</a></li>
-<li class="nav-item"><a aria-controls="mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#mainnet" id="mainnet-tab" role="tab">mainnet</a></li>
+<li class="nav-item"><a aria-controls="satestnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#satestnet" id="satestnet-tab" role="tab">satestnet</a></li>
+<li class="nav-item"><a aria-controls="samainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#samainnet" id="samainnet-tab" role="tab">samainnet</a></li>
 </ul>
 <div class="tab-content" id="stakeaddressesContent">
-<div aria-labelledby="testnet-tab" class="tab-pane fade show active" id="testnet" role="tabpanel">
+<div aria-labelledby="satestnet-tab" class="tab-pane fade show active" id="satestnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address build <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
     <span class="nt">--out-file</span> stake.addr
 </code></pre></div></div>
 </div>
-<div aria-labelledby="mainnet-tab" class="tab-pane fade" id="mainnet" role="tabpanel">
+<div aria-labelledby="samainnet-tab" class="tab-pane fade" id="samainnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address build <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
     <span class="nt">--mainnet</span> <span class="se">\</span>

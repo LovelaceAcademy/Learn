@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="/css/responsive.css">
   <link rel="stylesheet" href="/assets/font-size/css/rvfs.css">
   <link rel="stylesheet" href="/assets/tooltipster/css/tooltipster.bundle.css">
-  <title>Lovelace Academy - Cardano Developer Vocab</title>
+  <title>Lovelace Academy - Cardano Developer Vocabulary</title>
 </head>
 
 <body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
@@ -92,7 +92,7 @@
                     </li>
                   
                     <li class="nav-item">
-                      <a href="/getting-started/cardano-developer-vocabulary/" class="nav-link active">Cardano Developer Vocab</a>
+                      <a href="/getting-started/cardano-developer-vocabulary/" class="nav-link active">Cardano Developer Vocabulary</a>
                     </li>
                   
                 </ul>
@@ -396,7 +396,7 @@
 
 <li>
   <a class="active" href="/getting-started/cardano-developer-vocabulary/">
-    Cardano Developer Vocab
+    Cardano Developer Vocabulary
   </a>
 </li>
 
@@ -722,7 +722,7 @@
             <li class="breadcrumb-item"><a href="https://www.lovelace.academy" target="_blank" rel="noopener noreferrer">Home</a></li>
             
               <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Getting Started</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Cardano Developer Vocab</li>
+              <li class="breadcrumb-item active" aria-current="page">Cardano Developer Vocabulary</li>
             
           </ol>
         </nav>
@@ -823,7 +823,7 @@
 
 <li>
   <a class="active" href="/getting-started/cardano-developer-vocabulary/">
-    Cardano Developer Vocab
+    Cardano Developer Vocabulary
   </a>
 </li>
 
@@ -1138,13 +1138,13 @@
           <article class="shortcode_text">
             <div class="shortcode_title">
               <!-- <a class="btn" href="#">Learn</a> -->
-              <h1>Cardano Developer Vocab</h1>
+              <h1>Cardano Developer Vocabulary</h1>
             </div>
 
             <p>Even seasoned developers can find the plethora of new terms associated with Blockchain development intimidating and at times plain confusing or cryptic. To address these pain points we have created the <strong>Cardano Developer Vocabulary</strong>, a concise glossary to explain the most important yet commonly mistaken terms grouped by major concepts.</p>
 
 <h2 id="time">Time</h2>
-<p>Moments in time across Cardano are generally specified using incrementing integers. For example to-the-second precise units called <code class="language-plaintext highlighter-rouge">Slots</code> and five-day windows known as <code class="language-plaintext highlighter-rouge">Epochs</code>. Last but not least these moments reside within <code class="language-plaintext highlighter-rouge">Eras</code>, which are simply text labels for significant Cardano network milestones. For example, 2021-11-03T09:00:00Z in the ISO 8601 format (i.e. 9:00AM UTC on November 3rd) is Slot 44363709, Epoch 300 of the Alonzo Era.</p>
+<p>Moments in time across Cardano are generally specified using incrementing integers. For example to-the-second precise units called <code class="language-plaintext highlighter-rouge">Slots</code> and five-day windows known as <code class="language-plaintext highlighter-rouge">Epochs</code>. Last but not least these moments reside within <code class="language-plaintext highlighter-rouge">Eras</code>, which are simply text labels for significant Cardano network milestones. For example, <span class="tooltips_one" data-toggle="tooltip" data-placement="top" title="9:00AM UTC on November 3rd">2021-11-03T09:00:00Z in ISO 8601 format</span> is Slot 44363709, Epoch 300 of the Alonzo Era.</p>
 <h3 id="slot">Slot</h3>
 <p>At the current configuration a slot is a unit of time increasing at a rate of one every second. Slots are used to define precise moments in time such as those used in time-locked multisig policies, an expiration for transactions, the current tip of the chain or points in time when a stake pool should produce blocks.</p>
 <h3 id="epoch">Epoch</h3>
@@ -1159,10 +1159,10 @@
 <h3 id="bech32">BECH32</h3>
 <p>BECH32 (not to be confused with BIP32 in the standards section below) is a human-readable encoding format with <a href="https://cips.cardano.org/cips/cip5/" target="_blank" rel="noopener noreferrer">standardised prefixes</a> such as addr1 or asset1. It is used across Cardano for end-user facing objects such as keys, addresses and native assets.</p>
 
-<h2 id="standards-bipeipcip">Standards (BIP/EIP/CIP)</h2>
-<p>The entire Blockchain industry is built on top of innovative standards that arose out of documented improvement proposals from different ecosystems.</p>
+<h2 id="improvement-proposals">Improvement Proposals</h2>
+<p>The Blockchain industry is built on top of innovative standards (BIP/EIP/CIP/etc.) that arose out of documented improvement proposals from different ecosystems.</p>
 <h3 id="bip-and-eip">BIP and EIP</h3>
-<p>Standards that came from <a href="https://github.com/bitcoin/bips" target="_blank" rel="noopener noreferrer"><strong>B</strong>itcoin <strong>I</strong>mprovement <strong>P</strong>roposals</a> or <a href="https://github.com/ethereum/EIPs/tree/master/EIPS" target="_blank" rel="noopener noreferrer"><strong>E</strong>thereum <strong>I</strong>mprovement <strong>P</strong>roposals</a>. Notable ones include BIP32, BIP39 and BIP44 from Bitcoin that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as EIP20 and EIP721 which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.</p>
+<p>Standards that came from <a href="https://github.com/bitcoin/bips" target="_blank" rel="noopener noreferrer"><strong>B</strong>itcoin <strong>I</strong>mprovement <strong>P</strong>roposals</a> or <a href="https://github.com/ethereum/EIPs/tree/master/EIPS" target="_blank" rel="noopener noreferrer"><strong>E</strong>thereum <strong>I</strong>mprovement <strong>P</strong>roposals</a>. Notable ones include BIP32, BIP39 and BIP44 that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as EIP20 and EIP721 which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.</p>
 <h3 id="cip">CIP</h3>
 <p>Standards that came from Cardano. See the <a href="https://github.com/cardano-foundation/CIPs" target="_blank" rel="noopener noreferrer">full list</a>.</p>
 
@@ -1174,6 +1174,11 @@
 <p><a href="https://datatracker.ietf.org/doc/html/rfc8032" target="_blank" rel="noopener noreferrer">Ed25519</a> is used throughout Cardano for speedy digital signatures based on private signing and public verification key pairs.</p>
 
 <p>🚧 <em>More content coming soon</em></p>
+
+<h2 id="learn-about-cardanos-native-tokens">Learn about Cardano’s Native Tokens</h2>
+<p>Now you can learn how to mint tokens on Cardano. Continue to <a href="https://learn.lovelace.academy/tokens/introduction-to-tokens/">Introduction to Tokens
+ ➡️</a></p>
+
 
 
             <footer>
