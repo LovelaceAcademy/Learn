@@ -94,6 +94,8 @@ addresses](https://docs.cardano.org/en/latest/learn/types-addresses.html#enterpr
 the term for a non-staking payment address, by excluding the
 `--stake-verification-key-file` parameter below.
 
+{% tabs paymentaddresses %}
+{% tab paymentaddresses#testnet %}
 ```bash
 cardano-cli address build \
     --payment-verification-key-file payment.vkey \
@@ -101,17 +103,40 @@ cardano-cli address build \
     --testnet-magic 1097911063 \
     --out-file payment.addr
 ```
+{% endtab %}
+{% tab paymentaddresses#mainnet %}
+```bash
+cardano-cli address build \
+    --payment-verification-key-file payment.vkey \
+    --stake-verification-key-file stake.vkey \
+    --mainnet \
+    --out-file payment.addr
+```
+{% endtab %}
+{% endtabs %}
 
 ### Creating a Stake/Reward Address
 
 A unique stake address is generated from a stake verification key.
 
+{% tabs stakeaddresses %}
+{% tab stakeaddresses#testnet %}
 ```bash
 cardano-cli stake-address build \
     --stake-verification-key-file stake.vkey \
     --testnet-magic 1097911063 \
     --out-file stake.addr
 ```
+{% endtab %}
+{% tab stakeaddresses#mainnet %}
+```bash
+cardano-cli stake-address build \
+    --stake-verification-key-file stake.vkey \
+    --mainnet \
+    --out-file stake.addr
+```
+{% endtab %}
+{% endtabs %}
 
 ## Supplementary Material
 - [Cardano Docs: Cardano addresses](https://docs.cardano.org/core-concepts/cardano-addresses)

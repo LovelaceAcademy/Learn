@@ -93,6 +93,7 @@ cd ghc-8.10.4
 sudo make install
 
 # Libsodium
+mkdir -p ~/git
 cd ~/git/
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium

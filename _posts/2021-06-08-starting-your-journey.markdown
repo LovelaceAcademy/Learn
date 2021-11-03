@@ -20,12 +20,12 @@ It is a common misconception that Cardano has a steep learning curve and further
 - Network Participant: Holds ADA on a personal wallet, participates in decentralisation through staking and earning additional ADA (approx. 5% APY) every five days
 
 ### Community Member
-- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/services and holds one or more of its [1,361,971 Native Tokens (as of Oct-2021)](https://pool.pm/tokens)
+- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/services and holds one or more of its [1,644,856 Native Tokens (as of Nov-2021)](https://pool.pm/tokens)
 - Governance Participant: [Governance](https://cardano.org/governance/) Voter/Contributor and earns ADA voting for the future of Cardano
 
 ### Builder
 - Stake Pool Operator (SPO): Manages trusted and reliable infrastructure to host a block-producing [cardano-node](https://github.com/input-output-hk/cardano-node/)
-- DApp Developer: Builds On-chain Smart Contracts
+- DApp Developer: Builds On-chain Smart Contracts and Off-chain integration
 - Infrastructure and Integration Developer: Builds Off-chain integration pieces e.g. APIs, SDKs, CLIs, etc.
 - Utility Developer: Builds Wallets and Utility Portals
 - Analytics Developer: Builds Block/Token/Stake Pool/Tx Explorers 

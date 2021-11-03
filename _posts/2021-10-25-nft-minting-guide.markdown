@@ -129,7 +129,7 @@ cardano-cli query utxo \
 ## Upload Image to IPFS
 Blockchains are not designed nor optimised to store large file blobs so a separate decentralised file storage and content delivery solution is usually required for NFT content that exceed Cardano's 16KB Tx metadata limit. 
 
-📝 _NFTs can also be **fully on-chain** using various ingenious methods that can fit within the 16KB Tx metadata payload. Examples of this are [Stellar Hood](https://stellarhood.com/), [CardanoTrees](https://cardanotrees.com/) and upcoming NFTs from [Veritree](https://ito.veritree.com)_
+📝 _NFTs can also be **fully on-chain** using various ingenious methods to ensure the content fits within the 16KB Tx metadata max payload. Examples of this are [Stellar Hood](https://stellarhood.com/), [CardanoTrees](https://cardanotrees.com/), [JurassikChained](https://twitter.com/jurassikchained), [Mandelbrots](https://twitter.com/MandelbrotsNFT), [Fractano](https://twitter.com/fractano), [Aw0k3n](https://twitter.com/CardanoArt) and upcoming NFTs from [Veritree](https://ito.veritree.com)_
 
 For content over 16KB, [IPFS](https://ipfs.io/) is the currently adopted solution for storing and serving content in the Web3 world. In order to quickly upload content pinned to IPFS without operating a full node, you can use a freemium service like [Pinata](https://app.pinata.cloud/) and note the `CID` of your uploaded content. This `CID` will be used in the `image` field of your Tx metadata to point your CNFT to an IPFS URL. In this example we will use the [Lovelace Academy logo](https://learn.lovelace.academy/img/LALOGO.png) as the image for our CNFT.
 
@@ -240,10 +240,11 @@ You can also get the transaction ID (aka Tx Hash) of your Tx with the command:
 ```bash
 cardano-cli transaction txid --tx-file mint.txsigned
 ```
-This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the transaction ID above. For example the output of this example can be seen on [ADATools](https://testnet.adatools.io/assets/asset1jm835pesygslwkxqzm345sl86dxalh64t9nxwd).
+This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the transaction ID above. For example the output of this example can be [seen here](https://testnet.adatools.io/assets/asset1jm835pesygslwkxqzm345sl86dxalh64t9nxwd).
 
 ## Explore Token Builders
-Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.
+Alternatively you can use the following tools {% include tooltips/basic.html tooltip="for a fee" content="tools" %}
+ to mint your own tokens without having to use the CLI commands against a full node.
 - [Tokhun](https://tokhun.io/account/assets/mint-nft)
 - [NFT Maker](https://www.nft-maker.io/)
 - [Cardano Token and NFT Builder](https://cardano-native-token.com/)
