@@ -91,6 +91,10 @@
                       <a href="/getting-started/transactions-utxo-and-metadata/" class="nav-link">Transactions: UTxO and Metadata</a>
                     </li>
                   
+                    <li class="nav-item">
+                      <a href="/getting-started/cardano-developer-vocabulary/" class="nav-link">Cardano Developer Vocab</a>
+                    </li>
+                  
                 </ul>
             </li>
           
@@ -384,6 +388,15 @@
 <li>
   <a href="/getting-started/transactions-utxo-and-metadata/">
     Transactions: UTxO and Metadata
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a href="/getting-started/cardano-developer-vocabulary/">
+    Cardano Developer Vocab
   </a>
 </li>
 
@@ -715,7 +728,7 @@
         </nav>
       </div>
       <div class="col-sm-5">
-        <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on Jun 10, 2021</a>
+        <a href="https://github.com/LovelaceAcademy/Learn/commits/main" target="_blank" class="date" rel="noopener noreferrer"><i class="icon_clock_alt"></i>Updated on Jun 10, 2021</a>
       </div>
     </div>
   </div>
@@ -802,6 +815,15 @@
 <li>
   <a href="/getting-started/transactions-utxo-and-metadata/">
     Transactions: UTxO and Metadata
+  </a>
+</li>
+
+
+  
+
+<li>
+  <a href="/getting-started/cardano-developer-vocabulary/">
+    Cardano Developer Vocab
   </a>
 </li>
 
@@ -1214,22 +1236,53 @@ addresses</a>,
 the term for a non-staking payment address, by excluding the
 <code class="language-plaintext highlighter-rouge">--stake-verification-key-file</code> parameter below.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="paymentaddresses" role="tablist">
+<li class="nav-item"><a aria-controls="testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#testnet" id="testnet-tab" role="tab">testnet</a></li>
+<li class="nav-item"><a aria-controls="mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#mainnet" id="mainnet-tab" role="tab">mainnet</a></li>
+</ul>
+<div class="tab-content" id="paymentaddressesContent">
+<div aria-labelledby="testnet-tab" class="tab-pane fade show active" id="testnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address build <span class="se">\</span>
     <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
     <span class="nt">--out-file</span> payment.addr
 </code></pre></div></div>
+</div>
+<div aria-labelledby="mainnet-tab" class="tab-pane fade" id="mainnet" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address build <span class="se">\</span>
+    <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="se">\</span>
+    <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
+    <span class="nt">--mainnet</span> <span class="se">\</span>
+    <span class="nt">--out-file</span> payment.addr
+</code></pre></div></div>
+</div>
+</div>
 
 <h3 id="creating-a-stakereward-address">Creating a Stake/Reward Address</h3>
 
 <p>A unique stake address is generated from a stake verification key.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="stakeaddresses" role="tablist">
+<li class="nav-item"><a aria-controls="testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#testnet" id="testnet-tab" role="tab">testnet</a></li>
+<li class="nav-item"><a aria-controls="mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#mainnet" id="mainnet-tab" role="tab">mainnet</a></li>
+</ul>
+<div class="tab-content" id="stakeaddressesContent">
+<div aria-labelledby="testnet-tab" class="tab-pane fade show active" id="testnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address build <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
     <span class="nt">--out-file</span> stake.addr
 </code></pre></div></div>
+</div>
+<div aria-labelledby="mainnet-tab" class="tab-pane fade" id="mainnet" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address build <span class="se">\</span>
+    <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
+    <span class="nt">--mainnet</span> <span class="se">\</span>
+    <span class="nt">--out-file</span> stake.addr
+</code></pre></div></div>
+</div>
+</div>
 
 <h2 id="supplementary-material">Supplementary Material</h2>
 <ul>
