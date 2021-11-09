@@ -7,7 +7,7 @@ jobs:
   jekyll:
     runs-on: ubuntu-latest
     env:
-      JEKYLL_ENV: development
+      JEKYLL_ENV: production
     steps:
       - uses: actions/checkout@v2
         with:
