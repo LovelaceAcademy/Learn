@@ -10,7 +10,7 @@ order: 1
 The world is starting to understand the implications of Blockchain's 
 disruptive technology and its decentralised socioeconomic movement twelve and a half years
 after [Bitcoin's first block](https://www.blockchain.com/btc/block/00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048).
-Since then, the Blockchain industry has surpassed a **$2.75 Trillion** dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
+Since then, the Blockchain industry has surpassed a **$2.8 Trillion** dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
 
 To dig deeper into the technical foundations and benefits of Blockchain, please refer to our video [Making Sense of Blockchain](https://www.youtube.com/watch?v=ev75v-9LU5I) (we strongly recommend watching it on a large screen).
 
