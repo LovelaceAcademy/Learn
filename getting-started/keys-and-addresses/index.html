@@ -1247,11 +1247,11 @@ the term for a non-staking payment address, by excluding the
 <code class="language-plaintext highlighter-rouge">--stake-verification-key-file</code> parameter below.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="paymentaddresses" role="tablist">
-<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
-<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+<li class="nav-item"><a aria-controls="paymentaddresses0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#paymentaddresses0" id="paymentaddresses0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="paymentaddresses1" aria-selected="false" class="nav-link" data-toggle="tab" href="#paymentaddresses1" id="paymentaddresses1-tab" role="tab">Mainnet</a></li>
 </ul>
 <div class="tab-content" id="paymentaddressesContent">
-<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
+<div aria-labelledby="paymentaddresses0-tab" class="tab-pane fade show active" id="paymentaddresses0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address build <span class="se">\</span>
     <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
@@ -1259,7 +1259,7 @@ the term for a non-staking payment address, by excluding the
     <span class="nt">--out-file</span> payment.addr
 </code></pre></div></div>
 </div>
-<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div aria-labelledby="paymentaddresses1-tab" class="tab-pane fade" id="paymentaddresses1" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address build <span class="se">\</span>
     <span class="nt">--payment-verification-key-file</span> payment.vkey <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
@@ -1274,18 +1274,18 @@ the term for a non-staking payment address, by excluding the
 <p>A unique stake address is generated from a stake verification key.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="stakeaddresses" role="tablist">
-<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
-<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+<li class="nav-item"><a aria-controls="stakeaddresses0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#stakeaddresses0" id="stakeaddresses0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="stakeaddresses1" aria-selected="false" class="nav-link" data-toggle="tab" href="#stakeaddresses1" id="stakeaddresses1-tab" role="tab">Mainnet</a></li>
 </ul>
 <div class="tab-content" id="stakeaddressesContent">
-<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
+<div aria-labelledby="stakeaddresses0-tab" class="tab-pane fade show active" id="stakeaddresses0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address build <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
     <span class="nt">--out-file</span> stake.addr
 </code></pre></div></div>
 </div>
-<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div aria-labelledby="stakeaddresses1-tab" class="tab-pane fade" id="stakeaddresses1" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli stake-address build <span class="se">\</span>
     <span class="nt">--stake-verification-key-file</span> stake.vkey <span class="se">\</span>
     <span class="nt">--mainnet</span> <span class="se">\</span>

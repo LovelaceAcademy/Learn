@@ -1287,11 +1287,11 @@ which will be part of the executable path.</p>
 environment variables to be loaded automatically.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="postbuild" role="tablist">
-<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
-<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+<li class="nav-item"><a aria-controls="postbuild0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#postbuild0" id="postbuild0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="postbuild1" aria-selected="false" class="nav-link" data-toggle="tab" href="#postbuild1" id="postbuild1-tab" role="tab">Mainnet</a></li>
 </ul>
 <div class="tab-content" id="postbuildContent">
-<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
+<div aria-labelledby="postbuild0-tab" class="tab-pane fade show active" id="postbuild0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PATH="~/.cabal/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
@@ -1301,7 +1301,7 @@ environment variables to be loaded automatically.</p>
 <span class="nb">source</span> ~/.bashrc
 </code></pre></div></div>
 </div>
-<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div aria-labelledby="postbuild1-tab" class="tab-pane fade" id="postbuild1" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PATH="~/.cabal/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
@@ -1320,11 +1320,11 @@ a Cardano network, and this is determined by four JSON configuration
 files. We will focus on the testnet first.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="config" role="tablist">
-<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
-<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+<li class="nav-item"><a aria-controls="config0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#config0" id="config0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="config1" aria-selected="false" class="nav-link" data-toggle="tab" href="#config1" id="config1-tab" role="tab">Mainnet</a></li>
 </ul>
 <div class="tab-content" id="configContent">
-<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
+<div aria-labelledby="config0-tab" class="tab-pane fade show active" id="config0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/testnet-node/config
 <span class="nb">mkdir</span> <span class="nt">-p</span> ~/testnet-node/socket
 <span class="nb">cd</span> ~/testnet-node/config
@@ -1339,7 +1339,7 @@ wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-alonzo-genesis/agenesis/g'</span> config.json
 </code></pre></div></div>
 </div>
-<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div aria-labelledby="config1-tab" class="tab-pane fade" id="config1" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/node/config
 <span class="nb">mkdir</span> <span class="nt">-p</span> ~/node/socket
 <span class="nb">cd</span> ~/node/config
@@ -1380,11 +1380,11 @@ bash init.sh
 files above.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="run" role="tablist">
-<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
-<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+<li class="nav-item"><a aria-controls="run0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#run0" id="run0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="run1" aria-selected="false" class="nav-link" data-toggle="tab" href="#run1" id="run1-tab" role="tab">Mainnet</a></li>
 </ul>
 <div class="tab-content" id="runContent">
-<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
+<div aria-labelledby="run0-tab" class="tab-pane fade show active" id="run0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-node run <span class="se">\</span>
     <span class="nt">--topology</span> ~/testnet-node/config/topology.json <span class="se">\</span>
     <span class="nt">--database-path</span> ~/testnet-node/db/ <span class="se">\</span>
@@ -1394,7 +1394,7 @@ files above.</p>
     <span class="nt">--config</span> ~/testnet-node/config/config.json
 </code></pre></div></div>
 </div>
-<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div aria-labelledby="run1-tab" class="tab-pane fade" id="run1" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-node run <span class="se">\</span>
     <span class="nt">--topology</span> ~/node/config/topology.json <span class="se">\</span>
     <span class="nt">--database-path</span> ~/node/db/ <span class="se">\</span>
@@ -1425,11 +1425,11 @@ path is the main way to interact with your local Cardano node.
 You can run the following commands to familiarise yourself.</p>
 
 <ul class="nav nav-tabs mb-3" data-tab="interact" role="tablist">
-<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
-<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+<li class="nav-item"><a aria-controls="interact0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#interact0" id="interact0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="interact1" aria-selected="false" class="nav-link" data-toggle="tab" href="#interact1" id="interact1-tab" role="tab">Mainnet</a></li>
 </ul>
 <div class="tab-content" id="interactContent">
-<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
+<div aria-labelledby="interact0-tab" class="tab-pane fade show active" id="interact0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Getting the current tip</span>
 cardano-cli query tip <span class="nt">--testnet-magic</span> 1097911063
 
@@ -1437,7 +1437,7 @@ cardano-cli query tip <span class="nt">--testnet-magic</span> 1097911063
 cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> protocol.json 
 </code></pre></div></div>
 </div>
-<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div aria-labelledby="interact1-tab" class="tab-pane fade" id="interact1" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Getting the current tip</span>
 cardano-cli query tip <span class="nt">--mainnet</span>
 
