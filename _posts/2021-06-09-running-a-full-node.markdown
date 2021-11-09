@@ -33,7 +33,7 @@ responsibilities are to:
 - Expose integration endpoints for clients and nodes
 
 ![](/img/node_cardano_components_version_main.png)
-Image courtesy of [Cardano docs](https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/index.html#cardano-blockchain-high-level-architecture)
+Image courtesy of [Cardano docs](https://docs.cardano.org/explore-cardano/cardano-architecture/overview#gatsby-focus-wrapper)
 
 When we build the [cardano-node](https://github.com/input-output-hk/cardano-node/) project it will produce two binary executables,
 `cardano-node` (server) and `cardano-cli` (CLI client). 
@@ -140,6 +140,8 @@ cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
 For convenience it also makes sense to add amend the existing
 environment variables to be loaded automatically.
 
+{% tabs postbuild %}
+{% tab postbuild#Testnet %}
 ```bash
 echo 'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
 echo 'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"' >> ~/.bashrc
@@ -149,6 +151,19 @@ echo 'export NODE_HOME="$HOME/testnet-node"' >> ~/.bashrc
 echo 'export CARDANO_NODE_SOCKET_PATH="$HOME/testnet-node/socket/node.socket"' >> ~/.bashrc
 source ~/.bashrc
 ```
+{% endtab %}
+{% tab postbuild#Mainnet %}
+```bash
+echo 'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
+echo 'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"' >> ~/.bashrc
+echo 'export PATH="~/.cabal/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="~/.local/bin:$PATH"' >> ~/.bashrc
+echo 'export NODE_HOME="$HOME/node"' >> ~/.bashrc
+echo 'export CARDANO_NODE_SOCKET_PATH="$HOME/node/socket/node.socket"' >> ~/.bashrc
+source ~/.bashrc
+```
+{% endtab %}
+
 
 ## Configure the Node
 
@@ -156,6 +171,8 @@ Your Cardano node needs to be configured correctly to connect to
 a Cardano network, and this is determined by four JSON configuration
 files. We will focus on the testnet first.
 
+{% tabs config %}
+{% tab config#Testnet %}
 ```bash
 mkdir -p ~/testnet-node/config
 mkdir -p ~/testnet-node/socket
@@ -170,6 +187,23 @@ sed -i 's/testnet-shelley-genesis/sgenesis/g' config.json
 sed -i 's/testnet-byron-genesis/bgenesis/g' config.json
 sed -i 's/testnet-alonzo-genesis/agenesis/g' config.json
 ```
+{% endtab %}
+{% tab config#Mainnet %}
+```bash
+mkdir -p ~/node/config
+mkdir -p ~/node/socket
+cd ~/node/config
+wget -O config.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-config.json
+wget -O bgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-byron-genesis.json
+wget -O sgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-shelley-genesis.json
+wget -O agenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-alonzo-genesis.json
+wget -O topology.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-topology.json
+sed -i 's/"TraceBlockFetchDecisions": false/"TraceBlockFetchDecisions": true/g' config.json
+sed -i 's/mainnet-shelley-genesis/sgenesis/g' config.json
+sed -i 's/mainnet-byron-genesis/bgenesis/g' config.json
+sed -i 's/mainnet-alonzo-genesis/agenesis/g' config.json
+```
+{% endtab %}
 
 ## Shortcut #1: An Init Script
  To save time from having to run these commands one-by-one, you can simply use our existing [init.sh](https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh) and run it all (i.e. install dependencies, clone+build, configure) with:
@@ -178,7 +212,7 @@ sed -i 's/testnet-alonzo-genesis/agenesis/g' config.json
 wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
 bash init.sh
 ```
- 📝 _Note that the mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node_
+ 📝 _Note that the mainnet versions of the commands are commented out. Comment out the corresponding mainnet commands and uncomment the mainnet versions to run a mainnet node_
 
 ## Shortcut #2: Download the Binaries
 You can alternatively download the latest versions `cardano-node` and `cardano-cli`
@@ -193,6 +227,8 @@ You can alternatively download the latest versions `cardano-node` and `cardano-c
 Now it just a matter of running your node pointing to the configuration
 files above.
 
+{% tabs run %}
+{% tab run#Testnet %}
 ```bash
 cardano-node run \
     --topology ~/testnet-node/config/topology.json \
@@ -202,6 +238,18 @@ cardano-node run \
     --port 3001 \
     --config ~/testnet-node/config/config.json
 ```
+{% endtab %}
+{% tab run#Mainnet %}
+```bash
+cardano-node run \
+    --topology ~/node/config/topology.json \
+    --database-path ~/node/db/ \
+    --socket-path ~/node/socket/node.socket \
+    --host-addr 0.0.0.0 \
+    --port 3001 \
+    --config ~/node/config/config.json
+```
+{% endtab %}
 
 If you are running the node for the first time it will need to fully
 synchronise with the blockchain. Verify that the running node process is
@@ -222,6 +270,8 @@ The `cardano-cli` binary that is copied to the `~/.local/bin`
 path is the main way to interact with your local Cardano node. 
 You can run the following commands to familiarise yourself.
 
+{% tabs interact %}
+{% tab interact#Testnet %}
 ```bash
 # Getting the current tip
 cardano-cli query tip --testnet-magic 1097911063
@@ -229,9 +279,22 @@ cardano-cli query tip --testnet-magic 1097911063
 # Export the protocol parameters to file protocol.json
 cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
 ```
+{% endtab %}
+{% tab interact#Mainnet %}
+```bash
+# Getting the current tip
+cardano-cli query tip --mainnet
+
+# Export the protocol parameters to file protocol.json
+cardano-cli query protocol-parameters --mainnet --out-file protocol.json 
+```
+{% endtab %}
 
 ## Supplementary Material
+- [Installing cardano-node and cardano-cli from source](https://developers.cardano.org/docs/get-started/installing-cardano-node/)
 - [How to run cardano-node](https://developers.cardano.org/docs/get-started/running-cardano)
+- [cardano-node GitHub](https://github.com/input-output-hk/cardano-node)
+- [Cardano Nodes](https://docs.cardano.org/new-to-cardano/cardano-nodes)
 - [Cardano Node Local VM Setup Guide](https://www.youtube.com/watch?v=d_3J8MgyZnc)
 
 

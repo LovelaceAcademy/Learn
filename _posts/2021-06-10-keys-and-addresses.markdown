@@ -95,7 +95,7 @@ the term for a non-staking payment address, by excluding the
 `--stake-verification-key-file` parameter below.
 
 {% tabs paymentaddresses %}
-{% tab paymentaddresses#Testnet-Payment-Addresses %}
+{% tab paymentaddresses#Testnet %}
 ```bash
 cardano-cli address build \
     --payment-verification-key-file payment.vkey \
@@ -104,7 +104,7 @@ cardano-cli address build \
     --out-file payment.addr
 ```
 {% endtab %}
-{% tab paymentaddresses#Mainnet-Payment-Addresses %}
+{% tab paymentaddresses#Mainnet %}
 ```bash
 cardano-cli address build \
     --payment-verification-key-file payment.vkey \
@@ -120,7 +120,7 @@ cardano-cli address build \
 A unique stake address is generated from a stake verification key.
 
 {% tabs stakeaddresses %}
-{% tab stakeaddresses#Testnet-Stake-Addresses %}
+{% tab stakeaddresses#Testnet %}
 ```bash
 cardano-cli stake-address build \
     --stake-verification-key-file stake.vkey \
@@ -128,7 +128,7 @@ cardano-cli stake-address build \
     --out-file stake.addr
 ```
 {% endtab %}
-{% tab stakeaddresses#Mainnet-Stake-Addresses %}
+{% tab stakeaddresses#Mainnet %}
 ```bash
 cardano-cli stake-address build \
     --stake-verification-key-file stake.vkey \

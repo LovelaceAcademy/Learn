@@ -189,6 +189,13 @@ cardano-cli transaction build-raw \
   --out-file sendtx.txraw
 ```
 
+### View Transaction 
+You can view the friendly output of your transaction by running
+```bash
+cardano-cli transaction view --tx-body-file sendtx.txraw
+```
+📝 _Note all the other fields in the transaction and refer back to the [Structure of a Transaction Image](#the-structure-of-a-transaction)_
+
 ### Signing a Transaction
 
 With the previously generated payment private signing key `payment.skey`
