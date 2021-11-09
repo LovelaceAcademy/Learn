@@ -163,7 +163,7 @@ echo 'export CARDANO_NODE_SOCKET_PATH="$HOME/node/socket/node.socket"' >> ~/.bas
 source ~/.bashrc
 ```
 {% endtab %}
-
+{% endtabs %}
 
 ## Configure the Node
 
@@ -204,6 +204,7 @@ sed -i 's/mainnet-byron-genesis/bgenesis/g' config.json
 sed -i 's/mainnet-alonzo-genesis/agenesis/g' config.json
 ```
 {% endtab %}
+{% endtabs %}
 
 ## Shortcut #1: An Init Script
  To save time from having to run these commands one-by-one, you can simply use our existing [init.sh](https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh) and run it all (i.e. install dependencies, clone+build, configure) with:
@@ -250,6 +251,7 @@ cardano-node run \
     --config ~/node/config/config.json
 ```
 {% endtab %}
+{% endtabs %}
 
 If you are running the node for the first time it will need to fully
 synchronise with the blockchain. Verify that the running node process is
@@ -289,6 +291,7 @@ cardano-cli query tip --mainnet
 cardano-cli query protocol-parameters --mainnet --out-file protocol.json 
 ```
 {% endtab %}
+{% endtabs %}
 
 ## Supplementary Material
 - [Installing cardano-node and cardano-cli from source](https://developers.cardano.org/docs/get-started/installing-cardano-node/)
