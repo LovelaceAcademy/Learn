@@ -3,6 +3,16 @@
 
 <head>
   
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DH0WG199T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9DH0WG199T');
+  </script>
+  
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -1171,7 +1181,7 @@ responsibilities are to:</p>
 </ul>
 
 <p><img class="img-fluid" src="/img/node_cardano_components_version_main.png" alt="">
-Image courtesy of <a href="https://docs.cardano.org/en/latest/explore-cardano/cardano-architecture-overview/index.html#cardano-blockchain-high-level-architecture" target="_blank" rel="noopener noreferrer">Cardano docs</a></p>
+Image courtesy of <a href="https://docs.cardano.org/explore-cardano/cardano-architecture/overview#gatsby-focus-wrapper" target="_blank" rel="noopener noreferrer">Cardano docs</a></p>
 
 <p>When we build the <a href="https://github.com/input-output-hk/cardano-node/" target="_blank" rel="noopener noreferrer">cardano-node</a> project it will produce two binary executables,
 <code class="language-plaintext highlighter-rouge">cardano-node</code> (server) and <code class="language-plaintext highlighter-rouge">cardano-cli</code> (CLI client).</p>
@@ -1276,6 +1286,12 @@ which will be part of the executable path.</p>
 <p>For convenience it also makes sense to add amend the existing
 environment variables to be loaded automatically.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="postbuild" role="tablist">
+<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="postbuildContent">
+<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">echo</span> <span class="s1">'export PATH="~/.cabal/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
@@ -1284,6 +1300,18 @@ environment variables to be loaded automatically.</p>
 <span class="nb">echo</span> <span class="s1">'export CARDANO_NODE_SOCKET_PATH="$HOME/testnet-node/socket/node.socket"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">source</span> ~/.bashrc
 </code></pre></div></div>
+</div>
+<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export PATH="~/.cabal/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export PATH="~/.local/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export NODE_HOME="$HOME/node"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export CARDANO_NODE_SOCKET_PATH="$HOME/node/socket/node.socket"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+</div>
+</div>
 
 <h2 id="configure-the-node">Configure the Node</h2>
 
@@ -1291,6 +1319,12 @@ environment variables to be loaded automatically.</p>
 a Cardano network, and this is determined by four JSON configuration
 files. We will focus on the testnet first.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="config" role="tablist">
+<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="configContent">
+<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/testnet-node/config
 <span class="nb">mkdir</span> <span class="nt">-p</span> ~/testnet-node/socket
 <span class="nb">cd</span> ~/testnet-node/config
@@ -1304,6 +1338,23 @@ wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-byron-genesis/bgenesis/g'</span> config.json
 <span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/testnet-alonzo-genesis/agenesis/g'</span> config.json
 </code></pre></div></div>
+</div>
+<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/node/config
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/node/socket
+<span class="nb">cd</span> ~/node/config
+wget <span class="nt">-O</span> config.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-config.json
+wget <span class="nt">-O</span> bgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-byron-genesis.json
+wget <span class="nt">-O</span> sgenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-shelley-genesis.json
+wget <span class="nt">-O</span> agenesis.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-alonzo-genesis.json
+wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-topology.json
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/"TraceBlockFetchDecisions": false/"TraceBlockFetchDecisions": true/g'</span> config.json
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/mainnet-shelley-genesis/sgenesis/g'</span> config.json
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/mainnet-byron-genesis/bgenesis/g'</span> config.json
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/mainnet-alonzo-genesis/agenesis/g'</span> config.json
+</code></pre></div></div>
+</div>
+</div>
 
 <h2 id="shortcut-1-an-init-script">Shortcut #1: An Init Script</h2>
 <p>To save time from having to run these commands one-by-one, you can simply use our existing <a href="https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh" target="_blank" rel="noopener noreferrer">init.sh</a> and run it all (i.e. install dependencies, clone+build, configure) with:</p>
@@ -1311,7 +1362,7 @@ wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
 bash init.sh
 </code></pre></div></div>
-<p>📝 <em>Note that the mainnet versions of the commands are commented out. Comment out the corresponding testnet commands and uncomment the mainnet versions to run a mainnet node</em></p>
+<p>📝 <em>Note that the mainnet versions of the commands are commented out. Comment out the corresponding mainnet commands and uncomment the mainnet versions to run a mainnet node</em></p>
 
 <h2 id="shortcut-2-download-the-binaries">Shortcut #2: Download the Binaries</h2>
 <p>You can alternatively download the latest versions <code class="language-plaintext highlighter-rouge">cardano-node</code> and <code class="language-plaintext highlighter-rouge">cardano-cli</code></p>
@@ -1328,6 +1379,12 @@ bash init.sh
 <p>Now it just a matter of running your node pointing to the configuration
 files above.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="run" role="tablist">
+<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="runContent">
+<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-node run <span class="se">\</span>
     <span class="nt">--topology</span> ~/testnet-node/config/topology.json <span class="se">\</span>
     <span class="nt">--database-path</span> ~/testnet-node/db/ <span class="se">\</span>
@@ -1336,6 +1393,18 @@ files above.</p>
     <span class="nt">--port</span> 3001 <span class="se">\</span>
     <span class="nt">--config</span> ~/testnet-node/config/config.json
 </code></pre></div></div>
+</div>
+<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-node run <span class="se">\</span>
+    <span class="nt">--topology</span> ~/node/config/topology.json <span class="se">\</span>
+    <span class="nt">--database-path</span> ~/node/db/ <span class="se">\</span>
+    <span class="nt">--socket-path</span> ~/node/socket/node.socket <span class="se">\</span>
+    <span class="nt">--host-addr</span> 0.0.0.0 <span class="se">\</span>
+    <span class="nt">--port</span> 3001 <span class="se">\</span>
+    <span class="nt">--config</span> ~/node/config/config.json
+</code></pre></div></div>
+</div>
+</div>
 
 <p>If you are running the node for the first time it will need to fully
 synchronise with the blockchain. Verify that the running node process is
@@ -1355,16 +1424,35 @@ at the bottom panel until it changes to a red <code class="language-plaintext hi
 path is the main way to interact with your local Cardano node. 
 You can run the following commands to familiarise yourself.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="interact" role="tablist">
+<li class="nav-item"><a aria-controls="Testnet" aria-selected="true" class="nav-link active" data-toggle="tab" href="#Testnet" id="Testnet-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="Mainnet" aria-selected="false" class="nav-link" data-toggle="tab" href="#Mainnet" id="Mainnet-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="interactContent">
+<div aria-labelledby="Testnet-tab" class="tab-pane fade show active" id="Testnet" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Getting the current tip</span>
 cardano-cli query tip <span class="nt">--testnet-magic</span> 1097911063
 
 <span class="c"># Export the protocol parameters to file protocol.json</span>
 cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> protocol.json 
 </code></pre></div></div>
+</div>
+<div aria-labelledby="Mainnet-tab" class="tab-pane fade" id="Mainnet" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Getting the current tip</span>
+cardano-cli query tip <span class="nt">--mainnet</span>
+
+<span class="c"># Export the protocol parameters to file protocol.json</span>
+cardano-cli query protocol-parameters <span class="nt">--mainnet</span> <span class="nt">--out-file</span> protocol.json 
+</code></pre></div></div>
+</div>
+</div>
 
 <h2 id="supplementary-material">Supplementary Material</h2>
 <ul>
+  <li><a href="https://developers.cardano.org/docs/get-started/installing-cardano-node/" target="_blank" rel="noopener noreferrer">Installing cardano-node and cardano-cli from source</a></li>
   <li><a href="https://developers.cardano.org/docs/get-started/running-cardano" target="_blank" rel="noopener noreferrer">How to run cardano-node</a></li>
+  <li><a href="https://github.com/input-output-hk/cardano-node" target="_blank" rel="noopener noreferrer">cardano-node GitHub</a></li>
+  <li><a href="https://docs.cardano.org/new-to-cardano/cardano-nodes" target="_blank" rel="noopener noreferrer">Cardano Nodes</a></li>
   <li><a href="https://www.youtube.com/watch?v=d_3J8MgyZnc" target="_blank" rel="noopener noreferrer">Cardano Node Local VM Setup Guide</a></li>
 </ul>
 

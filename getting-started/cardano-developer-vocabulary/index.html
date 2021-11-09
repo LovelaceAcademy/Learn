@@ -3,6 +3,16 @@
 
 <head>
   
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DH0WG199T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9DH0WG199T');
+  </script>
+  
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -1144,7 +1154,7 @@
             <p>Even seasoned developers can find the plethora of new terms associated with Blockchain development intimidating and at times plain confusing or cryptic. To address these pain points we have created the <strong>Cardano Developer Vocabulary</strong>, a concise glossary to explain the most important yet commonly mistaken terms grouped by major concepts.</p>
 
 <h2 id="time">Time</h2>
-<p>Moments in time across Cardano are generally specified using incrementing integers. For example to-the-second precise units called <code class="language-plaintext highlighter-rouge">Slots</code> and five-day windows known as <code class="language-plaintext highlighter-rouge">Epochs</code>. Last but not least these moments reside within <code class="language-plaintext highlighter-rouge">Eras</code>, which are simply text labels for significant Cardano network milestones. For example, <span class="tooltips_one" data-toggle="tooltip" data-placement="top" title="9:00AM UTC on November 3rd">2021-11-03T09:00:00Z in ISO 8601 format</span> is Slot 44363709, Epoch 300 of the Alonzo Era.</p>
+<p>Moments in time across Cardano are generally specified using incrementing integers. For example to-the-second precise units called <code class="language-plaintext highlighter-rouge">Slots</code> and five-day windows known as <code class="language-plaintext highlighter-rouge">Epochs</code>. Last but not least these moments reside within <code class="language-plaintext highlighter-rouge">Eras</code>, which are simply text labels for significant Cardano network milestones. For example, <span class="tooltips_one" data-toggle="tooltip" data-placement="top" title="9:00AM UTC on November 3rd">2021-11-03T09:00:00Z in ISO 8601 format</span> is Slot 44363709, in Epoch 300 of the Alonzo Era.</p>
 <h3 id="slot">Slot</h3>
 <p>At the current configuration a slot is a unit of time increasing at a rate of one every second. Slots are used to define precise moments in time such as those used in time-locked multisig policies, an expiration for transactions, the current tip of the chain or points in time when a stake pool should produce blocks.</p>
 <h3 id="epoch">Epoch</h3>
@@ -1157,21 +1167,24 @@
 <h3 id="cddl">CDDL</h3>
 <p><strong>C</strong> oncise <strong>D</strong> ata <strong>D</strong> efinition <strong>L</strong> anguage defines a human-readable schema for CBOR types. This is similar to JSON Schema or ProtoBuf structures in a <code class="language-plaintext highlighter-rouge">.proto</code> file and can also be used to define cross-boundary API contracts.</p>
 <h3 id="bech32">BECH32</h3>
-<p>BECH32 (not to be confused with BIP32 in the standards section below) is a human-readable encoding format with <a href="https://cips.cardano.org/cips/cip5/" target="_blank" rel="noopener noreferrer">standardised prefixes</a> such as addr1 or asset1. It is used across Cardano for end-user facing objects such as keys, addresses and native assets.</p>
-
-<h2 id="improvement-proposals">Improvement Proposals</h2>
-<p>The Blockchain industry is built on top of innovative standards (BIP/EIP/CIP/etc.) that arose out of documented improvement proposals from different ecosystems.</p>
-<h3 id="bip-and-eip">BIP and EIP</h3>
-<p>Standards that came from <a href="https://github.com/bitcoin/bips" target="_blank" rel="noopener noreferrer"><strong>B</strong>itcoin <strong>I</strong>mprovement <strong>P</strong>roposals</a> or <a href="https://github.com/ethereum/EIPs/tree/master/EIPS" target="_blank" rel="noopener noreferrer"><strong>E</strong>thereum <strong>I</strong>mprovement <strong>P</strong>roposals</a>. Notable ones include BIP32, BIP39 and BIP44 that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as EIP20 and EIP721 which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.</p>
-<h3 id="cip">CIP</h3>
-<p>Standards that came from Cardano. See the <a href="https://github.com/cardano-foundation/CIPs" target="_blank" rel="noopener noreferrer">full list</a>.</p>
+<p>BECH32 (not to be confused with BIP32 in the standards section below) is a human-readable encoding format with <a href="https://cips.cardano.org/cips/cip5/" target="_blank" rel="noopener noreferrer">standardised prefixes</a> such as <code class="language-plaintext highlighter-rouge">addr1</code> or <code class="language-plaintext highlighter-rouge">asset1</code>. It is used across Cardano for end-user facing objects such as keys, addresses and native assets.</p>
+<h3 id="cbor-hex">CBOR Hex</h3>
+<p><code class="language-plaintext highlighter-rouge">cardano-cli</code> also generates and accepts JSON-formatted key and certificate files with the fields <code class="language-plaintext highlighter-rouge">text</code>, <code class="language-plaintext highlighter-rouge">description</code> and <code class="language-plaintext highlighter-rouge">cborHex</code>. As the <code class="language-plaintext highlighter-rouge">cborHex</code> field’s name suggests, it is a hex (aka Base16) representation of the key or certificate’s CBOR binary.</p>
 
 <h2 id="cryptography">Cryptography</h2>
 <p>As with most Blockchains, two main cryptographic primitives are used, <strong>hash functions</strong> and <strong>public key or asymmetric cryptography</strong>. Specific algorithms are used below.</p>
 <h3 id="blake2b">Blake2b</h3>
-<p>Cardano uses the <a href="https://datatracker.ietf.org/doc/html/rfc7693" target="_blank" rel="noopener noreferrer">Blake2b</a> as a fast hashing algorithm to generate hash digests of commonly used objects in Cardano.</p>
+<p>Cardano uses the <a href="https://datatracker.ietf.org/doc/html/rfc7693" target="_blank" rel="noopener noreferrer">Blake2b</a> as a fast hashing algorithm to generate hash digests (fixed length fingerprints) of commonly used objects in Cardano such as transactions, scripts and addresses. In particular Blake2b-160, Blake2b-224, Blake2b-256 and Blake2b-512 which generate 160bit, 224bit, 256bit and 512bit digests respectively.</p>
 <h3 id="ed25519">Ed25519</h3>
-<p><a href="https://datatracker.ietf.org/doc/html/rfc8032" target="_blank" rel="noopener noreferrer">Ed25519</a> is used throughout Cardano for speedy digital signatures based on private signing and public verification key pairs.</p>
+<p>As mentioned in our page <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Wallet Basics: Keys and Addresses
+</a>, Cardano uses <a href="https://datatracker.ietf.org/doc/html/rfc8032" target="_blank" rel="noopener noreferrer">Ed25519</a> private signing and public verification key pairs heavily for digital signatures validating transactions and blocks.</p>
+
+<h2 id="improvement-proposals">Improvement Proposals</h2>
+<p>The Blockchain industry is built on top of innovative standards (BIP/EIP/CIP/etc.) that arose out of documented improvement proposals from different ecosystems.</p>
+<h3 id="bip-and-eip">BIP and EIP</h3>
+<p>Standards that came from <a href="https://github.com/bitcoin/bips" target="_blank" rel="noopener noreferrer"><strong>B</strong>itcoin <strong>I</strong>mprovement <strong>P</strong>roposals</a> or <a href="https://github.com/ethereum/EIPs/tree/master/EIPS" target="_blank" rel="noopener noreferrer"><strong>E</strong>thereum <strong>I</strong>mprovement <strong>P</strong>roposals</a>. Notable ones include <strong>BIP32</strong>, <strong>BIP39</strong> and <strong>BIP44</strong> that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as <strong>EIP20</strong> and <strong>EIP721</strong> which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.</p>
+<h3 id="cip">CIP</h3>
+<p>Standards that came from Cardano. Notable ones are <strong>CIP25</strong> for the NFT Metadata standard and <strong>CIP5</strong> for common BECH32 prefixes (described above in <a href="#dataformats">Data Formats</a>) . See the <a href="https://github.com/cardano-foundation/CIPs" target="_blank" rel="noopener noreferrer">full list here</a>.</p>
 
 <p>🚧 <em>More content coming soon</em></p>
 

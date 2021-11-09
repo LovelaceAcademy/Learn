@@ -3,6 +3,16 @@
 
 <head>
   
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DH0WG199T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9DH0WG199T');
+  </script>
+  
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -1316,6 +1326,12 @@ cardano-cli transaction build-raw <span class="se">\</span>
   <span class="nt">--fee</span> <span class="nv">$FEE</span> <span class="se">\</span>
   <span class="nt">--out-file</span> sendtx.txraw
 </code></pre></div></div>
+
+<h3 id="view-transaction">View Transaction</h3>
+<p>You can view the friendly output of your transaction by running</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction view <span class="nt">--tx-body-file</span> sendtx.txraw
+</code></pre></div></div>
+<p>📝 <em>Note all the other fields in the transaction and refer back to the <a href="#the-structure-of-a-transaction">Structure of a Transaction Image</a></em></p>
 
 <h3 id="signing-a-transaction">Signing a Transaction</h3>
 
