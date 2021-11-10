@@ -165,6 +165,34 @@ source ~/.bashrc
 {% endtab %}
 {% endtabs %}
 
+## Shortcut #1: An Init Script
+ To save time from having to run these commands one-by-one, you can simply use our existing [init.sh](https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh) and run it all (i.e. install dependencies, clone+build, configure) with:
+
+```bash
+wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
+bash init.sh
+```
+ 📝 _Note that it is configured (see `Configure the Node` below) for the testnet, but the mainnet versions of the commands are commented out. Comment/uncomment the testnet/mainnet versions to configure the desired environment_
+
+## Shortcut #2: Download the Binaries
+You can alternatively download the latest versions `cardano-node` and `cardano-cli`
+- [Linux](https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz)
+- [Windows](https://hydra.iohk.io/build/7739339/download/1/cardano-node-1.30.1-win64.zip)
+- [MacOS](https://hydra.iohk.io/build/7739444/download/1/cardano-node-1.30.1-macos.tar.gz)
+
+After downloading you can simply extract the binaries and add them to your PATH. In the case of Ubuntu you can run
+```bash
+mkdir -p ~/.local/setup/cardano-node-1.30.1
+cd ~/.local/setup/cardano-node-1.30.1
+wget https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz
+tar -xf cardano-node-1.30.1-linux.tar.gz
+rm cardano-node-1.30.1-linux.tar.gz
+mkdir -p ~/.local/bin
+cp cardano-cli cardano-node ~/.local/bin
+```
+
+📝 _Note you will still need to run the `Post-build Scripts` for the desired environment above to add the binaries to your PATH and ensure `cardano-cli` communicates to the right Unix domain socket_
+
 ## Configure the Node
 
 Your Cardano node needs to be configured correctly to connect to
@@ -205,23 +233,6 @@ sed -i 's/mainnet-alonzo-genesis/agenesis/g' config.json
 ```
 {% endtab %}
 {% endtabs %}
-
-## Shortcut #1: An Init Script
- To save time from having to run these commands one-by-one, you can simply use our existing [init.sh](https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh) and run it all (i.e. install dependencies, clone+build, configure) with:
-
-```bash
-wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
-bash init.sh
-```
- 📝 _Note that the mainnet versions of the commands are commented out. Comment out the corresponding mainnet commands and uncomment the mainnet versions to run a mainnet node_
-
-## Shortcut #2: Download the Binaries
-You can alternatively download the latest versions `cardano-node` and `cardano-cli`
-- [Linux](https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz)
-- [Windows](https://hydra.iohk.io/build/7739339/download/1/cardano-node-1.30.1-win64.zip)
-- [MacOS](https://hydra.iohk.io/build/7739444/download/1/cardano-node-1.30.1-macos.tar.gz)
-
-📝 _Note you still need to [configure the node](https://learn.lovelace.academy/getting-started/running-a-full-node/#configure-the-node) for the mainnest or testnet environments_
 
 ## Running and Monitoring the Node
 
@@ -293,7 +304,7 @@ cardano-cli query protocol-parameters --mainnet --out-file protocol.json
 {% endtab %}
 {% endtabs %}
 
-## Supplementary Material
+## References
 - [Installing cardano-node and cardano-cli from source](https://developers.cardano.org/docs/get-started/installing-cardano-node/)
 - [How to run cardano-node](https://developers.cardano.org/docs/get-started/running-cardano)
 - [cardano-node GitHub](https://github.com/input-output-hk/cardano-node)
@@ -301,5 +312,5 @@ cardano-cli query protocol-parameters --mainnet --out-file protocol.json
 - [Cardano Node Local VM Setup Guide](https://www.youtube.com/watch?v=d_3J8MgyZnc)
 
 
-## Understand Cardano Primitives: Keys and Addresses
+## Learn about Cardano Primitives
 Continue to [Keys and Addresses ➡️](https://learn.lovelace.academy/getting-started/keys-and-addresses/)

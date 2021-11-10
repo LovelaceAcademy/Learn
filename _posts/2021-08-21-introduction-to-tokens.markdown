@@ -28,7 +28,7 @@ Although Cardano's implementation of Native Assets resolves many of the current 
 
 This design decision prevents an attack vector where malicious actors can easily flood the Cardano network with an endless stream of custom token Tx outputs, resulting in large transaction payloads propagating across the network and an unmanageable set of UTxOs. 
 
-## Supplementary Material
+## References
  - [Cardano Docs: Native Tokens](https://docs.cardano.org/native-tokens/learn)
  - [Cardano Developers Portal: Discover Native Tokens](https://docs.cardano.org/native-tokens/learn)
 

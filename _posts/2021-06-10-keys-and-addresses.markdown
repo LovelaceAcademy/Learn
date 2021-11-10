@@ -138,7 +138,7 @@ cardano-cli stake-address build \
 {% endtab %}
 {% endtabs %}
 
-## Supplementary Material
+## References
 - [Cardano Docs: Cardano addresses](https://docs.cardano.org/core-concepts/cardano-addresses)
 - [Cardano Developers: Creating Keys and Addresses](https://developers.cardano.org/docs/stake-pool-course/handbook/keys-addresses/)
  - [Learn me a bitcoin: Keys and Addresses](https://learnmeabitcoin.com/beginners/keys_addresses)

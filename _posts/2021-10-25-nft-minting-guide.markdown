@@ -251,7 +251,7 @@ Alternatively you can use the following tools {% include tooltips/basic.html too
 - [EasyCNFT](https://easycnft.art/en)
 - [NFT Machine](https://nft-machine.com/)
 
-## Supplementary Material
+## References
 - [Cardano Developers: Minting NFTs](https://developers.cardano.org/docs/native-tokens/minting-nfts/)
 
 ## Learn about Smart Contracts

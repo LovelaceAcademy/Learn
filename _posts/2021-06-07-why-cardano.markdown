@@ -46,19 +46,20 @@ Cardano has some of the most impressive metrics in the Blockchain space and the 
 
  - The most decentralised blockchain platform 
    - 3,000+ stake pools [distributed globally](https://adatools.io/hologram)
-   - 2,250,000+ [wallet addresses (greater than 1 ADA)](https://messari.io/asset/cardano/metrics/addresses)
-   - 820,000+ staking addresses
-   - 71%+ of total supply staked ($50B+ USD)
+   - 2,000,000+ [wallets](https://twitter.com/Cardano/status/1455310221396611072)
+   - 940,000+ [staking addresses](https://pooltool.io/)
+   - 72.2%+ of [total supply staked](https://pooltool.io/) ($40B+ USD)
  - Second most active blockchain by [transaction volume](https://messari.io/asset/cardano/metrics/network-activity)
-   - $10,000,000,000+ ($10B) USD per day
+   - $12,000,000,000+ ($12B) USD per day
  - The most actively developed blockchain by GitHub commits
- - Has the world's largest Decentralised Autonomous Organisation (DAO)
-   - $1,800,000,000+ ($1.8B) USD in the treasury
-   - 31,000+ participants
+ - Has the [world's largest Decentralised Autonomous Organisation](https://forum.cardano.org/t/project-catalyst-fund6-voting-results-official/82084) (DAO)
+   - $1,500,000,000+ ($1.5B) USD in the treasury
    - Governance built-in to the protocol
-   - 930 project proposals and 150+ projects funded to date
+   - 44,500+ unique wallets participating
+   - 903,000 votes cast to date
+   - 305+ projects funded to date
 
-** *Metrics updated on 12/09/2021*
+📝 *Metrics updated 2021-11-09T15:00:00Z*
 
 ## Join the Cardano Revolution
 Continue on to [Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/starting-your-journey)
