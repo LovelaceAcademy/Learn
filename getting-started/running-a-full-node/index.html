@@ -1316,6 +1316,34 @@ environment variables to be loaded automatically.</p>
 </div>
 </div>
 
+<h2 id="shortcut-1-an-init-script">Shortcut #1: An Init Script</h2>
+<p>To save time from having to run these commands one-by-one, you can simply use our existing <a href="https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh" target="_blank" rel="noopener noreferrer">init.sh</a> and run it all (i.e. install dependencies, clone+build, configure) with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
+bash init.sh
+</code></pre></div></div>
+<p>📝 <em>Note that it is configured (see <code class="language-plaintext highlighter-rouge">Configure the Node</code> below) for the testnet, but the mainnet versions of the commands are commented out. Comment/uncomment the testnet/mainnet versions to configure the desired environment</em></p>
+
+<h2 id="shortcut-2-download-the-binaries">Shortcut #2: Download the Binaries</h2>
+<p>You can alternatively download the latest versions <code class="language-plaintext highlighter-rouge">cardano-node</code> and <code class="language-plaintext highlighter-rouge">cardano-cli</code></p>
+<ul>
+  <li><a href="https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz" target="_blank" rel="noopener noreferrer">Linux</a></li>
+  <li><a href="https://hydra.iohk.io/build/7739339/download/1/cardano-node-1.30.1-win64.zip" target="_blank" rel="noopener noreferrer">Windows</a></li>
+  <li><a href="https://hydra.iohk.io/build/7739444/download/1/cardano-node-1.30.1-macos.tar.gz" target="_blank" rel="noopener noreferrer">MacOS</a></li>
+</ul>
+
+<p>After downloading you can simply extract the binaries and add them to your PATH. In the case of Ubuntu you can run</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/.local/setup/cardano-node-1.30.1
+<span class="nb">cd</span> ~/.local/setup/cardano-node-1.30.1
+wget https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz
+<span class="nb">tar</span> <span class="nt">-xf</span> cardano-node-1.30.1-linux.tar.gz
+<span class="nb">rm </span>cardano-node-1.30.1-linux.tar.gz
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/.local/bin
+<span class="nb">cp </span>cardano-cli cardano-node ~/.local/bin
+</code></pre></div></div>
+
+<p>📝 <em>Note you will still need to run the <code class="language-plaintext highlighter-rouge">Post-build Scripts</code> for the desired environment above to add the binaries to your PATH and ensure <code class="language-plaintext highlighter-rouge">cardano-cli</code> communicates to the right Unix domain socket</em></p>
+
 <h2 id="configure-the-node">Configure the Node</h2>
 
 <p>Your Cardano node needs to be configured correctly to connect to
@@ -1358,24 +1386,6 @@ wget <span class="nt">-O</span> topology.json https://hydra.iohk.io/job/Cardano/
 </code></pre></div></div>
 </div>
 </div>
-
-<h2 id="shortcut-1-an-init-script">Shortcut #1: An Init Script</h2>
-<p>To save time from having to run these commands one-by-one, you can simply use our existing <a href="https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh" target="_blank" rel="noopener noreferrer">init.sh</a> and run it all (i.e. install dependencies, clone+build, configure) with:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/LovelaceAcademy/CardanoDevBox/main/init.sh
-bash init.sh
-</code></pre></div></div>
-<p>📝 <em>Note that the mainnet versions of the commands are commented out. Comment out the corresponding mainnet commands and uncomment the mainnet versions to run a mainnet node</em></p>
-
-<h2 id="shortcut-2-download-the-binaries">Shortcut #2: Download the Binaries</h2>
-<p>You can alternatively download the latest versions <code class="language-plaintext highlighter-rouge">cardano-node</code> and <code class="language-plaintext highlighter-rouge">cardano-cli</code></p>
-<ul>
-  <li><a href="https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz" target="_blank" rel="noopener noreferrer">Linux</a></li>
-  <li><a href="https://hydra.iohk.io/build/7739339/download/1/cardano-node-1.30.1-win64.zip" target="_blank" rel="noopener noreferrer">Windows</a></li>
-  <li><a href="https://hydra.iohk.io/build/7739444/download/1/cardano-node-1.30.1-macos.tar.gz" target="_blank" rel="noopener noreferrer">MacOS</a></li>
-</ul>
-
-<p>📝 <em>Note you still need to <a href="https://learn.lovelace.academy/getting-started/running-a-full-node/#configure-the-node">configure the node</a> for the mainnest or testnet environments</em></p>
 
 <h2 id="running-and-monitoring-the-node">Running and Monitoring the Node</h2>
 
@@ -1450,7 +1460,7 @@ cardano-cli query protocol-parameters <span class="nt">--mainnet</span> <span cl
 </div>
 </div>
 
-<h2 id="supplementary-material">Supplementary Material</h2>
+<h2 id="references">References</h2>
 <ul>
   <li><a href="https://developers.cardano.org/docs/get-started/installing-cardano-node/" target="_blank" rel="noopener noreferrer">Installing cardano-node and cardano-cli from source</a></li>
   <li><a href="https://developers.cardano.org/docs/get-started/running-cardano" target="_blank" rel="noopener noreferrer">How to run cardano-node</a></li>
@@ -1459,7 +1469,7 @@ cardano-cli query protocol-parameters <span class="nt">--mainnet</span> <span cl
   <li><a href="https://www.youtube.com/watch?v=d_3J8MgyZnc" target="_blank" rel="noopener noreferrer">Cardano Node Local VM Setup Guide</a></li>
 </ul>
 
-<h2 id="understand-cardano-primitives-keys-and-addresses">Understand Cardano Primitives: Keys and Addresses</h2>
+<h2 id="learn-about-cardano-primitives">Learn about Cardano Primitives</h2>
 <p>Continue to <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Keys and Addresses ➡️</a></p>
 
 
