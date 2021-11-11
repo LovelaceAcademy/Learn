@@ -260,9 +260,9 @@
         <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
           <ion-icon name="logo-discord"></ion-icon>
         </a>
-        <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+        <!-- <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
-        </a>
+        </a> -->
         <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
           <label for="dark-toggle" class="tab-btn tab-btns">
             <ion-icon class="light-mode" name="contrast"></ion-icon>
@@ -1177,7 +1177,7 @@
 <h2 id="cryptography">Cryptography</h2>
 <p>As with most Blockchains, two main cryptographic primitives are used, <strong>hash functions</strong> and <strong>public key or asymmetric cryptography</strong>. Specific algorithms are used below.</p>
 <h3 id="blake2b">Blake2b</h3>
-<p>Cardano uses the <a href="https://datatracker.ietf.org/doc/html/rfc7693" target="_blank" rel="noopener noreferrer">Blake2b</a> as a fast hashing algorithm to generate hash digests (fixed length fingerprints) of commonly used objects in Cardano such as transactions, scripts and addresses. In particular Blake2b-160, Blake2b-224, Blake2b-256 and Blake2b-512 which generate 160bit, 224bit, 256bit and 512bit digests respectively.</p>
+<p>Cardano uses the <a href="https://datatracker.ietf.org/doc/html/rfc7693" target="_blank" rel="noopener noreferrer">Blake2b</a> as a fast hashing algorithm to generate hash digests (<em>unique</em> fixed-length fingerprints) of commonly used objects in Cardano such as transactions, scripts and addresses. In particular Blake2b-160, Blake2b-224, Blake2b-256 and Blake2b-512 which generate 160bit, 224bit, 256bit and 512bit digests respectively.</p>
 <h3 id="ed25519">Ed25519</h3>
 <p>As mentioned in our page <a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Wallet Basics: Keys and Addresses
 </a>, Cardano uses <a href="https://datatracker.ietf.org/doc/html/rfc8032" target="_blank" rel="noopener noreferrer">Ed25519</a> private signing and public verification key pairs heavily for digital signatures validating transactions and blocks.</p>
@@ -1187,7 +1187,7 @@
 <h3 id="bip-and-eip">BIP and EIP</h3>
 <p>Standards that came from <a href="https://github.com/bitcoin/bips" target="_blank" rel="noopener noreferrer"><strong>B</strong>itcoin <strong>I</strong>mprovement <strong>P</strong>roposals</a> or <a href="https://github.com/ethereum/EIPs/tree/master/EIPS" target="_blank" rel="noopener noreferrer"><strong>E</strong>thereum <strong>I</strong>mprovement <strong>P</strong>roposals</a>. Notable ones include <strong>BIP32</strong>, <strong>BIP39</strong> and <strong>BIP44</strong> that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as <strong>EIP20</strong> and <strong>EIP721</strong> which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.</p>
 <h3 id="cip">CIP</h3>
-<p>Standards that came from Cardano. Notable ones are <strong>CIP25</strong> for the NFT Metadata standard and <strong>CIP5</strong> for common BECH32 prefixes (described above in <a href="#dataformats">Data Formats</a>) . See the <a href="https://github.com/cardano-foundation/CIPs" target="_blank" rel="noopener noreferrer">full list here</a>.</p>
+<p>Standards that came from Cardano. Notable ones are <strong>CIP25</strong> for the NFT Metadata standard and <strong>CIP5</strong> for common BECH32 prefixes (described above in <a href="#data-formats">Data Formats</a>) . See the <a href="https://github.com/cardano-foundation/CIPs" target="_blank" rel="noopener noreferrer">full list here</a>.</p>
 
 <p>🚧 <em>More content coming soon</em></p>
 
@@ -1206,9 +1206,9 @@
 </h6>
                 </div>
                 <div class="col-lg-6">
-                  <p>💡 Learnt something? 
-                    <a href="https://twitter.com/AcademyLovelace" target="_blank" rel="noopener noreferrer">Tweet @AcademyLovelace</a>
-                  </p>
+                  <h6>💡 Learnt something? 
+                    <a href="https://twitter.com/AcademyLovelace" target="_blank" rel="noopener noreferrer">Tweet about @AcademyLovelace</a>
+                  </h6>
                 </div>
               </div>
             </footer>

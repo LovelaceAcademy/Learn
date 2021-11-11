@@ -260,9 +260,9 @@
         <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
           <ion-icon name="logo-discord"></ion-icon>
         </a>
-        <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+        <!-- <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
-        </a>
+        </a> -->
         <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
           <label for="dark-toggle" class="tab-btn tab-btns">
             <ion-icon class="light-mode" name="contrast"></ion-icon>
@@ -1230,8 +1230,8 @@ faucet have arrived in your payment.addr by running the following:</p>
 <span class="nb">echo</span> <span class="nv">$UTXO0</span>
 </code></pre></div></div>
 
-<p>It will store the details for the UTxO of that transaction in the shell variables
-<code class="language-plaintext highlighter-rouge">UTXO0H</code>(transaction ID), <code class="language-plaintext highlighter-rouge">UTXO0I</code>(transaction output index) and <code class="language-plaintext highlighter-rouge">UTXO0V</code>(transaction output value).</p>
+<p><strong>Note</strong>: It will store the details for the UTxO of that transaction in the shell variables
+<strong><code class="language-plaintext highlighter-rouge">UTXO0H</code>(transaction ID)</strong>, <strong><code class="language-plaintext highlighter-rouge">UTXO0I</code>(transaction output index)</strong> and <strong><code class="language-plaintext highlighter-rouge">UTXO0V</code>(transaction output value)</strong>. These variables will be used later when we are building the raw transaction within the <code class="language-plaintext highlighter-rouge">--tx-in</code> input parameter.</p>
 
 <h3 id="create-destination-payment-address">Create Destination Payment Address</h3>
 
@@ -1286,9 +1286,9 @@ documentation.</p>
 
 <p>Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the UTxO details queried above containing our faucet ADA. 
+that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the shell variables from the payment.addr UTxO query three steps above, and follows the format <code class="language-plaintext highlighter-rouge">{utxo_tx_hash}#{utxo_tx_output_index}</code>. 
 Also note <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters sending 100 ADA (100000000 lovelaces) 
-to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change.</p>
+to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change. Each <code class="language-plaintext highlighter-rouge">--tx-out</code> follows the format <code class="language-plaintext highlighter-rouge">{output_address}+{lovelace_value}</code>.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>draft.txraw 2&gt; /dev/null
 cardano-cli transaction build-raw <span class="se">\</span>
@@ -1414,9 +1414,9 @@ cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</sp
 </h6>
                 </div>
                 <div class="col-lg-6">
-                  <p>💡 Learnt something? 
-                    <a href="https://twitter.com/AcademyLovelace" target="_blank" rel="noopener noreferrer">Tweet @AcademyLovelace</a>
-                  </p>
+                  <h6>💡 Learnt something? 
+                    <a href="https://twitter.com/AcademyLovelace" target="_blank" rel="noopener noreferrer">Tweet about @AcademyLovelace</a>
+                  </h6>
                 </div>
               </div>
             </footer>
