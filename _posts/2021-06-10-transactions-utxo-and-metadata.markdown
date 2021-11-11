@@ -84,8 +84,8 @@ UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
 echo $UTXO0
 ```
 
-It will store the details for the UTxO of that transaction in the shell variables
-`UTXO0H`(transaction ID), `UTXO0I`(transaction output index) and `UTXO0V`(transaction output value).
+**Note**: It will store the details for the UTxO of that transaction in the shell variables
+**`UTXO0H`(transaction ID)**, **`UTXO0I`(transaction output index)** and **`UTXO0V`(transaction output value)**. These variables will be used later when we are building the raw transaction within the `--tx-in` input parameter.
 
 ### Create Destination Payment Address
 
@@ -143,9 +143,9 @@ cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file prot
 
 Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that `--tx-in` uses the UTxO details queried above containing our faucet ADA. 
+that `--tx-in` uses the shell variables from the payment.addr UTxO query three steps above, and follows the format `{utxo_tx_hash}#{utxo_tx_output_index}`. 
 Also note `--tx-out` parameters sending 100 ADA (100000000 lovelaces) 
-to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change.
+to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change. Each `--tx-out` follows the format `{output_address}+{lovelace_value}`.
 
 ```bash
 rm draft.txraw 2> /dev/null

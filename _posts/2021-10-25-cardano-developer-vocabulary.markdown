@@ -30,7 +30,7 @@ BECH32 (not to be confused with BIP32 in the standards section below) is a human
 ## Cryptography
 As with most Blockchains, two main cryptographic primitives are used, **hash functions** and **public key or asymmetric cryptography**. Specific algorithms are used below.
 ### Blake2b
-Cardano uses the [Blake2b](https://datatracker.ietf.org/doc/html/rfc7693) as a fast hashing algorithm to generate hash digests (fixed length fingerprints) of commonly used objects in Cardano such as transactions, scripts and addresses. In particular Blake2b-160, Blake2b-224, Blake2b-256 and Blake2b-512 which generate 160bit, 224bit, 256bit and 512bit digests respectively.
+Cardano uses the [Blake2b](https://datatracker.ietf.org/doc/html/rfc7693) as a fast hashing algorithm to generate hash digests (_unique_ fixed-length fingerprints) of commonly used objects in Cardano such as transactions, scripts and addresses. In particular Blake2b-160, Blake2b-224, Blake2b-256 and Blake2b-512 which generate 160bit, 224bit, 256bit and 512bit digests respectively.
 ### Ed25519
 As mentioned in our page [Wallet Basics: Keys and Addresses
 ](https://learn.lovelace.academy/getting-started/keys-and-addresses/), Cardano uses [Ed25519](https://datatracker.ietf.org/doc/html/rfc8032) private signing and public verification key pairs heavily for digital signatures validating transactions and blocks.
@@ -40,7 +40,7 @@ The Blockchain industry is built on top of innovative standards (BIP/EIP/CIP/etc
 ### BIP and EIP
 Standards that came from [**B**itcoin **I**mprovement **P**roposals](https://github.com/bitcoin/bips) or [**E**thereum **I**mprovement **P**roposals](https://github.com/ethereum/EIPs/tree/master/EIPS). Notable ones include **BIP32**, **BIP39** and **BIP44** that laid the foundation for cross-chain wallets through recovery phrases, root keys and hierarchical structured child keys/addresses. It is also worthwhile knowing EIPs such as **EIP20** and **EIP721** which define the ERC20 and ERC721 token standards for tokens and non-fungible tokens in Ethereum.
 ### CIP
-Standards that came from Cardano. Notable ones are **CIP25** for the NFT Metadata standard and **CIP5** for common BECH32 prefixes (described above in [Data Formats](#dataformats)) . See the [full list here](https://github.com/cardano-foundation/CIPs). 
+Standards that came from Cardano. Notable ones are **CIP25** for the NFT Metadata standard and **CIP5** for common BECH32 prefixes (described above in [Data Formats](#data-formats)) . See the [full list here](https://github.com/cardano-foundation/CIPs). 
 
 🚧 _More content coming soon_
 

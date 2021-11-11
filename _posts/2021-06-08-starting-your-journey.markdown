@@ -25,12 +25,11 @@ It is a common misconception that Cardano has a steep learning curve and further
 
 ### Builder
 - Stake Pool Operator (SPO): Manages trusted and reliable infrastructure to host a block-producing [cardano-node](https://github.com/input-output-hk/cardano-node/)
-- DApp Developer: Builds On-chain Smart Contracts and Off-chain integration
-- Infrastructure and Integration Developer: Builds Off-chain integration pieces e.g. APIs, SDKs, CLIs, etc.
-- Utility Developer: Builds Wallets and Utility Portals
-- Analytics Developer: Builds Block/Token/Stake Pool/Tx Explorers 
+- DApp Developer: Builds On-chain Smart Contracts and Off-chain integration to invoke them
+- Utility Developer: Builds wallets, block explorers and utility tools
 - NFT Content Creator: Creates Digital Media and Tokenises it as a Cardano Native Asset
-- Graphics or UX Designer for Cardano products/services
+- Graphics/UX Designer for Cardano products/services
+- Infrastructure and Integration Developer: Builds Off-chain integration pieces e.g. APIs, SDKs, CLIs, etc.
 
 With that in mind, Lovelace Academy as an education platform is mostly geared to the builders of Cardano so most of the subsequent content will be technical in nature. 
 
