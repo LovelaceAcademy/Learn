@@ -76,6 +76,8 @@ cat payment.addr
 After a short while (minute or less) you can verify the funds from the
 faucet have arrived in your payment.addr by running the following:
 
+{% tabs queryutxo %}
+{% tab queryutxo#Testnet %}
 ```bash
 UTXO0=$(cardano-cli query utxo --address $(cat payment.addr) --testnet-magic 1097911063 | sed -n 3p) 
 UTXO0H=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 1p)
@@ -83,6 +85,17 @@ UTXO0I=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 2p)
 UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
 echo $UTXO0
 ```
+{% endtab %}
+{% tab queryutxo#Mainnet %}
+```bash
+UTXO0=$(cardano-cli query utxo --address $(cat payment.addr) --mainnet | sed -n 3p) 
+UTXO0H=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 1p)
+UTXO0I=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 2p)
+UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
+echo $UTXO0
+```
+{% endtab %}
+{% endtabs %}
 
 **Note**: It will store the details for the UTxO of that transaction in the shell variables
 **`UTXO0H`(transaction ID)**, **`UTXO0I`(transaction output index)** and **`UTXO0V`(transaction output value)**. These variables will be used later when we are building the raw transaction within the `--tx-in` input parameter.
@@ -91,12 +104,23 @@ echo $UTXO0
 
 Create a new set of address keys and a payment address for the destination of this transaction `destination_payment.addr`.
 
+{% tabs addrgen %}
+{% tab addrgen#Testnet %}
 ```bash
 cardano-cli address key-gen --verification-key-file destination_payment.vkey --signing-key-file destination_payment.skey
 
 cardano-cli address build --payment-verification-key-file destination_payment.vkey --testnet-magic 1097911063 --out-file destination_payment.addr
 ```
-📝 _Without any stake keys, `destination_payment.addr` is a basic enterprise addresses with no staking rights_
+{% endtab %}
+{% tab addrgen#Mainnet %}
+```bash
+cardano-cli address key-gen --verification-key-file destination_payment.vkey --signing-key-file destination_payment.skey
+
+cardano-cli address build --payment-verification-key-file destination_payment.vkey --mainnet --out-file destination_payment.addr
+```
+{% endtab %}
+{% endtabs %}
+📝 _Built without any stake keys, `destination_payment.addr` is a basic enterprise addresses with no staking rights_
  
 ### Create Metadata JSON File (Optional)
 
@@ -135,18 +159,29 @@ documentation.
 
 ### Draft Transaction to Calculate Fees
 
-Transaction fees must always refer to the latest version of the Cardano protocol parameters which can be retrieved by running:
+Calculating transaction fees must always refer to the latest version of the Cardano protocol parameters which can be retrieved by running:
 
+{% tabs protocolparams %}
+{% tab protocolparams#Testnet %}
 ```bash
 cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file protocol.json 
 ```
+{% endtab %}
+{% tab protocolparams#Mainnet %}
+```bash
+cardano-cli query protocol-parameters --mainnet --out-file protocol.json 
+```
+{% endtab %}
+{% endtabs %}
 
 Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that `--tx-in` uses the shell variables from the payment.addr UTxO query three steps above, and follows the format `{utxo_tx_hash}#{utxo_tx_output_index}`. 
+that `--tx-in` uses the shell variables from the payment.addr UTxO query three steps above, follows the format `{utxo_tx_hash}#{utxo_tx_output_index}` and _can_ have multiple entries. 
 Also note `--tx-out` parameters sending 100 ADA (100000000 lovelaces) 
 to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change. Each `--tx-out` follows the format `{output_address}+{lovelace_value}`.
 
+{% tabs drafttx %}
+{% tab drafttx#Testnet %}
 ```bash
 rm draft.txraw 2> /dev/null
 cardano-cli transaction build-raw \
@@ -166,6 +201,29 @@ FEE=$(cardano-cli transaction calculate-min-fee \
     --protocol-params-file protocol.json | egrep -o '[0-9]+')
 echo Fee: $FEE
 ```
+{% endtab %}
+{% tab drafttx#Mainnet %}
+```bash
+rm draft.txraw 2> /dev/null
+cardano-cli transaction build-raw \
+    --tx-in $UTXO0H#$UTXO0I \
+    --tx-out $(cat destination_payment.addr)+100000000 \
+    --tx-out $(cat payment.addr)+900000000 \
+    --metadata-json-file metadata.json \
+    --invalid-hereafter 0 \
+    --fee 0 \
+    --out-file draft.txraw
+FEE=$(cardano-cli transaction calculate-min-fee \
+    --tx-body-file draft.txraw \
+    --tx-in-count 2 \
+    --tx-out-count 1 \
+    --witness-count 1 \
+    --mainnet \
+    --protocol-params-file protocol.json | egrep -o '[0-9]+')
+echo Fee: $FEE
+```
+{% endtab %}
+{% endtabs %}
 
 ### Raw Transaction with Metadata
 
@@ -175,6 +233,8 @@ define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.
 
+{% tabs realtx %}
+{% tab realtx#Testnet %}
 ```bash
 CTIP=$(cardano-cli query tip --testnet-magic 1097911063 | jq -r .slot)
 TTL=$(expr $CTIP + 600) # 10 minutes 
@@ -188,6 +248,23 @@ cardano-cli transaction build-raw \
   --fee $FEE \
   --out-file sendtx.txraw
 ```
+{% endtab %}
+{% tab realtx#Mainnet %}
+```bash
+CTIP=$(cardano-cli query tip --mainnet | jq -r .slot)
+TTL=$(expr $CTIP + 600) # 10 minutes 
+CHANGE=$(expr $UTXO0V - 100000000 - $FEE) 
+cardano-cli transaction build-raw \
+  --tx-in $UTXO0H#$UTXO0I \
+  --tx-out $(cat destination_payment.addr)+100000000 \
+  --tx-out $(cat payment.addr)+$(echo $CHANGE) \
+  --metadata-json-file metadata.json \
+  --invalid-hereafter $TTL \
+  --fee $FEE \
+  --out-file sendtx.txraw
+```
+{% endtab %}
+{% endtabs %}
 
 ### View Transaction 
 You can view the friendly output of your transaction by running
@@ -203,6 +280,8 @@ we can sign the transaction to prove consent to spend the ADA as the
 holder of the keys to the payment address. Note that this has to be done
 offline in an air-gapped machine outside of the testnets.
 
+{% tabs signtx %}
+{% tab signtx#Testnet %}
 ```bash
 cardano-cli transaction sign \
     --tx-body-file sendtx.txraw \
@@ -210,6 +289,17 @@ cardano-cli transaction sign \
     --testnet-magic 1097911063 \
     --out-file sendtx.txsigned
 ```
+{% endtab %}
+{% tab signtx#Mainnet %}
+```bash
+cardano-cli transaction sign \
+    --tx-body-file sendtx.txraw \
+    --signing-key-file payment.skey \
+    --mainnet \
+    --out-file sendtx.txsigned
+```
+{% endtab %}
+{% endtabs %}
 
 ### Get Transaction ID
 You can also get the transaction ID (aka Tx Hash) of your transaction before it is submitted by running the following commands.
@@ -227,11 +317,22 @@ blockchain network. Once successfully submitted it will propagate across
 all the nodes in the network residing in their mem pools until bundled
 onto the next available block by a stake pool node.
 
+{% tabs submittx %}
+{% tab submittx#Testnet %}
 ```bash
 cardano-cli transaction submit \
     --tx-file sendtx.txsigned \
     --testnet-magic 1097911063 
 ```
+{% endtab %}
+{% tab submittx#Mainnet %}
+```bash
+cardano-cli transaction submit \
+    --tx-file sendtx.txsigned \
+    --mainnet 
+```
+{% endtab %}
+{% endtabs %}
 
 ### Verify the Transaction Result
 
@@ -239,6 +340,8 @@ You can query the payment addresses to verify that the 100 ADA has indeed
 been sent successfully. This might take some time in the testnet for the submitted
 transaction to be bundled to a block by an active stake pool.
 
+{% tabs verifytx %}
+{% tab verifytx#Testnet %}
 ```bash
 # The source payment address with 899 ADA
 cardano-cli query utxo --address $(cat payment.addr) --testnet-magic 1097911063
@@ -246,8 +349,19 @@ cardano-cli query utxo --address $(cat payment.addr) --testnet-magic 1097911063
 # The destination payment address with 100 ADA
 cardano-cli query utxo --address $(cat destination_payment.addr) --testnet-magic 1097911063
 ```
+{% endtab %}
+{% tab verifytx#Mainnet %}
+```bash
+# The source payment address with 899 ADA
+cardano-cli query utxo --address $(cat payment.addr) --mainnet
 
-Alternatively you can verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the `transaction ID` from the `Get Transaction ID` step above. 
+# The destination payment address with 100 ADA
+cardano-cli query utxo --address $(cat destination_payment.addr) --mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+Alternatively you can verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the `transaction ID` from the `Get Transaction ID` step above. Note for mainnet explorer URLs remove the `testnet` subdomain prefix in the URL.
 
 ## Using Block Explorers
 
