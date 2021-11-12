@@ -1223,12 +1223,28 @@ can see your payment address by running:</p>
 <p>After a short while (minute or less) you can verify the funds from the
 faucet have arrived in your payment.addr by running the following:</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="queryutxo" role="tablist">
+<li class="nav-item"><a aria-controls="queryutxo0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#queryutxo0" id="queryutxo0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="queryutxo1" aria-selected="false" class="nav-link" data-toggle="tab" href="#queryutxo1" id="queryutxo1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="queryutxoContent">
+<div aria-labelledby="queryutxo0-tab" class="tab-pane fade show active" id="queryutxo0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">UTXO0</span><span class="o">=</span><span class="si">$(</span>cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span> <span class="nt">--testnet-magic</span> 1097911063 | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span> 
 <span class="nv">UTXO0H</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 1p<span class="si">)</span>
 <span class="nv">UTXO0I</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 2p<span class="si">)</span>
 <span class="nv">UTXO0V</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span>
 <span class="nb">echo</span> <span class="nv">$UTXO0</span>
 </code></pre></div></div>
+</div>
+<div aria-labelledby="queryutxo1-tab" class="tab-pane fade" id="queryutxo1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">UTXO0</span><span class="o">=</span><span class="si">$(</span>cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span> <span class="nt">--mainnet</span> | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span> 
+<span class="nv">UTXO0H</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 1p<span class="si">)</span>
+<span class="nv">UTXO0I</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 2p<span class="si">)</span>
+<span class="nv">UTXO0V</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span>
+<span class="nb">echo</span> <span class="nv">$UTXO0</span>
+</code></pre></div></div>
+</div>
+</div>
 
 <p><strong>Note</strong>: It will store the details for the UTxO of that transaction in the shell variables
 <strong><code class="language-plaintext highlighter-rouge">UTXO0H</code>(transaction ID)</strong>, <strong><code class="language-plaintext highlighter-rouge">UTXO0I</code>(transaction output index)</strong> and <strong><code class="language-plaintext highlighter-rouge">UTXO0V</code>(transaction output value)</strong>. These variables will be used later when we are building the raw transaction within the <code class="language-plaintext highlighter-rouge">--tx-in</code> input parameter.</p>
@@ -1237,11 +1253,25 @@ faucet have arrived in your payment.addr by running the following:</p>
 
 <p>Create a new set of address keys and a payment address for the destination of this transaction <code class="language-plaintext highlighter-rouge">destination_payment.addr</code>.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="addrgen" role="tablist">
+<li class="nav-item"><a aria-controls="addrgen0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#addrgen0" id="addrgen0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="addrgen1" aria-selected="false" class="nav-link" data-toggle="tab" href="#addrgen1" id="addrgen1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="addrgenContent">
+<div aria-labelledby="addrgen0-tab" class="tab-pane fade show active" id="addrgen0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="nt">--verification-key-file</span> destination_payment.vkey <span class="nt">--signing-key-file</span> destination_payment.skey
 
 cardano-cli address build <span class="nt">--payment-verification-key-file</span> destination_payment.vkey <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> destination_payment.addr
 </code></pre></div></div>
-<p>📝 <em>Without any stake keys, <code class="language-plaintext highlighter-rouge">destination_payment.addr</code> is a basic enterprise addresses with no staking rights</em></p>
+</div>
+<div aria-labelledby="addrgen1-tab" class="tab-pane fade" id="addrgen1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli address key-gen <span class="nt">--verification-key-file</span> destination_payment.vkey <span class="nt">--signing-key-file</span> destination_payment.skey
+
+cardano-cli address build <span class="nt">--payment-verification-key-file</span> destination_payment.vkey <span class="nt">--mainnet</span> <span class="nt">--out-file</span> destination_payment.addr
+</code></pre></div></div>
+</div>
+</div>
+<p>📝 <em>Built without any stake keys, <code class="language-plaintext highlighter-rouge">destination_payment.addr</code> is a basic enterprise addresses with no staking rights</em></p>
 
 <h3 id="create-metadata-json-file-optional">Create Metadata JSON File (Optional)</h3>
 
@@ -1279,17 +1309,35 @@ documentation.</p>
 
 <h3 id="draft-transaction-to-calculate-fees">Draft Transaction to Calculate Fees</h3>
 
-<p>Transaction fees must always refer to the latest version of the Cardano protocol parameters which can be retrieved by running:</p>
+<p>Calculating transaction fees must always refer to the latest version of the Cardano protocol parameters which can be retrieved by running:</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="protocolparams" role="tablist">
+<li class="nav-item"><a aria-controls="protocolparams0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#protocolparams0" id="protocolparams0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="protocolparams1" aria-selected="false" class="nav-link" data-toggle="tab" href="#protocolparams1" id="protocolparams1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="protocolparamsContent">
+<div aria-labelledby="protocolparams0-tab" class="tab-pane fade show active" id="protocolparams0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query protocol-parameters <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--out-file</span> protocol.json 
 </code></pre></div></div>
+</div>
+<div aria-labelledby="protocolparams1-tab" class="tab-pane fade" id="protocolparams1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli query protocol-parameters <span class="nt">--mainnet</span> <span class="nt">--out-file</span> protocol.json 
+</code></pre></div></div>
+</div>
+</div>
 
 <p>Calculating fees for a transaction requires you to first create a draft
 transaction following a similar structure to the real transaction. Note
-that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the shell variables from the payment.addr UTxO query three steps above, and follows the format <code class="language-plaintext highlighter-rouge">{utxo_tx_hash}#{utxo_tx_output_index}</code>. 
+that <code class="language-plaintext highlighter-rouge">--tx-in</code> uses the shell variables from the payment.addr UTxO query three steps above, follows the format <code class="language-plaintext highlighter-rouge">{utxo_tx_hash}#{utxo_tx_output_index}</code> and <em>can</em> have multiple entries. 
 Also note <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters sending 100 ADA (100000000 lovelaces) 
 to the destination address and 900ADA (900000000 lovelaces) back to the payment address as change. Each <code class="language-plaintext highlighter-rouge">--tx-out</code> follows the format <code class="language-plaintext highlighter-rouge">{output_address}+{lovelace_value}</code>.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="drafttx" role="tablist">
+<li class="nav-item"><a aria-controls="drafttx0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#drafttx0" id="drafttx0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="drafttx1" aria-selected="false" class="nav-link" data-toggle="tab" href="#drafttx1" id="drafttx1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="drafttxContent">
+<div aria-labelledby="drafttx0-tab" class="tab-pane fade show active" id="drafttx0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>draft.txraw 2&gt; /dev/null
 cardano-cli transaction build-raw <span class="se">\</span>
     <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
@@ -1308,6 +1356,28 @@ cardano-cli transaction build-raw <span class="se">\</span>
     <span class="nt">--protocol-params-file</span> protocol.json | egrep <span class="nt">-o</span> <span class="s1">'[0-9]+'</span><span class="si">)</span>
 <span class="nb">echo </span>Fee: <span class="nv">$FEE</span>
 </code></pre></div></div>
+</div>
+<div aria-labelledby="drafttx1-tab" class="tab-pane fade" id="drafttx1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>draft.txraw 2&gt; /dev/null
+cardano-cli transaction build-raw <span class="se">\</span>
+    <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
+    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span>+900000000 <span class="se">\</span>
+    <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\</span>
+    <span class="nt">--invalid-hereafter</span> 0 <span class="se">\</span>
+    <span class="nt">--fee</span> 0 <span class="se">\</span>
+    <span class="nt">--out-file</span> draft.txraw
+<span class="nv">FEE</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction calculate-min-fee <span class="se">\</span>
+    <span class="nt">--tx-body-file</span> draft.txraw <span class="se">\</span>
+    <span class="nt">--tx-in-count</span> 2 <span class="se">\</span>
+    <span class="nt">--tx-out-count</span> 1 <span class="se">\</span>
+    <span class="nt">--witness-count</span> 1 <span class="se">\</span>
+    <span class="nt">--mainnet</span> <span class="se">\</span>
+    <span class="nt">--protocol-params-file</span> protocol.json | egrep <span class="nt">-o</span> <span class="s1">'[0-9]+'</span><span class="si">)</span>
+<span class="nb">echo </span>Fee: <span class="nv">$FEE</span>
+</code></pre></div></div>
+</div>
+</div>
 
 <h3 id="raw-transaction-with-metadata">Raw Transaction with Metadata</h3>
 
@@ -1317,6 +1387,12 @@ define how long this transaction is valid for (denoted by the current
 slot tip of the chain + 600 seconds) before it is rejected by the
 network.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="realtx" role="tablist">
+<li class="nav-item"><a aria-controls="realtx0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#realtx0" id="realtx0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="realtx1" aria-selected="false" class="nav-link" data-toggle="tab" href="#realtx1" id="realtx1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="realtxContent">
+<div aria-labelledby="realtx0-tab" class="tab-pane fade show active" id="realtx0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CTIP</span><span class="o">=</span><span class="si">$(</span>cardano-cli query tip <span class="nt">--testnet-magic</span> 1097911063 | jq <span class="nt">-r</span> .slot<span class="si">)</span>
 <span class="nv">TTL</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$CTIP</span> + 600<span class="si">)</span> <span class="c"># 10 minutes </span>
 <span class="nv">CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - 100000000 - <span class="nv">$FEE</span><span class="si">)</span> 
@@ -1329,6 +1405,22 @@ cardano-cli transaction build-raw <span class="se">\</span>
   <span class="nt">--fee</span> <span class="nv">$FEE</span> <span class="se">\</span>
   <span class="nt">--out-file</span> sendtx.txraw
 </code></pre></div></div>
+</div>
+<div aria-labelledby="realtx1-tab" class="tab-pane fade" id="realtx1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CTIP</span><span class="o">=</span><span class="si">$(</span>cardano-cli query tip <span class="nt">--mainnet</span> | jq <span class="nt">-r</span> .slot<span class="si">)</span>
+<span class="nv">TTL</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$CTIP</span> + 600<span class="si">)</span> <span class="c"># 10 minutes </span>
+<span class="nv">CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - 100000000 - <span class="nv">$FEE</span><span class="si">)</span> 
+cardano-cli transaction build-raw <span class="se">\</span>
+  <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
+  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span>+100000000 <span class="se">\</span>
+  <span class="nt">--tx-out</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span>+<span class="si">$(</span><span class="nb">echo</span> <span class="nv">$CHANGE</span><span class="si">)</span> <span class="se">\</span>
+  <span class="nt">--metadata-json-file</span> metadata.json <span class="se">\</span>
+  <span class="nt">--invalid-hereafter</span> <span class="nv">$TTL</span> <span class="se">\</span>
+  <span class="nt">--fee</span> <span class="nv">$FEE</span> <span class="se">\</span>
+  <span class="nt">--out-file</span> sendtx.txraw
+</code></pre></div></div>
+</div>
+</div>
 
 <h3 id="view-transaction">View Transaction</h3>
 <p>You can view the friendly output of your transaction by running</p>
@@ -1343,12 +1435,28 @@ we can sign the transaction to prove consent to spend the ADA as the
 holder of the keys to the payment address. Note that this has to be done
 offline in an air-gapped machine outside of the testnets.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="signtx" role="tablist">
+<li class="nav-item"><a aria-controls="signtx0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#signtx0" id="signtx0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="signtx1" aria-selected="false" class="nav-link" data-toggle="tab" href="#signtx1" id="signtx1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="signtxContent">
+<div aria-labelledby="signtx0-tab" class="tab-pane fade show active" id="signtx0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction sign <span class="se">\</span>
     <span class="nt">--tx-body-file</span> sendtx.txraw <span class="se">\</span>
     <span class="nt">--signing-key-file</span> payment.skey <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 <span class="se">\</span>
     <span class="nt">--out-file</span> sendtx.txsigned
 </code></pre></div></div>
+</div>
+<div aria-labelledby="signtx1-tab" class="tab-pane fade" id="signtx1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction sign <span class="se">\</span>
+    <span class="nt">--tx-body-file</span> sendtx.txraw <span class="se">\</span>
+    <span class="nt">--signing-key-file</span> payment.skey <span class="se">\</span>
+    <span class="nt">--mainnet</span> <span class="se">\</span>
+    <span class="nt">--out-file</span> sendtx.txsigned
+</code></pre></div></div>
+</div>
+</div>
 
 <h3 id="get-transaction-id">Get Transaction ID</h3>
 <p>You can also get the transaction ID (aka Tx Hash) of your transaction before it is submitted by running the following commands.</p>
@@ -1365,10 +1473,24 @@ blockchain network. Once successfully submitted it will propagate across
 all the nodes in the network residing in their mem pools until bundled
 onto the next available block by a stake pool node.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="submittx" role="tablist">
+<li class="nav-item"><a aria-controls="submittx0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#submittx0" id="submittx0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="submittx1" aria-selected="false" class="nav-link" data-toggle="tab" href="#submittx1" id="submittx1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="submittxContent">
+<div aria-labelledby="submittx0-tab" class="tab-pane fade show active" id="submittx0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction submit <span class="se">\</span>
     <span class="nt">--tx-file</span> sendtx.txsigned <span class="se">\</span>
     <span class="nt">--testnet-magic</span> 1097911063 
 </code></pre></div></div>
+</div>
+<div aria-labelledby="submittx1-tab" class="tab-pane fade" id="submittx1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cardano-cli transaction submit <span class="se">\</span>
+    <span class="nt">--tx-file</span> sendtx.txsigned <span class="se">\</span>
+    <span class="nt">--mainnet</span> 
+</code></pre></div></div>
+</div>
+</div>
 
 <h3 id="verify-the-transaction-result">Verify the Transaction Result</h3>
 
@@ -1376,14 +1498,30 @@ onto the next available block by a stake pool node.</p>
 been sent successfully. This might take some time in the testnet for the submitted
 transaction to be bundled to a block by an active stake pool.</p>
 
+<ul class="nav nav-tabs mb-3" data-tab="verifytx" role="tablist">
+<li class="nav-item"><a aria-controls="verifytx0" aria-selected="true" class="nav-link active" data-toggle="tab" href="#verifytx0" id="verifytx0-tab" role="tab">Testnet</a></li>
+<li class="nav-item"><a aria-controls="verifytx1" aria-selected="false" class="nav-link" data-toggle="tab" href="#verifytx1" id="verifytx1-tab" role="tab">Mainnet</a></li>
+</ul>
+<div class="tab-content" id="verifytxContent">
+<div aria-labelledby="verifytx0-tab" class="tab-pane fade show active" id="verifytx0" role="tabpanel">
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The source payment address with 899 ADA</span>
 cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span> <span class="nt">--testnet-magic</span> 1097911063
 
 <span class="c"># The destination payment address with 100 ADA</span>
 cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span> <span class="nt">--testnet-magic</span> 1097911063
 </code></pre></div></div>
+</div>
+<div aria-labelledby="verifytx1-tab" class="tab-pane fade" id="verifytx1" role="tabpanel">
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># The source payment address with 899 ADA</span>
+cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>payment.addr<span class="si">)</span> <span class="nt">--mainnet</span>
 
-<p>Alternatively you can verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/" target="_blank" rel="noopener noreferrer">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions" target="_blank" rel="noopener noreferrer">ADATools</a> through a direct search of the <code class="language-plaintext highlighter-rouge">transaction ID</code> from the <code class="language-plaintext highlighter-rouge">Get Transaction ID</code> step above.</p>
+<span class="c"># The destination payment address with 100 ADA</span>
+cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</span><span class="nb">cat </span>destination_payment.addr<span class="si">)</span> <span class="nt">--mainnet</span>
+</code></pre></div></div>
+</div>
+</div>
+
+<p>Alternatively you can verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/" target="_blank" rel="noopener noreferrer">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions" target="_blank" rel="noopener noreferrer">ADATools</a> through a direct search of the <code class="language-plaintext highlighter-rouge">transaction ID</code> from the <code class="language-plaintext highlighter-rouge">Get Transaction ID</code> step above. Note for mainnet explorer URLs remove the <code class="language-plaintext highlighter-rouge">testnet</code> subdomain prefix in the URL.</p>
 
 <h2 id="using-block-explorers">Using Block Explorers</h2>
 
