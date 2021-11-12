@@ -9,7 +9,7 @@ We believe that education is the key to a more productive, collaborative and fai
 
 Our goals are three-fold:
  1. Provide **free educational content** for everyone who wishes to understand Cardano and Blockchain technology
- 2. Host a **community-powered learning platform** that rewards engagement and collaboration
+ 2. Host a [**community-powered learning platform**](https://discord.com/invite/cqQBvBpXzR) that rewards engagement and collaboration
  3. Allow anyone to demonstrate their knowledge and practical experience through **certifications** (_currently in development_)
 
 Not sure where to start? [Get started with Lovelace Academy ➡️](https://learn.lovelace.academy/getting-started/why-cardano/)
