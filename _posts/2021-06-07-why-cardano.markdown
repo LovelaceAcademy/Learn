@@ -36,7 +36,7 @@ Based on [published peer-reviewed research](https://iohk.io/en/research/library/
 This well-established path from research to engineering and product development uniquely sets Cardano apart amongst the world's top blockchain platforms, while permitting innovation at scale without compromising on energy requirements, security or decentralisation. 
 
 We summarised Cardano's key strengths in our video [The Cardano Revolution](https://www.youtube.com/watch?v=sM0_V53_kGo): 
- - Built on top of the strongest foundations with the future in mind
+ - Strongest foundations with the future in mind
  - Incredible team behind the most actively developed blockchain
  - Passionate, intelligent and thoughtful community
  - Cardano's [unique vision](https://www.youtube.com/watch?v=l_Nv0-PVrnM) for economic identity, inclusion and long-term sustainability
@@ -62,5 +62,8 @@ Cardano has some of the most impressive metrics in the Blockchain space and the 
 📝 *Metrics updated 2021-11-09T15:00:00Z*
 
 ## Join the Cardano Revolution
-Continue on to [Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/starting-your-journey)
+![](/img/cardano-ecosystem.png)
+Image courtesy of [Pool Germany [POOLG]](https://poolg.de/Eco/CardanoEcosystemMap.html)
+
+Learn how you can start building on Cardano by **[Starting Your Journey ➡️](https://learn.lovelace.academy/getting-started/starting-your-journey)**
 

@@ -10,14 +10,23 @@ order: 4
 Keys and addresses are cryptographic entities at the heart of all information flow in Cardano and other blockchains. There are [many different types of keys](https://cips.cardano.org/cips/cip5/) in Cardano, but to get started we will focus on the **address keys** and their derived addresses on the right section of the image below.
 
 ![](https://github.com/ilap/ShelleyStuffs/raw/master/images/ShelleyKeyAndAddresses.png)
+Image courtesy of [ilap](https://github.com/ilap)
 
 📝 _Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), the terms **keys** and **key pairs** can be used interchangeably for the rest of this guide. In particular Cardano uses [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs consisting of a private signing key and a public verification key._
+
+### Goals
+Create address key pairs and their corresponding addresses.
+
+### Prerequisites 
+The `cardano-cli` executable binary from our previous post [Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/).
+
+## Background
 
 Address keys are used to derive addresses, which are destinations for values from transaction outputs. This strict association means the only way to _unlock_ the ability to spend/withdraw values at these addresses is through a signature provided by the private signing key. This simple premise safeguards all the values from theft or confiscation.
 
 Another powerful feature arises from the fact that these cryptographic
 entities can be created without connecting to or interacting with the network. The de-coupling of these entities from the network
-allows any one, even those without an internet connection, to create keys and their corresponding addresses that can receive ADA/custom tokens.
+allows any one, even those without an internet connection, to create keys and their corresponding addresses that can receive ADA/custom tokens. 
 
 ## Address Keys
 
@@ -84,14 +93,16 @@ etc.)
 
 ### Creating a Payment Address
 
-Payment addresses are generally created using both payment and staking
-verification keys to create an address known as base address. The act of
+Payment addresses are generally created using **both** payment and staking
+verification keys to create an address known as [base address](https://docs.cardano.org/core-concepts/cardano-addresses#baseaddresses). The act of
 re-using the same stake key to generate multiple payment addresses
-allow all the ADA at these addresses to be automatically staked to the
-same designated stake pool. However it is also possible to create
+allow all the ADA across these addresses to be automatically staked to the
+same designated stake pool. 
+
+However it is also possible to create
 [enterprise
-addresses](https://docs.cardano.org/en/latest/learn/types-addresses.html#enterprise-addresses),
-the term for a non-staking payment address, by excluding the
+addresses](https://docs.cardano.org/core-concepts/cardano-addresses#enterpriseaddresses),
+a term for a non-staking payment address, by excluding the
 `--stake-verification-key-file` parameter below.
 
 {% tabs paymentaddresses %}
@@ -143,8 +154,6 @@ cardano-cli stake-address build \
 - [Cardano Developers: Creating Keys and Addresses](https://developers.cardano.org/docs/stake-pool-course/handbook/keys-addresses/)
  - [Learn me a bitcoin: Keys and Addresses](https://learnmeabitcoin.com/beginners/keys_addresses)
 
-## Transactions in Cardano 
-With your newly created keys and addresses you can create, sign and
-submit transactions to learn about [Transactions: UTxO and Metadata
- ➡️](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/)
-
+## Build Your First Transaction in Cardano 
+With your newly created keys and addresses you can build, sign and
+submit transactions to learn about **[Transactions: UTxO and Metadata ➡️](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/)**

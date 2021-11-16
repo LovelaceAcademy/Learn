@@ -32,5 +32,5 @@ This design decision prevents an attack vector where malicious actors can easily
  - [Cardano Docs: Native Tokens](https://docs.cardano.org/native-tokens/learn)
  - [Cardano Developers Portal: Discover Native Tokens](https://docs.cardano.org/native-tokens/learn)
 
-## Create Minting Policies
-Continue on to [Minting Policies ➡️](https://learn.lovelace.academy/tokens/minting-policies/)
+## Learn about Minting Policies
+You are almost ready to begin minting Native Tokens on Cardano, continue on to **[Minting Policies ➡️](https://learn.lovelace.academy/tokens/minting-policies/)** 

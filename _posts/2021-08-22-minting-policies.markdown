@@ -63,5 +63,5 @@ Multisig policies define simple validation rules based on a set of keys and a ti
 🚧 _More content coming soon_
 
 ## Mint your own Token
-Learn how to mint your first fungible token at [Fungible Token Minting Guide ➡️](https://learn.lovelace.academy/tokens/fungible-token-minting-guide/)
+Learn how to mint your first fungible token at **[Fungible Token Minting Guide ➡️](https://learn.lovelace.academy/tokens/fungible-token-minting-guide/)**
 

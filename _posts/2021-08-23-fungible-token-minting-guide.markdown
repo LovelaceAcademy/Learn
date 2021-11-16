@@ -12,6 +12,14 @@ We will break down how to mint fungible tokens in three basic steps:
 2. Create Wallet Keys and Addresses
 3. Build and Submit Minting Tx
 
+### Goals
+After following this guide you will learn how to make your own token minting policy and mint two different types of fungible tokens under that policy.
+
+### Prerequisites 
+From our previous post **[Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/)**
+ - The `cardano-cli` binary 
+ - The `cardano-node` binary that is actively running and fully synchronised
+
 ## Create Token Minting Policy
 
 ### Create Policy Key
@@ -177,7 +185,7 @@ cardano-cli transaction txid --tx-file mint.txsigned
 This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the transaction ID above.
 
 ## Burning Tokens
-
+To burn any quantity of fungible tokens you will need to specify negative values following your `{policyid}.{assetname}` unit in the `--mint` parameter, use the same `--minting-script-file` and ensure the `--tx-out` values factor in the subtracted difference after burning the specified quantities.
 
 ## Explore Token Builders
 Alternatively you can use the following tools (for a fee) to mint your own tokens without having to use the CLI commands against a full node.
@@ -190,4 +198,4 @@ Alternatively you can use the following tools (for a fee) to mint your own token
 - [Cardano Developers: Minting Native Assets](https://developers.cardano.org/docs/native-tokens/minting)
 
 ## Mint your first NFT
-Learn how to mint your first NFT at [NFT Minting Guide ➡️](https://learn.lovelace.academy/tokens/nft-minting-guide/)
+Learn how to mint your first NFT at **[NFT Minting Guide ➡️](https://learn.lovelace.academy/tokens/nft-minting-guide/)**

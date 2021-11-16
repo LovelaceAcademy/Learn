@@ -17,6 +17,14 @@ Using a similar approach as our [Fungible Token Minting Guide
 
 📝 _The main differences involve creating a stricter minting policy, uploading our image to IPFS, and attaching NFT-specific metadata_
 
+### Goals
+After following this guide you will learn how to make your own token minting policy and mint two different types of fungible tokens under that policy.
+
+### Prerequisites 
+From our previous post **[Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/)**
+ - The `cardano-cli` binary 
+ - The `cardano-node` binary that is actively running and fully synchronised
+
 ## Create Token Minting Policy
 
 ### Create Policy Key 
@@ -242,6 +250,9 @@ cardano-cli transaction txid --tx-file mint.txsigned
 ```
 This can be used to verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the transaction ID above. For example the output of this example can be [seen here](https://testnet.adatools.io/assets/asset1jm835pesygslwkxqzm345sl86dxalh64t9nxwd).
 
+## Burning Tokens
+To burn NFTs you will need to specify a negative value of 1 (i.e. `-1`) following your `{policyid}.{assetname}` unit in the `--mint` parameter, use the same `--minting-script-file` and ensure the `--tx-out` values remove the `+1 {policyid}.{assetname}` segment.
+
 ## Explore Token Builders
 Alternatively you can use the following tools {% include tooltips/basic.html tooltip="Note that these tools charge a small fee" content="tools" %}
  to mint your own tokens without having to use the CLI commands against a full node.
@@ -255,5 +266,5 @@ Alternatively you can use the following tools {% include tooltips/basic.html too
 - [Cardano Developers: Minting NFTs](https://developers.cardano.org/docs/native-tokens/minting-nfts/)
 
 ## Learn about Smart Contracts
-Continue on to [Smart Contracts Fundamentals: EUTxO
- ➡️](https://learn.lovelace.academy/fundamentals/eutxo/)
+Continue on to **[Smart Contracts Fundamentals: EUTxO
+ ➡️](https://learn.lovelace.academy/fundamentals/eutxo/)**

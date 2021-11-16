@@ -69,6 +69,5 @@ Blockchain and Web3 democratises and opens up that paradigm so that all the data
 - Scaling solutions are already on the way
 - Blockchains or distributed ledgers are meant to complement, not replace traditional IT infrastructure
 
-## Run a Full Cardano Node
-
-Continue to [Running a Full Node ➡️](https://learn.lovelace.academy/getting-started/running-a-full-node/)
+## Run Your Own Full Cardano Node
+Now that you learnt about full nodes, continue to **[Running a Full Node ➡️](https://learn.lovelace.academy/getting-started/running-a-full-node/)**

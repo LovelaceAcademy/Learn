@@ -6,25 +6,38 @@ categories:
 order: 5
 ---
 
-Transactions are basic units representing the creation or transfer of
-values in a blockchain and make up a significant payload of every block
-appended to it. Transactions and their metadata are immutable and 
-last the lifetime of the blockchain, so once appended and accepted by 
+Transactions are the single most important unit in blockchains. They signify the creation or transfer of all values within it, contains verifiable cryptographic proof of their validity, and make up a significant payload of every block appended to it. Transactions and their metadata are **immutable and 
+last the lifetime of the blockchain**, so once appended and accepted by 
 the majority of the network, cannot be altered or deleted without a 
 major coordinated event like a hard fork.
 
-## The UTxO Accounting Model
+### Goals
+Create address key pairs and their corresponding addresses to receive ADA and other custom tokens.
+
+### Prerequisites 
+From our previous post **[Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/)**
+ - The `cardano-cli` binary 
+ - The `cardano-node` binary that is actively running and fully synchronised
+
+From our previous post **[Wallet Basics: Keys and Addresses
+](https://learn.lovelace.academy/getting-started/keys-and-addresses/)**
+ - Payment address key pair files `payment.skey` and `payment.vkey`
+ - Payment base address file `payment.addr`
+
+## Background 
+
+### The UTxO Accounting Model
 
 Cardano, like Bitcoin and Ergo, uses the UTxO accounting model to signify the flow of values from transactions. UTxO stands for **U** nspent **Tx** ransaction **O** utput. A transaction at its core is a set of inputs and outputs, where inputs are consumed/spent to produce new outputs.
 
 As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
-addresses in Cardano can hold multiple transaction outputs, and it is up to the wallet to calculate the active balance by summing the
+addresses in Cardano can hold **multiple** transaction outputs, and it is up to the wallet to calculate the active balance by summing the
 current set of UTxOs. This parallels with cash-based accounting where notes are used in transactions (i.e. pay and get change) and the 
 holder's active balance is the sum of all the notes in their wallet.
 
 Although it may seem like unnecessary complexity, this
-model provides a more elegant, performant and deterministic model to
+model provides a more **elegant**, **performant** and **deterministic** model to
 reason with the current state of the blockchain and prevent double-spending. 
 We will focus on the simpler Shelley UTxO model and _expand_ on EUTxO 
 (Extended UTxO) and its main benefits in [another article](https://learn.lovelace.academy/fundamentals/eutxo/).
@@ -361,6 +374,8 @@ cardano-cli query utxo --address $(cat destination_payment.addr) --mainnet
 {% endtab %}
 {% endtabs %}
 
+Congratulations! You have submitted and verified your first transaction using `cardano-cli`! 
+
 Alternatively you can verify the result in a testnet block explorer like [Cardanoscan](https://testnet.cardanoscan.io/) or [ADATools](https://testnet.adatools.io/transactions) through a direct search of the `transaction ID` from the `Get Transaction ID` step above. Note for mainnet explorer URLs remove the `testnet` subdomain prefix in the URL.
 
 ## Using Block Explorers
@@ -376,6 +391,5 @@ As shown above, using a block explorer is the easiest way to navigate across all
 - [Cardano Blockchain Explorer](https://explorer.cardano.org/)
 
 ## The Cardano Developer Vocaulary
-Before diving deeper into development, it is important to understand some key terms and concepts of the [Cardano Developer Vocabulary
- ➡️](https://learn.lovelace.academy/getting-started/cardano-developer-vocabulary/)
-
+Before diving deeper into development, it is important to understand some key terms and concepts of the **[Cardano Developer Vocabulary
+ ➡️](https://learn.lovelace.academy/getting-started/cardano-developer-vocabulary/)**

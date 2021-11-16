@@ -30,7 +30,7 @@ BECH32 (not to be confused with _BIP32_ in the Improvement Proposals section bel
 ## Cryptography
 As with most Blockchains, two main cryptographic primitives are used, **hash functions** and **public key or asymmetric cryptography**. Specific algorithms are used below.
 ### Blake2b
-Cardano uses the [Blake2b](https://datatracker.ietf.org/doc/html/rfc7693) as a fast hashing algorithm to generate hash digests (_unique_ fixed-length fingerprints) of commonly used objects in Cardano such as transactions, scripts and addresses. In particular Blake2b-160, Blake2b-224, Blake2b-256 and Blake2b-512 which generate 160bit, 224bit, 256bit and 512bit digests respectively.
+Cardano uses the [Blake2b](https://datatracker.ietf.org/doc/html/rfc7693) as a fast hashing algorithm to generate hash digests (_unique_ fixed-length fingerprints) of commonly used objects in Cardano. In particular Blake2b-160 for native asset IDs, Blake2b-224 for keys or scripts, Blake2b-256 for transactions and Blake2b-512 for wallet checksums.
 ### Ed25519
 As mentioned in our page [Wallet Basics: Keys and Addresses
 ](https://learn.lovelace.academy/getting-started/keys-and-addresses/), Cardano uses [Ed25519](https://datatracker.ietf.org/doc/html/rfc8032) private signing and public verification key pairs heavily for the digital signatures validating transactions and blocks.
@@ -45,6 +45,6 @@ Standards that came from Cardano. Notable ones are **CIP25** for the NFT Metadat
 🚧 _More content coming soon. Still confused about some other terms? We would love your feedback on [Discord](https://discord.com/invite/cqQBvBpXzR)_
 
 ## Learn about Cardano's Native Tokens
-Now you can learn how to mint tokens on Cardano. Continue to [Introduction to Tokens
- ➡️](https://learn.lovelace.academy/tokens/introduction-to-tokens/)
+Now you can learn how to mint tokens on Cardano. Continue to **[Introduction to Tokens
+ ➡️](https://learn.lovelace.academy/tokens/introduction-to-tokens/)**
 

@@ -11,7 +11,7 @@ As a developer the best starting point to Cardano is to get a good
 understanding of the Cardano node. This knowledge is essential whether
 you want to build DApps, wallets, integration tools, mint custom tokens
 or operate your own stake pool. As mentioned in the previous article, 
-the full node is open for everyone to run and we strongly encourage learning how to do it.
+the full node is open for everyone to run and we strongly encourage every developer to learn how to do it.
 
 We will break it down in five basic steps:
 
@@ -20,6 +20,12 @@ We will break it down in five basic steps:
 3. Configure the node
 4. Running and monitoring the node
 5. Interacting with the node using cardano-cli
+
+### Goals
+After following the instructions in this post you will be able to run a full Cardano node, synchronise with the rest of the network and integrate with it via the `cardano-cli` and querying its internal metrics.
+
+### Prerequisites 
+A machine with at least 8GB RAM and 64GB free disk space.
 
 ## Background
 
@@ -30,7 +36,7 @@ responsibilities are to:
 
 - Uphold the Ouroboros consensus algorithm
 - Maintain the ledger and accounting model
-- Expose integration endpoints for clients and nodes
+- Expose integration points for clients and nodes
 
 ![](/img/node_cardano_components_version_main.png)
 Image courtesy of [Cardano docs](https://docs.cardano.org/explore-cardano/cardano-architecture/overview#gatsby-focus-wrapper)
@@ -312,5 +318,5 @@ cardano-cli query protocol-parameters --mainnet --out-file protocol.json
 - [Cardano Node Local VM Setup Guide](https://www.youtube.com/watch?v=d_3J8MgyZnc)
 
 
-## Learn about Cardano Primitives
-Continue to [Keys and Addresses ➡️](https://learn.lovelace.academy/getting-started/keys-and-addresses/)
+## Create Cardano Keys and Addresses
+Now that you have `cardano-cli` and a running `cardano-node`, continue to **[Keys and Addresses ➡️](https://learn.lovelace.academy/getting-started/keys-and-addresses/)**
