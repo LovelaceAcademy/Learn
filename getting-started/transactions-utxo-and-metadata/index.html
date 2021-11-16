@@ -257,12 +257,12 @@
         <!-- <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
           <button type="submit" class="nav_btn tp_btn">Subscribe</button>
         </form> -->
-        <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
-          <ion-icon name="logo-discord"></ion-icon>
-        </a>
         <!-- <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
         </a> -->
+        <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
+          <ion-icon name="logo-discord"></ion-icon>
+        </a>
         <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
           <label for="dark-toggle" class="tab-btn tab-btns">
             <ion-icon class="light-mode" name="contrast"></ion-icon>
@@ -296,13 +296,16 @@
     </div>
     <div class="mobile_menu_right">
       <div class="right-nav">
-        <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+        <!-- <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
           <button type="submit" class="nav_btn tp_btn">Subscribe</button>
-        </form>
-        <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+        </form> -->
+        <!-- <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
+        </a> -->
+        <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
+          <ion-icon name="logo-discord"></ion-icon>
         </a>
-        <div class="px-2 js-darkmode-btn btn" title="Toggle dark mode">
+        <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
           <label for="something2" class="tab-btn tab-btns">
             <ion-icon class="light-mode" name="contrast"></ion-icon>
           </label>
@@ -1154,25 +1157,44 @@
               <h1>Transactions: UTxO and Metadata</h1>
             </div>
 
-            <p>Transactions are basic units representing the creation or transfer of
-values in a blockchain and make up a significant payload of every block
-appended to it. Transactions and their metadata are immutable and 
-last the lifetime of the blockchain, so once appended and accepted by 
+            <p>Transactions are the single most important unit in blockchains. They signify the creation or transfer of all values within it, contains verifiable cryptographic proof of their validity, and make up a significant payload of every block appended to it. Transactions and their metadata are <strong>immutable and 
+last the lifetime of the blockchain</strong>, so once appended and accepted by 
 the majority of the network, cannot be altered or deleted without a 
 major coordinated event like a hard fork.</p>
 
-<h2 id="the-utxo-accounting-model">The UTxO Accounting Model</h2>
+<h3 id="goals">Goals</h3>
+<p>Create address key pairs and their corresponding addresses to receive ADA and other custom tokens.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+<p>From our previous post <strong><a href="https://learn.lovelace.academy/getting-started/running-a-full-node/">Running a Full Cardano Node</a></strong></p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">cardano-cli</code> binary</li>
+  <li>The <code class="language-plaintext highlighter-rouge">cardano-node</code> binary that is actively running and fully synchronised</li>
+</ul>
+
+<p>From our previous post <strong><a href="https://learn.lovelace.academy/getting-started/keys-and-addresses/">Wallet Basics: Keys and Addresses
+</a></strong></p>
+<ul>
+  <li>Payment address key pair files <code class="language-plaintext highlighter-rouge">payment.skey</code> and <code class="language-plaintext highlighter-rouge">payment.vkey</code>
+</li>
+  <li>Payment base address file <code class="language-plaintext highlighter-rouge">payment.addr</code>
+</li>
+</ul>
+
+<h2 id="background">Background</h2>
+
+<h3 id="the-utxo-accounting-model">The UTxO Accounting Model</h3>
 
 <p>Cardano, like Bitcoin and Ergo, uses the UTxO accounting model to signify the flow of values from transactions. UTxO stands for <strong>U</strong> nspent <strong>Tx</strong> ransaction <strong>O</strong> utput. A transaction at its core is a set of inputs and outputs, where inputs are consumed/spent to produce new outputs.</p>
 
 <p>As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
-addresses in Cardano can hold multiple transaction outputs, and it is up to the wallet to calculate the active balance by summing the
+addresses in Cardano can hold <strong>multiple</strong> transaction outputs, and it is up to the wallet to calculate the active balance by summing the
 current set of UTxOs. This parallels with cash-based accounting where notes are used in transactions (i.e. pay and get change) and the 
 holder’s active balance is the sum of all the notes in their wallet.</p>
 
 <p>Although it may seem like unnecessary complexity, this
-model provides a more elegant, performant and deterministic model to
+model provides a more <strong>elegant</strong>, <strong>performant</strong> and <strong>deterministic</strong> model to
 reason with the current state of the blockchain and prevent double-spending. 
 We will focus on the simpler Shelley UTxO model and <em>expand</em> on EUTxO 
 (Extended UTxO) and its main benefits in <a href="https://learn.lovelace.academy/fundamentals/eutxo/">another article</a>.</p>
@@ -1521,6 +1543,8 @@ cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</sp
 </div>
 </div>
 
+<p>Congratulations! You have submitted and verified your first transaction using <code class="language-plaintext highlighter-rouge">cardano-cli</code>!</p>
+
 <p>Alternatively you can verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/" target="_blank" rel="noopener noreferrer">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions" target="_blank" rel="noopener noreferrer">ADATools</a> through a direct search of the <code class="language-plaintext highlighter-rouge">transaction ID</code> from the <code class="language-plaintext highlighter-rouge">Get Transaction ID</code> step above. Note for mainnet explorer URLs remove the <code class="language-plaintext highlighter-rouge">testnet</code> subdomain prefix in the URL.</p>
 
 <h2 id="using-block-explorers">Using Block Explorers</h2>
@@ -1538,9 +1562,8 @@ cardano-cli query utxo <span class="nt">--address</span> <span class="si">$(</sp
 </ul>
 
 <h2 id="the-cardano-developer-vocaulary">The Cardano Developer Vocaulary</h2>
-<p>Before diving deeper into development, it is important to understand some key terms and concepts of the <a href="https://learn.lovelace.academy/getting-started/cardano-developer-vocabulary/">Cardano Developer Vocabulary
- ➡️</a></p>
-
+<p>Before diving deeper into development, it is important to understand some key terms and concepts of the <strong><a href="https://learn.lovelace.academy/getting-started/cardano-developer-vocabulary/">Cardano Developer Vocabulary
+ ➡️</a></strong></p>
 
 
             <footer>

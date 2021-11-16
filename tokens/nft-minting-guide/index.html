@@ -257,12 +257,12 @@
         <!-- <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
           <button type="submit" class="nav_btn tp_btn">Subscribe</button>
         </form> -->
-        <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
-          <ion-icon name="logo-discord"></ion-icon>
-        </a>
         <!-- <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
         </a> -->
+        <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
+          <ion-icon name="logo-discord"></ion-icon>
+        </a>
         <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
           <label for="dark-toggle" class="tab-btn tab-btns">
             <ion-icon class="light-mode" name="contrast"></ion-icon>
@@ -296,13 +296,16 @@
     </div>
     <div class="mobile_menu_right">
       <div class="right-nav">
-        <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&amp;id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+        <!-- <form action="https://academy.us7.list-manage.com/subscribe/post?u=2cc5f9357a349277646fbda76&id=34fa4be848" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
           <button type="submit" class="nav_btn tp_btn">Subscribe</button>
-        </form>
-        <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
+        </form> -->
+        <!-- <a class="px-2 ml-3" href="mailto:hello@lovelace.academy" title="Send us an email">
           <ion-icon name="mail"></ion-icon>
+        </a> -->
+        <a class="px-2 ml-3" href="https://discord.gg/cqQBvBpXzR" target="_blank" title="Join our Discord" rel="noopener noreferrer">
+          <ion-icon name="logo-discord"></ion-icon>
         </a>
-        <div class="px-2 js-darkmode-btn btn" title="Toggle dark mode">
+        <div class="px-2 js-darkmode-btn" title="Toggle dark mode">
           <label for="something2" class="tab-btn tab-btns">
             <ion-icon class="light-mode" name="contrast"></ion-icon>
           </label>
@@ -1166,6 +1169,16 @@
 
 <p>📝 <em>The main differences involve creating a stricter minting policy, uploading our image to IPFS, and attaching NFT-specific metadata</em></p>
 
+<h3 id="goals">Goals</h3>
+<p>After following this guide you will learn how to make your own token minting policy and mint two different types of fungible tokens under that policy.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+<p>From our previous post <strong><a href="https://learn.lovelace.academy/getting-started/running-a-full-node/">Running a Full Cardano Node</a></strong></p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">cardano-cli</code> binary</li>
+  <li>The <code class="language-plaintext highlighter-rouge">cardano-node</code> binary that is actively running and fully synchronised</li>
+</ul>
+
 <h2 id="create-token-minting-policy">Create Token Minting Policy</h2>
 
 <h3 id="create-policy-key">Create Policy Key</h3>
@@ -1376,6 +1389,9 @@ cardano-cli transaction build-raw <span class="se">\</span>
 </code></pre></div></div>
 <p>This can be used to verify the result in a testnet block explorer like <a href="https://testnet.cardanoscan.io/" target="_blank" rel="noopener noreferrer">Cardanoscan</a> or <a href="https://testnet.adatools.io/transactions" target="_blank" rel="noopener noreferrer">ADATools</a> through a direct search of the transaction ID above. For example the output of this example can be <a href="https://testnet.adatools.io/assets/asset1jm835pesygslwkxqzm345sl86dxalh64t9nxwd" target="_blank" rel="noopener noreferrer">seen here</a>.</p>
 
+<h2 id="burning-tokens">Burning Tokens</h2>
+<p>To burn NFTs you will need to specify a negative value of 1 (i.e. <code class="language-plaintext highlighter-rouge">-1</code>) following your <code class="language-plaintext highlighter-rouge">{policyid}.{assetname}</code> unit in the <code class="language-plaintext highlighter-rouge">--mint</code> parameter, use the same <code class="language-plaintext highlighter-rouge">--minting-script-file</code> and ensure the <code class="language-plaintext highlighter-rouge">--tx-out</code> values remove the <code class="language-plaintext highlighter-rouge">+1 {policyid}.{assetname}</code> segment.</p>
+
 <h2 id="explore-token-builders">Explore Token Builders</h2>
 <p>Alternatively you can use the following tools <span class="tooltips_one" data-toggle="tooltip" data-placement="top" title="Note that these tools charge a small fee">tools</span>
  to mint your own tokens without having to use the CLI commands against a full node.</p>
@@ -1393,8 +1409,8 @@ cardano-cli transaction build-raw <span class="se">\</span>
 </ul>
 
 <h2 id="learn-about-smart-contracts">Learn about Smart Contracts</h2>
-<p>Continue on to <a href="https://learn.lovelace.academy/fundamentals/eutxo/">Smart Contracts Fundamentals: EUTxO
- ➡️</a></p>
+<p>Continue on to <strong><a href="https://learn.lovelace.academy/fundamentals/eutxo/">Smart Contracts Fundamentals: EUTxO
+ ➡️</a></strong></p>
 
 
             <footer>
