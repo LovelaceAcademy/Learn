@@ -12,7 +12,7 @@ the majority of the network, cannot be altered or deleted without a
 major coordinated event like a hard fork.
 
 ### Goals
-Create address key pairs and their corresponding addresses to receive ADA and other custom tokens.
+This guide will help you understand the UTxO accounting model. You will then build, sign and submit your first transaction with metadata using the `cardano-cli`.
 
 ### Prerequisites 
 From our previous post **[Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/)**

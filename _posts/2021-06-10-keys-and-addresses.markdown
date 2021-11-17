@@ -15,10 +15,10 @@ Image courtesy of [ilap](https://github.com/ilap)
 📝 _Following the principles of [public key/asymmetric cryptography](https://www.blockchain-council.org/blockchain/how-does-blockchain-use-public-key-cryptography/), the terms **keys** and **key pairs** can be used interchangeably for the rest of this guide. In particular Cardano uses [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) key pairs consisting of a private signing key and a public verification key._
 
 ### Goals
-Create address key pairs and their corresponding addresses.
+Create address key pairs and their corresponding addresses to receive ADA and other custom tokens.
 
 ### Prerequisites 
-The `cardano-cli` executable binary from our previous post [Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/).
+The `cardano-cli` executable binary from our previous post **[Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/)**.
 
 ## Background
 

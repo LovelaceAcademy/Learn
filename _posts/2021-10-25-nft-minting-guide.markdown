@@ -18,7 +18,7 @@ Using a similar approach as our [Fungible Token Minting Guide
 📝 _The main differences involve creating a stricter minting policy, uploading our image to IPFS, and attaching NFT-specific metadata_
 
 ### Goals
-After following this guide you will learn how to make your own token minting policy and mint two different types of fungible tokens under that policy.
+After following this guide you will learn how to make your own token minting policy and mint a single NFT after uploading your image to IPFS.
 
 ### Prerequisites 
 From our previous post **[Running a Full Cardano Node](https://learn.lovelace.academy/getting-started/running-a-full-node/)**
