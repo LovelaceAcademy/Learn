@@ -20,8 +20,8 @@ With `cardano-node` as the centrepiece, there are many downstream components uti
  - Submit transactions via the `local-tx-submission` mini-protocol 
  - Propagate, consume and persist chainDB data through the `chain-sync` mini-protocol
 
- ## Typical Use-cases
+## Typical Use-cases
 🚧 _More content coming soon_
 
- ## Self-hosted vs External APIs
+## Self-hosted vs External APIs
 🚧 _More content coming soon_
