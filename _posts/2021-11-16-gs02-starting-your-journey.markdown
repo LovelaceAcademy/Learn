@@ -7,7 +7,7 @@ categories:
 order: 2
 ---
 
-Navigating any Blockchain ecosystem to figure out how to participate can be a daunting task, so we prepared this guide for newcomers get started with Cardano. We suggest the following starting points which do a fantastic job aggregating a multitude of useful resources:
+Navigating any Blockchain ecosystem to figure out how to participate can be a daunting task, so we prepared this guide for newcomers get started with Cardano. We recommend the following starting points which do a fantastic job aggregating a multitude of useful resources:
 - [**Getting Started With Cardano**](https://www.reddit.com/r/Cardano_ELI5/wiki/index#wiki_getting_started_with_cardano) from Reddit [`r/Cardano_ELI5`](https://www.reddit.com/r/Cardano_ELI5)
 - [**Essential Cardano**](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md) from the [IOHK GitHub](https://github.com/input-output-hk)
 - [**Cardano Developer Portal**](https://developers.cardano.org/) The Official Portal for Developers
@@ -20,18 +20,19 @@ It is a common misconception that Cardano has a steep learning curve and further
 - Network Participant: Holds ADA on a personal wallet, participates in decentralisation through staking and earning additional ADA (approx. 5% APY) every five days
 
 ### Community Member
-- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/services and holds one or more of its [1,644,856 Native Tokens (as of Nov-2021)](https://pool.pm/tokens)
+- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/protocols (aka services) and holds one or more of its [1,869,057 Native Tokens (as of Nov-2021)](https://pool.pm/tokens)
 - Governance Participant: [Governance](https://cardano.org/governance/) Voter/Contributor and earns ADA voting for the future of Cardano
+- Protocol Evolution Contributor: Raises proposals and participates in future protocol decision and standards discussions through [CIPs](https://cips.cardano.org/)
 
 ### Builder
-- Stake Pool Operator (SPO): Manages trusted and reliable infrastructure to host a block-producing [cardano-node](https://github.com/input-output-hk/cardano-node/)
-- DApp Developer: Builds On-chain Smart Contracts and Off-chain integration to invoke them
+- Stake Pool Operator (SPO): Manages secure and reliable infrastructure to host a block-producing [cardano-node](https://github.com/input-output-hk/cardano-node/)
+- Infrastructure and Integration Developer: Builds Off-chain integration pieces e.g. APIs, SDKs, CLIs, etc.
+- DApp Developer: Builds On-chain Smart Contracts and Off-chain integration for a specific product/protocol
 - Utility Developer: Builds wallets, block explorers and utility tools
 - NFT Content Creator: Creates Digital Media and Tokenises it as a Cardano Native Asset
-- Graphics/UX Designer for Cardano products/services
-- Infrastructure and Integration Developer: Builds Off-chain integration pieces e.g. APIs, SDKs, CLIs, etc.
+- Graphics/UX Designer for Cardano products/protocols
 
-With that in mind, Lovelace Academy as an education platform is mostly geared to the builders of Cardano so most of the subsequent content will be technical in nature. 
+📝 *With that in mind, Lovelace Academy as an education platform is mostly geared to the builders of Cardano so most of the subsequent content will be **technical** in nature.*
 
 ## A Paradigm Shift for Builders
 As Blockchain sits at the intersection of cryptography, computer science, distributed systems and economics beginners might be overwhelmed with the amount of knowledge required to understand each field. However, do not fear! You do not need to be such an advanced polymath to start building something on Cardano. In fact, you can already begin your journey with a basic understanding of software development.

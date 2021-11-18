@@ -40,13 +40,16 @@ googleAnalyticsID: "G-9DH0WG199T"
 menu:
 - title: Getting Started
   icon: briefcase.png
-  alt: briefcase
+  alt: getstarted
 - title: Tokens
   icon: chat1.png
-  alt: chat
+  alt: tokens
+- title: Integrating Cardano
+  icon: plug.png
+  alt: integrate  
 - title: Smart Contracts
   icon: document.png
-  alt: document
+  alt: smartcontracts
   categories:
   - title: Fundamentals
   - title: The Plutus Platform

@@ -19,7 +19,7 @@ There has not been this level of opportunity since the the mainstream adoption o
  - Reliable and transparent financial services
  - Seamless global trade and commerce
  - Irrefutable recordkeeping of ownership, transfers of value and other key facts
- - An interconnected metaverse of platforms for gaming and interactive experiences
+ - Interoperable and composable platforms for media, gaming and interactive experiences
 
 With this open ecosystem we now have the power to build more fair and transparent systems, where everyone owns their personal data and builds closer connections to one another. 
 
