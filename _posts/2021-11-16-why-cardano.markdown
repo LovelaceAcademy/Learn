@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Why Cardano 
-last_modified_at: 2021-06-07
+last_modified_at: 2021-11-16
 categories:
 - Getting Started
 order: 1

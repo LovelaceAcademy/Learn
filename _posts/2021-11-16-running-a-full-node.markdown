@@ -3,7 +3,7 @@ layout: post
 title: 'Running a Full Cardano Node'
 categories:
 - 'Getting Started'
-last_modified_at: 2021-06-09
+last_modified_at: 2021-11-16
 order: 3
 ---
 

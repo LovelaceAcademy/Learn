@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fungible Token Minting Guide
-last_modified_at: 2021-09-08
+last_modified_at: 2021-11-16
 categories:
 - Tokens
 order: 3

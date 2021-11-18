@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Building Core Entities
+title: Building Cryptographic Entities
 last_modified_at: 2021-11-18
 categories:
 - Integrating Cardano

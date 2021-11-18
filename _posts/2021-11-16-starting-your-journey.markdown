@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Starting Your Journey
-last_modified_at: 2021-06-08
+last_modified_at: 2021-11-16
 categories:
 - Getting Started
 order: 2
