@@ -44,7 +44,7 @@ echo "  \"type\": \"sig\"" >> ft-policy.script
 echo "}" >> ft-policy.script
 ```
 <details>
-    <summary>ft-policy.script</summary>
+    <summary>📄 ft-policy.script</summary>
 <pre>
 {
   "keyHash": "6d788af8d970a78d2ef3ec43e6515749a607d9c09d8c7441e8d694a9",

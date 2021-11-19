@@ -66,7 +66,7 @@ echo "  ]" >> nft-policy.script
 echo "}" >> nft-policy.script 
 ```
 <details>
-    <summary>nft-policy.script</summary>
+    <summary>📄 nft-policy.script</summary>
 <pre>
 {
   "type": "all",
@@ -265,6 +265,5 @@ Alternatively you can use the following tools {% include tooltips/basic.html too
 ## References
 - [Cardano Developers: Minting NFTs](https://developers.cardano.org/docs/native-tokens/minting-nfts/)
 
-## Learn about Smart Contracts
-Continue on to **[Smart Contracts Fundamentals: EUTxO
- ➡️](https://learn.lovelace.academy/fundamentals/eutxo/)**
+## Start Integrating with Cardano
+Had enough of the `cardano-cli` and want to start integrating with Cardano using a familiar tech stack? Continue to **[Integrating Cardano: Summary of Components ➡️](https://learn.lovelace.academy/integrating-cardano/summary-of-components/)**

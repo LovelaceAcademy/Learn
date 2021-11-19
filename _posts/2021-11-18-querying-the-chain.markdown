@@ -7,7 +7,7 @@ categories:
 order: 2
 ---
 
-As mentioned previously in the [Summary of Components and Options](https://learn.lovelace.academy/integrating-cardano/summary-of-components/), using `cardano-cli` can be difficult to maintain and scale especially if output formats change with newer versions. Further, the ad-hoc querying options in `cardano-cli` are limited to querying the tip of the chain, basic UTxOs, protocol/stake/pool info or exporting the entire ledger state into an extremely large and unruly JSON file. 
+As mentioned previously in the [Summary of Components](https://learn.lovelace.academy/integrating-cardano/summary-of-components/), using `cardano-cli` can be difficult to maintain and scale especially if output formats change with newer versions. Further, the ad-hoc querying options in `cardano-cli` are limited to querying the tip of the chain, basic UTxOs and protocol/stake/pool info.
 
 ## Cardano db-sync
 
@@ -25,3 +25,6 @@ A core component in Cardano is **[cardano-db-sync](https://github.com/input-outp
 
 ### Cardano GraphQL (Dandelion hosted)
 🚧 _More content coming soon_
+
+## Building Cryptographic Entities
+To see your options for building keys, addresses and other cryptographic entities continue to **[Building Cryptographic Entities ➡️](https://learn.lovelace.academy/integrating-cardano/building-cryptographic-entities/)**

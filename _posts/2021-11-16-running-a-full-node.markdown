@@ -34,9 +34,9 @@ since its genesis and acts as the main point of contact from you as
 a client to the rest of the nodes in the network. Its main
 responsibilities are to:
 
-- Uphold the Ouroboros consensus algorithm
-- Maintain the ledger and accounting model
-- Expose integration points for clients and nodes
+- Uphold the [Ouroboros consensus and networking](https://github.com/input-output-hk/ouroboros-network) algorithm
+- Maintain the [ledger and accounting](https://github.com/input-output-hk/cardano-ledger) model
+- Expose [integration points](https://docs.cardano.org/explore-cardano/cardano-network/networking-protocol#cardanonodecommunicationprotocols) for clients and nodes
 
 ![](/img/node_cardano_components_version_main.png)
 Image courtesy of [Cardano docs](https://docs.cardano.org/explore-cardano/cardano-architecture/overview#gatsby-focus-wrapper)

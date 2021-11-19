@@ -18,6 +18,9 @@ As explained previously in [Transactions: UTxO and Metadata
 ### CardanoSharp SDK
 🚧 _More content coming soon_
 
+### Language-specific Cardano CLI Wrappers
+🚧 _More content coming soon_
+
 ## Submitting Transactions
 
 ### Blockfrost API
@@ -31,3 +34,7 @@ As explained previously in [Transactions: UTxO and Metadata
 
 ### Cardano GraphQL (Dandelion hosted)
 🚧 _More content coming soon_
+
+## Learn about Smart Contracts
+Continue on **[Smart Contracts Fundamentals: EUTxO
+ ➡️](https://learn.lovelace.academy/fundamentals/eutxo/)**
