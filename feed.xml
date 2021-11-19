@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-11-18T14:57:00+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Building and Submitting Transactions</title><link href="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/" rel="alternate" type="text/html" title="Building and Submitting Transactions" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/">&lt;p&gt;As explained previously in &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;Transactions: UTxO and Metadata
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2021-11-19T11:19:19+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Building and Submitting Transactions</title><link href="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/" rel="alternate" type="text/html" title="Building and Submitting Transactions" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/">&lt;p&gt;As explained previously in &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;Transactions: UTxO and Metadata
 &lt;/a&gt;, although transactions can be built, signed and submitted using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt;, each of these steps can also be handled using different SDKs and APIs.&lt;/p&gt;
 
 &lt;h2 id=&quot;building-and-signing-transactions&quot;&gt;Building and Signing Transactions&lt;/h2&gt;
@@ -7,6 +7,9 @@
 &lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;cardanosharp-sdk&quot;&gt;CardanoSharp SDK&lt;/h3&gt;
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;language-specific-cardano-cli-wrappers&quot;&gt;Language-specific Cardano CLI Wrappers&lt;/h3&gt;
 &lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;submitting-transactions&quot;&gt;Submitting Transactions&lt;/h2&gt;
@@ -21,16 +24,23 @@
 &lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;cardano-graphql-dandelion-hosted&quot;&gt;Cardano GraphQL (Dandelion hosted)&lt;/h3&gt;
-&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">As explained previously in Transactions: UTxO and Metadata , although transactions can be built, signed and submitted using the cardano-cli, each of these steps can also be handled using different SDKs and APIs.</summary></entry><entry><title type="html">Building Cryptographic Entities</title><link href="https://learn.lovelace.academy//integrating-cardano/building-cryptographic-entities/" rel="alternate" type="text/html" title="Building Cryptographic Entities" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/building-cryptographic-entities</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/building-cryptographic-entities/">&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; allows us to create many different types of &lt;strong&gt;keys&lt;/strong&gt;, &lt;strong&gt;addresses&lt;/strong&gt;, &lt;strong&gt;multisig scripts&lt;/strong&gt;, &lt;strong&gt;token policies&lt;/strong&gt;, &lt;strong&gt;signed certificates&lt;/strong&gt; and most importantly &lt;strong&gt;transactions&lt;/strong&gt;. However it mainly works with raw unencrypted files in the file system which can be problematic for security and performance.&lt;/p&gt;
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;cardano-cli-wrappers&quot;&gt;Cardano CLI Wrappers&lt;/h2&gt;
+&lt;h2 id=&quot;learn-about-smart-contracts&quot;&gt;Learn about Smart Contracts&lt;/h2&gt;
+&lt;p&gt;Continue on &lt;strong&gt;&lt;a href=&quot;https://learn.lovelace.academy/fundamentals/eutxo/&quot;&gt;Smart Contracts Fundamentals: EUTxO
+ ➡️&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">As explained previously in Transactions: UTxO and Metadata , although transactions can be built, signed and submitted using the cardano-cli, each of these steps can also be handled using different SDKs and APIs.</summary></entry><entry><title type="html">Building Cryptographic Entities</title><link href="https://learn.lovelace.academy//integrating-cardano/building-cryptographic-entities/" rel="alternate" type="text/html" title="Building Cryptographic Entities" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/building-cryptographic-entities</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/building-cryptographic-entities/">&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; allows us to create many different types of &lt;strong&gt;keys&lt;/strong&gt;, &lt;strong&gt;addresses&lt;/strong&gt;, &lt;strong&gt;multisig scripts&lt;/strong&gt;, &lt;strong&gt;token policies&lt;/strong&gt;, &lt;strong&gt;signed certificates&lt;/strong&gt; and most importantly &lt;strong&gt;transactions&lt;/strong&gt;. However it mainly works with raw unencrypted files in the file system which can be problematic for security and performance.&lt;/p&gt;
+
+&lt;h2 id=&quot;language-specific-cardano-cli-wrappers&quot;&gt;Language-specific Cardano CLI Wrappers&lt;/h2&gt;
 &lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;language-specific-sdks&quot;&gt;Language-specific SDKs&lt;/h2&gt;
 &lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;notes-on-key-management&quot;&gt;Notes on Key Management&lt;/h2&gt;
-&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">The cardano-cli allows us to create many different types of keys, addresses, multisig scripts, token policies, signed certificates and most importantly transactions. However it mainly works with raw unencrypted files in the file system which can be problematic for security and performance.</summary></entry><entry><title type="html">Querying the Chain</title><link href="https://learn.lovelace.academy//integrating-cardano/querying-the-chain/" rel="alternate" type="text/html" title="Querying the Chain" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/querying-the-chain</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/querying-the-chain/">&lt;p&gt;As mentioned previously in the &lt;a href=&quot;https://learn.lovelace.academy/integrating-cardano/summary-of-components/&quot;&gt;Summary of Components and Options&lt;/a&gt;, using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; can be difficult to maintain and scale especially if output formats change with newer versions. Further, the ad-hoc querying options in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; are limited to querying the tip of the chain, basic UTxOs, protocol/stake/pool info or exporting the entire ledger state into an extremely large and unruly JSON file.&lt;/p&gt;
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;building-and-submitting-transactions&quot;&gt;Building and Submitting Transactions&lt;/h2&gt;
+&lt;p&gt;To see your options for building and submitting transactions, continue to &lt;strong&gt;&lt;a href=&quot;https://learn.lovelace.academy/integrating-cardano/building-and-submitting-transactions/&quot;&gt;Building and Submitting Transactions ➡️&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">The cardano-cli allows us to create many different types of keys, addresses, multisig scripts, token policies, signed certificates and most importantly transactions. However it mainly works with raw unencrypted files in the file system which can be problematic for security and performance.</summary></entry><entry><title type="html">Querying the Chain</title><link href="https://learn.lovelace.academy//integrating-cardano/querying-the-chain/" rel="alternate" type="text/html" title="Querying the Chain" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/querying-the-chain</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/querying-the-chain/">&lt;p&gt;As mentioned previously in the &lt;a href=&quot;https://learn.lovelace.academy/integrating-cardano/summary-of-components/&quot;&gt;Summary of Components&lt;/a&gt;, using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; can be difficult to maintain and scale especially if output formats change with newer versions. Further, the ad-hoc querying options in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; are limited to querying the tip of the chain, basic UTxOs and protocol/stake/pool info.&lt;/p&gt;
 
 &lt;h2 id=&quot;cardano-db-sync&quot;&gt;Cardano db-sync&lt;/h2&gt;
 
@@ -47,7 +57,10 @@
 &lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;cardano-graphql-dandelion-hosted&quot;&gt;Cardano GraphQL (Dandelion hosted)&lt;/h3&gt;
-&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">As mentioned previously in the Summary of Components and Options, using cardano-cli can be difficult to maintain and scale especially if output formats change with newer versions. Further, the ad-hoc querying options in cardano-cli are limited to querying the tip of the chain, basic UTxOs, protocol/stake/pool info or exporting the entire ledger state into an extremely large and unruly JSON file.</summary></entry><entry><title type="html">Summary of Components and Options</title><link href="https://learn.lovelace.academy//integrating-cardano/summary-of-components/" rel="alternate" type="text/html" title="Summary of Components and Options" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/summary-of-components</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/summary-of-components/">&lt;p&gt;So far, all of our interaction with Cardano has been through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; and a locally running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-node&lt;/code&gt;. While it is perfectly fine for one-off tasks and goals, building products/protocols which require complex interactions entirely in a scripting languages will prove difficult to maintain and scale.&lt;/p&gt;
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;building-cryptographic-entities&quot;&gt;Building Cryptographic Entities&lt;/h2&gt;
+&lt;p&gt;To see your options for building keys, addresses and other cryptographic entities continue to &lt;strong&gt;&lt;a href=&quot;https://learn.lovelace.academy/integrating-cardano/building-cryptographic-entities/&quot;&gt;Building Cryptographic Entities ➡️&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">As mentioned previously in the Summary of Components, using cardano-cli can be difficult to maintain and scale especially if output formats change with newer versions. Further, the ad-hoc querying options in cardano-cli are limited to querying the tip of the chain, basic UTxOs and protocol/stake/pool info.</summary></entry><entry><title type="html">Summary of Components</title><link href="https://learn.lovelace.academy//integrating-cardano/summary-of-components/" rel="alternate" type="text/html" title="Summary of Components" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/summary-of-components</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/summary-of-components/">&lt;p&gt;So far, all of our interaction with Cardano has been through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; and a locally running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-node&lt;/code&gt;. While it is perfectly fine for one-off tasks and goals, building complex products/protocols entirely in a scripting languages will prove difficult to maintain and scale. Further, most developers are far more productive building in their preferred languages and ecosystems.&lt;/p&gt;
 
 &lt;h2 id=&quot;a-birds-eye-view&quot;&gt;A Birds Eye View&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;/img/node_cardano_components_version_main.png&quot; alt=&quot;&quot; /&gt;
@@ -55,18 +68,58 @@ Image courtesy of &lt;a href=&quot;https://docs.cardano.org/explore-cardano/card
 
 &lt;p&gt;🚧 &lt;em&gt;Thorough Overview Diagram coming soon&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;With &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-node&lt;/code&gt; as the centrepiece, there are many downstream components utilising the &lt;a href=&quot;https://docs.cardano.org/explore-cardano/cardano-network/networking-protocol#node-to-clientipcoverview&quot;&gt;node-to-client protocol&lt;/a&gt; to&lt;/p&gt;
+&lt;p&gt;As described in our earlier post &lt;a href=&quot;https://learn.lovelace.academy/getting-started/running-a-full-node/#background&quot;&gt;Running a Full Cardano Node&lt;/a&gt;, through a set of bespoke protocols the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-node&lt;/code&gt; serves as the main integration point to many downstream components utilising the &lt;a href=&quot;https://docs.cardano.org/explore-cardano/cardano-network/networking-protocol#node-to-clientipcoverview&quot;&gt;node-to-client protocol&lt;/a&gt;. These downstream components can:&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;Perform ad-hoc queries through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;local-state-query&lt;/code&gt; mini-protocol&lt;/li&gt;
-  &lt;li&gt;Submit transactions via the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;local-tx-submission&lt;/code&gt; mini-protocol&lt;/li&gt;
-  &lt;li&gt;Propagate, consume and persist chainDB data through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chain-sync&lt;/code&gt; mini-protocol&lt;/li&gt;
+  &lt;li&gt;Perform ad-hoc queries through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;local-state-query&lt;/code&gt; mini-protocol
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli&quot;&gt;cardano-cli&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/cardanosolutions/ogmios&quot;&gt;ogmios&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/input-output-hk/cardano-wallet&quot;&gt;cardano-wallet&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Submit transactions via the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;local-tx-submission&lt;/code&gt; mini-protocol
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli&quot;&gt;cardano-cli&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/cardanosolutions/ogmios&quot;&gt;ogmios&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/input-output-hk/cardano-wallet&quot;&gt;cardano-wallet&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Propagate, consume and persist chainDB data through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chain-sync&lt;/code&gt; mini-protocol
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/input-output-hk/cardano-wallet&quot;&gt;cardano-wallet&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/input-output-hk/cardano-db-sync&quot;&gt;db-sync&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;typical-use-cases&quot;&gt;Typical Use-cases&lt;/h2&gt;
-&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Over the course of our Getting Started content, our guides made use of the first two mini-protocols using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; to query the chain and submit our transactions. We will touch on the third &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chain-sync&lt;/code&gt; protocol in our following post on &lt;a href=&quot;#advanced-queries-for-cardano&quot;&gt;querying the chain&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For many developers the biggest hurdle with integration stems from the fact that these &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-node&lt;/code&gt; specific protocols are not meant for external public consumption, and even direct internal consumption can be difficult if you are not familiar with Haskell. Luckily there are two options - you can either host your own pipeline of components to integrate with Cardano &lt;strong&gt;or&lt;/strong&gt; rely on community-built SDKs and external hosted APIs.&lt;/p&gt;
 
 &lt;h2 id=&quot;self-hosted-vs-external-apis&quot;&gt;Self-hosted vs External APIs&lt;/h2&gt;
-&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">So far, all of our interaction with Cardano has been through the cardano-cli and a locally running cardano-node. While it is perfectly fine for one-off tasks and goals, building products/protocols which require complex interactions entirely in a scripting languages will prove difficult to maintain and scale.</summary></entry><entry><title type="html">Cardano Developer Vocabulary</title><link href="https://learn.lovelace.academy//getting-started/cardano-developer-vocabulary/" rel="alternate" type="text/html" title="Cardano Developer Vocabulary" /><published>2021-11-16T00:00:00+00:00</published><updated>2021-11-16T00:00:00+00:00</updated><id>https://learn.lovelace.academy//getting-started/cardano-developer-vocabulary</id><content type="html" xml:base="https://learn.lovelace.academy//getting-started/cardano-developer-vocabulary/">&lt;p&gt;Even seasoned developers can find the plethora of new terms associated with Blockchain development intimidating and at times plain confusing or cryptic. To address these pain points we have created the &lt;strong&gt;Cardano Developer Vocabulary&lt;/strong&gt;, a concise glossary to explain the most important yet commonly mistaken terms grouped by major concepts.&lt;/p&gt;
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;use-cases&quot;&gt;Use-cases&lt;/h2&gt;
+&lt;h3 id=&quot;ecommerce&quot;&gt;ECommerce&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;A store creates and manages sets of keys to generate payment addresses to receive payments for orders&lt;/li&gt;
+  &lt;li&gt;A customer creates and manages their own set of keys and addresses through their wallet(s)&lt;/li&gt;
+  &lt;li&gt;The store listens for customer payments at their payment addresses&lt;/li&gt;
+  &lt;li&gt;The customer submits a transaction as a payment to the store’s given address with additional metadata of purchase&lt;/li&gt;
+  &lt;li&gt;For every valid payment the store will create and process an order in their (off-chain) systems&lt;/li&gt;
+  &lt;li&gt;The store either
+    &lt;ul&gt;
+      &lt;li&gt;Records a successful order on-chain via a new transaction with metadata&lt;/li&gt;
+      &lt;li&gt;Refunds the payment back to the customer if it cannot be fulfilled&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;🚧 &lt;em&gt;More content coming soon&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;advanced-queries-for-cardano&quot;&gt;Advanced Queries for Cardano&lt;/h2&gt;
+&lt;p&gt;Continue to &lt;strong&gt;&lt;a href=&quot;https://learn.lovelace.academy/integrating-cardano/querying-the-chain/&quot;&gt;Querying the Chain ➡️&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="Integrating Cardano" /><summary type="html">So far, all of our interaction with Cardano has been through the cardano-cli and a locally running cardano-node. While it is perfectly fine for one-off tasks and goals, building complex products/protocols entirely in a scripting languages will prove difficult to maintain and scale. Further, most developers are far more productive building in their preferred languages and ecosystems.</summary></entry><entry><title type="html">Cardano Developer Vocabulary</title><link href="https://learn.lovelace.academy//getting-started/cardano-developer-vocabulary/" rel="alternate" type="text/html" title="Cardano Developer Vocabulary" /><published>2021-11-16T00:00:00+00:00</published><updated>2021-11-16T00:00:00+00:00</updated><id>https://learn.lovelace.academy//getting-started/cardano-developer-vocabulary</id><content type="html" xml:base="https://learn.lovelace.academy//getting-started/cardano-developer-vocabulary/">&lt;p&gt;Even seasoned developers can find the plethora of new terms associated with Blockchain development intimidating and at times plain confusing or cryptic. To address these pain points we have created the &lt;strong&gt;Cardano Developer Vocabulary&lt;/strong&gt;, a concise glossary to explain the most important yet commonly mistaken terms grouped by major concepts.&lt;/p&gt;
 
 &lt;h2 id=&quot;time&quot;&gt;Time&lt;/h2&gt;
 &lt;p&gt;Moments in time across Cardano are generally specified using incrementing integers. For example to-the-second precise units called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Slots&lt;/code&gt; and five-day windows known as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Epochs&lt;/code&gt;. Last but not least these moments reside within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Eras&lt;/code&gt;, which are simply text labels for significant Cardano network milestones. For example, &lt;span class=&quot;tooltips_one&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;9:00AM UTC on November 3rd&quot;&gt;2021-11-03T09:00:00Z in ISO 8601 format&lt;/span&gt; is Slot 44363709, in Epoch 300 of the Alonzo Era.&lt;/p&gt;
@@ -144,7 +197,7 @@ Image courtesy of &lt;a href=&quot;https://docs.cardano.org/explore-cardano/card
 &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;}&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ft-policy.script
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;details&gt;
-    &lt;summary&gt;ft-policy.script&lt;/summary&gt;
+    &lt;summary&gt;📄 ft-policy.script&lt;/summary&gt;
 &lt;pre&gt;
 {
   &quot;keyHash&quot;: &quot;6d788af8d970a78d2ef3ec43e6515749a607d9c09d8c7441e8d694a9&quot;,
@@ -584,7 +637,7 @@ submit transactions to learn about &lt;strong&gt;&lt;a href=&quot;https://learn.
 &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;}&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; nft-policy.script 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;details&gt;
-    &lt;summary&gt;nft-policy.script&lt;/summary&gt;
+    &lt;summary&gt;📄 nft-policy.script&lt;/summary&gt;
 &lt;pre&gt;
 {
   &quot;type&quot;: &quot;all&quot;,
@@ -775,6 +828,5 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
   &lt;li&gt;&lt;a href=&quot;https://developers.cardano.org/docs/native-tokens/minting-nfts/&quot;&gt;Cardano Developers: Minting NFTs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;learn-about-smart-contracts&quot;&gt;Learn about Smart Contracts&lt;/h2&gt;
-&lt;p&gt;Continue on to &lt;strong&gt;&lt;a href=&quot;https://learn.lovelace.academy/fundamentals/eutxo/&quot;&gt;Smart Contracts Fundamentals: EUTxO
- ➡️&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Using a similar approach as our Fungible Token Minting Guide , we can mint Cardano NFTs (aka CNFTs) with four basic steps:</summary></entry></feed>
+&lt;h2 id=&quot;start-integrating-with-cardano&quot;&gt;Start Integrating with Cardano&lt;/h2&gt;
+&lt;p&gt;Had enough of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt; and want to start integrating with Cardano using a familiar tech stack? Continue to &lt;strong&gt;&lt;a href=&quot;https://learn.lovelace.academy/integrating-cardano/summary-of-components/&quot;&gt;Integrating Cardano: Summary of Components ➡️&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><category term="Tokens" /><summary type="html">Using a similar approach as our Fungible Token Minting Guide , we can mint Cardano NFTs (aka CNFTs) with four basic steps:</summary></entry></feed>

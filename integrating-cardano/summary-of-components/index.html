@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="/css/responsive.css">
   <link rel="stylesheet" href="/assets/font-size/css/rvfs.css">
   <link rel="stylesheet" href="/assets/tooltipster/css/tooltipster.bundle.css">
-  <title>Lovelace Academy - Summary of Components and Options</title>
+  <title>Lovelace Academy - Summary of Components</title>
 </head>
 
 <body class="doc wide-container" data-spy="scroll" data-target="#ll-toc" data-scroll-animation="true" data-offset="70">
@@ -148,7 +148,7 @@
                 <ul class="dropdown-menu">
                   
                     <li class="nav-item">
-                      <a href="/integrating-cardano/summary-of-components/" class="nav-link active">Summary of Components and Options</a>
+                      <a href="/integrating-cardano/summary-of-components/" class="nav-link active">Summary of Components</a>
                     </li>
                   
                     <li class="nav-item">
@@ -540,7 +540,7 @@
 
 <li>
   <a class="active" href="/integrating-cardano/summary-of-components/">
-    Summary of Components and Options
+    Summary of Components
   </a>
 </li>
 
@@ -830,7 +830,7 @@
             <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Home</a></li>
             
               <li class="breadcrumb-item"><a href="https://learn.lovelace.academy">Integrating Cardano</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Summary of Components and Options</li>
+              <li class="breadcrumb-item active" aria-current="page">Summary of Components</li>
             
           </ol>
         </nav>
@@ -1030,7 +1030,7 @@
 
 <li>
   <a class="active" href="/integrating-cardano/summary-of-components/">
-    Summary of Components and Options
+    Summary of Components
   </a>
 </li>
 
@@ -1309,10 +1309,10 @@
           <article class="shortcode_text">
             <div class="shortcode_title">
               <!-- <a class="btn" href="#">Learn</a> -->
-              <h1>Summary of Components and Options</h1>
+              <h1>Summary of Components</h1>
             </div>
 
-            <p>So far, all of our interaction with Cardano has been through the <code class="language-plaintext highlighter-rouge">cardano-cli</code> and a locally running <code class="language-plaintext highlighter-rouge">cardano-node</code>. While it is perfectly fine for one-off tasks and goals, building products/protocols which require complex interactions entirely in a scripting languages will prove difficult to maintain and scale.</p>
+            <p>So far, all of our interaction with Cardano has been through the <code class="language-plaintext highlighter-rouge">cardano-cli</code> and a locally running <code class="language-plaintext highlighter-rouge">cardano-node</code>. While it is perfectly fine for one-off tasks and goals, building complex products/protocols entirely in a scripting languages will prove difficult to maintain and scale. Further, most developers are far more productive building in their preferred languages and ecosystems.</p>
 
 <h2 id="a-birds-eye-view">A Birds Eye View</h2>
 <p><img class="img-fluid" src="/img/node_cardano_components_version_main.png" alt="">
@@ -1320,18 +1320,58 @@ Image courtesy of <a href="https://docs.cardano.org/explore-cardano/cardano-arch
 
 <p>🚧 <em>Thorough Overview Diagram coming soon</em></p>
 
-<p>With <code class="language-plaintext highlighter-rouge">cardano-node</code> as the centrepiece, there are many downstream components utilising the <a href="https://docs.cardano.org/explore-cardano/cardano-network/networking-protocol#node-to-clientipcoverview" target="_blank" rel="noopener noreferrer">node-to-client protocol</a> to</p>
+<p>As described in our earlier post <a href="https://learn.lovelace.academy/getting-started/running-a-full-node/#background">Running a Full Cardano Node</a>, through a set of bespoke protocols the <code class="language-plaintext highlighter-rouge">cardano-node</code> serves as the main integration point to many downstream components utilising the <a href="https://docs.cardano.org/explore-cardano/cardano-network/networking-protocol#node-to-clientipcoverview" target="_blank" rel="noopener noreferrer">node-to-client protocol</a>. These downstream components can:</p>
+
 <ul>
-  <li>Perform ad-hoc queries through the <code class="language-plaintext highlighter-rouge">local-state-query</code> mini-protocol</li>
-  <li>Submit transactions via the <code class="language-plaintext highlighter-rouge">local-tx-submission</code> mini-protocol</li>
-  <li>Propagate, consume and persist chainDB data through the <code class="language-plaintext highlighter-rouge">chain-sync</code> mini-protocol</li>
+  <li>Perform ad-hoc queries through the <code class="language-plaintext highlighter-rouge">local-state-query</code> mini-protocol
+    <ul>
+      <li><a href="https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli" target="_blank" rel="noopener noreferrer">cardano-cli</a></li>
+      <li><a href="https://github.com/cardanosolutions/ogmios" target="_blank" rel="noopener noreferrer">ogmios</a></li>
+      <li><a href="https://github.com/input-output-hk/cardano-wallet" target="_blank" rel="noopener noreferrer">cardano-wallet</a></li>
+    </ul>
+  </li>
+  <li>Submit transactions via the <code class="language-plaintext highlighter-rouge">local-tx-submission</code> mini-protocol
+    <ul>
+      <li><a href="https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli" target="_blank" rel="noopener noreferrer">cardano-cli</a></li>
+      <li><a href="https://github.com/cardanosolutions/ogmios" target="_blank" rel="noopener noreferrer">ogmios</a></li>
+      <li><a href="https://github.com/input-output-hk/cardano-wallet" target="_blank" rel="noopener noreferrer">cardano-wallet</a></li>
+    </ul>
+  </li>
+  <li>Propagate, consume and persist chainDB data through the <code class="language-plaintext highlighter-rouge">chain-sync</code> mini-protocol
+    <ul>
+      <li><a href="https://github.com/input-output-hk/cardano-wallet" target="_blank" rel="noopener noreferrer">cardano-wallet</a></li>
+      <li><a href="https://github.com/input-output-hk/cardano-db-sync" target="_blank" rel="noopener noreferrer">db-sync</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h2 id="typical-use-cases">Typical Use-cases</h2>
-<p>🚧 <em>More content coming soon</em></p>
+<p>Over the course of our Getting Started content, our guides made use of the first two mini-protocols using the <code class="language-plaintext highlighter-rouge">cardano-cli</code> to query the chain and submit our transactions. We will touch on the third <code class="language-plaintext highlighter-rouge">chain-sync</code> protocol in our following post on <a href="#advanced-queries-for-cardano">querying the chain</a>.</p>
+
+<p>For many developers the biggest hurdle with integration stems from the fact that these <code class="language-plaintext highlighter-rouge">cardano-node</code> specific protocols are not meant for external public consumption, and even direct internal consumption can be difficult if you are not familiar with Haskell. Luckily there are two options - you can either host your own pipeline of components to integrate with Cardano <strong>or</strong> rely on community-built SDKs and external hosted APIs.</p>
 
 <h2 id="self-hosted-vs-external-apis">Self-hosted vs External APIs</h2>
 <p>🚧 <em>More content coming soon</em></p>
+
+<h2 id="use-cases">Use-cases</h2>
+<h3 id="ecommerce">ECommerce</h3>
+<ol class="ordered-list">
+  <li>A store creates and manages sets of keys to generate payment addresses to receive payments for orders</li>
+  <li>A customer creates and manages their own set of keys and addresses through their wallet(s)</li>
+  <li>The store listens for customer payments at their payment addresses</li>
+  <li>The customer submits a transaction as a payment to the store’s given address with additional metadata of purchase</li>
+  <li>For every valid payment the store will create and process an order in their (off-chain) systems</li>
+  <li>The store either
+    <ul>
+      <li>Records a successful order on-chain via a new transaction with metadata</li>
+      <li>Refunds the payment back to the customer if it cannot be fulfilled</li>
+    </ul>
+  </li>
+</ol>
+
+<p>🚧 <em>More content coming soon</em></p>
+
+<h2 id="advanced-queries-for-cardano">Advanced Queries for Cardano</h2>
+<p>Continue to <strong><a href="https://learn.lovelace.academy/integrating-cardano/querying-the-chain/">Querying the Chain ➡️</a></strong></p>
 
 
             <footer>
