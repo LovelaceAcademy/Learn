@@ -182,9 +182,9 @@ bash init.sh
 
 ## Shortcut #2: Download the Binaries
 You can alternatively download the latest versions `cardano-node` and `cardano-cli`
-- [Linux](https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz)
-- [Windows](https://hydra.iohk.io/build/7739339/download/1/cardano-node-1.30.1-win64.zip)
-- [MacOS](https://hydra.iohk.io/build/7739444/download/1/cardano-node-1.30.1-macos.tar.gz)
+- [Linux](https://hydra.iohk.io/build/8674953/download/1/cardano-node-1.31.0-linux.tar.gz)
+- [Windows](https://hydra.iohk.io/build/8674812/download/1/cardano-node-1.31.0-win64.zip)
+- [MacOS](https://hydra.iohk.io/build/8674816/download/1/cardano-node-1.31.0-macos.tar.gz)
 
 After downloading you can simply extract the binaries and add them to your PATH. In the case of Ubuntu you can run
 ```bash
