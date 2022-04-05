@@ -1332,7 +1332,7 @@ the full node is open for everyone to run and we strongly encourage every develo
 <p>After following the instructions in this post you will be able to run a full Cardano node, synchronise with the rest of the network and integrate with it via the <code class="language-plaintext highlighter-rouge">cardano-cli</code> and querying its internal metrics.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
-<p>A machine with at least 8GB RAM and 64GB free disk space.</p>
+<p>A machine with at least 12GB RAM and 64GB free disk space.</p>
 
 <h2 id="background">Background</h2>
 
@@ -1491,16 +1491,16 @@ bash init.sh
 <h2 id="shortcut-2-download-the-binaries">Shortcut #2: Download the Binaries</h2>
 <p>You can alternatively download the latest versions <code class="language-plaintext highlighter-rouge">cardano-node</code> and <code class="language-plaintext highlighter-rouge">cardano-cli</code></p>
 <ul>
-  <li><a href="https://hydra.iohk.io/build/8674953/download/1/cardano-node-1.31.0-linux.tar.gz" target="_blank" rel="noopener noreferrer">Linux</a></li>
-  <li><a href="https://hydra.iohk.io/build/8674812/download/1/cardano-node-1.31.0-win64.zip" target="_blank" rel="noopener noreferrer">Windows</a></li>
-  <li><a href="https://hydra.iohk.io/build/8674816/download/1/cardano-node-1.31.0-macos.tar.gz" target="_blank" rel="noopener noreferrer">MacOS</a></li>
+  <li><a href="https://hydra.iohk.io/build/13066517/download/1/cardano-node-1.34.1-linux.tar.gz" target="_blank" rel="noopener noreferrer">Linux</a></li>
+  <li><a href="https://hydra.iohk.io/build/13066720/download/1/cardano-node-1.34.1-win64.zip" target="_blank" rel="noopener noreferrer">Windows</a></li>
+  <li><a href="https://hydra.iohk.io/build/13066758/download/1/cardano-node-1.34.1-macos.tar.gz" target="_blank" rel="noopener noreferrer">MacOS</a></li>
 </ul>
 
 <p>After downloading you can simply extract the binaries and add them to your PATH. In the case of Ubuntu you can run</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/.local/setup/cardano-node-1.30.1
-<span class="nb">cd</span> ~/.local/setup/cardano-node-1.30.1
-wget https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz
-<span class="nb">tar</span> <span class="nt">-xf</span> cardano-node-1.30.1-linux.tar.gz
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/.local/setup/cardano-node-1.34.1
+<span class="nb">cd</span> ~/.local/setup/cardano-node-1.34.1
+wget https://hydra.iohk.io/build/13066517/download/1/cardano-node-1.34.1-linux.tar.gz
+<span class="nb">tar</span> <span class="nt">-xf</span> cardano-node-1.34.1-linux.tar.gz
 <span class="nb">rm </span>cardano-node-1.30.1-linux.tar.gz
 <span class="nb">mkdir</span> <span class="nt">-p</span> ~/.local/bin
 <span class="nb">cp </span>cardano-cli cardano-node ~/.local/bin
@@ -1587,13 +1587,8 @@ files above.</p>
 synchronise with the blockchain. Verify that the running node process is
 exposing its internal metrics by running:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl localhost:12798/metrics | <span class="nb">grep</span> <span class="nt">-i</span> epoch
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl localhost:12798/metrics
 </code></pre></div></div>
-
-<p>You can see the expected Epoch and Slot by going to 
-<a href="https://testnet.adatools.io/" target="_blank" rel="noopener noreferrer">testnet.adatools.io</a> or visiting
-<a href="https://pooltool.io/" target="_blank" rel="noopener noreferrer">pooltool.io</a> and clicking on the <code class="language-plaintext highlighter-rouge">MAINNET</code> button
-at the bottom panel until it changes to a red <code class="language-plaintext highlighter-rouge">TESTNET</code> button.</p>
 
 <h2 id="interacting-with-the-node-using-cardano-cli">Interacting with the Node using cardano-cli</h2>
 

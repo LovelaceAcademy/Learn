@@ -1317,7 +1317,7 @@
 <ol class="ordered-list">
   <li>Create Token Minting Policy</li>
   <li>Create Wallet Keys and Addresses</li>
-  <li>Build and Submit Minting Tx</li>
+  <li>Build and Submit Minting Tx with Metadata</li>
 </ol>
 
 <h3 id="goals">Goals</h3>
@@ -1350,8 +1350,9 @@
 <span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">sig</span><span class="se">\"</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ft-policy.script
 <span class="nb">echo</span> <span class="s2">"}"</span> <span class="o">&gt;&gt;</span> ft-policy.script
 </code></pre></div></div>
+<p>📝 <em>Note it is also possible to add a time-lock rule in this policy so no new tokens can be minted after a timestamp. <a href="https://learn.lovelace.academy/tokens/nft-minting-guide/#create-token-minting-policy">See our NFT example</a> for how to do so</em></p>
 <details>
-    <summary>📄 ft-policy.script</summary>
+    <summary>📄 ft-policy.script (example)</summary>
 <pre>
 {
   "keyHash": "6d788af8d970a78d2ef3ec43e6515749a607d9c09d8c7441e8d694a9",
@@ -1409,6 +1410,39 @@ cardano-cli address build <span class="se">\</span>
 <span class="nv">UTXO0I</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 2p<span class="si">)</span>
 <span class="nv">UTXO0V</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$UTXO0</span> | egrep <span class="nt">-o</span> <span class="s1">'[a-z0-9]+'</span> | <span class="nb">sed</span> <span class="nt">-n</span> 3p<span class="si">)</span>    
 </code></pre></div></div>
+
+<h3 id="build-token-metadata">Build Token Metadata</h3>
+
+<p>As we are minting two custom tokens under the same <code class="language-plaintext highlighter-rouge">PolicyID</code> but with a different <code class="language-plaintext highlighter-rouge">asset_name</code>s. We initialise the shell variables to specify 1000 <code class="language-plaintext highlighter-rouge">LEARN</code> tokens and 1 <code class="language-plaintext highlighter-rouge">LA25</code> token and derive the hexadecimal encoded <code class="language-plaintext highlighter-rouge">asset_name</code>s.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LEARN_ASSETNAME</span><span class="o">=</span>LEARN
+<span class="nv">LEARN_ASSETHEX</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2">"</span> | <span class="nb">od</span> <span class="nt">-A</span> n <span class="nt">-t</span> x1 |  <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/  *//g'</span><span class="si">)</span>
+<span class="nv">LEARN_QTY</span><span class="o">=</span>1000
+<span class="nv">DISCOUNT25_ASSETNAME</span><span class="o">=</span>LA25
+<span class="nv">DISCOUNT25_ASSETHEX</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> | <span class="nb">od</span> <span class="nt">-A</span> n <span class="nt">-t</span> x1 |  <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/  *//g'</span><span class="si">)</span>
+<span class="nv">DISCOUNT25_QTY</span><span class="o">=</span>1
+</code></pre></div></div>
+<p>Cardano has an <a href="https://github.com/cardano-foundation/CIPs/blob/1d9fbd0e29f07b931bf1524c7aed6635d478cd75/CIP-0035/CIP-0035.md" target="_blank" rel="noopener noreferrer">On-Chain Token Metadata Standard</a> which we will use to define the correct metadata for our tokens so that wallets, explorers and other tools can interpret and display it correctly. We will create a <code class="language-plaintext highlighter-rouge">token-metadata.json</code> file with the following content and replace <code class="language-plaintext highlighter-rouge">$POLICYID</code> with the correct policyID from the first step while using the same fixed IPFS asset URL for logo and icon fields.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "20": {
+        "$POLICYID": {
+            "4c4541524e": {
+                "ticker": "LEARN",
+                "desc": "Gather LEARN points by completing courses",
+                "logo": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i",
+                "icon": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i"
+            },
+            "4c413235": {
+                "ticker": "LA25",
+                "desc": "Lovelace Academy 25% student discount code",
+                "logo": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i",
+                "icon": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i"
+            }
+        }
+    }
+}
+</code></pre></div></div>
+
 <h3 id="get-the-latest-protocol-parameters">Get the Latest Protocol Parameters</h3>
 <p>The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file <code class="language-plaintext highlighter-rouge">protocol.json</code> with the following command.</p>
 
@@ -1416,19 +1450,15 @@ cardano-cli address build <span class="se">\</span>
 </code></pre></div></div>
 
 <h3 id="build-draft-tx-to-calculate-fee">Build draft Tx to Calculate Fee</h3>
-<p>In this example we are minting two custom tokens under the same <code class="language-plaintext highlighter-rouge">PolicyID</code> but with a different <code class="language-plaintext highlighter-rouge">asset name</code>. We initialise the shell variables at the top to specify 1000 <code class="language-plaintext highlighter-rouge">LEARN</code> tokens and 1 <code class="language-plaintext highlighter-rouge">LA25</code> token.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LEARN_ASSETNAME</span><span class="o">=</span>LEARN
-<span class="nv">LEARN_QTY</span><span class="o">=</span>1000
-<span class="nv">DISCOUNT25_ASSETNAME</span><span class="o">=</span>LA25
-<span class="nv">DISCOUNT25_QTY</span><span class="o">=</span>1
-<span class="nv">MIN_LOVELACE</span><span class="o">=</span>1880000
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">MIN_LOVELACE</span><span class="o">=</span>1880000
 <span class="nv">TXOUT_CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - <span class="nv">$MIN_LOVELACE</span><span class="si">)</span>
 
 cardano-cli transaction build-raw <span class="se">\</span>
     <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
-    <span class="nt">--tx-out</span> <span class="nv">$DESTADDR</span>+<span class="nv">$MIN_LOVELACE</span>+<span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> +</span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="nv">$DESTADDR</span>+<span class="nv">$MIN_LOVELACE</span>+<span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETHEX</span><span class="s2"> +</span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETHEX</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--tx-out</span> <span class="nv">$SOURCEADDR</span>+<span class="nv">$TXOUT_CHANGE</span> <span class="se">\</span>
-    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> + </span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--metadata-json-file</span> token-metadata.json <span class="se">\</span>
+    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETHEX</span><span class="s2"> + </span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETHEX</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--minting-script-file</span> ft-policy.script <span class="se">\</span>
     <span class="nt">--fee</span> 0 <span class="se">\</span>
     <span class="nt">--out-file</span> fee_draft.txraw
@@ -1436,11 +1466,11 @@ cardano-cli transaction build-raw <span class="se">\</span>
 <span class="nv">FEE</span><span class="o">=</span><span class="si">$(</span>cardano-cli transaction calculate-min-fee <span class="nt">--tx-body-file</span> fee_draft.txraw <span class="nt">--tx-in-count</span> 1 <span class="nt">--tx-out-count</span> 2 <span class="nt">--witness-count</span> 2 <span class="nt">--testnet-magic</span> 1097911063 <span class="nt">--protocol-params-file</span> protocol.json | egrep <span class="nt">-o</span> <span class="s1">'[0-9]+'</span><span class="si">)</span>
 </code></pre></div></div>
 <p>Following a similar approach in <a href="https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/">Transactions: UTxO and Metadata
-</a>, we build a draft Tx with the same arguments to calculate the Tx fee captured in the <code class="language-plaintext highlighter-rouge">FEE</code> shell variable. This time we are specifying additional arguments in the form of <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--minting-script-file</code>. Also note the <code class="language-plaintext highlighter-rouge">--witness-count</code> of <code class="language-plaintext highlighter-rouge">2</code> when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key. The most difficult part, however, is building the raw Tx with the correct <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters.</p>
+</a>, we will build a draft Tx with the same arguments to calculate the Tx fee captured in the <code class="language-plaintext highlighter-rouge">FEE</code> shell variable. This time we are specifying additional arguments in the form of <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--minting-script-file</code>. Also note the <code class="language-plaintext highlighter-rouge">--witness-count</code> of <code class="language-plaintext highlighter-rouge">2</code> when we calculate the fee which indicates that we need to sign it with both the source payment key and the policy key. The most difficult part, however, is building the raw Tx with the correct <code class="language-plaintext highlighter-rouge">--mint</code> and <code class="language-plaintext highlighter-rouge">--tx-out</code> parameters.</p>
 
-<p>The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">{new_custom_token_x_quantity} {policyid}.{asset_name_x}</code> with additional custom tokens concatenated with a <code class="language-plaintext highlighter-rouge">+</code>. In this case it is <code class="language-plaintext highlighter-rouge">--mint 1000 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN + 1 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LA25</code> since they use the same multisig policy.</p>
+<p>The format for <code class="language-plaintext highlighter-rouge">--mint</code> is <code class="language-plaintext highlighter-rouge">{new_custom_token_x_quantity} {policyid}.{asset_name_x}</code> with additional custom tokens concatenated with a <code class="language-plaintext highlighter-rouge">+</code>. In this case it is <code class="language-plaintext highlighter-rouge">--mint 1000 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.4c4541524e + 1 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.4c413235</code> since they use the same multisig policy.</p>
 
-<p>📝🔥 <em><strong>Burn</strong> fungible tokens by using a negative quantity, e.g. <code class="language-plaintext highlighter-rouge">--mint -500 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN</code></em></p>
+<p>📝🔥 <em><strong>Burn</strong> fungible tokens by using a negative quantity, e.g. <code class="language-plaintext highlighter-rouge">--mint -500 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.4c4541524e</code></em></p>
 
 <p>The format for <code class="language-plaintext highlighter-rouge">--tx-out</code> is <code class="language-plaintext highlighter-rouge">{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}</code> with any additional custom tokens concatenated afterwards. In our simple case the <code class="language-plaintext highlighter-rouge">--tx-in</code> UTxO does not include any custom tokens so it would contain exactly what is minted after the lovelace quantity. In some other cases (e.g. burning or accumulating custom tokens from other UTxOs) you will need to calculate the custom token quantities if they have been included with the <code class="language-plaintext highlighter-rouge">--tx-in</code> UTxOs.</p>
 
@@ -1449,13 +1479,14 @@ cardano-cli transaction build-raw <span class="se">\</span>
 </a> we also need to specify a minimum amount of lovelace to send with the custom tokens to the destination address.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">MIN_LOVELACE</span><span class="o">=</span>1880000
-<span class="nv">TXOUT_CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - <span class="nv">$fee</span> - <span class="nv">$MIN_LOVELACE</span><span class="si">)</span>
+<span class="nv">TXOUT_CHANGE</span><span class="o">=</span><span class="si">$(</span><span class="nb">expr</span> <span class="nv">$UTXO0V</span> - <span class="nv">$FEE</span> - <span class="nv">$MIN_LOVELACE</span><span class="si">)</span>
 
 cardano-cli transaction build-raw <span class="se">\</span>
     <span class="nt">--tx-in</span> <span class="nv">$UTXO0H</span><span class="c">#$UTXO0I \</span>
-    <span class="nt">--tx-out</span> <span class="nv">$DESTADDR</span>+<span class="nv">$MIN_LOVELACE</span>+<span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> +</span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--tx-out</span> <span class="nv">$DESTADDR</span>+<span class="nv">$MIN_LOVELACE</span>+<span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETHEX</span><span class="s2"> +</span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETHEX</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--tx-out</span> <span class="nv">$SOURCEADDR</span>+<span class="nv">$TXOUT_CHANGE</span> <span class="se">\</span>
-    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETNAME</span><span class="s2"> + </span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETNAME</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--metadata-json-file</span> token-metadata.json <span class="se">\</span>
+    <span class="nt">--mint</span> <span class="s2">"</span><span class="nv">$LEARN_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$LEARN_ASSETHEX</span><span class="s2"> + </span><span class="nv">$DISCOUNT25_QTY</span><span class="s2"> </span><span class="nv">$POLICYID</span><span class="s2">.</span><span class="nv">$DISCOUNT25_ASSETHEX</span><span class="s2">"</span> <span class="se">\</span>
     <span class="nt">--minting-script-file</span> ft-policy.script <span class="se">\</span>
     <span class="nt">--fee</span> <span class="nv">$FEE</span> <span class="se">\</span>
     <span class="nt">--out-file</span> mint.txraw
@@ -1496,6 +1527,7 @@ cardano-cli transaction build-raw <span class="se">\</span>
 <ul>
   <li><a href="https://docs.cardano.org/native-tokens/learn" target="_blank" rel="noopener noreferrer">Cardano Docs: Learn about native tokens</a></li>
   <li><a href="https://developers.cardano.org/docs/native-tokens/minting" target="_blank" rel="noopener noreferrer">Cardano Developers: Minting Native Assets</a></li>
+  <li><a href="https://www.youtube.com/watch?v=pK7xShX9etI" target="_blank" rel="noopener noreferrer">Cardano: NerdOut - How to create a FT on Cardano that doesn’t completely suck!</a></li>
 </ul>
 
 <h2 id="mint-your-first-nft">Mint your first NFT</h2>
