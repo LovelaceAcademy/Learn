@@ -20,7 +20,7 @@ It is a common misconception that Cardano has a steep learning curve and further
 - Network Participant: Holds ADA on a personal wallet, participates in decentralisation through staking and earning additional ADA (approx. 5% APY) every five days
 
 ### Community Member
-- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/protocols (aka services) and holds one or more of its [1,869,057 Native Tokens (as of Nov-2021)](https://pool.pm/tokens)
+- Informed Supporter: [Understands the ecosystem](https://github.com/input-output-hk/essential-cardano/blob/main/essential-cardano-list.md), uses Cardano products/protocols (aka services) and holds one or more of its [4,172,655 Native Tokens (as of Nov-2021)](https://pool.pm/tokens)
 - Governance Participant: [Governance](https://cardano.org/governance/) Voter/Contributor and earns ADA voting for the future of Cardano
 - Protocol Evolution Contributor: Raises proposals and participates in future protocol decision and standards discussions through [CIPs](https://cips.cardano.org/)
 

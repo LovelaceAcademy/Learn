@@ -25,7 +25,7 @@ We will break it down in five basic steps:
 After following the instructions in this post you will be able to run a full Cardano node, synchronise with the rest of the network and integrate with it via the `cardano-cli` and querying its internal metrics.
 
 ### Prerequisites 
-A machine with at least 8GB RAM and 64GB free disk space.
+A machine with at least 12GB RAM and 64GB free disk space.
 
 ## Background
 
@@ -182,16 +182,16 @@ bash init.sh
 
 ## Shortcut #2: Download the Binaries
 You can alternatively download the latest versions `cardano-node` and `cardano-cli`
-- [Linux](https://hydra.iohk.io/build/8674953/download/1/cardano-node-1.31.0-linux.tar.gz)
-- [Windows](https://hydra.iohk.io/build/8674812/download/1/cardano-node-1.31.0-win64.zip)
-- [MacOS](https://hydra.iohk.io/build/8674816/download/1/cardano-node-1.31.0-macos.tar.gz)
+- [Linux](https://hydra.iohk.io/build/13066517/download/1/cardano-node-1.34.1-linux.tar.gz)
+- [Windows](https://hydra.iohk.io/build/13066720/download/1/cardano-node-1.34.1-win64.zip)
+- [MacOS](https://hydra.iohk.io/build/13066758/download/1/cardano-node-1.34.1-macos.tar.gz)
 
 After downloading you can simply extract the binaries and add them to your PATH. In the case of Ubuntu you can run
 ```bash
-mkdir -p ~/.local/setup/cardano-node-1.30.1
-cd ~/.local/setup/cardano-node-1.30.1
-wget https://hydra.iohk.io/build/7739415/download/1/cardano-node-1.30.1-linux.tar.gz
-tar -xf cardano-node-1.30.1-linux.tar.gz
+mkdir -p ~/.local/setup/cardano-node-1.34.1
+cd ~/.local/setup/cardano-node-1.34.1
+wget https://hydra.iohk.io/build/13066517/download/1/cardano-node-1.34.1-linux.tar.gz
+tar -xf cardano-node-1.34.1-linux.tar.gz
 rm cardano-node-1.30.1-linux.tar.gz
 mkdir -p ~/.local/bin
 cp cardano-cli cardano-node ~/.local/bin
@@ -275,13 +275,8 @@ synchronise with the blockchain. Verify that the running node process is
 exposing its internal metrics by running:
 
 ```bash
-curl localhost:12798/metrics | grep -i epoch
+curl localhost:12798/metrics
 ```
-
-You can see the expected Epoch and Slot by going to 
-[testnet.adatools.io](https://testnet.adatools.io/) or visiting
-[pooltool.io](https://pooltool.io/) and clicking on the `MAINNET` button
-at the bottom panel until it changes to a red `TESTNET` button.
 
 ## Interacting with the Node using cardano-cli
 

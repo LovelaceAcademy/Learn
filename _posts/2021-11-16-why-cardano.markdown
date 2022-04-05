@@ -10,7 +10,7 @@ order: 1
 The world is starting to understand the implications of Blockchain's 
 disruptive technology and its decentralised socioeconomic movement twelve and a half years
 after [Bitcoin's first block](https://www.blockchain.com/btc/block/00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048).
-Since then, the Blockchain industry has surpassed a **$2.8 Trillion** dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
+Since then, the Blockchain industry has surpassed a **$2.25 Trillion** dollar market cap on the back of major advancements in its technological underpinnings, the mainstream adoption of cryptocurrencies as the frictionless payment rails of the internet, its acceptance as an inflation-hedge asset class with huge asymmetric potential, and the tremendous growth in the number of [next generation products/services](https://blockchainhub.net/web3-decentralized-web/) built on top of its infrastructure. 
 
 To dig deeper into the technical foundations and benefits of Blockchain, please refer to our video [Making Sense of Blockchain](https://www.youtube.com/watch?v=ev75v-9LU5I) (we strongly recommend watching it on a large screen).
 
@@ -45,21 +45,21 @@ We summarised Cardano's key strengths in our video [The Cardano Revolution](http
 Cardano has some of the most impressive metrics in the Blockchain space and the data indicates that its flourishing network is growing stronger with time.
 
  - The most decentralised blockchain platform 
-   - 3,000+ stake pools [distributed globally](https://adatools.io/hologram)
-   - 2,000,000+ [wallets](https://twitter.com/Cardano/status/1455310221396611072)
-   - 940,000+ [staking addresses](https://pooltool.io/)
-   - 72.2%+ of [total supply staked](https://pooltool.io/) ($40B+ USD)
- - Second most active blockchain by [transaction volume](https://messari.io/asset/cardano/metrics/network-activity)
-   - $12,000,000,000+ ($12B) USD per day
+   - 3,200+ stake pools [distributed globally](https://adatools.io/hologram)
+   - 3,190,000+ [wallets](https://twitter.com/Cardano/status/1509992898577645568)
+   - 1,196,000+ [staking addresses](https://pooltool.io/)
+   - 73.9%+ of [total supply staked](https://pooltool.io/) ($40B+ USD)
+ - Most active blockchain by [transaction volume](https://messari.io/asset/cardano/metrics/network-activity)
+   - $64,000,000,000+ ($64B) USD per day
  - The most actively developed blockchain by GitHub commits
  - Has the [world's largest Decentralised Autonomous Organisation](https://forum.cardano.org/t/project-catalyst-fund6-voting-results-official/82084) (DAO)
-   - $1,500,000,000+ ($1.5B) USD in the treasury
+   - $1,032,000,000+ ($1.03B) USD in the [treasury](https://adapools.org/pots)
    - Governance built-in to the protocol
    - 44,500+ unique wallets participating
    - 903,000 votes cast to date
    - 305+ projects funded to date
 
-📝 *Metrics updated 2021-11-09T15:00:00Z*
+📝 *Metrics updated 2022-04-06T15:00:00Z*
 
 ## Join the Cardano Revolution
 ![](/img/cardano-ecosystem.png)

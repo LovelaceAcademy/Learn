@@ -7,7 +7,8 @@ categories:
 order: 5
 ---
 
-Transactions are the single most important unit in blockchains. They signify the creation or transfer of all values within it, contains verifiable cryptographic proof of their validity, and make up a significant payload of every block appended to it. Transactions and their metadata are **immutable and 
+Transactions are the single most important unit in blockchains. They signify the creation or transfer of all values within it, contains verifiable cryptographic proof of their validity, and make up a significant payload of every block appended to it. 
+Transactions and their metadata are **immutable and 
 last the lifetime of the blockchain**, so once appended and accepted by 
 the majority of the network, cannot be altered or deleted without a 
 major coordinated event like a hard fork.
@@ -29,7 +30,8 @@ From our previous post **[Wallet Basics: Keys and Addresses
 
 ### The UTxO Accounting Model
 
-Cardano, like Bitcoin and Ergo, uses the UTxO accounting model to signify the flow of values from transactions. UTxO stands for **U** nspent **Tx** ransaction **O** utput. A transaction at its core is a set of inputs and outputs, where inputs are consumed/spent to produce new outputs.
+Cardano, like Bitcoin and Ergo, uses the UTxO accounting model to signify the flow of values from transactions. UTxO stands for **U** nspent **Tx** ransaction **O** utput. 
+A transaction at its core is a set of inputs and outputs, where inputs are consumed/spent to produce new outputs.
 
 As opposed to an accounts-based blockchain (e.g. Ethereum) which holds
 one single value representing the active balance of an address,
@@ -148,7 +150,7 @@ cat > metadata.json << EOF
   "14141342": {
       "ex": "Lovelace Academy|Getting Started|Transactions: UTxO and Metadata",
       "v" : "6",
-      "ts": "2021-10-08T16:10:34Z"
+      "ts": "2022-05-03T10:28:34Z"
   },
   "14145256": {
       "h": "D9FCBD0EF020D1E3E3032A481814A4B8491D06323933EA708C2C62F90FF83567"

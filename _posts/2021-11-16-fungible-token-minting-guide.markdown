@@ -10,7 +10,7 @@ We will break down how to mint fungible tokens in three basic steps:
 
 1. Create Token Minting Policy
 2. Create Wallet Keys and Addresses
-3. Build and Submit Minting Tx
+3. Build and Submit Minting Tx with Metadata
 
 ### Goals
 After following this guide you will learn how to make your own token minting policy and mint two different types of fungible tokens under that policy.
@@ -43,8 +43,9 @@ echo "  \"keyHash\": \"$POLICYKEYHASH\"," >> ft-policy.script
 echo "  \"type\": \"sig\"" >> ft-policy.script
 echo "}" >> ft-policy.script
 ```
+📝 _Note it is also possible to add a time-lock rule in this policy so no new tokens can be minted after a timestamp. [See our NFT example](https://learn.lovelace.academy/tokens/nft-minting-guide/#create-token-minting-policy) for how to do so_
 <details>
-    <summary>📄 ft-policy.script</summary>
+    <summary>📄 ft-policy.script (example)</summary>
 <pre>
 {
   "keyHash": "6d788af8d970a78d2ef3ec43e6515749a607d9c09d8c7441e8d694a9",
@@ -106,6 +107,41 @@ UTXO0H=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 1p)
 UTXO0I=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 2p)
 UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)    
 ```
+
+### Build Token Metadata
+
+As we are minting two custom tokens under the same `PolicyID` but with a different `asset_name`s. We initialise the shell variables to specify 1000 `LEARN` tokens and 1 `LA25` token and derive the hexadecimal encoded `asset_name`s.
+```bash
+LEARN_ASSETNAME=LEARN
+LEARN_ASSETHEX=$(echo -n "$LEARN_ASSETNAME" | od -A n -t x1 |  sed -e 's/  *//g')
+LEARN_QTY=1000
+DISCOUNT25_ASSETNAME=LA25
+DISCOUNT25_ASSETHEX=$(echo -n "$DISCOUNT25_ASSETNAME" | od -A n -t x1 |  sed -e 's/  *//g')
+DISCOUNT25_QTY=1
+```
+Cardano has an [On-Chain Token Metadata Standard](https://github.com/cardano-foundation/CIPs/blob/1d9fbd0e29f07b931bf1524c7aed6635d478cd75/CIP-0035/CIP-0035.md) which we will use to define the correct metadata for our tokens so that wallets, explorers and other tools can interpret and display it correctly. We will create a `token-metadata.json` file with the following content and replace `$POLICYID` with the correct policyID from the first step while using the same fixed IPFS asset URL for logo and icon fields.
+
+```
+{
+    "20": {
+        "$POLICYID": {
+            "4c4541524e": {
+                "ticker": "LEARN",
+                "desc": "Gather LEARN points by completing courses",
+                "logo": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i",
+                "icon": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i"
+            },
+            "4c413235": {
+                "ticker": "LA25",
+                "desc": "Lovelace Academy 25% student discount code",
+                "logo": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i",
+                "icon": "ipfs://QmV896wmZc6Rp4pqCex5NN2nYUEjh2zFfGkNfC1qe5Dz4i"
+            }
+        }
+    }
+}
+```
+
 ### Get the Latest Protocol Parameters
 The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file `protocol.json` with the following command.
 
@@ -114,20 +150,16 @@ cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file prot
 ```
 
 ### Build draft Tx to Calculate Fee
-In this example we are minting two custom tokens under the same `PolicyID` but with a different `asset name`. We initialise the shell variables at the top to specify 1000 `LEARN` tokens and 1 `LA25` token. 
 ```bash
-LEARN_ASSETNAME=LEARN
-LEARN_QTY=1000
-DISCOUNT25_ASSETNAME=LA25
-DISCOUNT25_QTY=1
 MIN_LOVELACE=1880000
 TXOUT_CHANGE=$(expr $UTXO0V - $MIN_LOVELACE)
 
 cardano-cli transaction build-raw \
     --tx-in $UTXO0H#$UTXO0I \
-    --tx-out $DESTADDR+$MIN_LOVELACE+"$LEARN_QTY $POLICYID.$LEARN_ASSETNAME +$DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETNAME" \
+    --tx-out $DESTADDR+$MIN_LOVELACE+"$LEARN_QTY $POLICYID.$LEARN_ASSETHEX +$DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETHEX" \
     --tx-out $SOURCEADDR+$TXOUT_CHANGE \
-    --mint "$LEARN_QTY $POLICYID.$LEARN_ASSETNAME + $DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETNAME" \
+    --metadata-json-file token-metadata.json \
+    --mint "$LEARN_QTY $POLICYID.$LEARN_ASSETHEX + $DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETHEX" \
     --minting-script-file ft-policy.script \
     --fee 0 \
     --out-file fee_draft.txraw
@@ -135,11 +167,11 @@ cardano-cli transaction build-raw \
 FEE=$(cardano-cli transaction calculate-min-fee --tx-body-file fee_draft.txraw --tx-in-count 1 --tx-out-count 2 --witness-count 2 --testnet-magic 1097911063 --protocol-params-file protocol.json | egrep -o '[0-9]+')
 ```
 Following a similar approach in [Transactions: UTxO and Metadata
-](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/), we build a draft Tx with the same arguments to calculate the Tx fee captured in the `FEE` shell variable. This time we are specifying additional arguments in the form of `--mint` and `--minting-script-file`. Also note the `--witness-count` of `2` when we calculate the fee which indicates that we need to sign it with both the source payment signing key and the policy key. The most difficult part, however, is building the raw Tx with the correct `--mint` and `--tx-out` parameters. 
+](https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/), we will build a draft Tx with the same arguments to calculate the Tx fee captured in the `FEE` shell variable. This time we are specifying additional arguments in the form of `--mint` and `--minting-script-file`. Also note the `--witness-count` of `2` when we calculate the fee which indicates that we need to sign it with both the source payment key and the policy key. The most difficult part, however, is building the raw Tx with the correct `--mint` and `--tx-out` parameters. 
 
-The format for `--mint` is `{new_custom_token_x_quantity} {policyid}.{asset_name_x}` with additional custom tokens concatenated with a `+`. In this case it is `--mint 1000 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN + 1 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LA25` since they use the same multisig policy.
+The format for `--mint` is `{new_custom_token_x_quantity} {policyid}.{asset_name_x}` with additional custom tokens concatenated with a `+`. In this case it is `--mint 1000 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.4c4541524e + 1 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.4c413235` since they use the same multisig policy.
 
-📝🔥 _**Burn** fungible tokens by using a negative quantity, e.g. `--mint -500 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.LEARN`_
+📝🔥 _**Burn** fungible tokens by using a negative quantity, e.g. `--mint -500 7cb31677481b1112db5aaa2acdffbe624d8195d416da8b788cb51f7c.4c4541524e`_
 
 The format for `--tx-out` is `{address}+{lovelace_quantity}+{custom_token_quantity} {policyid}.{asset_name}` with any additional custom tokens concatenated afterwards. In our simple case the `--tx-in` UTxO does not include any custom tokens so it would contain exactly what is minted after the lovelace quantity. In some other cases (e.g. burning or accumulating custom tokens from other UTxOs) you will need to calculate the custom token quantities if they have been included with the `--tx-in` UTxOs.
 
@@ -149,13 +181,14 @@ Now we can build out the actual Tx with the correct fee and using that to calcul
 
 ```bash
 MIN_LOVELACE=1880000
-TXOUT_CHANGE=$(expr $UTXO0V - $fee - $MIN_LOVELACE)
+TXOUT_CHANGE=$(expr $UTXO0V - $FEE - $MIN_LOVELACE)
 
 cardano-cli transaction build-raw \
     --tx-in $UTXO0H#$UTXO0I \
-    --tx-out $DESTADDR+$MIN_LOVELACE+"$LEARN_QTY $POLICYID.$LEARN_ASSETNAME +$DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETNAME" \
+    --tx-out $DESTADDR+$MIN_LOVELACE+"$LEARN_QTY $POLICYID.$LEARN_ASSETHEX +$DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETHEX" \
     --tx-out $SOURCEADDR+$TXOUT_CHANGE \
-    --mint "$LEARN_QTY $POLICYID.$LEARN_ASSETNAME + $DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETNAME" \
+    --metadata-json-file token-metadata.json \
+    --mint "$LEARN_QTY $POLICYID.$LEARN_ASSETHEX + $DISCOUNT25_QTY $POLICYID.$DISCOUNT25_ASSETHEX" \
     --minting-script-file ft-policy.script \
     --fee $FEE \
     --out-file mint.txraw
@@ -196,6 +229,7 @@ Alternatively you can use the following tools (for a fee) to mint your own token
 ## Supplementary Material
 - [Cardano Docs: Learn about native tokens](https://docs.cardano.org/native-tokens/learn)
 - [Cardano Developers: Minting Native Assets](https://developers.cardano.org/docs/native-tokens/minting)
+- [Cardano: NerdOut - How to create a FT on Cardano that doesn't completely suck!](https://www.youtube.com/watch?v=pK7xShX9etI)
 
 ## Mint your first NFT
 Learn how to mint your first NFT at **[NFT Minting Guide ➡️](https://learn.lovelace.academy/tokens/nft-minting-guide/)**

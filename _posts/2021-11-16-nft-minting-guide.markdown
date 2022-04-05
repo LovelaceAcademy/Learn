@@ -42,7 +42,7 @@ POLICYKEYHASH=$(cardano-cli address key-hash --payment-verification-key-file nft
 ### Define Multisig Policy
 As mentioned [earlier](https://learn.lovelace.academy/tokens/minting-policies/#fungible-vs-non-fungible), NFTs must guarantee that **only one** token exists for a `policyID` and `asset name` combination. This can be defined in a Multisig policy with a [time locking script](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md#simple-script) to ensure tokens can only be minted **before** a certain time. This applies across the entire policy so in other words, that `policyID` cannot be used to mint any tokens after that time regardless of its `asset name`. 
 
-📝🕰️ _Time is denoted in slots since the genesis and a slot is a second as configured for the current protocol configuration._
+📝🕰️ _Time is denoted in slots since the genesis and a slot is a second as configured for the current protocol configuration. See [our explanation](https://learn.lovelace.academy/getting-started/cardano-developer-vocabulary/#time)_
 
 Create a nft-policy.script file with the right script using
 ```bash
@@ -135,7 +135,7 @@ cardano-cli query utxo \
 ```
 
 ## Upload Image to IPFS
-Blockchains are not designed nor optimised to store large file blobs so a separate decentralised file storage and content delivery solution is usually required for NFT content that exceed Cardano's 16KB Tx metadata limit. 
+Blockchains are not designed nor optimised to store large file blobs so a separate decentralised file storage and content delivery solution is usually required for NFT content that exceed Cardano's 16kB Tx metadata limit. 
 
 📝 _NFTs can also be **fully on-chain** using various ingenious methods to ensure the content fits within the 16KB Tx metadata max payload. Examples of this are [Stellar Hood](https://stellarhood.com/), [CardanoTrees](https://cardanotrees.com/), [JurassikChained](https://twitter.com/jurassikchained), [Mandelbrots](https://twitter.com/MandelbrotsNFT), [Fractano](https://twitter.com/fractano), [Aw0k3n](https://twitter.com/CardanoArt) and upcoming NFTs from [Veritree](https://ito.veritree.com)_
 
@@ -154,21 +154,21 @@ UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
 ```
 
 ### Build NFT Metadata
-Cardano has an [NFT Metadata standard](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0025/CIP-0025.md) which we will use to define the correct metadata for our CNFT so that wallets, explorers and other tools can interpret and display it correctly. We will create an `nft-metadata.json` file with the following content and replace `$POLICYID` with the correct policyID from the first step and `$IPFS_CID` with IPFS CID from the third step. Also note we are using `LALOGO` as the asset name to use in our minting Tx later, and to use the correct `mediaType` if you are using an image format other than image/png.
+Cardano has an [NFT Metadata standard](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0025/CIP-0025.md) which we will use to define the correct metadata for our CNFT so that wallets, explorers and other tools can interpret and display it correctly. We will create an `nft-metadata.json` file with the following content and replace `$POLICYID` with the correct policyID from the first step and `$IPFS_CID` with IPFS CID from the third step. Also note we are using text `LALOGO` as the asset name instead of the hexadecimal and to use the correct `mediaType` if you are using an image format other than image/png.
 
 ```
 {
-        "721": {
-            "$POLICYID": {
-              "LALOGO": {
-                "name": "The Lovelace Academy Logo",
-                "description": "Our Logo for the Lovelace Academy NFT Minting Guide",
-                "mediaType": "image/png",
-                "https": "https://learn.lovelace.academy/tokens/nft-minting-guide/",
-                "image": "ipfs://$IPFS_CID"
-              }
+    "721": {
+        "$POLICYID": {
+            "LALOGO": {
+            "name": "The Lovelace Academy Logo",
+            "description": "Our Logo for the Lovelace Academy NFT Minting Guide",
+            "mediaType": "image/png",
+            "https": "https://learn.lovelace.academy/tokens/nft-minting-guide/",
+            "image": "ipfs://$IPFS_CID"
             }
         }
+    }
 }
 ```
 
@@ -180,18 +180,19 @@ cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file prot
 ```
 
 ### Build draft Tx to Calculate Fee
-In this example we are minting one token under our NFT-specific policy with the asset name `LALOGO` and attaching the NFT standard metadata file. 
+In this example we are minting one token under our NFT-specific policy with the asset name `LALOGO` and attaching the NFT standard metadata file. The `cardano-cli transaction build-raw` command as of v1.32.0 only accepts hexadecimal encoded asset names so we also have to derive shell variable `$NFT_ASSETHEX`.
 ```bash
 NFT_ASSETNAME=LALOGO
+NFT_ASSETHEX=$(echo -n "$NFT_ASSETNAME" | od -A n -t x1 |  sed -e 's/  *//g')
 MIN_LOVELACE=1880000
 TXOUT_CHANGE=$(expr $UTXO0V - $MIN_LOVELACE)
 
 cardano-cli transaction build-raw \
     --tx-in $UTXO0H#$UTXO0I \
-    --tx-out $DESTADDR+$MIN_LOVELACE+"1 $POLICYID.$NFT_ASSETNAME" \
+    --tx-out $DESTADDR+$MIN_LOVELACE+"1 $POLICYID.$NFT_ASSETHEX" \
     --tx-out $SOURCEADDR+$TXOUT_CHANGE \
     --metadata-json-file nft-metadata.json \
-    --mint "1 $POLICYID.$NFT_ASSETNAME" \
+    --mint "1 $POLICYID.$NFT_ASSETHEX" \
     --minting-script-file nft-policy.script \
     --invalid-hereafter $EXPIRES_AT_SLOT \
     --fee 0 \
@@ -211,16 +212,15 @@ Now we can build out the actual Tx with the correct fee and using that to calcul
 ](https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets) we also need to specify a minimum amount of lovelace to send with the custom tokens to the destination address.
 
 ```bash
-NFT_ASSETNAME=LALOGO
 MIN_LOVELACE=1880000
 TXOUT_CHANGE=$(expr $UTXO0V - $FEE - $MIN_LOVELACE)
 
 cardano-cli transaction build-raw \
     --tx-in $UTXO0H#$UTXO0I \
-    --tx-out $DESTADDR+$MIN_LOVELACE+"1 $POLICYID.$NFT_ASSETNAME" \
+    --tx-out $DESTADDR+$MIN_LOVELACE+"1 $POLICYID.$NFT_ASSETHEX" \
     --tx-out $SOURCEADDR+$TXOUT_CHANGE \
     --metadata-json-file nft-metadata.json \
-    --mint "1 $POLICYID.$NFT_ASSETNAME" \
+    --mint "1 $POLICYID.$NFT_ASSETHEX" \
     --minting-script-file nft-policy.script \
     --invalid-hereafter $EXPIRES_AT_SLOT \
     --fee $FEE \
