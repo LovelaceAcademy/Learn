@@ -74,7 +74,7 @@ echo "}" >> nft-policy.script
   [
    {
      "type": "before",
-     "slot": 40194014
+     "slot": 54852747
    },
    {
      "type": "sig",
@@ -161,16 +161,17 @@ Cardano has an [NFT Metadata standard](https://github.com/cardano-foundation/CIP
     "721": {
         "$POLICYID": {
             "LALOGO": {
-            "name": "The Lovelace Academy Logo",
-            "description": "Our Logo for the Lovelace Academy NFT Minting Guide",
-            "mediaType": "image/png",
-            "https": "https://learn.lovelace.academy/tokens/nft-minting-guide/",
-            "image": "ipfs://$IPFS_CID"
+                "name": "The Lovelace Academy Logo",
+                "description": "Our Logo for the Lovelace Academy NFT Minting Guide",
+                "mediaType": "image/png",
+                "https": "https://learn.lovelace.academy/tokens/nft-minting-guide/",
+                "image": "ipfs://$IPFS_CID"
             }
         }
     }
 }
 ```
+📝 _Version 1.0 of the NFT Metadata standard defines the asset_name to be a text instead of hexadecimal representation i.e. "LALOGO" instead of "4c414c4f474f"_
 
 ### Get the Latest Protocol Parameters
 The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file `protocol.json` with the following command.
@@ -205,7 +206,7 @@ Following a similar approach in [Transactions: UTxO and Metadata
 
 As with minting fungible tokens, the most difficult part is building the raw Tx with the correct `--tx-out` and `--mint` parameters. The format for `--tx-out` is `{address}+{lovelace_quantity}+1 {policyid}.{asset_name}` for NFTs to ensure a quantity of 1 with additional NFTs optionally concatenated with a quantity of 1 and a different `asset_name`. The format for `--mint` is the same as `--tx-out` without the `{address}+{lovelace_quantity}` in the beginning.
 
-📝🔥 _**Burn** NFTs by using a quantity of `-1`, e.g. `--mint -1 629718e24d22e0c02c2efd27290e1a58ebc2972635a7c523aee2d8fc.LALOGO`_
+📝🔥 _**Burn** NFTs by using a quantity of `-1`, e.g. `--mint -1 629718e24d22e0c02c2efd27290e1a58ebc2972635a7c523aee2d8fc.4c414c4f474f`_
 
 ### Build Raw Minting Tx 
 Now we can build out the actual Tx with the correct fee and using that to calculate the `TXOUT_CHANGE` to go back to the source address. As described in the previous article [Cardano’s Native Assets
@@ -228,7 +229,7 @@ cardano-cli transaction build-raw \
 ```
 
 ### Sign Raw Minting Tx
-Note that we are signing the Tx with both `ft-policy.skey` and `source.skey` to provide two witnesses to the Tx.
+Note that we are signing the Tx with both `nft-policy.skey` and `source.skey` to provide two witnesses to the Tx.
 ```bash
 cardano-cli transaction sign  \
     --signing-key-file nft-policy.skey  \
