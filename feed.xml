@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2022-04-05T15:24:52+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Building and Submitting Transactions</title><link href="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/" rel="alternate" type="text/html" title="Building and Submitting Transactions" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/">&lt;p&gt;As explained previously in &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;Transactions: UTxO and Metadata
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://learn.lovelace.academy//feed.xml" rel="self" type="application/atom+xml" /><link href="https://learn.lovelace.academy//" rel="alternate" type="text/html" /><updated>2022-04-07T00:41:19+00:00</updated><id>https://learn.lovelace.academy//feed.xml</id><title type="html">Lovelace Academy</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Building and Submitting Transactions</title><link href="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/" rel="alternate" type="text/html" title="Building and Submitting Transactions" /><published>2021-11-18T00:00:00+00:00</published><updated>2021-11-18T00:00:00+00:00</updated><id>https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions</id><content type="html" xml:base="https://learn.lovelace.academy//integrating-cardano/building-and-submitting-transactions/">&lt;p&gt;As explained previously in &lt;a href=&quot;https://learn.lovelace.academy/getting-started/transactions-utxo-and-metadata/&quot;&gt;Transactions: UTxO and Metadata
 &lt;/a&gt;, although transactions can be built, signed and submitted using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cardano-cli&lt;/code&gt;, each of these steps can also be handled using different SDKs and APIs.&lt;/p&gt;
 
 &lt;h2 id=&quot;building-and-signing-transactions&quot;&gt;Building and Signing Transactions&lt;/h2&gt;
@@ -677,7 +677,7 @@ submit transactions to learn about &lt;strong&gt;&lt;a href=&quot;https://learn.
   [
    {
      &quot;type&quot;: &quot;before&quot;,
-     &quot;slot&quot;: 40194014
+     &quot;slot&quot;: 54852747
    },
    {
      &quot;type&quot;: &quot;sig&quot;,
@@ -758,16 +758,17 @@ cardano-cli address build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &quot;721&quot;: {
         &quot;$POLICYID&quot;: {
             &quot;LALOGO&quot;: {
-            &quot;name&quot;: &quot;The Lovelace Academy Logo&quot;,
-            &quot;description&quot;: &quot;Our Logo for the Lovelace Academy NFT Minting Guide&quot;,
-            &quot;mediaType&quot;: &quot;image/png&quot;,
-            &quot;https&quot;: &quot;https://learn.lovelace.academy/tokens/nft-minting-guide/&quot;,
-            &quot;image&quot;: &quot;ipfs://$IPFS_CID&quot;
+                &quot;name&quot;: &quot;The Lovelace Academy Logo&quot;,
+                &quot;description&quot;: &quot;Our Logo for the Lovelace Academy NFT Minting Guide&quot;,
+                &quot;mediaType&quot;: &quot;image/png&quot;,
+                &quot;https&quot;: &quot;https://learn.lovelace.academy/tokens/nft-minting-guide/&quot;,
+                &quot;image&quot;: &quot;ipfs://$IPFS_CID&quot;
             }
         }
     }
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;📝 &lt;em&gt;Version 1.0 of the NFT Metadata standard defines the asset_name to be a text instead of hexadecimal representation i.e. “LALOGO” instead of “4c414c4f474f”&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;get-the-latest-protocol-parameters&quot;&gt;Get the Latest Protocol Parameters&lt;/h3&gt;
 &lt;p&gt;The current set of Cardano protocol parameters are required to calculate Tx fees and we can retrieve them into the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protocol.json&lt;/code&gt; with the following command.&lt;/p&gt;
@@ -800,7 +801,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 
 &lt;p&gt;As with minting fungible tokens, the most difficult part is building the raw Tx with the correct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; parameters. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}+1 {policyid}.{asset_name}&lt;/code&gt; for NFTs to ensure a quantity of 1 with additional NFTs optionally concatenated with a quantity of 1 and a different &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asset_name&lt;/code&gt;. The format for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint&lt;/code&gt; is the same as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--tx-out&lt;/code&gt; without the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{address}+{lovelace_quantity}&lt;/code&gt; in the beginning.&lt;/p&gt;
 
-&lt;p&gt;📝🔥 &lt;em&gt;&lt;strong&gt;Burn&lt;/strong&gt; NFTs by using a quantity of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-1&lt;/code&gt;, e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint -1 629718e24d22e0c02c2efd27290e1a58ebc2972635a7c523aee2d8fc.LALOGO&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;📝🔥 &lt;em&gt;&lt;strong&gt;Burn&lt;/strong&gt; NFTs by using a quantity of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-1&lt;/code&gt;, e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--mint -1 629718e24d22e0c02c2efd27290e1a58ebc2972635a7c523aee2d8fc.4c414c4f474f&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;build-raw-minting-tx&quot;&gt;Build Raw Minting Tx&lt;/h3&gt;
 &lt;p&gt;Now we can build out the actual Tx with the correct fee and using that to calculate the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TXOUT_CHANGE&lt;/code&gt; to go back to the source address. As described in the previous article &lt;a href=&quot;https://learn.lovelace.academy/tokens/introduction-to-tokens/#cardanos-native-assets&quot;&gt;Cardano’s Native Assets
@@ -822,7 +823,7 @@ cardano-cli transaction build-raw &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;sign-raw-minting-tx&quot;&gt;Sign Raw Minting Tx&lt;/h3&gt;
-&lt;p&gt;Note that we are signing the Tx with both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ft-policy.skey&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source.skey&lt;/code&gt; to provide two witnesses to the Tx.&lt;/p&gt;
+&lt;p&gt;Note that we are signing the Tx with both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nft-policy.skey&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source.skey&lt;/code&gt; to provide two witnesses to the Tx.&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cardano-cli transaction sign  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--signing-key-file&lt;/span&gt; nft-policy.skey  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;--signing-key-file&lt;/span&gt; source.skey  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
