@@ -184,7 +184,7 @@ cardano-cli query protocol-parameters --testnet-magic 1097911063 --out-file prot
 In this example we are minting one token under our NFT-specific policy with the asset name `LALOGO` and attaching the NFT standard metadata file. The `cardano-cli transaction build-raw` command as of v1.32.0 only accepts hexadecimal encoded asset names so we also have to derive shell variable `$NFT_ASSETHEX`.
 ```bash
 NFT_ASSETNAME=LALOGO
-NFT_ASSETHEX=$(echo -n "$NFT_ASSETNAME" | od -A n -t x1 |  sed -e 's/  *//g')
+NFT_ASSETHEX=$(echo -n $NFT_ASSETNAME | xxd -b -ps -c 80 | tr -d '\n')
 MIN_LOVELACE=1880000
 TXOUT_CHANGE=$(expr $UTXO0V - $MIN_LOVELACE)
 

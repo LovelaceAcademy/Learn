@@ -113,10 +113,10 @@ UTXO0V=$(echo $UTXO0 | egrep -o '[a-z0-9]+' | sed -n 3p)
 As we are minting two custom tokens under the same `PolicyID` but with a different `asset_name`s. We initialise the shell variables to specify 1000 `LEARN` tokens and 1 `LA25` token and derive the hexadecimal encoded `asset_name`s.
 ```bash
 LEARN_ASSETNAME=LEARN
-LEARN_ASSETHEX=$(echo -n "$LEARN_ASSETNAME" | od -A n -t x1 |  sed -e 's/  *//g')
+LEARN_ASSETHEX=$(echo -n "$LEARN_ASSETNAME" | xxd -b -ps -c 80 | tr -d '\n')
 LEARN_QTY=1000
 DISCOUNT25_ASSETNAME=LA25
-DISCOUNT25_ASSETHEX=$(echo -n "$DISCOUNT25_ASSETNAME" | od -A n -t x1 |  sed -e 's/  *//g')
+DISCOUNT25_ASSETHEX=$(echo -n "$DISCOUNT25_ASSETNAME" | xxd -b -ps -c 80 | tr -d '\n')
 DISCOUNT25_QTY=1
 ```
 Cardano has an [On-Chain Token Metadata Standard](https://github.com/cardano-foundation/CIPs/blob/1d9fbd0e29f07b931bf1524c7aed6635d478cd75/CIP-0035/CIP-0035.md) which we will use to define the correct metadata for our tokens so that wallets, explorers and other tools can interpret and display it correctly. We will create a `token-metadata.json` file with the following content and replace `$POLICYID` with the correct policyID from the first step while using the same fixed IPFS asset URL for logo and icon fields.
